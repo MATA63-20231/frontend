@@ -1,16 +1,19 @@
-# Requisitos funcionais:
+# Requisitos funcionais
 
 ## User Stories
 
-Abaixo seguem as *user stories*, identificadas unicamente por um código de prefixo **US**. No corpo de uma user story, em negrito, há a identificação da *persona*, também comumente conhecido como autor. Ordenada por status (finalizadas, em andamento e finalizadas) e prioridade de desenvolvimento.
+Abaixo seguem as *user stories*, identificadas unicamente por um código de prefixo **US** e ordenadas por status (finalizadas, em andamento e finalizadas) e prioridade de desenvolvimento.
 
-**🟨US-00.**
+**🟥 US-01 - [TODO].**
+
+**🟥 US-02 - [TODO].**
+
+**🟥 US-03 - [TODO].**
 
 ## Status de Implementação/Implantação das Users Stories
 
-* ✅ **Aceita:**                  requisito formalmente aceito pelo Product Owner;
-* 🟩 **Finalizado:**              implementação finalizada;
-* 🟨 **Em progresso:**            elencado um responsável e início de implementação;
-* 🟥 **Nova:**                    estado inicial e ninguém começou a trabalhar nela ainda.
+* 🟩 **Finalizado:**              Implementação finalizada e critérios de aceitação aprovados;
+* 🟨 **Em progresso:**            Elencado um responsável e iniciada a implementação;
+* 🟥 **A realizar:**              Não foi iniciada a implementação.
 
-# Requisitos não-funcionais:
+# Requisitos não-funcionais
