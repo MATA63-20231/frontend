@@ -1,9 +1,10 @@
 
-# Perfis
-* Usuário logado
-* Usuário não logado
 
 # Requisitos funcionais
+
+## Perfis
+* Usuário logado;
+* Usuário não logado.
 
 ## User Stories
 
@@ -11,7 +12,7 @@ Abaixo seguem as *user stories*, identificadas unicamente por um código de pref
 
 **🟥 US-01 - Como um usuário logado, eu gostaria de cadastrar uma nova receita para compartilhar com outras pessoas.**
 
-**🟥 US-02- Como qualquer usuário, eu gostaria de visualizar os detalhes de uma receita para prepará-la **
+**🟥 US-02- Como qualquer usuário, eu gostaria de visualizar os detalhes de uma receita para prepará-la.**
 
 **🟥 US-03- Como qualquer usuário, eu gostaria de visualizar a lista de todas as receitas para escolher a que me interessa.**
 
