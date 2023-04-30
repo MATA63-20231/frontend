@@ -1,5 +1,3 @@
-
-
 # Requisitos funcionais
 
 ## Perfis
@@ -33,6 +31,4 @@ Abaixo seguem as *user stories*, identificadas unicamente por um código de pref
 * 🟥 **A realizar:**              Não foi iniciada a implementação.
 
 # Requisitos não-funcionais
-
-
  
