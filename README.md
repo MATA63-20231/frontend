@@ -1,4 +1,4 @@
-# nome_do_projeto [TODO]
+# Chef Virtual
 
 Para informações gerais sobre o sistema, acesse: https://github.com/MATA63-20231/geral.
 
