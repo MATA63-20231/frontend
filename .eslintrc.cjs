@@ -20,6 +20,8 @@ module.exports = {
     ],
     rules: {
         "react-refresh/only-export-components": "warn",
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-filename-extension": "off",
         indent: ["error", 2],
         quotes: ["error", "double"],
         semi: ["error", "always"],
