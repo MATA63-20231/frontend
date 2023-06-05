@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import { Link as RouterLink } from "react-router-dom";
 
 export default function Footer() {
     return (
@@ -23,7 +22,7 @@ export default function Footer() {
                     color="text.secondary"
                     align="center">
                     {"Copyright © "}
-                    <Link component={RouterLink} to="/a">
+                    <Link href="/a">
                         Chef Virtual
                     </Link>{" "}
                     {new Date().getFullYear()}.
