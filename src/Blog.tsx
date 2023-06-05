@@ -1,8 +1,5 @@
-import Album from "./Album";
+import Album from "./Album.tsx";
 
 export default function Blog() {
-  return (
-  <>
-    <Album/>
-  </>);
+  return <Album />;
 }

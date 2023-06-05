@@ -11,44 +11,40 @@ const cards = [1, 2, 3];
 
 export default function Album() {
   return (
-    <>
-      <main>
-        <Container sx={{ py: 8}} maxWidth="md" >
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card
+    <main>
+      <Container sx={{ py: 8 }} maxWidth="md">
+        <Grid container spacing={4}>
+          {cards.map((card) => (
+            <Grid item key={card} xs={12} sm={6} md={4}>
+              <Card
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <CardMedia
+                  component="div"
                   sx={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
+                    // 16:9
+                    pt: "56.25%",
                   }}
-                >
-                  <CardMedia
-                    component="div"
-                    sx={{
-                      // 16:9
-                      pt: "56.25%",
-                    }}
-                    image="https://source.unsplash.com/random?wallpapers"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Titulo
-                    </Typography>
-                    <Typography>
-                      Descrição
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">Ver</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-    </>
+                  image="https://source.unsplash.com/random?wallpapers"
+                />
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Titulo
+                  </Typography>
+                  <Typography>Descrição</Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size="small">Ver</Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </main>
   );
 }
