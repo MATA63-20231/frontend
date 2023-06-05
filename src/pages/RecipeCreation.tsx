@@ -1,3 +1,3 @@
 export default function RecipeCreation() {
-  return <div>aaa</div>;
+  return <div>Criação de receita</div>;
 }
