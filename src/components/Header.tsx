@@ -12,7 +12,8 @@ export default function Header() {
         py: 3,
         justifyContent: "space-between",
         overflowX: "auto",
-      }}>
+      }}
+    >
       <Grid>
         <Typography variant="h4">
           <Link href="/" sx={{ color: "inherit", textDecoration: "none" }}>
@@ -26,7 +27,8 @@ export default function Header() {
           bgcolor: "#ce1212",
           "&:hover": { bgcolor: "#ce1212cc" },
         }}
-        variant="contained">
+        variant="contained"
+      >
         Nova receita
       </Button>
     </Toolbar>
