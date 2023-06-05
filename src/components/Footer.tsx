@@ -20,7 +20,7 @@ export default function Footer() {
         </Typography>
         <Typography variant="body2" color="text.secondary" align="center">
           {"Copyright © "}
-          <Link href="/">Chef Virtual</Link> {new Date().getFullYear()}.
+          <Link href="/" color="inherit">Chef Virtual</Link> {new Date().getFullYear()}.
         </Typography>
       </Container>
     </Box>
