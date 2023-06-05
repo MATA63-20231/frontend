@@ -3,10 +3,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid/Grid";
 import createTheme from "@mui/material/styles/createTheme";
 
-import Header from "./Header";
-import Footer from "./Footer";
-import Blog from "./Blog";
-
+import Header from "./Header.tsx";
+import Footer from "./Footer.tsx";
+import Blog from "./Blog.tsx";
 
 function App() {
   const defaultTheme = createTheme();
@@ -18,7 +17,7 @@ function App() {
       <Header />
 
       <Grid sx={{ minHeight: "80vh", bgcolor: "#212529" }}>
-        <Blog /> 
+        <Blog />
       </Grid>
 
       <Footer />
