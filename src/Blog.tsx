@@ -1,3 +1,8 @@
+import Album from "./Album";
+
 export default function Blog() {
-  return <div>oxe</div>;
+  return (
+  <>
+    <Album/>
+  </>);
 }
