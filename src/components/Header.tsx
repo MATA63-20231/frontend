@@ -17,6 +17,7 @@ export default function Header() {
         <Typography variant="h4">Chef Virtual</Typography>
       </Grid>
       <Button
+        href="/nova-receita"
         sx={{
           bgcolor: "#ce1212",
           "&:hover": { bgcolor: "#ce1212cc" },
