@@ -1,3 +1,9 @@
+import Page from "../components/Page";
+
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <Page title="Home" subtitle="Home subtitle">
+      Home content
+    </Page>
+  );
 }
