@@ -22,7 +22,7 @@ export default function Footer() {
                     color="text.secondary"
                     align="center">
                     {"Copyright © "}
-                    <Link href="/a">
+                    <Link href="/">
                         Chef Virtual
                     </Link>{" "}
                     {new Date().getFullYear()}.
