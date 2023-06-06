@@ -82,13 +82,13 @@ const defaultTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          fontSize: '14px',
-          color: '#fff',
-          background: '#CE1212',
-          padding: '8px 20px',
-          marginLeft: '30px',
-          borderRadius: '50px',
-          transition: '0.3s',
+          fontSize: "14px",
+          color: "#fff",
+          background: "#CE1212",
+          padding: "8px 20px",
+          marginLeft: "30px",
+          borderRadius: "50px",
+          transition: "0.3s",
         },
       },
     },

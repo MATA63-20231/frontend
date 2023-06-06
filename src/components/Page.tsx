@@ -21,7 +21,9 @@ export default function Page({
       }}
     >
       <Typography variant="h2">{subtitle}</Typography>
-      <Typography variant="h1" sx={{pb:3}}>{title}</Typography>
+      <Typography variant="h1" sx={{ pb: 3 }}>
+        {title}
+      </Typography>
       {children}
     </Container>
   );
