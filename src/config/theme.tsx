@@ -1,7 +1,6 @@
 import { LinkProps } from "@mui/material/Link";
 import createTheme from "@mui/material/styles/createTheme";
 import LinkBehavior from "../components/LinkBehavior.tsx";
-import { ThemeProvider } from '@mui/material/styles';
 
 
 // create default pallete
@@ -10,7 +9,6 @@ declare module '@mui/material/styles' {
     default: Palette['primary'];
   }
 
-  // allow configuration using `createTheme`
   interface PaletteOptions {
     default?: PaletteOptions['primary'];
   }
