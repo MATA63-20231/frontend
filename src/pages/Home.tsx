@@ -9,7 +9,7 @@ const cards = [1, 2, 3];
 
 export default function Home() {
   return (
-    <Page title="Confira nossas receitas" subtitle="Receitas">
+    <Page pretitle="Receitas" title="Confira nossas receitas">
       <Grid container spacing={4}>
         {cards.map((card) => (
           <Grid item key={card} xs={12} sm={6} md={4}>
