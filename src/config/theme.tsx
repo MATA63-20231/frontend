@@ -55,6 +55,7 @@ const defaultTheme = createTheme({
       fontSize: "52px",
       fontWeight: 500,
       margin: 0,
+      color: "#CE1212",
     },
     h2: {
       fontSize: "13px",
@@ -62,7 +63,7 @@ const defaultTheme = createTheme({
       fontWeight: 400,
       margin: 0,
       padding: 0,
-      color: "#7f7f90",
+      color: "#7F7F90",
       textTransform: "uppercase",
     },
   },
