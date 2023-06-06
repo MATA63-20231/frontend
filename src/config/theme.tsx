@@ -79,6 +79,19 @@ const defaultTheme = createTheme({
         LinkComponent: LinkBehavior,
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontSize: '14px',
+          color: '#fff',
+          background: '#CE1212',
+          padding: '8px 20px',
+          marginLeft: '30px',
+          borderRadius: '50px',
+          transition: '0.3s',
+        },
+      },
+    },
   },
 });
 

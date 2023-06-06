@@ -1,6 +1,4 @@
-import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
@@ -36,9 +34,6 @@ export default function Home() {
                 </Typography>
                 <Typography>Descrição</Typography>
               </CardContent>
-              <CardActions>
-                <Button size="small">Ver</Button>
-              </CardActions>
             </Card>
           </Grid>
         ))}
