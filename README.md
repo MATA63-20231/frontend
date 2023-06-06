@@ -12,14 +12,14 @@ Para informações gerais sobre o sistema, acesse: https://github.com/MATA63-202
 ```bash
 $ npm install
 ```
- 
+## Build
+```bash
+$ npm run build 
+```
+
 ## Execução 
 ```bash
-# Executar no ambiente de dev
 $ npm run dev 
-
-# Executar no ambiente de produção
-$ npm run prod 
 ```
  
 ## Lint
