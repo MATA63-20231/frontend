@@ -2,7 +2,7 @@ import { LinkProps } from "@mui/material/Link";
 import createTheme from "@mui/material/styles/createTheme";
 import LinkBehavior from "../components/LinkBehavior.tsx";
 
-// create personalized theme variants
+// Create personalized theme variants
 declare module "@mui/material/styles" {
   interface Palette {
     default: Palette["primary"];
@@ -16,7 +16,6 @@ declare module "@mui/material/styles" {
     mainTitle: React.CSSProperties;
   }
 
-  // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
     mainTitle?: React.CSSProperties;
   }
