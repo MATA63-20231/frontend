@@ -50,7 +50,7 @@ export default function Header() {
           </Typography>
         </Grid>
       </Link>
-          
+
       <Grid container direction="row" justifyContent="flex-end">
         <Button
           href="/nova-receita"
