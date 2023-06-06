@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 import { PropsWithChildren } from "react";
 
 interface PageProps {
@@ -13,16 +13,15 @@ export default function Page({
   children,
 }: PropsWithChildren<PageProps>) {
   return (
-    <Grid
+    <Container
+      maxWidth="lg"
       sx={{
-        bgcolor: "red",
-        minHeight: "80vh",
-        width: "80%",
         margin: "0 auto",
+        py: 4
       }}>
       <Typography variant="h1">{title}</Typography>
       <Typography variant="h2">{subtitle}</Typography>
       {children}
-    </Grid>
+    </Container>
   );
 }
