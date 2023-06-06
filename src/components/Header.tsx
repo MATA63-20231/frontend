@@ -28,24 +28,8 @@ export default function Header() {
             image={Logo}
             title="Chef Virtual"
           />
-          <Typography
-            sx={{
-              whiteSpace: "nowrap",
-              fontFamily: "Inter",
-              fontSize: "28px",
-              fontWeight: "700",
-            }}
-          >
-            Chef Virtual
-          </Typography>
-          <Typography
-            sx={{
-              color: "#CE1212",
-              fontFamily: "Inter",
-              fontSize: "28px",
-              fontWeight: "700",
-            }}
-          >
+          <Typography variant="mainTitle">Chef Virtual</Typography>
+          <Typography variant="mainTitle" sx={{ color: "primary.main" }}>
             .
           </Typography>
         </Grid>
@@ -55,8 +39,8 @@ export default function Header() {
         <Button
           href="/nova-receita"
           sx={{
-            bgcolor: "#CE1212",
-            "&:hover": { bgcolor: "#ce1212cc" },
+            bgcolor: "primary.main",
+            "&:hover": { bgcolor: "primary.light" },
           }}
           variant="contained"
         >
