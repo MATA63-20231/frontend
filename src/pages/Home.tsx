@@ -1,12 +1,11 @@
-import Page from "../components/Page";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import Page from "../components/Page.tsx";
 
 const cards = [1, 2, 3];
 
@@ -21,7 +20,8 @@ export default function Home() {
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
-              }}>
+              }}
+            >
               <CardMedia
                 component="div"
                 sx={{

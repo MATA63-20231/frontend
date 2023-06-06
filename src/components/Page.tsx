@@ -17,11 +17,14 @@ export default function Page({
       maxWidth="lg"
       sx={{
         margin: "0 auto",
-        py: 4
-      }}>
+        py: 4,
+      }}
+    >
       <Typography variant="h1">{title}</Typography>
       <Typography variant="h2">{subtitle}</Typography>
       {children}
     </Container>
   );
 }
+
+Page.defaultProps = { title: "", subtitle: "" };
