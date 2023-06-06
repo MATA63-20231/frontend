@@ -36,7 +36,7 @@ export default function Header() {
               fontWeight: "700",
             }}
           >
-            Yummy
+            Chef Virtual
           </Typography>
           <Typography
             sx={{
