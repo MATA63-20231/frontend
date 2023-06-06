@@ -1,22 +1,23 @@
 import * as Yup from "yup";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import { Formik, Form, Field } from "formik";
 import { TextField } from "formik-mui";
 import FormErrorMessages from "../../../enums/errorMessages";
 
-const SignupSchema = Yup.object().shape({
-  firstName: Yup.string()
+const RecipeCreationSchema = Yup.object().shape({
+  recipeTitle: Yup.string()
     .min(2, FormErrorMessages.MIN_2)
     .max(255, FormErrorMessages.MAX_255)
     .required(FormErrorMessages.REQUIRED),
 
-  lastName: Yup.string()
+  ingredient: Yup.string()
     .min(2, FormErrorMessages.MIN_2)
     .max(255, FormErrorMessages.MAX_255)
     .required(FormErrorMessages.REQUIRED),
 
-  email: Yup.string()
-    .email(FormErrorMessages.INVALID_EMAIL)
+  directions: Yup.string()
+    .min(2, FormErrorMessages.MIN_2)
+    .max(255, FormErrorMessages.MAX_255)
     .required(FormErrorMessages.REQUIRED),
 });
 
@@ -24,11 +25,11 @@ export default function RecipeCreationForm() {
   return (
     <Formik
       initialValues={{
-        firstName: "",
-        lastName: "",
-        email: "",
+        recipeTitle: "",
+        ingredient: "",
+        directions: "",
       }}
-      validationSchema={SignupSchema}
+      validationSchema={RecipeCreationSchema}
       onSubmit={(values, { setSubmitting }) => {
         console.log(values);
         setTimeout(() => {
@@ -40,23 +41,26 @@ export default function RecipeCreationForm() {
         <Form>
           <Field
             component={TextField}
-            name="firstName"
+            fullWidth
+            name="recipeTitle"
             type="text"
-            label="First Name"
+            label="Título da Receita"
           />
 
           <Field
             component={TextField}
-            name="lastName"
+            fullWidth
+            name="ingredient"
             type="text"
-            label="Last Name"
+            label="Ingredientes"
           />
 
           <Field
             component={TextField}
-            name="email"
-            type="email"
-            label="Email"
+            fullWidth
+            name="directions"
+            type="text"
+            label="Modo de Preparo"
           />
 
           <Button
