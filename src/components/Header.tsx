@@ -40,7 +40,7 @@ export default function Header() {
           </Typography>
           <Typography
             sx={{
-              color: "#CE1212",
+              color: "primary.main",
               fontFamily: "Inter",
               fontSize: "28px",
               fontWeight: "700",
@@ -50,13 +50,13 @@ export default function Header() {
           </Typography>
         </Grid>
       </Link>
-
+          
       <Grid container direction="row" justifyContent="flex-end">
         <Button
           href="/nova-receita"
           sx={{
-            bgcolor: "#CE1212",
-            "&:hover": { bgcolor: "#ce1212cc" },
+            bgcolor: "primary.main",
+            "&:hover": { bgcolor: "primary.light" },
           }}
           variant="contained"
         >

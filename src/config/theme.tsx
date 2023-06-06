@@ -1,8 +1,35 @@
 import { LinkProps } from "@mui/material/Link";
 import createTheme from "@mui/material/styles/createTheme";
 import LinkBehavior from "../components/LinkBehavior.tsx";
+import { ThemeProvider } from '@mui/material/styles';
+
+
+// create default pallete
+declare module '@mui/material/styles' {
+  interface Palette {
+    default: Palette['primary'];
+  }
+
+  // allow configuration using `createTheme`
+  interface PaletteOptions {
+    default?: PaletteOptions['primary'];
+  }
+}
+
 
 const defaultTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#CE1212",
+    },
+    secondary: {
+      main: "#37373f", 
+    },
+    default: {
+      main: "#212529" 
+    }, 
+  },
+
   components: {
     MuiLink: {
       defaultProps: {
