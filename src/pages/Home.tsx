@@ -4,6 +4,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Page from "../components/Page.tsx";
+import CardActionArea from "@mui/material/CardActionArea";
 
 const cards = [1, 2, 3];
 
@@ -20,20 +21,22 @@ export default function Home() {
                 flexDirection: "column",
               }}
             >
-              <CardMedia
-                component="div"
-                sx={{
-                  // 16:9
-                  pt: "56.25%",
-                }}
-                image="https://source.unsplash.com/random?wallpapers"
-              />
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Título
-                </Typography>
-                <Typography>Descrição</Typography>
-              </CardContent>
+              <CardActionArea href={"/receita/"+card}>
+                <CardMedia
+                  component="div"
+                  sx={{
+                    // 16:9
+                    pt: "56.25%",
+                  }}
+                  image="https://source.unsplash.com/random?wallpapers"
+                />
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Título
+                  </Typography>
+                  <Typography>Descrição</Typography>
+                </CardContent>
+              </CardActionArea>
             </Card>
           </Grid>
         ))}
