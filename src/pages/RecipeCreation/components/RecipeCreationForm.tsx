@@ -96,9 +96,11 @@ export default function RecipeCreationForm() {
                   type="text"
                 />
               </Grid>
-
               <Grid item xs>
-                <DeleteIcon fontSize="large" color="error" />
+                  <DeleteIcon
+                    fontSize="large"
+                    sx={{ color: "secondary.main" }}
+                  />
               </Grid>
             </Grid>
           ))}
