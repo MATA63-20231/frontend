@@ -5,9 +5,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Formik, Form, Field, FormikHelpers } from "formik";
 import { TextField } from "formik-mui";
-import FormErrorMessages from "../../../enums/errorMessages";
 import { useState } from "react";
+import FormErrorMessages from "../../../enums/errorMessages";
 import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from '@mui/material/IconButton';
 interface IFields {
   recipeTitle: string;
   ingredients: string[];
@@ -86,8 +87,8 @@ export default function RecipeCreationForm() {
           <Typography> Ingredientes</Typography>
 
           {ingredients.map((_, index) => (
-            <Grid container>
-              <Grid item xs={11}>
+            <Grid container alignItems="flex-start" sx={{py:.5}}>
+              <Grid item xs={10.7}>
                 <Field
                   component={TextField}
                   size="small"
@@ -97,10 +98,11 @@ export default function RecipeCreationForm() {
                 />
               </Grid>
               <Grid item xs>
+                <IconButton>
                   <DeleteIcon
-                    fontSize="large"
-                    sx={{ color: "secondary.main" }}
+                    sx={{ fontSize: 30, color: "secondary.main" }}
                   />
+                </IconButton>
               </Grid>
             </Grid>
           ))}
@@ -121,7 +123,11 @@ export default function RecipeCreationForm() {
           <Button onClick={addStep}>Adicionar passo</Button>
           <br />
           <br />
-          <Button variant="contained" disabled={isSubmitting} onClick={submitForm}>
+          <Button
+            variant="contained"
+            disabled={isSubmitting}
+            onClick={submitForm}
+          >
             Submit
           </Button>
         </Form>
