@@ -121,7 +121,7 @@ export default function RecipeCreationForm() {
           <Button onClick={addStep}>Adicionar passo</Button>
           <br />
           <br />
-          <Button color="primary" disabled={isSubmitting} onClick={submitForm}>
+          <Button variant="contained" disabled={isSubmitting} onClick={submitForm}>
             Submit
           </Button>
         </Form>
