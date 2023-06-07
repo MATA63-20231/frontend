@@ -8,7 +8,7 @@ import { TextField } from "formik-mui";
 import { useState } from "react";
 import FormErrorMessages from "../../../enums/errorMessages";
 import DeleteIcon from "@mui/icons-material/Delete";
-import IconButton from '@mui/material/IconButton';
+import IconButton from "@mui/material/IconButton";
 interface IFields {
   recipeTitle: string;
   ingredients: string[];
@@ -69,6 +69,19 @@ export default function RecipeCreationForm() {
     }, 500);
   };
 
+  const deleteIngredient = (index: number) => {
+    console.log("delete", index);
+
+    const newIngredients = [...ingredients];
+
+    newIngredients.splice(index, 1);
+
+    setIngredients(newIngredients);
+
+    console.log(ingredients, newIngredients)
+
+  };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -87,7 +100,12 @@ export default function RecipeCreationForm() {
           <Typography> Ingredientes</Typography>
 
           {ingredients.map((_, index) => (
-            <Grid container alignItems="flex-start" sx={{py:.5}}>
+            <Grid
+              container
+              alignItems="flex-start"
+              key={`ingredients[${index}]`}
+              sx={{ py: 0.5 }}
+            >
               <Grid item xs={10.7}>
                 <Field
                   component={TextField}
@@ -98,10 +116,8 @@ export default function RecipeCreationForm() {
                 />
               </Grid>
               <Grid item xs>
-                <IconButton>
-                  <DeleteIcon
-                    sx={{ fontSize: 30, color: "secondary.main" }}
-                  />
+                <IconButton onClick={() => deleteIngredient(index)}>
+                  <DeleteIcon sx={{ fontSize: 30, color: "secondary.main" }} />
                 </IconButton>
               </Grid>
             </Grid>
@@ -116,6 +132,7 @@ export default function RecipeCreationForm() {
               component={TextField}
               size="small"
               fullWidth
+              key={`directions[${index}]`}
               name={`directions[${index}]`}
               type="text"
             />
