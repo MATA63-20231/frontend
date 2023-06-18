@@ -1,5 +1,4 @@
 import CardMedia from "@mui/material/CardMedia";
-import Page from "../components/Page.tsx";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -10,6 +9,7 @@ import RamenDiningOutlinedIcon from "@mui/icons-material/RamenDiningOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import { List, ListItem, ListItemText } from "@mui/material";
+import Page from "../components/Page.tsx";
 
 // TODO: Componentizar rs
 // TODO: Avaliação e comentários
@@ -146,10 +146,10 @@ export default function RecipeView() {
 
               <List>
                 <ListItem>
-                  <ListItemText primary="item 1"></ListItemText>
+                  <ListItemText primary="item 1" />
                 </ListItem>
                 <ListItem>
-                  <ListItemText primary="item 2"></ListItemText>
+                  <ListItemText primary="item 2" />
                 </ListItem>
               </List>
             </Grid>
@@ -158,10 +158,10 @@ export default function RecipeView() {
               <Typography variant="h6">Modo de preparo</Typography>
               <List>
                 <ListItem>
-                  <ListItemText primary="item 1" secondary="desc item 1"></ListItemText>
+                  <ListItemText primary="item 1" secondary="desc item 1" />
                 </ListItem>
                 <ListItem>
-                  <ListItemText primary="item 2" secondary="desc item 2"></ListItemText>
+                  <ListItemText primary="item 2" secondary="desc item 2" />
                 </ListItem>
               </List>
             </Grid>

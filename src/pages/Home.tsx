@@ -3,8 +3,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Page from "../components/Page.tsx";
 import CardActionArea from "@mui/material/CardActionArea";
+import Page from "../components/Page.tsx";
 
 const cards = [1, 2, 3];
 
@@ -21,7 +21,7 @@ export default function Home() {
                 flexDirection: "column",
               }}
             >
-              <CardActionArea href={"/receita/"+card}>
+              <CardActionArea href={`/receita/${card}`}>
                 <CardMedia
                   component="div"
                   sx={{
