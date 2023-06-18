@@ -12,6 +12,7 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 import { List, ListItem, ListItemText } from "@mui/material";
 
 // TODO: Componentizar rs
+// TODO: Avaliação e comentários
 export default function RecipeView() {
   return (
     <Page title="Título da Receita">
