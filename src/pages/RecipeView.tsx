@@ -9,6 +9,7 @@ import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 import RamenDiningOutlinedIcon from "@mui/icons-material/RamenDiningOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import { List, ListItem, ListItemText } from "@mui/material";
 
 // TODO: Componentizar rs
 export default function RecipeView() {
@@ -26,7 +27,8 @@ export default function RecipeView() {
             sx={{
               px: 1,
               py: 2,
-            }}>
+            }}
+          >
             <Stack
               direction="row"
               spacing={0.5}
@@ -36,14 +38,16 @@ export default function RecipeView() {
                 justifyContent: "center",
                 minWidth: 0,
                 width: "100%",
-              }}>
+              }}
+            >
               <TimerOutlinedIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                }}>
+                }}
+              >
                 1h30min
               </Typography>
             </Stack>
@@ -61,14 +65,16 @@ export default function RecipeView() {
                 justifyContent: "center",
                 minWidth: 0,
                 width: "100%",
-              }}>
+              }}
+            >
               <RamenDiningOutlinedIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                }}>
+                }}
+              >
                 40 porções
               </Typography>
             </Stack>
@@ -86,14 +92,16 @@ export default function RecipeView() {
                 justifyContent: "center",
                 minWidth: 0,
                 width: "100%",
-              }}>
+              }}
+            >
               <PersonOutlineOutlinedIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                }}>
+                }}
+              >
                 Beatriz Cerqueira
               </Typography>
             </Stack>
@@ -111,19 +119,52 @@ export default function RecipeView() {
                 justifyContent: "center",
                 minWidth: 0,
                 width: "100%",
-              }}>
+              }}
+            >
               <CalendarMonthOutlinedIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                }}>
+                }}
+              >
                 06/06/2023
               </Typography>
             </Stack>
           </Stack>
-          <Typography variant="h5">Ingredientes</Typography>
+
+          <Grid
+            container
+            direction="column"
+            alignItems="flex-start"
+            sx={{ p: 2 }}
+          >
+            <Grid item>
+              <Typography variant="h6">Ingredientes</Typography>
+
+              <List>
+                <ListItem>
+                  <ListItemText primary="item 1"></ListItemText>
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="item 2"></ListItemText>
+                </ListItem>
+              </List>
+            </Grid>
+
+            <Grid item>
+              <Typography variant="h6">Modo de preparo</Typography>
+              <List>
+                <ListItem>
+                  <ListItemText primary="item 1" secondary="desc item 1"></ListItemText>
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="item 2" secondary="desc item 2"></ListItemText>
+                </ListItem>
+              </List>
+            </Grid>
+          </Grid>
         </Card>
       </Grid>
     </Page>
