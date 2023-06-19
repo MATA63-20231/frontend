@@ -4,12 +4,12 @@ import { PropsWithChildren } from "react";
 
 interface PageProps {
   title?: string;
-  subtitle?: string;
+  pretitle?: string;
 }
 
 export default function Page({
   title,
-  subtitle,
+  pretitle,
   children,
 }: PropsWithChildren<PageProps>) {
   return (
@@ -20,7 +20,7 @@ export default function Page({
         py: 4,
       }}
     >
-      <Typography variant="h2">{subtitle}</Typography>
+      <Typography variant="h2">{pretitle}</Typography>
       <Typography variant="h1" sx={{ pb: 3 }}>
         {title}
       </Typography>
@@ -29,4 +29,4 @@ export default function Page({
   );
 }
 
-Page.defaultProps = { title: "", subtitle: "" };
+Page.defaultProps = { title: "", pretitle: "" };
