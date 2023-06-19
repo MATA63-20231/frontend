@@ -5,6 +5,10 @@ const api = axios.create({
   baseURL: "https://chef-virtual.onrender.com/",
 });
 
+export const getRecipes = () => {
+  return api.get<IRecipe[]>("/receitas");
+};
+
 export const getRecipeDetails = () => {
   return api.get<IRecipe>("/receita");
 };
