@@ -10,21 +10,20 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import { List, ListItem, ListItemText } from "@mui/material";
 import Page from "../components/Page.tsx";
-import { useEffect, useState } from "react";
-import { getRecipeDetails } from "../services/Api.tsx";
-import { IRecipe } from "../interfaces/interfaces.tsx";
+// import { useEffect, useState } from "react";
+// import { getRecipeDetails } from "../services/Api.tsx";
+// import { IRecipe } from "../interfaces/interfaces.tsx";
 
 // TODO: Componentizar rs
 // TODO: Avaliação e comentários
 export default function RecipeView() {
-  const [recipe, setRecipe] = useState<IRecipe>();
+  // const [recipe, setRecipe] = useState<IRecipe>();
 
-  useEffect(() => {
-    getRecipeDetails().then(({ data }) => {
-      setRecipe(data);
-      console.log(data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getRecipeDetails().then(({ data }) => {
+  //     setRecipe(data);
+  //   });
+  // }, []);
 
   return (
     <Page title="Título da Receita">
