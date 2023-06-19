@@ -4,8 +4,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Page from "../components/Page.tsx";
 import { useState, useEffect } from "react";
+import Page from "../components/Page.tsx";
 import { IRecipe } from "../interfaces/interfaces.tsx";
 import { getRecipes } from "../services/Api.tsx";
 
@@ -15,7 +15,6 @@ export default function Home() {
   useEffect(() => {
     getRecipes().then(({ data }) => {
       setRecipes(data);
-      console.log(data);
     });
   }, []);
 
