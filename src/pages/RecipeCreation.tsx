@@ -1,3 +1,9 @@
+import Page from "../components/Page.tsx";
+
 export default function RecipeCreation() {
-  return <div>Criação de receita</div>;
+  return (
+    <Page pretitle="Foo" title="Bar">
+      Foobar
+    </Page>
+  );
 }

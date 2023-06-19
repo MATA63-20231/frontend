@@ -5,25 +5,22 @@ import Link from "@mui/material/Link";
 
 export default function Footer() {
   return (
-    <Box component="footer" sx={{ bgcolor: "background.paper", py: 6 }}>
-      <Container maxWidth="lg">
-        <Typography variant="h6" align="center" gutterBottom>
-          Chef Virtual
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        >
-          Receitas para curtir com a família!
-        </Typography>
-        <Typography variant="body2" color="text.secondary" align="center">
-          {"Copyright © "}
-          <Link href="/" color="inherit">
-            Chef Virtual
+    <Box
+      component="footer"
+      sx={{ bgcolor: "#1f1f24", color: "#FFFFFFB3", py: 3 }}
+    >
+      <Container>
+        <Typography variant="body2" color="#FFFFFFB3" align="center">
+          {"Gostou? Contribua no nosso "}
+          <Link
+            target="_blank"
+            rel="noopener"
+            href="https://github.com/MATA63-20231/geral"
+            color="inherit"
+          >
+            GitHub
           </Link>{" "}
-          {new Date().getFullYear()}.
+          🤍
         </Typography>
       </Container>
     </Box>
