@@ -1,15 +1,10 @@
 import * as Yup from "yup";
-import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Formik, Form, Field, FieldArray, FormikHelpers } from "formik";
+import { Formik, Form, Field, FormikHelpers } from "formik";
 import { TextField } from "formik-mui";
-import { useState } from "react";
 import FormErrorMessages from "../../../enums/errorMessages";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
-import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import ArrayInput from "./ArrayInput";
 
 interface IFields {
   recipeTitle: string;
@@ -43,16 +38,10 @@ const RecipeCreationSchema = Yup.object().shape({
 });
 
 export default function RecipeCreationForm() {
-  const [directions, setDirections] = useState<string[]>([""]);
-
   const initialValues: IFields = {
     recipeTitle: "",
     ingredients: [""],
-    directions,
-  };
-
-  const addStep = () => {
-    setDirections([...directions, ""]);
+    directions: [""],
   };
 
   const handleSubmit = (
@@ -81,71 +70,19 @@ export default function RecipeCreationForm() {
             label="Título da Receita"
           />
 
+          <br />
+          <br />
           <Typography> Ingredientes</Typography>
-          <FieldArray name="ingredients">
-            {({ push, remove, swap }) => (
-              <>
-                {values.ingredients.map((_, index) => (
-                  <Grid
-                    container
-                    alignItems="flex-start"
-                    key={`ingredients[${index}]`}
-                    sx={{ py: 0.5 }}>
-                    {index + 1}
-                    <Grid item xs>
-                      {index > 0 && (
-                        <IconButton onClick={() => swap(index, index - 1)}>
-                          <ArrowDropUp
-                            sx={{ fontSize: 30, color: "secondary.main" }}
-                          />
-                        </IconButton>
-                      )}
-                      {index < values.ingredients.length - 1 && (
-                        <IconButton onClick={() => swap(index, index + 1)}>
-                          <ArrowDropDown
-                            sx={{ fontSize: 30, color: "secondary.main" }}
-                          />
-                        </IconButton>
-                      )}
-                    </Grid>
-
-                    <Grid item xs>
-                      <Field
-                        fullWidth
-                        component={TextField}
-                        size="small"
-                        name={`ingredients[${index}]`}
-                        type="text"
-                      />
-                    </Grid>
-                    <Grid item xs>
-                      <IconButton onClick={() => remove(index)}>
-                        <DeleteIcon
-                          sx={{ fontSize: 30, color: "secondary.main" }}
-                        />
-                      </IconButton>
-                    </Grid>
-                  </Grid>
-                ))}
-                <Button onClick={() => push("")}>Adicionar ingrediente</Button>
-              </>
-            )}
-          </FieldArray>
+          <ArrayInput
+            inputName="ingredients"
+            inputValues={values.ingredients}
+          />
 
           <br />
           <br />
           <Typography> Modo de Preparo</Typography>
-          {directions.map((_, index) => (
-            <Field
-              fullWidth
-              component={TextField}
-              size="small"
-              key={`directions[${index}]`}
-              name={`directions[${index}]`}
-              type="text"
-            />
-          ))}
-          <Button onClick={addStep}>Adicionar passo</Button>
+          <ArrayInput inputName="directions" inputValues={values.directions} />
+
           <br />
           <br />
           <Button
