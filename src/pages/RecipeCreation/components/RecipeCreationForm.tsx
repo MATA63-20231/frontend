@@ -45,15 +45,10 @@ const RecipeCreationSchema = Yup.object().shape({
 export default function RecipeCreationForm() {
   const [directions, setDirections] = useState<string[]>([""]);
 
-  const initialValues = {
+  const initialValues: IFields = {
     recipeTitle: "",
     ingredients: [""],
     directions,
-  };
-
-  const addIngredient = (values: any, push: any) => {
-    console.log({ values, push });
-    //setIngredients([...ingredients, ""]);
   };
 
   const addStep = () => {
@@ -71,28 +66,13 @@ export default function RecipeCreationForm() {
     }, 500);
   };
 
-  const handleChange = (values: any) => {
-    console.log(values);
-  };
-
-  const deleteIngredient = (index: number) => {
-    // console.log("delete", index);
-    // const newIngredients = [...ingredients];
-    // newIngredients.splice(index, 1);
-    // setIngredients(newIngredients);
-    // console.log(ingredients, newIngredients)
-  };
-
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={RecipeCreationSchema}
       onSubmit={handleSubmit}>
       {({ values, submitForm, isSubmitting }) => (
-        <Form onChange={() => handleChange(values)}>
-          <p>{values.recipeTitle}</p>
-          <p>{values.ingredients}</p>
-          <p>{values.directions}</p>
+        <Form>
           <Field
             fullWidth
             component={TextField}
@@ -100,8 +80,8 @@ export default function RecipeCreationForm() {
             type="text"
             label="Título da Receita"
           />
-          <Typography> Ingredientes</Typography>
 
+          <Typography> Ingredientes</Typography>
           <FieldArray name="ingredients">
             {({ push, remove, swap }) => (
               <>
