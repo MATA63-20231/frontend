@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import Page from "../../components/Page.js";
+import Page from "../../components/Page.tsx";
 import RecipeCreationForm from "./components/RecipeCreationForm.tsx";
 
 export default function RecipeCreation() {

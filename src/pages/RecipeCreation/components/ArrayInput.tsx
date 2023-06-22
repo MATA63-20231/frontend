@@ -1,7 +1,8 @@
-import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
+import { v4 as uuidv4 } from "uuid";
 import { Field, FieldArray } from "formik";
 import { TextField } from "formik-mui";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
@@ -21,8 +22,9 @@ export default function ArrayInput({ inputName, inputValues }: IProps) {
             <Grid
               container
               alignItems="flex-start"
-              key={inputName + "[" + index + "]"}
-              sx={{ py: 0.5 }}>
+              key={uuidv4()}
+              sx={{ py: 0.5 }}
+            >
               <Grid item xs>
                 {index + 1}
               </Grid>
@@ -49,7 +51,7 @@ export default function ArrayInput({ inputName, inputValues }: IProps) {
                   fullWidth
                   component={TextField}
                   size="small"
-                  name={inputName + "[" + index + "]"}
+                  name={`${inputName}[${index}]`}
                   type="text"
                 />
               </Grid>

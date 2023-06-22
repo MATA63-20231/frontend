@@ -1,4 +1,4 @@
-export enum FormErrorMessages {
+enum FormErrorMessages {
   // Erors gerais
   REQUIRED = "Campo obrigatório.",
   INVALID_EMAIL = "E-mail inválido.",

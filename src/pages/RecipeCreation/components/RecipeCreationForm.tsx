@@ -1,10 +1,10 @@
 import * as Yup from "yup";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import { Formik, Form, Field, FormikHelpers } from "formik";
 import { TextField } from "formik-mui";
-import FormErrorMessages from "../../../enums/errorMessages";
-import ArrayInput from "./ArrayInput";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import FormErrorMessages from "../../../enums/errorMessages.tsx";
+import ArrayInput from "./ArrayInput.tsx";
 
 interface IFields {
   recipeTitle: string;
@@ -48,9 +48,11 @@ export default function RecipeCreationForm() {
     values: IFields,
     { setSubmitting }: FormikHelpers<IFields>
   ) => {
+    // eslint-disable-next-line no-console
     console.log(values);
     setTimeout(() => {
       setSubmitting(false);
+      // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
     }, 500);
   };
@@ -59,7 +61,8 @@ export default function RecipeCreationForm() {
     <Formik
       initialValues={initialValues}
       validationSchema={RecipeCreationSchema}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+    >
       {({ values, submitForm, isSubmitting }) => (
         <Form>
           <Field
@@ -88,7 +91,8 @@ export default function RecipeCreationForm() {
           <Button
             variant="contained"
             disabled={isSubmitting}
-            onClick={submitForm}>
+            onClick={submitForm}
+          >
             Submit
           </Button>
         </Form>
