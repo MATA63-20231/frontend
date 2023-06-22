@@ -1,6 +1,5 @@
 import * as Yup from "yup";
 import Grid from "@mui/material/Grid";
-
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Formik, Form, Field, FormikHelpers } from "formik";
@@ -9,6 +8,7 @@ import { useState } from "react";
 import FormErrorMessages from "../../../enums/errorMessages";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
+
 interface IFields {
   recipeTitle: string;
   ingredients: string[];
@@ -58,7 +58,7 @@ export default function RecipeCreationForm() {
     setDirections([...directions, ""]);
   };
 
-  const onSubmit = (
+  const handleSubmit = (
     values: IFields,
     { setSubmitting }: FormikHelpers<IFields>
   ) => {
@@ -68,6 +68,11 @@ export default function RecipeCreationForm() {
       alert(JSON.stringify(values, null, 2));
     }, 500);
   };
+
+  const handleChange = (values: any) => {
+    console.log(values);
+  };
+
 
   const deleteIngredient = (index: number) => {
     console.log("delete", index);
@@ -86,13 +91,17 @@ export default function RecipeCreationForm() {
     <Formik
       initialValues={initialValues}
       validationSchema={RecipeCreationSchema}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
-      {({ submitForm, isSubmitting }) => (
-        <Form>
+      {({ values, submitForm, isSubmitting }) => (
+        <Form 
+        onChange={() => handleChange(values)}>
+          <p>{values.recipeTitle}</p>
+          <p>{values.ingredients}</p>
+          <p>{values.directions}</p>
           <Field
-            component={TextField}
             fullWidth
+            component={TextField}
             name="recipeTitle"
             type="text"
             label="Título da Receita"
@@ -108,9 +117,9 @@ export default function RecipeCreationForm() {
             >
               <Grid item xs={10.7}>
                 <Field
+                  fullWidth
                   component={TextField}
                   size="small"
-                  fullWidth
                   name={`ingredients[${index}]`}
                   type="text"
                 />
@@ -129,9 +138,9 @@ export default function RecipeCreationForm() {
           <Typography> Modo de Preparo</Typography>
           {directions.map((_, index) => (
             <Field
+              fullWidth
               component={TextField}
               size="small"
-              fullWidth
               key={`directions[${index}]`}
               name={`directions[${index}]`}
               type="text"
