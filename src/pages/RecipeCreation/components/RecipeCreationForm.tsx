@@ -2,12 +2,14 @@ import * as Yup from "yup";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Formik, Form, Field, FormikHelpers } from "formik";
+import { Formik, Form, Field, FieldArray, FormikHelpers } from "formik";
 import { TextField } from "formik-mui";
 import { useState } from "react";
 import FormErrorMessages from "../../../enums/errorMessages";
-import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 
 interface IFields {
   recipeTitle: string;
@@ -41,17 +43,17 @@ const RecipeCreationSchema = Yup.object().shape({
 });
 
 export default function RecipeCreationForm() {
-  const [ingredients, setIngredients] = useState<string[]>([""]);
   const [directions, setDirections] = useState<string[]>([""]);
 
   const initialValues = {
     recipeTitle: "",
-    ingredients,
+    ingredients: [""],
     directions,
   };
 
-  const addIngredient = () => {
-    setIngredients([...ingredients, ""]);
+  const addIngredient = (values: any, push: any) => {
+    console.log({ values, push });
+    //setIngredients([...ingredients, ""]);
   };
 
   const addStep = () => {
@@ -73,29 +75,21 @@ export default function RecipeCreationForm() {
     console.log(values);
   };
 
-
   const deleteIngredient = (index: number) => {
-    console.log("delete", index);
-
-    const newIngredients = [...ingredients];
-
-    newIngredients.splice(index, 1);
-
-    setIngredients(newIngredients);
-
-    console.log(ingredients, newIngredients)
-
+    // console.log("delete", index);
+    // const newIngredients = [...ingredients];
+    // newIngredients.splice(index, 1);
+    // setIngredients(newIngredients);
+    // console.log(ingredients, newIngredients)
   };
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={RecipeCreationSchema}
-      onSubmit={handleSubmit}
-    >
+      onSubmit={handleSubmit}>
       {({ values, submitForm, isSubmitting }) => (
-        <Form 
-        onChange={() => handleChange(values)}>
+        <Form onChange={() => handleChange(values)}>
           <p>{values.recipeTitle}</p>
           <p>{values.ingredients}</p>
           <p>{values.directions}</p>
@@ -108,31 +102,56 @@ export default function RecipeCreationForm() {
           />
           <Typography> Ingredientes</Typography>
 
-          {ingredients.map((_, index) => (
-            <Grid
-              container
-              alignItems="flex-start"
-              key={`ingredients[${index}]`}
-              sx={{ py: 0.5 }}
-            >
-              <Grid item xs={10.7}>
-                <Field
-                  fullWidth
-                  component={TextField}
-                  size="small"
-                  name={`ingredients[${index}]`}
-                  type="text"
-                />
-              </Grid>
-              <Grid item xs>
-                <IconButton onClick={() => deleteIngredient(index)}>
-                  <DeleteIcon sx={{ fontSize: 30, color: "secondary.main" }} />
-                </IconButton>
-              </Grid>
-            </Grid>
-          ))}
+          <FieldArray name="ingredients">
+            {({ push, remove, swap }) => (
+              <>
+                {values.ingredients.map((_, index) => (
+                  <Grid
+                    container
+                    alignItems="flex-start"
+                    key={`ingredients[${index}]`}
+                    sx={{ py: 0.5 }}>
+                    {index + 1}
+                    <Grid item xs>
+                      {index > 0 && (
+                        <IconButton onClick={() => swap(index, index - 1)}>
+                          <ArrowDropUp
+                            sx={{ fontSize: 30, color: "secondary.main" }}
+                          />
+                        </IconButton>
+                      )}
+                      {index < values.ingredients.length - 1 && (
+                        <IconButton onClick={() => swap(index, index + 1)}>
+                          <ArrowDropDown
+                            sx={{ fontSize: 30, color: "secondary.main" }}
+                          />
+                        </IconButton>
+                      )}
+                    </Grid>
 
-          <Button onClick={addIngredient}>Adicionar ingrediente</Button>
+                    <Grid item xs>
+                      <Field
+                        fullWidth
+                        component={TextField}
+                        size="small"
+                        name={`ingredients[${index}]`}
+                        type="text"
+                      />
+                    </Grid>
+                    <Grid item xs>
+                      <IconButton onClick={() => remove(index)}>
+                        <DeleteIcon
+                          sx={{ fontSize: 30, color: "secondary.main" }}
+                        />
+                      </IconButton>
+                    </Grid>
+                  </Grid>
+                ))}
+                <Button onClick={() => push("")}>Adicionar ingrediente</Button>
+              </>
+            )}
+          </FieldArray>
+
           <br />
           <br />
           <Typography> Modo de Preparo</Typography>
@@ -152,8 +171,7 @@ export default function RecipeCreationForm() {
           <Button
             variant="contained"
             disabled={isSubmitting}
-            onClick={submitForm}
-          >
+            onClick={submitForm}>
             Submit
           </Button>
         </Form>
