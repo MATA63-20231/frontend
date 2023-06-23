@@ -36,7 +36,7 @@ function GET<DataType>({
     });
 }
 
-export const getRecipes = (
+export const getAllRecipes = (
   setLoading: Dispatch<SetStateAction<boolean>>,
   setRecipes: Dispatch<SetStateAction<IRecipe[]>>
 ) => {
@@ -50,5 +50,3 @@ export const getRecipes = (
 export const getRecipeDetails = () => {
   return api.get<IRecipe>("/receita");
 };
-
-export default api;

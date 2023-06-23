@@ -15,9 +15,7 @@ export default function Page({
   loading,
   children,
 }: PropsWithChildren<PageProps>) {
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <Container
       maxWidth="lg"
       sx={{
@@ -28,7 +26,7 @@ export default function Page({
       <Typography variant="h1" sx={{ pb: 3 }}>
         {title}
       </Typography>
-      {children}
+      {loading ? <Loading /> : children}
     </Container>
   );
 }

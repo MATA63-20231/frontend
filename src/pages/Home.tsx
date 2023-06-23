@@ -7,14 +7,14 @@ import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
 import Page from "../components/Page.tsx";
 import { IRecipe } from "../interfaces/interfaces.tsx";
-import { getRecipes } from "../services/Api.tsx";
+import { getAllRecipes } from "../services/Api.tsx";
 
 export default function Home() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    getRecipes(setLoading, setRecipes);
+    getAllRecipes(setLoading, setRecipes);
   }, []);
 
   return (
