@@ -33,7 +33,7 @@ export const getRecipes = (setLoading: any, setRecipes: any) => {
   GET({
     path: "/receitas",
     setLoading,
-    onSuccess: (data: any) => setRecipes(data),
+    onSuccess: (data) => setRecipes(data),
   });
 };
 
