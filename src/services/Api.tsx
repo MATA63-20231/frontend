@@ -1,6 +1,6 @@
 import axios from "axios";
-import { IRecipe } from "../interfaces/interfaces.tsx";
 import { Dispatch, SetStateAction } from "react";
+import { IRecipe } from "../interfaces/interfaces.tsx";
 
 interface IGet<DataType> {
   path: string;
@@ -37,8 +37,8 @@ function GET<DataType>({
 }
 
 export const getAllRecipes = (
-  setLoading: Dispatch<SetStateAction<boolean>>,
-  setRecipes: Dispatch<SetStateAction<IRecipe[]>>
+  setLoading: () => void,
+  setRecipes: (data: IRecipe[]) => void
 ) => {
   GET<IRecipe[]>({
     path: "/receitas",

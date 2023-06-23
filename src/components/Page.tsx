@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { PropsWithChildren } from "react";
-import Loading from "./Loading";
+import Loading from "./Loading.tsx";
 
 interface PageProps {
   title?: string;
@@ -21,7 +21,8 @@ export default function Page({
       sx={{
         margin: "0 auto",
         py: 4,
-      }}>
+      }}
+    >
       <Typography variant="h2">{pretitle}</Typography>
       <Typography variant="h1" sx={{ pb: 3 }}>
         {title}

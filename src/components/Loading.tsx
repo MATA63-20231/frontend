@@ -1,24 +1,10 @@
 import SvgIcon from "@mui/material/SvgIcon";
 import Grid from "@mui/material/Grid";
-import defaultTheme from "../config/theme";
+import defaultTheme from "../config/theme.tsx";
 
 interface IProps {
   color?: "primary" | "secondary" | "default";
 }
-
-// const getFillColor = (color: string | undefined): string => {
-//   switch (color) {
-//     case "primary": {
-//       return defaultTheme.palette.primary.main;
-//     }
-//     case "secondary": {
-//       return defaultTheme.palette.secondary.main;
-//     }
-//     default: {
-//       return defaultTheme.palette.default.main;
-//     }
-//   }
-// };
 
 function Loading({ color }: IProps) {
   const fillColor = defaultTheme.palette[color || "primary"].main;
