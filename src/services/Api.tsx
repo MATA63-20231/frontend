@@ -2,12 +2,21 @@
 
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
-import { IRecipe } from "../interfaces/interfaces.tsx";
+import { IRecipe, IRecipeCreate } from "../interfaces/interfaces.tsx";
 
 interface IGet<DataType> {
   path: string;
   setLoading: Dispatch<SetStateAction<boolean>>;
   onSuccess: (data: DataType) => void;
+  onError?: () => void;
+  onFinish?: () => void;
+}
+
+interface IPost<DataType, BodyType> {
+  path: string;
+  body: BodyType;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+  onSuccess: (data?: DataType) => void;
   onError?: () => void;
   onFinish?: () => void;
 }
@@ -38,6 +47,29 @@ function GET<DataType>({
     });
 }
 
+function POST<DataType, BodyType>({
+  path,
+  body,
+  setLoading,
+  onSuccess,
+  onError,
+  onFinish,
+}: IPost<DataType, BodyType>) {
+  setLoading(true);
+  api
+    .post<DataType>(path, body)
+    .then(({ data }) => {
+      onSuccess(data);
+    })
+    .catch(() => {
+      onError?.();
+    })
+    .finally(() => {
+      onFinish?.();
+      setLoading(false);
+    });
+}
+
 export const getAllRecipes = (
   setLoading: Dispatch<SetStateAction<boolean>>,
   setRecipes: Dispatch<SetStateAction<IRecipe[]>>
@@ -51,4 +83,16 @@ export const getAllRecipes = (
 
 export const getRecipeDetails = () => {
   return api.get<IRecipe>("/receita");
+};
+
+export const createRecipe = (
+  recipe: IRecipeCreate,
+  setLoading: Dispatch<SetStateAction<boolean>>
+) => {
+  POST<IRecipe, IRecipeCreate>({
+    path: "/receitas",
+    body: recipe,
+    setLoading,
+    onSuccess: (data) => console.log(data),
+  });
 };
