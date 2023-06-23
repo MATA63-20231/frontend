@@ -6,7 +6,7 @@ import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.ts
 import RecipeCreationFields from "./RecipeCreationFields.tsx";
 import RecipeCreationSchema, {
   initialValues,
-} from "./RecipeCreationSchema.tsx";
+} from "../schemas/RecipeCreationSchema.tsx";
 
 const recipeToBack = (recipe: IRecipeCreationFields): IRecipeCreate => {
   return {
