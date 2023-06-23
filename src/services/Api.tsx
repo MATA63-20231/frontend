@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
 import { IRecipe } from "../interfaces/interfaces.tsx";
