@@ -1,13 +1,10 @@
 import * as Yup from "yup";
-import { Formik, Form, Field, FormikHelpers } from "formik";
-import { TextField } from "formik-mui";
+import { Formik, Form, FormikHelpers } from "formik";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import FormErrorMessages from "../../../enums/errorMessages.tsx";
-import ArrayInput from "./ArrayInput.tsx";
 import { IRecipeCreate } from "../../../interfaces/interfaces.tsx";
 import { createRecipe } from "../../../services/Api.tsx";
-import { IRecipeCreationFields } from "../interfaces/RecipeCreation.tsx";
+import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
 import RecipeCreationFields from "./RecipeCreationFields.tsx";
 
 const RecipeCreationSchema = Yup.object<IRecipeCreationFields>().shape({
@@ -125,7 +122,7 @@ export default function RecipeCreationForm() {
             variant="contained"
             disabled={isSubmitting}
             onClick={submitForm}>
-            Submit
+            Cadastrar
           </Button>
         </Form>
       )}

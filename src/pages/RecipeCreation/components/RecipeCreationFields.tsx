@@ -2,7 +2,7 @@ import { Field } from "formik";
 import { TextField } from "formik-mui";
 import Typography from "@mui/material/Typography";
 import ArrayInput from "./ArrayInput.tsx";
-import { IRecipeCreationFields } from "../interfaces/RecipeCreation.tsx";
+import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
 
 interface IProps {
   values: IRecipeCreationFields;
