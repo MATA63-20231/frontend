@@ -7,21 +7,10 @@ import FormErrorMessages from "../../../enums/errorMessages.tsx";
 import ArrayInput from "./ArrayInput.tsx";
 import { IRecipeCreate } from "../../../interfaces/interfaces.tsx";
 import { createRecipe } from "../../../services/Api.tsx";
+import { IRecipeCreationFields } from "../interfaces/RecipeCreation.tsx";
+import RecipeCreationFields from "./RecipeCreationFields.tsx";
 
-interface IFields {
-  title: string;
-  description: string;
-  servings: number;
-  prepTime: {
-    hours: number;
-    minutes: number;
-  };
-  ingredients: string[];
-  directions: string[];
-  image: string;
-}
-
-const RecipeCreationSchema = Yup.object<IFields>().shape({
+const RecipeCreationSchema = Yup.object<IRecipeCreationFields>().shape({
   title: Yup.string()
     .min(2, FormErrorMessages.MIN_CHAR_2)
     .max(255, FormErrorMessages.MAX_255)
@@ -78,7 +67,7 @@ const RecipeCreationSchema = Yup.object<IFields>().shape({
 });
 
 export default function RecipeCreationForm() {
-  const initialValues: IFields = {
+  const initialValues: IRecipeCreationFields = {
     title: "",
     description: "",
     servings: 0,
@@ -91,7 +80,7 @@ export default function RecipeCreationForm() {
     image: "",
   };
 
-  const recipeToBack = (recipe: IFields): IRecipeCreate => {
+  const recipeToBack = (recipe: IRecipeCreationFields): IRecipeCreate => {
     return {
       titulo: recipe.title,
       descricao: recipe.description,
@@ -111,23 +100,12 @@ export default function RecipeCreationForm() {
   };
 
   const handleSubmit = (
-    values: IFields,
-    { setSubmitting }: FormikHelpers<IFields>
+    values: IRecipeCreationFields,
+    { setSubmitting }: FormikHelpers<IRecipeCreationFields>
   ) => {
-    const valuesBack = recipeToBack(values);
-    const result = { values, valuesBack };
-    // eslint-disable-next-line no-console
-    console.log(result);
-
-    createRecipe(valuesBack, setSubmitting);
-    // eslint-disable-next-line no-alert
-    alert(JSON.stringify(result, null, 2));
-
-    // setTimeout(() => {
-    //   setSubmitting(false);
-    //   // eslint-disable-next-line no-alert
-    //   alert(JSON.stringify(result, null, 2));
-    // }, 500);
+    const recipe = recipeToBack(values);
+    console.log(recipe);
+    createRecipe(recipe, setSubmitting);
   };
 
   return (
@@ -138,74 +116,8 @@ export default function RecipeCreationForm() {
       {({ values, submitForm, isSubmitting }) => (
         <Form>
           {JSON.stringify(values)}
-          <br />
-          <br />
-          <Field
-            fullWidth
-            component={TextField}
-            name="title"
-            type="text"
-            label="Título da Receita"
-          />
 
-          <br />
-          <br />
-          <Field
-            fullWidth
-            component={TextField}
-            name="description"
-            type="text"
-            label="Descrição"
-          />
-
-          <br />
-          <br />
-          <Field
-            fullWidth
-            component={TextField}
-            name="servings"
-            type="text"
-            label="Rendimento"
-          />
-
-          <br />
-          <br />
-          <Typography>Tempo de Preparo</Typography>
-          <Field
-            component={TextField}
-            name="prepTime.hours"
-            type="text"
-            label="Horas"
-          />
-          <Field
-            component={TextField}
-            name="prepTime.minutes"
-            type="text"
-            label="Minutos"
-          />
-
-          <br />
-          <br />
-          <Typography>Ingredientes</Typography>
-          <ArrayInput
-            inputName="ingredients"
-            inputValues={values.ingredients}
-          />
-
-          <br />
-          <br />
-          <Typography>Modo de Preparo</Typography>
-          <ArrayInput inputName="directions" inputValues={values.directions} />
-
-          <br />
-          <br />
-          <Field
-            fullWidth
-            component={TextField}
-            name="image"
-            type="text"
-            label="Imagem"
-          />
+          <RecipeCreationFields values={values} />
 
           <br />
           <br />
