@@ -1,17 +1,11 @@
 import axios from "axios";
 import { IRecipe } from "../interfaces/interfaces.tsx";
+import { Dispatch, SetStateAction } from "react";
 
-// interface IGet {
-//   path: string;
-//   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-//   onSuccess: (data) => void;
-//   onError?: () => void;
-//   onFinish?: () => void;
-// }
-
-interface IRequest {
-  baseRequest: any;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+interface IGet<DataType> {
+  path: string;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+  onSuccess: (data: DataType) => void;
   onError?: () => void;
   onFinish?: () => void;
 }
@@ -20,25 +14,19 @@ const api = axios.create({
   baseURL: "https://chef-virtual.onrender.com/",
 });
 
-// const GET = ({ path, setLoading, onSuccess, onError, onFinish }: IGet) => {
-//   setLoading(true);
-//   api
-//     .get(path)
-//     .then(({ data }) => {
-//       onSuccess(data);
-//     })
-//     .catch(() => {
-//       onError?.();
-//     })
-//     .finally(() => {
-//       onFinish?.();
-//       setLoading(false);
-//     });
-// };
-
-const request = ({ baseRequest, setLoading, onError, onFinish }: IRequest) => {
+function GET<DataType>({
+  path,
+  setLoading,
+  onSuccess,
+  onError,
+  onFinish,
+}: IGet<DataType>) {
   setLoading(true);
-  baseRequest
+  api
+    .get<DataType>(path)
+    .then(({ data }) => {
+      onSuccess(data);
+    })
     .catch(() => {
       onError?.();
     })
@@ -46,15 +34,16 @@ const request = ({ baseRequest, setLoading, onError, onFinish }: IRequest) => {
       onFinish?.();
       setLoading(false);
     });
-};
+}
 
-export const getRecipes = (setLoading: any, setRecipes: any) => {
-  request({
+export const getRecipes = (
+  setLoading: Dispatch<SetStateAction<boolean>>,
+  setRecipes: Dispatch<SetStateAction<IRecipe[]>>
+) => {
+  GET<IRecipe[]>({
+    path: "/receitas",
     setLoading,
-    baseRequest: api.get<IRecipe[]>("/receitas").then(({ data }) => {
-      console.log(data);
-      setRecipes(data);
-    }),
+    onSuccess: (data) => setRecipes(data),
   });
 };
 
