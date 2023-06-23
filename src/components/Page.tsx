@@ -1,15 +1,18 @@
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { PropsWithChildren } from "react";
+import Loading from "./Loading.tsx";
 
 interface PageProps {
   title?: string;
   pretitle?: string;
+  loading?: boolean;
 }
 
 export default function Page({
   title,
   pretitle,
+  loading,
   children,
 }: PropsWithChildren<PageProps>) {
   return (
@@ -24,9 +27,9 @@ export default function Page({
       <Typography variant="h1" sx={{ pb: 3 }}>
         {title}
       </Typography>
-      {children}
+      {loading ? <Loading /> : children}
     </Container>
   );
 }
 
-Page.defaultProps = { title: "", pretitle: "" };
+Page.defaultProps = { title: "", pretitle: "", loading: false };
