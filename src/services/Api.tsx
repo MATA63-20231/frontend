@@ -15,7 +15,7 @@ interface IGet<DataType> {
 interface IPost<DataType, BodyType> {
   path: string;
   body: BodyType;
-  setLoading: Dispatch<SetStateAction<boolean>>;
+  setLoading: (loading: boolean) => void,
   onSuccess: (data?: DataType) => void;
   onError?: () => void;
   onFinish?: () => void;
@@ -87,10 +87,10 @@ export const getRecipeDetails = () => {
 
 export const createRecipe = (
   recipe: IRecipeCreate,
-  setLoading: Dispatch<SetStateAction<boolean>>
+  setLoading: (loading: boolean) => void,
 ) => {
   POST<IRecipe, IRecipeCreate>({
-    path: "/receitas",
+    path: "/receita",
     body: recipe,
     setLoading,
     onSuccess: (data) => console.log(data),

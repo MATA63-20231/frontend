@@ -5,6 +5,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FormErrorMessages from "../../../enums/errorMessages.tsx";
 import ArrayInput from "./ArrayInput.tsx";
+import { IRecipeCreate } from "../../../interfaces/interfaces.tsx";
+import { createRecipe } from "../../../services/Api.tsx";
 
 interface IFields {
   title: string;
@@ -89,17 +91,43 @@ export default function RecipeCreationForm() {
     image: "",
   };
 
+  const recipeToBack = (recipe: IFields): IRecipeCreate => {
+    return {
+      titulo: recipe.title,
+      descricao: recipe.description,
+      rendimento: recipe.servings,
+      tempoPreparo: {
+        horas: recipe.prepTime.hours,
+        minutos: recipe.prepTime.minutes,
+      },
+      listaPreparo: recipe.directions.map((recipe) => {
+        return { descricao: recipe };
+      }),
+      ingredientes: recipe.ingredients.map((recipe) => {
+        return { quantidade: 1, descricao: recipe };
+      }),
+      imagem: recipe.image,
+    };
+  };
+
   const handleSubmit = (
     values: IFields,
     { setSubmitting }: FormikHelpers<IFields>
   ) => {
+    const valuesBack = recipeToBack(values);
+    const result = { values, valuesBack };
     // eslint-disable-next-line no-console
-    console.log(values);
-    setTimeout(() => {
-      setSubmitting(false);
-      // eslint-disable-next-line no-alert
-      alert(JSON.stringify(values, null, 2));
-    }, 500);
+    console.log(result);
+
+    createRecipe(valuesBack, setSubmitting);
+    // eslint-disable-next-line no-alert
+    alert(JSON.stringify(result, null, 2));
+
+    // setTimeout(() => {
+    //   setSubmitting(false);
+    //   // eslint-disable-next-line no-alert
+    //   alert(JSON.stringify(result, null, 2));
+    // }, 500);
   };
 
   return (
