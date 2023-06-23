@@ -11,15 +11,14 @@ import { getRecipes } from "../services/Api.tsx";
 
 export default function Home() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    getRecipes().then(({ data }) => {
-      setRecipes(data);
-    });
+    getRecipes(setLoading, setRecipes);
   }, []);
 
   return (
-    <Page pretitle="Receitas" title="Confira nossas receitas">
+    <Page pretitle="Receitas" title="Confira nossas receitas" loading={loading}>
       <Grid container spacing={4}>
         {recipes.map((recipe) => (
           <Grid item key={recipe.id} xs={12} sm={6} md={4}>
