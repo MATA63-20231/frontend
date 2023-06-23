@@ -7,6 +7,7 @@ import RecipeCreationFields from "./RecipeCreationFields.tsx";
 import RecipeCreationSchema, {
   initialValues,
 } from "../schemas/RecipeCreationSchema.tsx";
+import LoadingButton from "../../../components/LoadingButton.tsx";
 
 const recipeToBack = (recipe: IRecipeCreationFields): IRecipeCreate => {
   return {
@@ -21,6 +22,7 @@ const recipeToBack = (recipe: IRecipeCreationFields): IRecipeCreate => {
       return { descricao: recipe };
     }),
     ingredientes: recipe.ingredients.map((recipe) => {
+      // TODO: ver quantidade com o back
       return { quantidade: 1, descricao: recipe };
     }),
     imagem: recipe.image,
@@ -50,12 +52,9 @@ export default function RecipeCreationForm() {
 
           <br />
           <br />
-          <Button
-            variant="contained"
-            disabled={isSubmitting}
-            onClick={submitForm}>
+          <LoadingButton loading={isSubmitting} onClick={submitForm}>
             Cadastrar
-          </Button>
+          </LoadingButton>
         </Form>
       )}
     </Formik>
