@@ -1,7 +1,7 @@
 import { MouseEventHandler, PropsWithChildren } from "react";
 import Button from "@mui/material/Button";
-import Loading from "./Loading";
 import Grid from "@mui/material/Grid";
+import Loading from "./Loading.tsx";
 
 interface IProps {
   loading: boolean;

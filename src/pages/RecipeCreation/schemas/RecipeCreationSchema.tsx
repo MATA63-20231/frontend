@@ -1,7 +1,7 @@
 import * as Yup from "yup";
-import FormErrorMessages from "../../../enums/FormErrorMessages.js";
-import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.js";
-import YupHelpers from "../../../enums/YupHelpers.js";
+import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
+import FormErrorMessages from "../../../enums/FormErrorMessages.tsx";
+import YupHelpers from "../../../enums/YupHelpers.tsx";
 
 export const initialValues: IRecipeCreationFields = {
   title: "",

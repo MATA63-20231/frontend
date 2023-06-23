@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import FormErrorMessages from "./FormErrorMessages";
+import FormErrorMessages from "./FormErrorMessages.tsx";
 
 const YupHelpers = {
   DEFAULT_STRING: Yup.string()

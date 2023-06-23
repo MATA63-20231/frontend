@@ -19,7 +19,7 @@ module.exports = {
     "@typescript-eslint",
   ],
   rules: {
-    "react-refresh/only-export-components": "warn",
+    "react-refresh/only-export-components": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": "off",
     indent: ["error", 2],

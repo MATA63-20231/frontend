@@ -1,5 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
-
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
 import { IRecipe, IRecipeCreate } from "../interfaces/interfaces.tsx";
@@ -15,7 +13,7 @@ interface IGet<DataType> {
 interface IPost<DataType, BodyType> {
   path: string;
   body: BodyType;
-  setLoading: (loading: boolean) => void,
+  setLoading: (loading: boolean) => void;
   onSuccess: (data?: DataType) => void;
   onError?: () => void;
   onFinish?: () => void;
@@ -87,12 +85,14 @@ export const getRecipeDetails = () => {
 
 export const createRecipe = (
   recipe: IRecipeCreate,
-  setLoading: (loading: boolean) => void,
+  setLoading: (loading: boolean) => void
 ) => {
   POST<IRecipe, IRecipeCreate>({
     path: "/receita",
     body: recipe,
     setLoading,
-    onSuccess: (data) => console.log(data),
+    onSuccess: (data) => {
+      console.log(data); // eslint-disable-line no-console
+    },
   });
 };
