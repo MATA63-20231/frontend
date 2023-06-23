@@ -37,8 +37,8 @@ function GET<DataType>({
 }
 
 export const getAllRecipes = (
-  setLoading: () => void,
-  setRecipes: (data: IRecipe[]) => void
+  setLoading: Dispatch<SetStateAction<boolean>>,
+  setRecipes: Dispatch<SetStateAction<IRecipe[]>>
 ) => {
   GET<IRecipe[]>({
     path: "/receitas",
