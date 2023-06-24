@@ -49,6 +49,6 @@ export const getAllRecipes = (
   });
 };
 
-export const getRecipeDetails = () => {
-  return api.get<IRecipe>("/receita");
+export const getRecipeDetails = (recipeId:string) => {
+  return api.get<IRecipe>(`/receita/${recipeId}`);
 };

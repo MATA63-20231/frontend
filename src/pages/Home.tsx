@@ -29,7 +29,7 @@ export default function Home() {
                 flexDirection: "column",
               }}
             >
-              <CardActionArea href={`/receita/${recipe.titulo}`}>
+              <CardActionArea href={`/receita/${recipe.id}`}>
                 <CardMedia
                   component="div"
                   sx={{
