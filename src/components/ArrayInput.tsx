@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { Field, FieldArray } from "formik";
 import { TextField } from "formik-mui";
 import Grid from "@mui/material/Grid";
@@ -22,7 +21,7 @@ export default function ArrayInput({ inputName, inputValues }: IProps) {
             <Grid
               container
               alignItems="flex-start"
-              key={uuidv4()}
+              key={`${inputName}[${index}]`}
               sx={{ py: 0.5 }}
             >
               <Grid item xs>
