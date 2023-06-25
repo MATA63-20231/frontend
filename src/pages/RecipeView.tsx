@@ -51,7 +51,7 @@ export default function RecipeView() {
           <CardMedia
             component="img"
             image={NoImage}
-            sx={{ width: "600px", height:"50%", px:20, py:5}}
+            sx={{ width: "600px", height: "50%", px: 20, py: 5 }}
             title={recipe.titulo}
           />
           <Stack

@@ -34,19 +34,12 @@ export default function Home() {
                 <CardMedia
                   component="div"
                   sx={{
-                    // 16:9
-                    // pt: "56.25%",
                     py: "35%",
                     width: "83%",
                     mx: "auto",
                     my: "1em",
-                    // width: "100%", 
-                    // height: "100%",
-                    // px: 20,
-                    // py: 5,
                   }}
                   title={recipe.titulo}
-                  // image="https://source.unsplash.com/random?wallpapers"
                   image={NoImage}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
