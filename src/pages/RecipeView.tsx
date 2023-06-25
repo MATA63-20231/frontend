@@ -42,7 +42,7 @@ export default function RecipeView() {
   }, []);
 
   return (
-    <Page title={recipe.titulo}>
+    <Page title={recipe.titulo} loading={loading}>
       <Grid container sx={{ m: "0 auto", maxWidth: "700px" }}>
         <Card>
           <CardMedia
