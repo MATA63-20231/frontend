@@ -34,8 +34,8 @@ export default function Home() {
                 <CardMedia
                   component="div"
                   sx={{
-                    py: "35%",
-                    width: "83%",
+                    py: "37%",
+                    width: "80%",
                     mx: "auto",
                     my: "1em",
                   }}
