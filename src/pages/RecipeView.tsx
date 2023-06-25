@@ -11,7 +11,7 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 import { List, ListItem, ListItemText } from "@mui/material";
 import Page from "../components/Page.tsx";
 import { useEffect, useState } from "react";
-import { getRecipeDetails } from "../services/Api.tsx";
+import { getRecipeDetails2 } from "../services/Api.tsx";
 import { IRecipe } from "../interfaces/interfaces.tsx";
 import { useParams } from "react-router-dom";
 
@@ -20,19 +20,29 @@ import { useParams } from "react-router-dom";
 export default function RecipeView() {
   const { recipeId } = useParams();
 
-  const [recipe, setRecipe] = useState<IRecipe>();
-  
+  const [recipe, setRecipe] = useState<IRecipe>({
+    id: "",
+    titulo: "",
+    descricao: "",
+    rendimento: "",
+    tempoPreparo: "",
+    imagem: "",
+    dataCadastro: "",
+    ingredientes: [],
+    listaPreparo: [],
+  });
+
+  const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     if (recipeId) {
-      getRecipeDetails(recipeId).then(({ data }) => {
-        setRecipe(data);
-        console.log(data);
-      });
+      getRecipeDetails2(recipeId, setLoading, setRecipe);
+      console.log(recipe);
     }
   }, []);
 
   return (
-    <Page title="Título da Receita">
+    <Page title={recipe.titulo}>
       <Grid container sx={{ m: "0 auto", maxWidth: "700px" }}>
         <Card>
           <CardMedia
@@ -66,7 +76,7 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                1h30min
+                {recipe.tempoPreparo}min {/* TODO: validar data vinda do back */}
               </Typography>
             </Stack>
             <Divider
@@ -93,7 +103,7 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                40 porções
+                {recipe.rendimento} porções
               </Typography>
             </Stack>
             <Divider
@@ -120,7 +130,7 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                Beatriz Cerqueira
+                ***** {/* TODO: Preencher autor */}
               </Typography>
             </Stack>
             <Divider
@@ -147,7 +157,7 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                06/06/2023
+                {recipe.dataCadastro.substring(5,7) + "/" + recipe.dataCadastro.substring(0,4)}
               </Typography>
             </Stack>
           </Stack>
@@ -162,24 +172,29 @@ export default function RecipeView() {
               <Typography variant="h6">Ingredientes</Typography>
 
               <List>
-                <ListItem>
-                  <ListItemText primary="item 1" />
-                </ListItem>
-                <ListItem>
-                  <ListItemText primary="item 2" />
-                </ListItem>
+                {recipe.ingredientes.map((ingredient) => (
+                  <ListItem key={ingredient.id}>
+                    <ListItemText
+                      primary={
+                        ingredient.quantidade + " " + ingredient.descricao
+                      }
+                    />
+                  </ListItem>
+                ))}
               </List>
             </Grid>
 
             <Grid item>
               <Typography variant="h6">Modo de preparo</Typography>
               <List>
-                <ListItem>
-                  <ListItemText primary="item 1" secondary="desc item 1" />
-                </ListItem>
-                <ListItem>
-                  <ListItemText primary="item 2" secondary="desc item 2" />
-                </ListItem>
+                {recipe.listaPreparo.map((etapa) => (
+                  <ListItem key={etapa.id}>
+                    <ListItemText
+                      primary={etapa.descricao}
+                      // secondary="desc item"
+                    />
+                  </ListItem>
+                ))}
               </List>
             </Grid>
           </Grid>

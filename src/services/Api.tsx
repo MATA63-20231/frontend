@@ -49,6 +49,14 @@ export const getAllRecipes = (
   });
 };
 
-export const getRecipeDetails = (recipeId:string) => {
-  return api.get<IRecipe>(`/receita/${recipeId}`);
+export const getRecipeDetails2 = (
+  recipeId:string,
+  setLoading: Dispatch<SetStateAction<boolean>>,
+  setRecipe: Dispatch<SetStateAction<IRecipe>>
+) => {
+  GET<IRecipe>({
+    path: `/receita/${recipeId}`,
+    setLoading,
+    onSuccess: (data) => setRecipe(data),
+  });
 };
