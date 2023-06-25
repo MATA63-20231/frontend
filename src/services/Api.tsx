@@ -50,7 +50,7 @@ export const getAllRecipes = (
 };
 
 export const getRecipeDetails2 = (
-  recipeId:string,
+  recipeId: string,
   setLoading: Dispatch<SetStateAction<boolean>>,
   setRecipe: Dispatch<SetStateAction<IRecipe>>
 ) => {

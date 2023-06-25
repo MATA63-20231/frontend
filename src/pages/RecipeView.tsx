@@ -9,11 +9,11 @@ import RamenDiningOutlinedIcon from "@mui/icons-material/RamenDiningOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import { List, ListItem, ListItemText } from "@mui/material";
-import Page from "../components/Page.tsx";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Page from "../components/Page.tsx";
 import { getRecipeDetails2 } from "../services/Api.tsx";
 import { IRecipe } from "../interfaces/interfaces.tsx";
-import { useParams } from "react-router-dom";
 
 // TODO: Componentizar rs
 // TODO: Avaliação e comentários
@@ -37,9 +37,8 @@ export default function RecipeView() {
   useEffect(() => {
     if (recipeId) {
       getRecipeDetails2(recipeId, setLoading, setRecipe);
-      console.log(recipe);
     }
-  }, []);
+  }, [recipeId]);
 
   return (
     <Page title={recipe.titulo} loading={loading}>
@@ -76,7 +75,8 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                {recipe.tempoPreparo}min {/* TODO: validar data vinda do back */}
+                {recipe.tempoPreparo}min{" "}
+                {/* TODO: validar data vinda do back */}
               </Typography>
             </Stack>
             <Divider
@@ -157,7 +157,10 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                {recipe.dataCadastro.substring(5,7) + "/" + recipe.dataCadastro.substring(0,4)}
+                {`${recipe.dataCadastro.substring(
+                  5,
+                  7
+                )}/${recipe.dataCadastro.substring(0, 4)}`}
               </Typography>
             </Stack>
           </Stack>
@@ -175,9 +178,7 @@ export default function RecipeView() {
                 {recipe.ingredientes.map((ingredient) => (
                   <ListItem key={ingredient.id}>
                     <ListItemText
-                      primary={
-                        ingredient.quantidade + " " + ingredient.descricao
-                      }
+                      primary={`${ingredient.quantidade} ${ingredient.descricao}`}
                     />
                   </ListItem>
                 ))}

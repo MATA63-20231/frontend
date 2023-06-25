@@ -1,15 +1,3 @@
-export interface IRecipe {
-  id: string;
-  titulo: string;
-  descricao: string;
-  rendimento: string;
-  tempoPreparo: string;
-  imagem: string;
-  dataCadastro: string;
-  ingredientes: IIngredient[];
-  listaPreparo: IEtapaPreparo[];
-}
-
 interface IIngredient {
   id: string;
   descricao: string;
@@ -21,4 +9,14 @@ interface IEtapaPreparo {
   descricao: string;
   ordem: string;
 }
-
+export interface IRecipe {
+  id: string;
+  titulo: string;
+  descricao: string;
+  rendimento: string;
+  tempoPreparo: string;
+  imagem: string;
+  dataCadastro: string;
+  ingredientes: IIngredient[];
+  listaPreparo: IEtapaPreparo[];
+}
