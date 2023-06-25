@@ -14,7 +14,6 @@ import { useParams } from "react-router-dom";
 import Page from "../components/Page.tsx";
 import { getRecipeDetails2 } from "../services/Api.tsx";
 import { IRecipe } from "../interfaces/interfaces.tsx";
-// import NoImage from "../assets/noimage.jpg";
 import NoImage from "../assets/noimage.svg";
 
 // TODO: Componentizar rs
@@ -53,7 +52,7 @@ export default function RecipeView() {
             component="img"
             image={NoImage}
             sx={{ width: "600px", height:"50%", px:20, py:5}}
-            title="Chef Virtual"
+            title={recipe.titulo}
           />
           <Stack
             direction={{ xs: "column", md: "row" }}

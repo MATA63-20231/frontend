@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import Page from "../components/Page.tsx";
 import { IRecipe } from "../interfaces/interfaces.tsx";
 import { getAllRecipes } from "../services/Api.tsx";
+import NoImage from "../assets/noimage.svg";
 
 export default function Home() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -34,9 +35,19 @@ export default function Home() {
                   component="div"
                   sx={{
                     // 16:9
-                    pt: "56.25%",
+                    // pt: "56.25%",
+                    py: "35%",
+                    width: "83%",
+                    mx: "auto",
+                    my: "1em",
+                    // width: "100%", 
+                    // height: "100%",
+                    // px: 20,
+                    // py: 5,
                   }}
-                  image="https://source.unsplash.com/random?wallpapers"
+                  title={recipe.titulo}
+                  // image="https://source.unsplash.com/random?wallpapers"
+                  image={NoImage}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="h2">
