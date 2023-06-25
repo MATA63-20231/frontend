@@ -14,6 +14,8 @@ import { useParams } from "react-router-dom";
 import Page from "../components/Page.tsx";
 import { getRecipeDetails2 } from "../services/Api.tsx";
 import { IRecipe } from "../interfaces/interfaces.tsx";
+// import NoImage from "../assets/noimage.jpg";
+import NoImage from "../assets/noimage.svg";
 
 // TODO: Componentizar rs
 // TODO: Avaliação e comentários
@@ -42,11 +44,16 @@ export default function RecipeView() {
 
   return (
     <Page title={recipe.titulo} loading={loading}>
-      <Grid container sx={{ m: "0 auto", maxWidth: "700px" }}>
+      <Grid
+        container
+        sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}
+      >
         <Card>
           <CardMedia
             component="img"
-            image="https://source.unsplash.com/random?wallpapers"
+            image={NoImage}
+            sx={{ width: "600px", height:"50%", px:20, py:5}}
+            title="Chef Virtual"
           />
           <Stack
             direction={{ xs: "column", md: "row" }}
