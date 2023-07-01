@@ -38,7 +38,7 @@ export default function IntegerNumberInput<FormFieldsType>({
     <Field
       required
       fullWidth
-      type="text"
+      type="number"
       component={TextField}
       name={name}
       label={label}

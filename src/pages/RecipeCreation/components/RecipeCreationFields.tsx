@@ -2,9 +2,9 @@ import { FormikErrors } from "formik";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
-import TextInput from "../../../components/Forms/TextInput.tsx";
-import TextArrayInput from "../../../components/Forms/TextArrayInput.tsx";
-import IntegerNumberInput from "../../../components/Forms/IntegerNumberInput.tsx";
+import TextInput from "../../../components/CustomInputs/TextInput.tsx";
+import TextArrayInput from "../../../components/CustomInputs/TextArrayInput.tsx";
+import IntegerNumberInput from "../../../components/CustomInputs/IntegerNumberInput.tsx";
 
 interface IProps {
   values: IRecipeCreationFields;
