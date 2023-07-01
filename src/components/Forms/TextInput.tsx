@@ -8,12 +8,13 @@ interface IProps {
   required?: boolean;
 }
 
-export default function TextInput({ name, label, required }: IProps) {
+export default function TextInput({ name, label, size, required }: IProps) {
   return (
     <Field
       fullWidth
       type="text"
       component={TextField}
+      size={size}
       required={required}
       name={name}
       label={label}

@@ -7,7 +7,7 @@ import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 import FormHelperText from "@mui/material/FormHelperText";
 import Typography from "@mui/material/Typography";
-import TextInput from "./TextInput";
+import TextInput from "./TextInput.tsx";
 
 interface IProps {
   title: string;
@@ -39,8 +39,9 @@ export default function TextArrayInput({
               <Grid
                 container
                 alignItems="flex-start"
-                key={`${name}[${index}]`}
-                sx={{ py: 0.5 }}>
+                key={`${name}[${index}]`} // eslint-disable-line react/no-array-index-key
+                sx={{ py: 0.5 }}
+              >
                 <Grid item xs>
                   {index + 1}
                 </Grid>

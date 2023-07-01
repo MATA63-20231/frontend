@@ -7,14 +7,9 @@ interface IProps<FormFieldsType> {
   label: string;
   setFieldValue: (
     field: string,
-    value: any,
-    shouldValidate?: boolean
+    value: string
   ) => Promise<void | FormikErrors<FormFieldsType>>;
-  setFieldTouched: (
-    field: string,
-    isTouched?: boolean,
-    shouldValidate?: boolean
-  ) => void;
+  setFieldTouched: (field: string) => void;
 }
 
 export default function IntegerNumberInput<FormFieldsType>({
@@ -24,7 +19,7 @@ export default function IntegerNumberInput<FormFieldsType>({
   setFieldTouched,
 }: IProps<FormFieldsType>) {
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    const value = target.value;
+    const { value } = target;
 
     const isEmptyString = value === "";
     const hasOnlyNumbers = Boolean(value.match(/^[0-9]+$/));

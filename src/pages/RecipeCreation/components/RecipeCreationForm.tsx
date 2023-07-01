@@ -34,7 +34,7 @@ export default function RecipeCreationForm() {
     { setSubmitting }: FormikHelpers<IRecipeCreationFields>
   ) => {
     const recipe = recipeToBack(values);
-    //console.log(values);
+    // console.log(values);
     createRecipe(recipe, setSubmitting);
   };
 
@@ -42,7 +42,8 @@ export default function RecipeCreationForm() {
     <Formik
       initialValues={initialValues}
       validationSchema={RecipeCreationSchema}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+    >
       {({
         values,
         errors,

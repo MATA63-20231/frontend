@@ -1,7 +1,7 @@
 import { FormikErrors } from "formik";
-import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
 import TextInput from "../../../components/Forms/TextInput.tsx";
 import TextArrayInput from "../../../components/Forms/TextArrayInput.tsx";
 import IntegerNumberInput from "../../../components/Forms/IntegerNumberInput.tsx";
@@ -11,14 +11,9 @@ interface IProps {
   errors: FormikErrors<IRecipeCreationFields>;
   setFieldValue: (
     field: string,
-    value: any,
-    shouldValidate?: boolean
+    value: string
   ) => Promise<void | FormikErrors<IRecipeCreationFields>>;
-  setFieldTouched: (
-    field: string,
-    isTouched?: boolean,
-    shouldValidate?: boolean
-  ) => void;
+  setFieldTouched: (field: string) => void;
 }
 
 export default function RecipeCreationFields({
