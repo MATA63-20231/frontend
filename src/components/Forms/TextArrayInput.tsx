@@ -1,5 +1,4 @@
-import { Field, FieldArray } from "formik";
-import { TextField } from "formik-mui";
+import { FieldArray } from "formik";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
@@ -68,15 +67,6 @@ export default function TextArrayInput({
                     required
                     size="small"
                     name={`${name}[${index}]`}
-                    label={label}
-                  />
-                  <Field
-                    fullWidth
-                    required
-                    component={TextField}
-                    size="small"
-                    name={`${name}[${index}]`}
-                    type="text"
                     label={label}
                   />
                 </Grid>
