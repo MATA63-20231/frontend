@@ -17,28 +17,28 @@ export const initialValues: IRecipeCreationFields = {
 };
 
 const RecipeCreationSchema = Yup.object<IRecipeCreationFields>().shape({
-  title: YupHelpers.DEFAULT_STRING,
+  title: YupHelpers.STRING_REQUIRED,
 
-  description: YupHelpers.DEFAULT_STRING,
+  description: YupHelpers.STRING_OPTIONAL,
 
-  servings: YupHelpers.DEFAULT_POSITIVE_INTEGER,
+  servings: YupHelpers.INTEGER_MORE_THAN_ZERO,
 
-  image: YupHelpers.DEFAULT_STRING,
+  image: YupHelpers.STRING_OPTIONAL,
 
   prepTime: Yup.object()
     .shape({
-      hours: YupHelpers.DEFAULT_POSITIVE_INTEGER,
-      minutes: YupHelpers.DEFAULT_POSITIVE_INTEGER,
+      hours: YupHelpers.INTEGER_MIN_ZERO,
+      minutes: YupHelpers.INTEGER_MIN_ZERO.max(59, FormErrorMessages.MAX_59),
     })
     .required(FormErrorMessages.REQUIRED),
 
   ingredients: Yup.array()
-    .of(YupHelpers.DEFAULT_STRING)
-    .min(1, "É necessário adicionar pelo menos um ingrediente."),
+    .of(YupHelpers.STRING_REQUIRED)
+    .min(1, FormErrorMessages.MIN_1_ITEM),
 
   directions: Yup.array()
-    .of(YupHelpers.DEFAULT_STRING)
-    .min(1, "É necessário adicionar pelo menos uma instrução de preparo."),
+    .of(YupHelpers.STRING_REQUIRED)
+    .min(1, FormErrorMessages.MIN_1_ITEM),
 });
 
 export default RecipeCreationSchema;

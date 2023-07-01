@@ -10,7 +10,12 @@ enum FormErrorMessages {
   MAX_255 = "Deve ter no máximo 255 caractéres.",
 
   // Números
-  INTEGER_POSITIVE_NUMBER = "Deve ser um número inteiro maior que 0.",
+  INTEGER_MORE_THAN_ZERO = "Deve ser um número inteiro maior que 0.",
+  INTEGER_GREATER_EQUAL_ZERO = "Deve ser um número inteiro maior ou igual a 0.",
+  MAX_59 = "Deve ser menor ou igual a 59.",
+
+  // Arrays
+  MIN_1_ITEM = "É necessário adicionar pelo menos um item.",
 }
 
 export default FormErrorMessages;
