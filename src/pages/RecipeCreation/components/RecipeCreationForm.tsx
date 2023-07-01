@@ -8,36 +8,36 @@ import RecipeCreationSchema, {
 } from "../schemas/RecipeCreationSchema.tsx";
 import LoadingButton from "../../../components/LoadingButton.tsx";
 
-const recipeToBack = (recipe: IRecipeCreationFields): IRecipeCreation => {
-  return {
-    titulo: recipe.title,
-    descricao: recipe.description,
-    imagem: recipe.image,
-    rendimento: Number(recipe.servings),
-    tempoPreparo: {
-      horas: Number(recipe.prepTime.hours),
-      minutos: Number(recipe.prepTime.minutes),
-    },
-    listaPreparo: recipe.directions.map((direction) => {
-      return { descricao: direction };
-    }),
-    ingredientes: recipe.ingredients.map((ingredient) => {
-      // TODO: ver quantidade com o back
-      return { quantidade: 1, descricao: ingredient };
-    }),
-  };
-};
-
-const handleSubmit = (
-  values: IRecipeCreationFields,
-  { setSubmitting }: FormikHelpers<IRecipeCreationFields>
-) => {
-  const recipe = recipeToBack(values);
-  //console.log(values);
-  createRecipe(recipe, setSubmitting);
-};
-
 export default function RecipeCreationForm() {
+  const recipeToBack = (recipe: IRecipeCreationFields): IRecipeCreation => {
+    return {
+      titulo: recipe.title,
+      descricao: recipe.description,
+      imagem: recipe.image,
+      rendimento: Number(recipe.servings),
+      tempoPreparo: {
+        horas: Number(recipe.prepTime.hours),
+        minutos: Number(recipe.prepTime.minutes),
+      },
+      listaPreparo: recipe.directions.map((direction) => {
+        return { descricao: direction };
+      }),
+      ingredientes: recipe.ingredients.map((ingredient) => {
+        // TODO: ver quantidade com o back
+        return { quantidade: 1, descricao: ingredient };
+      }),
+    };
+  };
+
+  const handleSubmit = (
+    values: IRecipeCreationFields,
+    { setSubmitting }: FormikHelpers<IRecipeCreationFields>
+  ) => {
+    const recipe = recipeToBack(values);
+    //console.log(values);
+    createRecipe(recipe, setSubmitting);
+  };
+
   return (
     <Formik
       initialValues={initialValues}
