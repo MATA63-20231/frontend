@@ -4,7 +4,7 @@ import RecipeCreationForm from "./components/RecipeCreationForm.tsx";
 
 export default function RecipeCreation() {
   return (
-    <Page pretitle="Foo" title="Bar">
+    <Page pretitle="Compartilhe sua receita com o mundo" title="Nova receita">
       <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>
         <RecipeCreationForm />
       </Grid>

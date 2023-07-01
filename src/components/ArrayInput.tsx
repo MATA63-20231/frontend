@@ -6,24 +6,31 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import FormHelperText from "@mui/material/FormHelperText";
 
 interface IProps {
-  inputName: string;
-  inputValues: string[];
+  name: string;
+  label: string;
+  values: string[];
+  errors: string | string[] | undefined;
 }
 
-export default function ArrayInput({ inputName, inputValues }: IProps) {
+export default function ArrayInput({ name, label, values, errors }: IProps) {
   return (
-    <FieldArray name={inputName}>
+    <FieldArray name={name}>
       {({ push, remove, swap }) => (
         <>
-          {inputValues.map((_, index) => (
+          {typeof errors === "string" && (
+            <FormHelperText error filled sx={{textAlign: "center"}}>
+              {errors}
+            </FormHelperText>
+          )}
+          {values.map((_, index) => (
             <Grid
               container
               alignItems="flex-start"
-              key={`${inputName}[${index}]`}
-              sx={{ py: 0.5 }}
-            >
+              key={`${name}[${index}]`}
+              sx={{ py: 0.5 }}>
               <Grid item xs>
                 {index + 1}
               </Grid>
@@ -36,7 +43,7 @@ export default function ArrayInput({ inputName, inputValues }: IProps) {
                     />
                   </IconButton>
                 )}
-                {index < inputValues.length - 1 && (
+                {index < values.length - 1 && (
                   <IconButton onClick={() => swap(index, index + 1)}>
                     <ArrowDropDown
                       sx={{ fontSize: 30, color: "secondary.main" }}
@@ -48,10 +55,12 @@ export default function ArrayInput({ inputName, inputValues }: IProps) {
               <Grid item xs>
                 <Field
                   fullWidth
+                  required
                   component={TextField}
                   size="small"
-                  name={`${inputName}[${index}]`}
+                  name={`${name}[${index}]`}
                   type="text"
+                  label={label}
                 />
               </Grid>
 

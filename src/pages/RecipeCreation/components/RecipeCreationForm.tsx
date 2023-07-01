@@ -12,10 +12,11 @@ const recipeToBack = (recipe: IRecipeCreationFields): IRecipeCreate => {
   return {
     titulo: recipe.title,
     descricao: recipe.description,
-    rendimento: recipe.servings,
+    imagem: recipe.image,
+    rendimento: Number(recipe.servings),
     tempoPreparo: {
-      horas: recipe.prepTime.hours,
-      minutos: recipe.prepTime.minutes,
+      horas: Number(recipe.prepTime.hours),
+      minutos: Number(recipe.prepTime.minutes),
     },
     listaPreparo: recipe.directions.map((direction) => {
       return { descricao: direction };
@@ -24,7 +25,6 @@ const recipeToBack = (recipe: IRecipeCreationFields): IRecipeCreate => {
       // TODO: ver quantidade com o back
       return { quantidade: 1, descricao: ingredient };
     }),
-    imagem: recipe.image,
   };
 };
 
@@ -33,7 +33,8 @@ const handleSubmit = (
   { setSubmitting }: FormikHelpers<IRecipeCreationFields>
 ) => {
   const recipe = recipeToBack(values);
-  createRecipe(recipe, setSubmitting);
+  console.log(values);
+  // createRecipe(recipe, setSubmitting);
 };
 
 export default function RecipeCreationForm() {
@@ -41,14 +42,33 @@ export default function RecipeCreationForm() {
     <Formik
       initialValues={initialValues}
       validationSchema={RecipeCreationSchema}
-      onSubmit={handleSubmit}
-    >
-      {({ values, submitForm, isSubmitting }) => (
+      onSubmit={handleSubmit}>
+      {({
+        values,
+        errors,
+        touched,
+        isSubmitting,
+        submitForm,
+        setFieldValue,
+        setFieldTouched
+      }) => (
         <Form>
+          <br />
+          {/* {JSON.stringify(RecipeCreationSchema.cast(values))} */}
+          <br />
           {JSON.stringify(values)}
-
-          <RecipeCreationFields values={values} />
-
+          <br />
+          <br />
+          {JSON.stringify(errors)}
+          <br />
+          <br />
+          {JSON.stringify(touched)}
+          <RecipeCreationFields
+            values={values}
+            errors={errors}
+            setFieldValue={setFieldValue}
+            setFieldTouched={setFieldTouched}
+          />
           <br />
           <br />
           <LoadingButton loading={isSubmitting} onClick={submitForm}>

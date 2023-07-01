@@ -6,10 +6,10 @@ import YupHelpers from "../../../enums/YupHelpers.tsx";
 export const initialValues: IRecipeCreationFields = {
   title: "",
   description: "",
-  servings: 0,
+  servings: "",
   prepTime: {
-    hours: 0,
-    minutes: 0,
+    hours: "",
+    minutes: "",
   },
   ingredients: [""],
   directions: [""],
@@ -23,6 +23,8 @@ const RecipeCreationSchema = Yup.object<IRecipeCreationFields>().shape({
 
   servings: YupHelpers.DEFAULT_POSITIVE_INTEGER,
 
+  image: YupHelpers.DEFAULT_STRING,
+
   prepTime: Yup.object()
     .shape({
       hours: YupHelpers.DEFAULT_POSITIVE_INTEGER,
@@ -32,13 +34,11 @@ const RecipeCreationSchema = Yup.object<IRecipeCreationFields>().shape({
 
   ingredients: Yup.array()
     .of(YupHelpers.DEFAULT_STRING)
-    .required(FormErrorMessages.REQUIRED),
+    .min(1, "É necessário adicionar pelo menos um ingrediente."),
 
   directions: Yup.array()
     .of(YupHelpers.DEFAULT_STRING)
-    .required(FormErrorMessages.REQUIRED),
-
-  image: YupHelpers.DEFAULT_STRING,
+    .min(1, "É necessário adicionar pelo menos uma instrução de preparo."),
 });
 
 export default RecipeCreationSchema;

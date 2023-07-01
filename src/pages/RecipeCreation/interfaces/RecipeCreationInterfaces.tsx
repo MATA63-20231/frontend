@@ -1,12 +1,12 @@
 export interface IRecipeCreationFields {
   title: string;
   description: string;
-  servings: number;
+  image: string;
+  servings: number | "";
   prepTime: {
-    hours: number;
-    minutes: number;
+    hours: number | "";
+    minutes: number | "";
   };
   ingredients: string[];
   directions: string[];
-  image: string;
 }
