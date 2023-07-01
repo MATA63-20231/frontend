@@ -1,5 +1,5 @@
 import { Field } from "formik";
-import TextField from "formik-mui";
+import { TextField } from "formik-mui";
 
 interface IProps {
   name: string;
