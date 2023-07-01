@@ -1,10 +1,12 @@
 import { Field, FormikErrors } from "formik";
 import { TextField } from "formik-mui";
 import Typography from "@mui/material/Typography";
-import ArrayInput from "../../../components/ArrayInput.tsx";
+import TextArrayInput from "../../../components/Forms/TextArrayInput.tsx";
 import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
 import Grid from "@mui/material/Grid";
 import { ChangeEvent } from "react";
+import TextInput from "../../../components/Forms/TextInput.tsx";
+import IntegerNumberInput from "../../../components/Forms/IntegerNumberInput.tsx";
 
 interface IProps {
   values: IRecipeCreationFields;
@@ -31,6 +33,7 @@ export default function RecipeCreationFields({
     <>
       <br />
       <br />
+      <TextInput required name="title" label="Título" />
       <Field
         required
         fullWidth
@@ -41,6 +44,7 @@ export default function RecipeCreationFields({
       />
       <br />
       <br />
+      <TextInput name="description" label="Descrição" />
       <Field
         fullWidth
         component={TextField}
@@ -50,6 +54,7 @@ export default function RecipeCreationFields({
       />
       <br />
       <br />
+      <TextInput name="image" label="Imagem" />
       <Field
         fullWidth
         component={TextField}
@@ -59,6 +64,12 @@ export default function RecipeCreationFields({
       />
       <br />
       <br />
+      <IntegerNumberInput
+        name="servings"
+        label="Rendimento"
+        setFieldValue={setFieldValue}
+        setFieldTouched={setFieldTouched}
+      />
       <Field
         required
         fullWidth
@@ -103,10 +114,24 @@ export default function RecipeCreationFields({
           label="Minutos"
         />
       </Grid>
+      <Grid container wrap="nowrap">
+        <IntegerNumberInput
+          name="prepTime.hours"
+          label="Horas"
+          setFieldValue={setFieldValue}
+          setFieldTouched={setFieldTouched}
+        />
+        <IntegerNumberInput
+          name="prepTime.minutes"
+          label="Minutos"
+          setFieldValue={setFieldValue}
+          setFieldTouched={setFieldTouched}
+        />
+      </Grid>
       <br />
       <br />
-      <Typography>Ingredientes *</Typography>
-      <ArrayInput
+      <TextArrayInput
+        title="Ingredientes *"
         name="ingredients"
         label="Ingrediente"
         values={values.ingredients}
@@ -114,8 +139,8 @@ export default function RecipeCreationFields({
       />
       <br />
       <br />
-      <Typography>Modo de Preparo *</Typography>
-      <ArrayInput
+      <TextArrayInput
+        title="Modo de Preparo *"
         name="directions"
         label="Instrução"
         values={values.directions}
