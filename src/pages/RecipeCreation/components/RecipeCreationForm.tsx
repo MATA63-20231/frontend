@@ -50,11 +50,10 @@ export default function RecipeCreationForm() {
         isSubmitting,
         submitForm,
         setFieldValue,
-        setFieldTouched
+        setFieldTouched,
       }) => (
         <Form>
           <br />
-          {/* {JSON.stringify(RecipeCreationSchema.cast(values))} */}
           <br />
           {JSON.stringify(values)}
           <br />
@@ -63,6 +62,8 @@ export default function RecipeCreationForm() {
           <br />
           <br />
           {JSON.stringify(touched)}
+          <br />
+          <br />
           <RecipeCreationFields
             values={values}
             errors={errors}
