@@ -1,5 +1,5 @@
 import { Formik, Form, FormikHelpers } from "formik";
-import { IRecipeCreate } from "../../../interfaces/interfaces.tsx";
+import { IRecipeCreation } from "../../../interfaces/interfaces.tsx";
 import { createRecipe } from "../../../services/Api.tsx";
 import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
 import RecipeCreationFields from "./RecipeCreationFields.tsx";
@@ -8,7 +8,7 @@ import RecipeCreationSchema, {
 } from "../schemas/RecipeCreationSchema.tsx";
 import LoadingButton from "../../../components/LoadingButton.tsx";
 
-const recipeToBack = (recipe: IRecipeCreationFields): IRecipeCreate => {
+const recipeToBack = (recipe: IRecipeCreationFields): IRecipeCreation => {
   return {
     titulo: recipe.title,
     descricao: recipe.description,

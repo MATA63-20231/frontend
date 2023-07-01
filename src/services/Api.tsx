@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
-import { IRecipe, IRecipeCreate } from "../interfaces/interfaces.tsx";
+import { IRecipe, IRecipeCreation } from "../interfaces/interfaces.tsx";
 
 interface IGet<DataType> {
   path: string;
@@ -84,10 +84,10 @@ export const getRecipeDetails = () => {
 };
 
 export const createRecipe = (
-  recipe: IRecipeCreate,
+  recipe: IRecipeCreation,
   setLoading: (loading: boolean) => void
 ) => {
-  POST<IRecipe, IRecipeCreate>({
+  POST<IRecipe, IRecipeCreation>({
     path: "/receita",
     body: recipe,
     setLoading,

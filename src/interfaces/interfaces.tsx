@@ -12,7 +12,7 @@ interface IItemPreparo {
   descricao: string;
 }
 
-export interface IRecipeCreate {
+export interface IRecipeCreation {
   titulo: string;
   descricao: string;
   rendimento: number;
@@ -22,7 +22,7 @@ export interface IRecipeCreate {
   imagem: string;
 }
 
-export interface IRecipe extends IRecipeCreate {
+export interface IRecipe extends IRecipeCreation {
   id: string;
   dataCadastro: string;
 }

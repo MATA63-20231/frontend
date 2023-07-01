@@ -1,6 +1,6 @@
-import { Field, FormikErrors } from "formik";
-import { TextField } from "formik-mui";
 import { ChangeEvent } from "react";
+import { Field, FormikErrors } from "formik";
+import TextField from "formik-mui";
 
 interface IProps<FormFieldsType> {
   name: string;
