@@ -43,7 +43,7 @@ export const getAllRecipes = (
   setRecipes: Dispatch<SetStateAction<IRecipe[]>>
 ) => {
   GET<IRecipe[]>({
-    path: "/receitas",
+    path: "/receita/all",
     setLoading,
     onSuccess: (data) => setRecipes(data),
   });
