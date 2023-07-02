@@ -1,8 +1,6 @@
 import axios from "axios";
-import { Dispatch, SetStateAction } from "react";
 import { enqueueSnackbar } from "notistack";
-import { IRecipe, IRecipeCreation } from "../interfaces/interfaces.tsx";
-import { NavigateFunction } from "react-router-dom";
+import { Dispatch, SetStateAction } from "react";
 
 interface IGet<DataType> {
   path: string;
@@ -39,7 +37,11 @@ function GET<DataType>({
       onSuccess(data);
     })
     .catch(() => {
-      onError?.();
+      onError
+        ? onError()
+        : enqueueSnackbar({
+            variant: "error",
+          });
     })
     .finally(() => {
       onFinish?.();
@@ -62,7 +64,11 @@ function POST<DataType, BodyType>({
       onSuccess(data);
     })
     .catch(() => {
-      onError?.();
+      onError
+        ? onError()
+        : enqueueSnackbar({
+            variant: "error",
+          });
     })
     .finally(() => {
       onFinish?.();
@@ -70,37 +76,4 @@ function POST<DataType, BodyType>({
     });
 }
 
-export const getAllRecipes = (
-  setLoading: Dispatch<SetStateAction<boolean>>,
-  setRecipes: Dispatch<SetStateAction<IRecipe[]>>
-) => {
-  GET<IRecipe[]>({
-    path: "/receita/all",
-    setLoading,
-    onSuccess: (data) => setRecipes(data),
-  });
-};
-
-export const getRecipeDetails = () => {
-  return api.get<IRecipe>("/receita");
-};
-
-export const createRecipe = (
-  recipe: IRecipeCreation,
-  navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void
-) => {
-  POST<IRecipe, IRecipeCreation>({
-    path: "/receita",
-    body: recipe,
-    setLoading,
-    onSuccess: ({ receita }) => {
-      const { id } = receita;
-      enqueueSnackbar({
-        variant: "success",
-        message: "Receita cadastrada com sucesso!",
-      });
-      navigate("/receita/" + id);
-    },
-  });
-};
+export { GET, POST };
