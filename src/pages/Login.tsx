@@ -11,7 +11,9 @@ import {
   InputAdornment,
   IconButton,
   Grid,
+  Card,
   CardContent,
+  CardHeader,
 } from "@mui/material";
 
 import Visibility from "@mui/icons-material/Visibility";
@@ -34,47 +36,53 @@ export default function Login() {
   };
 
   return (
-    <Page>
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        sx={{ height: "100%" }}
-      >
-        <form id="login-form" onSubmit={sendForm}>
-          <FormControl>
-            <InputLabel htmlFor="login">Login </InputLabel>
-            <Input id="login" />
-          </FormControl>
+    <Page title="Login">
+      <Card sx={{ width: 500, m: "auto", px: 5, py: 3 }}>
+        <CardContent>
+          <form id="login-form" onSubmit={sendForm}>
+            <FormControl sx={{ width: "100%" }}>
+              <InputLabel htmlFor="login">Login </InputLabel>
+              <Input id="login" />
+            </FormControl>
 
-          <FormControl>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-          </FormControl>
-          <Button variant="contained"> Login </Button>
-        </form>
-      </Grid>
+            <FormControl sx={{ width: "100%" }}>
+              <InputLabel htmlFor="senha">Senha</InputLabel>
+              <Input
+                id="senha"
+                type={showPassword ? "text" : "senha"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
 
-      <Typography>
-        Não tem conta?
-        <Link> Cadastre-se</Link>
-      </Typography>
-      <Link>Esqueci minha senha</Link>
+            <Button
+              variant="contained"
+              sx={{ width: "100%", my: 3, mx: 0, borderRadius: 2 }}
+            >
+              Login
+            </Button>
+          </form>
+
+          <Grid>
+            <Typography variant="h2">
+              Não tem conta?
+              <Link> Cadastre-se</Link>
+            </Typography>
+            <Typography variant="h2">
+              <Link>Esqueci minha senha</Link>
+            </Typography>
+          </Grid>
+        </CardContent>
+      </Card>
     </Page>
   );
 }
