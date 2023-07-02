@@ -2,32 +2,6 @@ import { LinkProps } from "@mui/material/Link";
 import createTheme from "@mui/material/styles/createTheme";
 import LinkBehavior from "../components/LinkBehavior.tsx";
 
-// Create personalized theme variants
-declare module "@mui/material/styles" {
-  interface Palette {
-    default: Palette["primary"];
-  }
-
-  interface PaletteOptions {
-    default?: PaletteOptions["primary"];
-  }
-
-  interface TypographyVariants {
-    mainTitle: React.CSSProperties;
-  }
-
-  interface TypographyVariantsOptions {
-    mainTitle?: React.CSSProperties;
-  }
-}
-
-// Update the Typography's variant prop options
-declare module "@mui/material/Typography" {
-  interface TypographyPropsVariantOverrides {
-    mainTitle: true;
-  }
-}
-
 const defaultTheme = createTheme({
   palette: {
     primary: {
@@ -91,6 +65,9 @@ const defaultTheme = createTheme({
           },
         },
       ],
+    },
+    MuiAlert: {
+      styleOverrides: { message: { width: "100%" } },
     },
   },
 });

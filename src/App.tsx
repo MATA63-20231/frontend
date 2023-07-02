@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 import defaultTheme from "./config/theme.tsx";
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
-import CustomSnackBarProvider from "./components/CustomSnackBarProvider.tsx";
+import CustomSnackBarProvider from "./components/CustomSnackBars/CustomSnackBarProvider.tsx";
 
 function App() {
   return (

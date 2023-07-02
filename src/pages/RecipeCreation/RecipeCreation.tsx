@@ -8,11 +8,28 @@ export default function RecipeCreation() {
     <Page pretitle="Compartilhe sua receita com o mundo" title="Nova receita">
       <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>
         <button
-          onClick={() =>
-            enqueueSnackbar("Your post has been archived", {
+          onClick={() => {
+            enqueueSnackbar({
+              title: "FOOBAR",
+              message: "Nova receita",
               variant: "success",
-            })
-          }>
+            });
+            enqueueSnackbar({
+              title: "FOOBAR",
+              message: "Nova receita",
+              variant: "error",
+            });
+            enqueueSnackbar({
+              title: "FOOBAR",
+              message: "Nova receita",
+              variant: "warning",
+            });
+            enqueueSnackbar({
+              title: "FOOBAR",
+              message: "Nova receita",
+              variant: "info",
+            });
+          }}>
           Show snackbar
         </button>
         <RecipeCreationForm />
