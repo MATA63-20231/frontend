@@ -17,7 +17,7 @@ function App() {
 
       <Header />
 
-      <Grid sx={{ minHeight: "80vh", bgcolor: "#eeeeee" }}>
+      <Grid sx={{ minHeight: "calc(100vh - 135px)", bgcolor: "#eeeeee" }}>
         <Outlet />
       </Grid>
 

@@ -18,27 +18,23 @@ export default function IntegerNumberInput<FormFieldsType>({
   setFieldValue,
   setFieldTouched,
 }: IProps<FormFieldsType>) {
+  //Removes non numeric chars and leading zeros
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { value } = target;
-
-    const isEmptyString = value === "";
-    const hasOnlyNumbers = Boolean(value.match(/^[0-9]+$/));
-    const startsWithZero = value !== "0" && Boolean(value.match(/^0+/));
-
-    const finalValue = startsWithZero ? value.replace(/^0+/, "") : value;
-
-    if (isEmptyString || hasOnlyNumbers) {
-      setFieldValue(name, finalValue).then(() => {
-        setFieldTouched(name);
-      });
-    }
+    setFieldValue(
+      name,
+      value.replace(/[^\d]+/g, "").replace(/^0+(\d)/, "$1")
+    ).then(() => {
+      setFieldTouched(name);
+    });
   };
 
   return (
     <Field
       required
       fullWidth
-      type="number"
+      type="text"
+      inputMode="numeric"
       component={TextField}
       name={name}
       label={label}

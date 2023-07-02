@@ -15,6 +15,7 @@ interface IProps {
   label: string;
   values: string[];
   errors: string | string[] | undefined;
+  loading: boolean;
 }
 
 export default function TextArrayInput({
@@ -23,6 +24,7 @@ export default function TextArrayInput({
   label,
   values,
   errors,
+  loading,
 }: IProps) {
   return (
     <>
@@ -40,22 +42,25 @@ export default function TextArrayInput({
                 container
                 alignItems="flex-start"
                 key={`${name}[${index}]`} // eslint-disable-line react/no-array-index-key
-                sx={{ py: 0.5 }}
-              >
+                sx={{ py: 0.5 }}>
                 <Grid item xs>
                   {index + 1}
                 </Grid>
 
                 <Grid item xs>
                   {index > 0 && (
-                    <IconButton onClick={() => swap(index, index - 1)}>
+                    <IconButton
+                      disabled={loading}
+                      onClick={() => swap(index, index - 1)}>
                       <ArrowDropUp
                         sx={{ fontSize: 30, color: "secondary.main" }}
                       />
                     </IconButton>
                   )}
                   {index < values.length - 1 && (
-                    <IconButton onClick={() => swap(index, index + 1)}>
+                    <IconButton
+                      disabled={loading}
+                      onClick={() => swap(index, index + 1)}>
                       <ArrowDropDown
                         sx={{ fontSize: 30, color: "secondary.main" }}
                       />
@@ -73,7 +78,7 @@ export default function TextArrayInput({
                 </Grid>
 
                 <Grid item xs>
-                  <IconButton onClick={() => remove(index)}>
+                  <IconButton disabled={loading} onClick={() => remove(index)}>
                     <DeleteIcon
                       sx={{ fontSize: 30, color: "secondary.main" }}
                     />
@@ -81,7 +86,12 @@ export default function TextArrayInput({
                 </Grid>
               </Grid>
             ))}
-            <Button onClick={() => push("")}>Adicionar</Button>
+            <Button
+              disabled={loading}
+              variant="outlined"
+              onClick={() => push("")}>
+              Adicionar
+            </Button>
           </>
         )}
       </FieldArray>

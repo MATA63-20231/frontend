@@ -9,6 +9,7 @@ import IntegerNumberInput from "../../../components/CustomInputs/IntegerNumberIn
 interface IProps {
   values: IRecipeCreationFields;
   errors: FormikErrors<IRecipeCreationFields>;
+  loading: boolean;
   setFieldValue: (
     field: string,
     value: string
@@ -19,6 +20,7 @@ interface IProps {
 export default function RecipeCreationFields({
   values,
   errors,
+  loading,
   setFieldValue,
   setFieldTouched,
 }: IProps) {
@@ -66,6 +68,7 @@ export default function RecipeCreationFields({
         label="Ingrediente"
         values={values.ingredients}
         errors={errors.ingredients}
+        loading={loading}
       />
       <br />
       <br />
@@ -75,6 +78,7 @@ export default function RecipeCreationFields({
         label="Instrução"
         values={values.directions}
         errors={errors.directions}
+        loading={loading}
       />
     </>
   );

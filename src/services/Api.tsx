@@ -1,6 +1,8 @@
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
+import { enqueueSnackbar } from "notistack";
 import { IRecipe, IRecipeCreation } from "../interfaces/interfaces.tsx";
+import { NavigateFunction } from "react-router-dom";
 
 interface IGet<DataType> {
   path: string;
@@ -14,7 +16,7 @@ interface IPost<DataType, BodyType> {
   path: string;
   body: BodyType;
   setLoading: (loading: boolean) => void;
-  onSuccess: (data?: DataType) => void;
+  onSuccess: (data: DataType) => void;
   onError?: () => void;
   onFinish?: () => void;
 }
@@ -73,7 +75,7 @@ export const getAllRecipes = (
   setRecipes: Dispatch<SetStateAction<IRecipe[]>>
 ) => {
   GET<IRecipe[]>({
-    path: "/receitas",
+    path: "/receita/all",
     setLoading,
     onSuccess: (data) => setRecipes(data),
   });
@@ -85,14 +87,20 @@ export const getRecipeDetails = () => {
 
 export const createRecipe = (
   recipe: IRecipeCreation,
+  navigate: NavigateFunction,
   setLoading: (loading: boolean) => void
 ) => {
   POST<IRecipe, IRecipeCreation>({
     path: "/receita",
     body: recipe,
     setLoading,
-    onSuccess: (data) => {
-      console.log(data); // eslint-disable-line no-console
+    onSuccess: ({ receita }) => {
+      const { id } = receita;
+      enqueueSnackbar({
+        variant: "success",
+        message: "Receita cadastrada com sucesso!",
+      });
+      navigate("/receita/" + id);
     },
   });
 };

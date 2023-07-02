@@ -4,7 +4,6 @@ import CustomSnackBar from "./CustomSnackBar";
 export default function CustomSnackBarProvider() {
   return (
     <SnackbarProvider
-      maxSnack={10}
       anchorOrigin={{
         vertical: "top",
         horizontal: "right",

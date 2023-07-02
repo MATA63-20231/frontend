@@ -1,7 +1,8 @@
 import { Formik, Form, FormikHelpers } from "formik";
+import { useNavigate } from "react-router-dom";
 import { IRecipeCreation } from "../../../interfaces/interfaces.tsx";
-import { createRecipe } from "../../../services/Api.tsx";
 import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
+import { createRecipe } from "../../../services/Api.tsx";
 import RecipeCreationFields from "./RecipeCreationFields.tsx";
 import RecipeCreationSchema, {
   initialValues,
@@ -9,6 +10,8 @@ import RecipeCreationSchema, {
 import LoadingButton from "../../../components/LoadingButton.tsx";
 
 export default function RecipeCreationForm() {
+  const navigate = useNavigate();
+
   const recipeToBack = (recipe: IRecipeCreationFields): IRecipeCreation => {
     return {
       titulo: recipe.title,
@@ -34,16 +37,14 @@ export default function RecipeCreationForm() {
     { setSubmitting }: FormikHelpers<IRecipeCreationFields>
   ) => {
     const recipe = recipeToBack(values);
-    // console.log(values);
-    createRecipe(recipe, setSubmitting);
+    createRecipe(recipe, navigate, setSubmitting);
   };
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={RecipeCreationSchema}
-      onSubmit={handleSubmit}
-    >
+      onSubmit={handleSubmit}>
       {({
         values,
         errors,
@@ -68,6 +69,7 @@ export default function RecipeCreationForm() {
           <RecipeCreationFields
             values={values}
             errors={errors}
+            loading={isSubmitting}
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
           />
