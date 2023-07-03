@@ -75,10 +75,6 @@ function POST<DataType, BodyType>({
     });
 }
 
-export const authenticateUser = (loginData: ILoginData) => {
-  return api.post("/usuario/authenticate", loginData); // TODO validar
-};
-
 export const signUp = (
   userData: IUser,
   navigate: NavigateFunction,
@@ -88,8 +84,7 @@ export const signUp = (
     path: "/usuario",
     body: userData,
     setLoading,
-    // onSuccess: (data) => console.log("Cadastrado!", data),
-    onSuccess: (data) => {
+    onSuccess: () => {
       enqueueSnackbar({
         variant: "success",
         message: "Usuário cadastrado com sucesso!",
@@ -99,6 +94,24 @@ export const signUp = (
   });
 };
 
+export const login = (
+  loginData: ILoginData,
+  navigate: NavigateFunction,
+  setLoading: (loading: boolean) => void
+) => {
+  POST<ILoginData, ILoginData>({
+    path: "/usuario/authenticate",
+    body: loginData,
+    setLoading,
+    onSuccess: () => {
+      enqueueSnackbar({
+        variant: "success",
+        message: "Login efetuado com sucesso!",
+      });
+      navigate("/home");
+    },
+  });
+};
 export const getAllRecipes = (
   setLoading: Dispatch<SetStateAction<boolean>>,
   setRecipes: Dispatch<SetStateAction<IRecipe[]>>

@@ -20,6 +20,7 @@ import Page from "../components/Page.tsx";
 import { IUser } from "../interfaces/interfaces.tsx";
 import { signUp } from "../services/Api.tsx";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading.tsx";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -143,9 +144,10 @@ export default function Login() {
             <Button
               variant="contained"
               type="submit"
+              disabled={loading}
               sx={{ width: "100%", py: 1.25, my: 3, mx: 0, borderRadius: 2 }}
             >
-              Cadastrar
+              {loading ? <Loading/> : "Cadastrar"}
             </Button>
           </form>
 

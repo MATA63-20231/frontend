@@ -18,9 +18,13 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Page from "../components/Page.tsx";
 import { ILoginData } from "../interfaces/interfaces.tsx";
-import { authenticateUser } from "../services/Api.tsx";
+import { login } from "../services/Api.tsx";
+import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading.tsx";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const [loginData, setLoginData] = React.useState<ILoginData>({
@@ -49,9 +53,7 @@ export default function Login() {
     event.preventDefault();
     console.log(loginData);
 
-    authenticateUser(loginData).then((data) => {
-      console.log(data);
-    });
+    login(loginData, navigate, setLoading);
   };
 
   return (
@@ -94,9 +96,10 @@ export default function Login() {
             <Button
               variant="contained"
               type="submit"
+              disabled={loading}
               sx={{ width: "100%", py: 1.25, my: 3, mx: 0, borderRadius: 2 }}
             >
-              Login
+              {loading ? <Loading/> : "Login"}
             </Button>
           </form>
 
