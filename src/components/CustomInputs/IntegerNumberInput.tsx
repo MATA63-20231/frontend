@@ -18,12 +18,12 @@ export default function IntegerNumberInput<FormFieldsType>({
   setFieldValue,
   setFieldTouched,
 }: IProps<FormFieldsType>) {
-  //Removes non numeric chars and leading zeros
+  // Removes non numeric chars and leading zeros
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { value } = target;
     setFieldValue(
       name,
-      value.replace(/[^\d]+/g, "").replace(/^0+(\d)/, "$1")
+      value.replace(/[^\d]+/g, "").replace(/^0+(\d)/, "$1"),
     ).then(() => {
       setFieldTouched(name);
     });

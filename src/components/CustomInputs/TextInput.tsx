@@ -8,7 +8,9 @@ interface IProps {
   required?: boolean;
 }
 
-export default function TextInput({ name, label, size, required }: IProps) {
+export default function TextInput({
+  name, label, size, required,
+}: IProps) {
   return (
     <Field
       fullWidth

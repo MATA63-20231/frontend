@@ -18,8 +18,7 @@ export const initialValues: IRecipeCreationFields = {
 
 const cantBeBothZero = {
   is: 0,
-  then: (schema: Yup.NumberSchema) =>
-    schema.moreThan(0, "Tempo de preparo não pode ser 0h0min."),
+  then: (schema: Yup.NumberSchema) => schema.moreThan(0, "Tempo de preparo não pode ser 0h0min."),
 };
 
 const RecipeCreationSchema = Yup.object<IRecipeCreationFields>().shape({
@@ -36,10 +35,10 @@ const RecipeCreationSchema = Yup.object<IRecipeCreationFields>().shape({
       hours: YupHelpers.INTEGER_MIN_ZERO.when("minutes", cantBeBothZero),
       minutes: YupHelpers.INTEGER_MIN_ZERO.when("hours", cantBeBothZero).max(
         59,
-        FormErrorMessages.MAX_59
+        FormErrorMessages.MAX_59,
       ),
     },
-    [["hours", "minutes"]]
+    [["hours", "minutes"]],
   ),
 
   // prepTime: Yup.object()

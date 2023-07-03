@@ -33,16 +33,12 @@ function GET<DataType>({
   setLoading(true);
   api
     .get<DataType>(path)
-    .then(({ data }) => {
-      onSuccess(data);
-    })
-    .catch(() => {
-      onError
-        ? onError()
-        : enqueueSnackbar({
-            variant: "error",
-          });
-    })
+    .then(({ data }) => onSuccess(data))
+    .catch(() => (onError
+      ? onError()
+      : enqueueSnackbar({
+        variant: "error",
+      })))
     .finally(() => {
       onFinish?.();
       setLoading(false);
@@ -60,16 +56,12 @@ function POST<DataType, BodyType>({
   setLoading(true);
   api
     .post<DataType>(path, body)
-    .then(({ data }) => {
-      onSuccess(data);
-    })
-    .catch(() => {
-      onError
-        ? onError()
-        : enqueueSnackbar({
-            variant: "error",
-          });
-    })
+    .then(({ data }) => onSuccess(data))
+    .catch(() => (onError
+      ? onError()
+      : enqueueSnackbar({
+        variant: "error",
+      })))
     .finally(() => {
       onFinish?.();
       setLoading(false);

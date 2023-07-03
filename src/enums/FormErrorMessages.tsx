@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+
 enum FormErrorMessages {
   // Erors gerais
   REQUIRED = "Campo obrigatório.",

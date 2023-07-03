@@ -42,7 +42,8 @@ export default function TextArrayInput({
                 container
                 alignItems="flex-start"
                 key={`${name}[${index}]`} // eslint-disable-line react/no-array-index-key
-                sx={{ py: 0.5 }}>
+                sx={{ py: 0.5 }}
+              >
                 <Grid item xs>
                   {index + 1}
                 </Grid>
@@ -51,7 +52,8 @@ export default function TextArrayInput({
                   {index > 0 && (
                     <IconButton
                       disabled={loading}
-                      onClick={() => swap(index, index - 1)}>
+                      onClick={() => swap(index, index - 1)}
+                    >
                       <ArrowDropUp
                         sx={{ fontSize: 30, color: "secondary.main" }}
                       />
@@ -60,7 +62,8 @@ export default function TextArrayInput({
                   {index < values.length - 1 && (
                     <IconButton
                       disabled={loading}
-                      onClick={() => swap(index, index + 1)}>
+                      onClick={() => swap(index, index + 1)}
+                    >
                       <ArrowDropDown
                         sx={{ fontSize: 30, color: "secondary.main" }}
                       />
@@ -89,7 +92,8 @@ export default function TextArrayInput({
             <Button
               disabled={loading}
               variant="outlined"
-              onClick={() => push("")}>
+              onClick={() => push("")}
+            >
               Adicionar
             </Button>
           </>

@@ -15,7 +15,9 @@ export default function LoadingButton({
 }: PropsWithChildren<IProps>) {
   return (
     <Button variant="contained" disabled={loading} onClick={onClick}>
-      <Grid sx={{ mr: 1 }}>{loading && <Loading />}</Grid> {children}
+      <Grid sx={{ mr: 1 }}>{loading && <Loading />}</Grid>
+      {" "}
+      {children}
     </Button>
   );
 }

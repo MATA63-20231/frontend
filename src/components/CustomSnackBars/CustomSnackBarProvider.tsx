@@ -1,5 +1,5 @@
 import { SnackbarProvider } from "notistack";
-import CustomSnackBar from "./CustomSnackBar";
+import CustomSnackBar from "./CustomSnackBar.tsx";
 
 export default function CustomSnackBarProvider() {
   return (

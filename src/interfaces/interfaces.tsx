@@ -4,7 +4,6 @@ interface ITempoPreparo {
 }
 
 interface IIngrediente {
-  quantidade: number;
   descricao: string;
 }
 
