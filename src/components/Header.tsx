@@ -7,7 +7,7 @@ import Link from "@mui/material/Link";
 import CardMedia from "@mui/material/CardMedia";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import SearchIcon from "@mui/icons-material/Search";
+// import SearchIcon from "@mui/icons-material/Search";
 import Logo from "../assets/logo.svg";
 
 export default function Header() {

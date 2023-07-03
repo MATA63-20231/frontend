@@ -16,9 +16,9 @@ import {
 
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { useNavigate } from "react-router-dom";
 import Page from "../components/Page.tsx";
 import { IUser } from "../interfaces/interfaces.tsx";
-import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading.tsx";
 import { postSignUp } from "../services/UserApi.tsx";
 
@@ -54,8 +54,6 @@ export default function Login() {
 
   const sendForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(userData);
-
     postSignUp(userData, navigate, setLoading);
   };
 
@@ -147,7 +145,7 @@ export default function Login() {
               disabled={loading}
               sx={{ width: "100%", py: 1.25, my: 3, mx: 0, borderRadius: 2 }}
             >
-              {loading ? <Loading/> : "Cadastrar"}
+              {loading ? <Loading /> : "Cadastrar"}
             </Button>
           </form>
 

@@ -1,5 +1,5 @@
-import { ILoginData, IUser } from "../interfaces/interfaces.js";
 import { NavigateFunction } from "react-router-dom";
+import { ILoginData, IUser } from "../interfaces/interfaces.tsx";
 import { POST } from "./Api.tsx";
 
 export const postSignUp = (

@@ -2,9 +2,8 @@
 
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
-import { ILoginData, IRecipe, IUser } from "../interfaces/interfaces.tsx";
+import { IRecipe } from "../interfaces/interfaces.tsx";
 // import { enqueueSnackbar } from "notistack";
-import { NavigateFunction } from "react-router-dom";
 
 interface IGet<DataType> {
   path: string;
@@ -53,7 +52,7 @@ export function POST<DataType, BodyType>({
   body,
   setLoading,
   onSuccess,
-  onError,
+  // onError,
   onFinish,
 }: IPost<DataType, BodyType>) {
   setLoading(true);
@@ -63,7 +62,7 @@ export function POST<DataType, BodyType>({
       onSuccess(data);
     })
     .catch(() => {
-      onError
+      // onError;
       //   ? onError()
       //   : enqueueSnackbar({
       //       variant: "error",

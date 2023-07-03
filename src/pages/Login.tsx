@@ -16,10 +16,10 @@ import {
 
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { useNavigate } from "react-router-dom";
 import Page from "../components/Page.tsx";
 import { ILoginData } from "../interfaces/interfaces.tsx";
 import { postLogin } from "../services/UserApi.tsx";
-import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading.tsx";
 
 export default function Login() {
@@ -51,8 +51,6 @@ export default function Login() {
 
   const sendForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(loginData);
-
     postLogin(loginData, navigate, setLoading);
   };
 
@@ -99,7 +97,7 @@ export default function Login() {
               disabled={loading}
               sx={{ width: "100%", py: 1.25, my: 3, mx: 0, borderRadius: 2 }}
             >
-              {loading ? <Loading/> : "Login"}
+              {loading ? <Loading /> : "Login"}
             </Button>
           </form>
 
@@ -109,7 +107,7 @@ export default function Login() {
               <Link href="/cadastro"> Cadastre-se</Link>
             </Typography>
             <Typography variant="h2">
-              <Link>Esqueci minha senha</Link>
+              <Link href="alterar-senha">Esqueci minha senha</Link>
             </Typography>
           </Grid>
         </CardContent>
