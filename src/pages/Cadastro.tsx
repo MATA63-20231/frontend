@@ -18,9 +18,12 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Page from "../components/Page.tsx";
 import { IUser } from "../interfaces/interfaces.tsx";
-import { authenticateUser } from "../services/Api.tsx";
+import { signUp } from "../services/Api.tsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const [userData, setUserData] = React.useState<IUser>({
@@ -52,7 +55,7 @@ export default function Login() {
     event.preventDefault();
     console.log(userData);
 
-    
+    signUp(userData, navigate, setLoading);
   };
 
   return (
