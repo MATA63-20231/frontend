@@ -17,15 +17,18 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Page from "../components/Page.tsx";
-import { ILoginData } from "../interfaces/interfaces.tsx";
+import { IUser } from "../interfaces/interfaces.tsx";
 import { authenticateUser } from "../services/Api.tsx";
 
 export default function Login() {
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  const [loginData, setLoginData] = React.useState<ILoginData>({
+  const [userData, setUserData] = React.useState<IUser>({
     usuario: "",
+    nome: "",
+    email: "",
     senha: "",
+    confirmacaoSenha: "",
   });
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -38,8 +41,8 @@ export default function Login() {
 
   const handleChange = () => {
     return (event: React.ChangeEvent<HTMLInputElement>) => {
-      setLoginData({
-        ...loginData,
+      setUserData({
+        ...userData,
         [event.target.name]: event.target.value,
       });
     };
@@ -47,24 +50,43 @@ export default function Login() {
 
   const sendForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(loginData);
+    console.log(userData);
 
-    authenticateUser(loginData).then((data) => {
-      console.log(data);
-    });
+    
   };
 
   return (
-    <Page title="Login">
+    <Page title="Cadastro">
       <Card sx={{ width: 500, m: "auto", px: 5, py: 3 }}>
         <CardContent>
-          <form id="login-form" onSubmit={sendForm}>
+          <form id="signup-form" onSubmit={sendForm}>
             <FormControl sx={{ width: "100%", my: 1 }}>
               <InputLabel htmlFor="usuario"> Usuário </InputLabel>
               <Input
                 id="usuario"
                 name="usuario"
-                value={loginData.usuario}
+                value={userData.usuario}
+                onChange={handleChange()}
+              />
+            </FormControl>
+
+            <FormControl sx={{ width: "100%", my: 1 }}>
+              <InputLabel htmlFor="nome"> Nome </InputLabel>
+              <Input
+                id="nome"
+                name="nome"
+                value={userData.nome}
+                onChange={handleChange()}
+              />
+            </FormControl>
+
+            <FormControl sx={{ width: "100%", my: 1 }}>
+              <InputLabel htmlFor="email"> Email </InputLabel>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                value={userData.email}
                 onChange={handleChange()}
               />
             </FormControl>
@@ -74,7 +96,31 @@ export default function Login() {
               <Input
                 id="senha"
                 name="senha"
-                value={loginData.senha}
+                value={userData.senha}
+                onChange={handleChange()}
+                type={showPassword ? "text" : "password"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+
+            <FormControl sx={{ width: "100%", my: 1 }}>
+              <InputLabel htmlFor="confirmacaoSenha">
+                Confirmação da enha
+              </InputLabel>
+              <Input
+                id="confirmacaoSenha"
+                name="confirmacaoSenha"
+                value={userData.confirmacaoSenha}
                 onChange={handleChange()}
                 type={showPassword ? "text" : "password"}
                 endAdornment={
@@ -96,17 +142,14 @@ export default function Login() {
               type="submit"
               sx={{ width: "100%", py: 1.25, my: 3, mx: 0, borderRadius: 2 }}
             >
-              Login
+              Cadastrar
             </Button>
           </form>
 
           <Grid>
             <Typography variant="h2">
-              Não tem conta?
-              <Link href="/cadastro"> Cadastre-se</Link>
-            </Typography>
-            <Typography variant="h2">
-              <Link>Esqueci minha senha</Link>
+              Já é cadastrado?
+              <Link href="/login"> Faça login. </Link>
             </Typography>
           </Grid>
         </CardContent>

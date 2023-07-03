@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
-import { ILoginData, IRecipe } from "../interfaces/interfaces.tsx";
+import { ILoginData, IRecipe, IUser } from "../interfaces/interfaces.tsx";
 
 interface IGet<DataType> {
   path: string;
@@ -11,6 +11,7 @@ interface IGet<DataType> {
   onError?: () => void;
   onFinish?: () => void;
 }
+
 
 export const api = axios.create({
   baseURL: "https://chef-virtual.onrender.com/",
@@ -40,6 +41,10 @@ function GET<DataType>({
 
 export const authenticateUser = (loginData: ILoginData) => {
   return api.post("/usuario/authenticate", loginData); // TODO validar
+};
+
+export const signUp = (setLoading: Dispatch<SetStateAction<boolean>>) => {
+  //TODO implementar
 };
 
 export const getAllRecipes = (
