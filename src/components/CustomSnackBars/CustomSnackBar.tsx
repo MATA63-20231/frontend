@@ -13,41 +13,37 @@ interface CustomSnackBarProps extends CustomContentProps {
 
 const CustomSnackBar = forwardRef<HTMLDivElement, CustomSnackBarProps>(
   (props, ref) => {
-    const {
-      id, variant, title, message,
-    } = props;
+    const { id, variant, title, message } = props;
 
-    return (
-      variant !== "default" && (
-        <SnackbarContent ref={ref}>
-          <Alert
-            sx={{ textAlign: "initial", width: "100%" }}
-            variant="filled"
-            severity={variant}
-          >
-            <Grid container justifyContent="space-between" wrap="nowrap">
-              <Grid item>
-                <AlertTitle>
-                  {title || CustomSnackBarDefaults[variant].defaultTitle}
-                </AlertTitle>
-                {message || CustomSnackBarDefaults[variant].defaultMessage}
-              </Grid>
-              <Grid item sx={{ ml: 1, mt: -0.4 }}>
-                <IconButton
-                  aria-label="close"
-                  color="inherit"
-                  size="small"
-                  onClick={() => closeSnackbar(id)}
-                >
-                  <CloseIcon fontSize="inherit" />
-                </IconButton>
-              </Grid>
+    return variant == "default" ? (
+      <></>
+    ) : (
+      <SnackbarContent ref={ref}>
+        <Alert
+          sx={{ textAlign: "initial", width: "100%" }}
+          variant="filled"
+          severity={variant}>
+          <Grid container justifyContent="space-between" wrap="nowrap">
+            <Grid item>
+              <AlertTitle>
+                {title || CustomSnackBarDefaults[variant].defaultTitle}
+              </AlertTitle>
+              {message || CustomSnackBarDefaults[variant].defaultMessage}
             </Grid>
-          </Alert>
-        </SnackbarContent>
-      )
+            <Grid item sx={{ ml: 1, mt: -0.4 }}>
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => closeSnackbar(id)}>
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            </Grid>
+          </Grid>
+        </Alert>
+      </SnackbarContent>
     );
-  },
+  }
 );
 
 CustomSnackBar.displayName = "CustomSnackBar";
