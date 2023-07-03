@@ -1,9 +1,6 @@
-/* eslint-disable react-refresh/only-export-components */
-
 import axios from "axios";
+import { enqueueSnackbar } from "notistack";
 import { Dispatch, SetStateAction } from "react";
-import { IRecipe } from "../interfaces/interfaces.tsx";
-// import { enqueueSnackbar } from "notistack";
 
 interface IGet<DataType> {
   path: string;
@@ -12,6 +9,7 @@ interface IGet<DataType> {
   onError?: () => void;
   onFinish?: () => void;
 }
+
 interface IPost<DataType, BodyType> {
   path: string;
   body: BodyType;
@@ -21,11 +19,11 @@ interface IPost<DataType, BodyType> {
   onFinish?: () => void;
 }
 
-export const api = axios.create({
+const api = axios.create({
   baseURL: "https://chef-virtual.onrender.com/",
 });
 
-export function GET<DataType>({
+function GET<DataType>({
   path,
   setLoading,
   onSuccess,
@@ -35,56 +33,39 @@ export function GET<DataType>({
   setLoading(true);
   api
     .get<DataType>(path)
-    .then(({ data }) => {
-      onSuccess(data);
-    })
-    .catch(() => {
-      onError?.();
-    })
+    .then(({ data }) => onSuccess(data))
+    .catch(() => (onError
+      ? onError()
+      : enqueueSnackbar({
+        variant: "error",
+      })))
     .finally(() => {
       onFinish?.();
       setLoading(false);
     });
 }
 
-export function POST<DataType, BodyType>({
+function POST<DataType, BodyType>({
   path,
   body,
   setLoading,
   onSuccess,
-  // onError,
+  onError,
   onFinish,
 }: IPost<DataType, BodyType>) {
   setLoading(true);
   api
     .post<DataType>(path, body)
-    .then(({ data }) => {
-      onSuccess(data);
-    })
-    .catch(() => {
-      // onError;
-      //   ? onError()
-      //   : enqueueSnackbar({
-      //       variant: "error",
-      //     });
-    })
+    .then(({ data }) => onSuccess(data))
+    .catch(() => (onError
+      ? onError()
+      : enqueueSnackbar({
+        variant: "error",
+      })))
     .finally(() => {
       onFinish?.();
       setLoading(false);
     });
 }
 
-export const getAllRecipes = (
-  setLoading: Dispatch<SetStateAction<boolean>>,
-  setRecipes: Dispatch<SetStateAction<IRecipe[]>>
-) => {
-  GET<IRecipe[]>({
-    path: "/receita/all",
-    setLoading,
-    onSuccess: (data) => setRecipes(data),
-  });
-};
-
-export const getRecipeDetails = () => {
-  return api.get<IRecipe>("/receita");
-};
+export { GET, POST };

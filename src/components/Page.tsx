@@ -3,7 +3,7 @@ import Container from "@mui/material/Container";
 import { PropsWithChildren } from "react";
 import Loading from "./Loading.tsx";
 
-interface PageProps {
+interface IProps {
   title?: string;
   pretitle?: string;
   loading?: boolean;
@@ -14,7 +14,7 @@ export default function Page({
   pretitle,
   loading,
   children,
-}: PropsWithChildren<PageProps>) {
+}: PropsWithChildren<IProps>) {
   return (
     <Container
       maxWidth="lg"

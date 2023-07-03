@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
 import Page from "../components/Page.tsx";
 import { IRecipe } from "../interfaces/interfaces.tsx";
-import { getAllRecipes } from "../services/Api.tsx";
+import { getAllRecipes } from "../services/RecipesApi.tsx";
 
 export default function Home() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -20,8 +20,8 @@ export default function Home() {
   return (
     <Page pretitle="Receitas" title="Confira nossas receitas" loading={loading}>
       <Grid container spacing={4}>
-        {recipes.map((recipe) => (
-          <Grid item key={recipe.id} xs={12} sm={6} md={4}>
+        {recipes.map(({ receita }) => (
+          <Grid item key={receita.id} xs={12} sm={6} md={4}>
             <Card
               sx={{
                 height: "100%",
@@ -29,7 +29,7 @@ export default function Home() {
                 flexDirection: "column",
               }}
             >
-              <CardActionArea href={`/receita/${recipe.titulo}`}>
+              <CardActionArea href={`/receita/${receita.titulo}`}>
                 <CardMedia
                   component="div"
                   sx={{
@@ -40,9 +40,9 @@ export default function Home() {
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="h2">
-                    {recipe.titulo}
+                    {receita.titulo}
                   </Typography>
-                  <Typography>{recipe.descricao}</Typography>
+                  <Typography>{receita.descricao}</Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
