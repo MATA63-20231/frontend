@@ -1,12 +1,19 @@
-/* eslint-disable react-refresh/only-export-components */
-
 import axios from "axios";
+import { enqueueSnackbar } from "notistack";
 import { Dispatch, SetStateAction } from "react";
-import { IRecipe } from "../interfaces/interfaces.tsx";
 
 interface IGet<DataType> {
   path: string;
   setLoading: Dispatch<SetStateAction<boolean>>;
+  onSuccess: (data: DataType) => void;
+  onError?: () => void;
+  onFinish?: () => void;
+}
+
+interface IPost<DataType, BodyType> {
+  path: string;
+  body: BodyType;
+  setLoading: (loading: boolean) => void;
   onSuccess: (data: DataType) => void;
   onError?: () => void;
   onFinish?: () => void;
@@ -26,29 +33,39 @@ function GET<DataType>({
   setLoading(true);
   api
     .get<DataType>(path)
-    .then(({ data }) => {
-      onSuccess(data);
-    })
-    .catch(() => {
-      onError?.();
-    })
+    .then(({ data }) => onSuccess(data))
+    .catch(() => (onError
+      ? onError()
+      : enqueueSnackbar({
+        variant: "error",
+      })))
     .finally(() => {
       onFinish?.();
       setLoading(false);
     });
 }
 
-export const getAllRecipes = (
-  setLoading: Dispatch<SetStateAction<boolean>>,
-  setRecipes: Dispatch<SetStateAction<IRecipe[]>>
-) => {
-  GET<IRecipe[]>({
-    path: "/receitas",
-    setLoading,
-    onSuccess: (data) => setRecipes(data),
-  });
-};
+function POST<DataType, BodyType>({
+  path,
+  body,
+  setLoading,
+  onSuccess,
+  onError,
+  onFinish,
+}: IPost<DataType, BodyType>) {
+  setLoading(true);
+  api
+    .post<DataType>(path, body)
+    .then(({ data }) => onSuccess(data))
+    .catch(() => (onError
+      ? onError()
+      : enqueueSnackbar({
+        variant: "error",
+      })))
+    .finally(() => {
+      onFinish?.();
+      setLoading(false);
+    });
+}
 
-export const getRecipeDetails = () => {
-  return api.get<IRecipe>("/receita");
-};
+export { GET, POST };
