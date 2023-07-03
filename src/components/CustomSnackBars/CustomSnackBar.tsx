@@ -13,16 +13,19 @@ interface CustomSnackBarProps extends CustomContentProps {
 
 const CustomSnackBar = forwardRef<HTMLDivElement, CustomSnackBarProps>(
   (props, ref) => {
-    const { id, variant, title, message } = props;
+    const {
+      id, variant, title, message,
+    } = props;
 
-    return variant == "default" ? (
-      <></>
+    return variant === "default" ? (
+      null
     ) : (
       <SnackbarContent ref={ref}>
         <Alert
           sx={{ textAlign: "initial", width: "100%" }}
           variant="filled"
-          severity={variant}>
+          severity={variant}
+        >
           <Grid container justifyContent="space-between" wrap="nowrap">
             <Grid item>
               <AlertTitle>
@@ -35,7 +38,8 @@ const CustomSnackBar = forwardRef<HTMLDivElement, CustomSnackBarProps>(
                 aria-label="close"
                 color="inherit"
                 size="small"
-                onClick={() => closeSnackbar(id)}>
+                onClick={() => closeSnackbar(id)}
+              >
                 <CloseIcon fontSize="inherit" />
               </IconButton>
             </Grid>
@@ -43,7 +47,7 @@ const CustomSnackBar = forwardRef<HTMLDivElement, CustomSnackBarProps>(
         </Alert>
       </SnackbarContent>
     );
-  }
+  },
 );
 
 CustomSnackBar.displayName = "CustomSnackBar";
