@@ -5,10 +5,10 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import CardMedia from "@mui/material/CardMedia";
-import Logo from "../assets/logo.svg";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
+import Logo from "../assets/logo.svg";
 
 export default function Header() {
   return (
@@ -58,7 +58,12 @@ export default function Header() {
         |
        */}
 
-        <Button variant="text" disableRipple href="login" sx={{textTransform:"Capitalize"}}>
+        <Button
+          variant="text"
+          disableRipple
+          href="login"
+          sx={{ textTransform: "Capitalize" }}
+        >
           <AccountCircleIcon />
           <Typography color="secondary.main">Login</Typography>
         </Button>

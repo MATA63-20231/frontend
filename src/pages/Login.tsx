@@ -1,38 +1,57 @@
 import * as React from "react";
 
-import Page from "../components/Page.tsx";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
 import {
-  FormControl,
-  InputLabel,
-  Input,
-  InputAdornment,
-  IconButton,
-  Grid,
+  Button,
   Card,
   CardContent,
-  CardHeader,
+  FormControl,
+  Grid,
+  IconButton,
+  Input,
+  InputAdornment,
+  InputLabel,
+  Link,
+  Typography,
 } from "@mui/material";
 
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Page from "../components/Page.tsx";
+import { ILoginData } from "../interfaces/interfaces.tsx";
+import { authenticateUser } from "../services/Api.tsx";
 
 export default function Login() {
+  const [loading, setLoading] = React.useState<boolean>(false);
+
+  const [loginData, setLoginData] = React.useState<ILoginData>({
+    usuario: "",
+    senha: "",
+  });
+
   const [showPassword, setShowPassword] = React.useState(false);
-
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
   };
 
+  const handleChange = () => {
+    return (event: React.ChangeEvent<HTMLInputElement>) => {
+      setLoginData({
+        ...loginData,
+        [event.target.name]: event.target.value,
+      });
+    };
+  };
+
   const sendForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("sent");
+    console.log(loginData);
+
+    authenticateUser(loginData).then((data) => {
+      console.log(data);
+    });
   };
 
   return (
@@ -40,15 +59,23 @@ export default function Login() {
       <Card sx={{ width: 500, m: "auto", px: 5, py: 3 }}>
         <CardContent>
           <form id="login-form" onSubmit={sendForm}>
-            <FormControl sx={{ width: "100%" }}>
-              <InputLabel htmlFor="login">Login </InputLabel>
-              <Input id="login" />
+            <FormControl sx={{ width: "100%", my: 1 }}>
+              <InputLabel htmlFor="usuario"> Usuário </InputLabel>
+              <Input
+                id="usuario"
+                name="usuario"
+                value={loginData.usuario}
+                onChange={handleChange()}
+              />
             </FormControl>
 
-            <FormControl sx={{ width: "100%" }}>
+            <FormControl sx={{ width: "100%", my: 1 }}>
               <InputLabel htmlFor="senha">Senha</InputLabel>
               <Input
                 id="senha"
+                name="senha"
+                value={loginData.senha}
+                onChange={handleChange()}
                 type={showPassword ? "text" : "senha"}
                 endAdornment={
                   <InputAdornment position="end">
@@ -66,7 +93,8 @@ export default function Login() {
 
             <Button
               variant="contained"
-              sx={{ width: "100%", my: 3, mx: 0, borderRadius: 2 }}
+              type="submit"
+              sx={{ width: "100%", py: 1.25, my: 3, mx: 0, borderRadius: 2 }}
             >
               Login
             </Button>

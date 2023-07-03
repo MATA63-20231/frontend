@@ -7,3 +7,8 @@ export interface IRecipe {
   imagem: string;
   dataCadastro: string;
 }
+
+export interface ILoginData{
+  usuario: string,
+  senha: string,
+}
