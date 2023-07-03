@@ -3,7 +3,7 @@
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
 import { ILoginData, IRecipe, IUser } from "../interfaces/interfaces.tsx";
-import { enqueueSnackbar } from "notistack";
+// import { enqueueSnackbar } from "notistack";
 import { NavigateFunction } from "react-router-dom";
 
 interface IGet<DataType> {
@@ -26,7 +26,7 @@ export const api = axios.create({
   baseURL: "https://chef-virtual.onrender.com/",
 });
 
-function GET<DataType>({
+export function GET<DataType>({
   path,
   setLoading,
   onSuccess,
@@ -48,7 +48,7 @@ function GET<DataType>({
     });
 }
 
-function POST<DataType, BodyType>({
+export function POST<DataType, BodyType>({
   path,
   body,
   setLoading,
@@ -64,10 +64,10 @@ function POST<DataType, BodyType>({
     })
     .catch(() => {
       onError
-        ? onError()
-        : enqueueSnackbar({
-            variant: "error",
-          });
+      //   ? onError()
+      //   : enqueueSnackbar({
+      //       variant: "error",
+      //     });
     })
     .finally(() => {
       onFinish?.();
@@ -75,43 +75,6 @@ function POST<DataType, BodyType>({
     });
 }
 
-export const signUp = (
-  userData: IUser,
-  navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void
-) => {
-  POST<IUser, IUser>({
-    path: "/usuario",
-    body: userData,
-    setLoading,
-    onSuccess: () => {
-      enqueueSnackbar({
-        variant: "success",
-        message: "Usuário cadastrado com sucesso!",
-      });
-      navigate("/login");
-    },
-  });
-};
-
-export const login = (
-  loginData: ILoginData,
-  navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void
-) => {
-  POST<ILoginData, ILoginData>({
-    path: "/usuario/authenticate",
-    body: loginData,
-    setLoading,
-    onSuccess: () => {
-      enqueueSnackbar({
-        variant: "success",
-        message: "Login efetuado com sucesso!",
-      });
-      navigate("/home");
-    },
-  });
-};
 export const getAllRecipes = (
   setLoading: Dispatch<SetStateAction<boolean>>,
   setRecipes: Dispatch<SetStateAction<IRecipe[]>>

@@ -18,7 +18,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Page from "../components/Page.tsx";
 import { ILoginData } from "../interfaces/interfaces.tsx";
-import { login } from "../services/Api.tsx";
+import { postLogin } from "../services/UserApi.tsx";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading.tsx";
 
@@ -53,7 +53,7 @@ export default function Login() {
     event.preventDefault();
     console.log(loginData);
 
-    login(loginData, navigate, setLoading);
+    postLogin(loginData, navigate, setLoading);
   };
 
   return (
