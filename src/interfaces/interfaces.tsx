@@ -21,11 +21,11 @@ export interface IRecipeCreation {
   imagem: string;
 }
 
-export interface IRecipeGet extends IRecipeCreation {
+export interface IRecipe extends IRecipeCreation {
   id: string;
   dataCadastro: string;
 }
 
-export interface IRecipe {
-  receita: IRecipeGet;
+export interface IRecipePostResponse {
+  receita: IRecipe;
 }
