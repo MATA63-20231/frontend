@@ -6,15 +6,20 @@ interface IProps {
   label: string;
   size?: string;
   required?: boolean;
+  type?: "text" | "email" | "password";
 }
 
 export default function TextInput({
-  name, label, size, required,
+  name,
+  label,
+  size,
+  required,
+  type,
 }: IProps) {
   return (
     <Field
       fullWidth
-      type="text"
+      type={type}
       component={TextField}
       size={size}
       required={required}
@@ -24,4 +29,4 @@ export default function TextInput({
   );
 }
 
-TextInput.defaultProps = { required: false, size: "medium" };
+TextInput.defaultProps = { required: false, size: "medium", type: "text" };
