@@ -27,7 +27,8 @@ export default function Home() {
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
-              }}>
+              }}
+            >
               <CardActionArea href={`/receita/${recipe.titulo}`}>
                 <CardMedia
                   component="div"
