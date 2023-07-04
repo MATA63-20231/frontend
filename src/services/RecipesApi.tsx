@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { enqueueSnackbar } from "notistack";
 import { NavigateFunction } from "react-router-dom";
-import { IRecipe, IRecipeCreation } from "../interfaces/interfaces.tsx";
+import { IRecipe, IRecipeCreation, IRecipePostResponse } from "../interfaces/interfaces.tsx";
 import { GET, POST } from "./Api.tsx";
 
 const getAllRecipes = (
@@ -20,7 +20,7 @@ const createRecipe = (
   navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
 ) => {
-  POST<IRecipe, IRecipeCreation>({
+  POST<IRecipePostResponse, IRecipeCreation>({
     path: "/receita",
     body: recipe,
     setLoading,
