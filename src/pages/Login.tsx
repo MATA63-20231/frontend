@@ -35,18 +35,16 @@ export default function Login() {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
   };
 
-  const handleChange = () => {
-    return (event: React.ChangeEvent<HTMLInputElement>) => {
-      setLoginData({
-        ...loginData,
-        [event.target.name]: event.target.value,
-      });
-    };
+  const handleChange = () => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLoginData({
+      ...loginData,
+      [event.target.name]: event.target.value,
+    });
   };
 
   const sendForm = (event: React.ChangeEvent<HTMLFormElement>) => {
@@ -56,7 +54,10 @@ export default function Login() {
 
   return (
     <Page title="Login">
-      <Card sx={{ width: 500, m: "auto", px: 5, py: 3 }}>
+      <Card sx={{
+        width: 500, m: "auto", px: 5, py: 3,
+      }}
+      >
         <CardContent>
           <form id="login-form" onSubmit={sendForm}>
             <FormControl sx={{ width: "100%", my: 1 }}>
@@ -77,7 +78,7 @@ export default function Login() {
                 value={loginData.senha}
                 onChange={handleChange()}
                 type={showPassword ? "text" : "password"}
-                endAdornment={
+                endAdornment={(
                   <InputAdornment position="end">
                     <IconButton
                       aria-label="toggle password visibility"
@@ -87,7 +88,7 @@ export default function Login() {
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
-                }
+                )}
               />
             </FormControl>
 
@@ -95,7 +96,9 @@ export default function Login() {
               variant="contained"
               type="submit"
               disabled={loading}
-              sx={{ width: "100%", py: 1.25, my: 3, mx: 0, borderRadius: 2 }}
+              sx={{
+                width: "100%", py: 1.25, my: 3, mx: 0, borderRadius: 2,
+              }}
             >
               {loading ? <Loading /> : "Login"}
             </Button>

@@ -54,7 +54,7 @@ export default function Header() {
         {/* Ocultar botão nova receita */}
 
         {/* <SearchIcon/>
-        
+
         |
        */}
 

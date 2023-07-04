@@ -5,7 +5,7 @@ import { POST } from "./Api.tsx";
 export const postSignUp = (
   userData: IUser,
   navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void,
 ) => {
   POST<IUser, IUser>({
     path: "/usuario",
@@ -24,7 +24,7 @@ export const postSignUp = (
 export const postLogin = (
   loginData: ILoginData,
   navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void,
 ) => {
   POST<ILoginData, ILoginData>({
     path: "/usuario/authenticate",
