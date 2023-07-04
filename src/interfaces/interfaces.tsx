@@ -29,3 +29,16 @@ export interface IRecipe extends IRecipeCreation {
 export interface IRecipePostResponse {
   receita: IRecipe;
 }
+
+export interface ILoginData {
+  usuario: string;
+  senha: string;
+}
+
+export interface IUser {
+  usuario: string;
+  nome: string;
+  email: string;
+  senha: string;
+  confirmacaoSenha: string;
+}

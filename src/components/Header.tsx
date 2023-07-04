@@ -1,9 +1,13 @@
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import CardMedia from "@mui/material/CardMedia";
+
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+// import SearchIcon from "@mui/icons-material/Search";
 import Logo from "../assets/logo.svg";
 
 export default function Header() {
@@ -36,7 +40,7 @@ export default function Header() {
       </Link>
 
       <Grid container direction="row" justifyContent="flex-end">
-        <Button
+        {/* <Button
           href="/nova-receita"
           sx={{
             bgcolor: "primary.main",
@@ -45,6 +49,23 @@ export default function Header() {
           variant="contained"
         >
           Nova receita
+        </Button> */}
+
+        {/* Ocultar botão nova receita */}
+
+        {/* <SearchIcon/>
+
+        |
+       */}
+
+        <Button
+          variant="text"
+          disableRipple
+          href="login"
+          sx={{ textTransform: "Capitalize" }}
+        >
+          <AccountCircleIcon />
+          <Typography color="secondary.main">Login</Typography>
         </Button>
       </Grid>
     </Toolbar>
