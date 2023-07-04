@@ -20,8 +20,8 @@ export default function Home() {
   return (
     <Page pretitle="Receitas" title="Confira nossas receitas" loading={loading}>
       <Grid container spacing={4}>
-        {recipes.map(({ receita }) => (
-          <Grid item key={receita.id} xs={12} sm={6} md={4}>
+        {recipes.map((recipe) => (
+          <Grid item key={recipe.id} xs={12} sm={6} md={4}>
             <Card
               sx={{
                 height: "100%",
@@ -29,7 +29,7 @@ export default function Home() {
                 flexDirection: "column",
               }}
             >
-              <CardActionArea href={`/receita/${receita.titulo}`}>
+              <CardActionArea href={`/receita/${recipe.titulo}`}>
                 <CardMedia
                   component="div"
                   sx={{
@@ -40,9 +40,9 @@ export default function Home() {
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="h2">
-                    {receita.titulo}
+                    {recipe.titulo}
                   </Typography>
-                  <Typography>{receita.descricao}</Typography>
+                  <Typography>{recipe.descricao}</Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
