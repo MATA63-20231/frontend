@@ -1,14 +1,14 @@
 import { NavigateFunction } from "react-router-dom";
 import { enqueueSnackbar } from "notistack";
-import { ILoginData, IUser } from "../interfaces/interfaces.tsx";
+import { ILoginData, IRegister } from "../interfaces/interfaces.tsx";
 import { POST } from "./Api.tsx";
 
 export const postSignUp = (
-  userData: IUser,
+  userData: IRegister,
   navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
 ) => {
-  POST<IUser, IUser>({
+  POST<IRegister, IRegister>({
     path: "/usuario",
     body: userData,
     setLoading,

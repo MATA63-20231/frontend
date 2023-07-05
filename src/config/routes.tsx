@@ -4,7 +4,7 @@ import Home from "../pages/Home.tsx";
 import NotFound from "../pages/NotFound.tsx";
 import RecipeCreation from "../pages/RecipeCreation/RecipeCreation.tsx";
 import RecipeView from "../pages/RecipeView.tsx";
-import Login from "../pages/Login.tsx";
+import Login from "../pages/Login/Login.tsx";
 import Cadastro from "../pages/Cadastro.tsx";
 
 const router = createBrowserRouter([

@@ -35,10 +35,8 @@ export interface ILoginData {
   senha: string;
 }
 
-export interface IUser {
-  usuario: string;
+export interface IRegister extends ILoginData {
   nome: string;
   email: string;
-  senha: string;
   confirmacaoSenha: string;
 }

@@ -18,7 +18,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
 import Page from "../components/Page.tsx";
-import { IUser } from "../interfaces/interfaces.tsx";
+import { IRegister } from "../interfaces/interfaces.tsx";
 import Loading from "../components/Loading.tsx";
 import { postSignUp } from "../services/UserApi.tsx";
 
@@ -27,7 +27,7 @@ export default function Login() {
 
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  const [userData, setUserData] = React.useState<IUser>({
+  const [userData, setUserData] = React.useState<IRegister>({
     usuario: "",
     nome: "",
     email: "",
