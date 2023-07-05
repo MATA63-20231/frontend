@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import DragAndDropImagesLimitMessages from "./DragAndDropImagesLimitMessages";
+import DragAndDropImagesLimitMessages from "./DragAndDropImagesLimitMessages.tsx";
 
 interface IProps {
   disabled: boolean;
@@ -22,7 +22,8 @@ export default function DragAndDropImagesSmallScreens({
         display: { xs: "flex", sm: "none" },
         flexDirection: "column",
         alignItems: "center",
-      }}>
+      }}
+    >
       <Button variant="outlined" disabled={disabled}>
         Anexar imagens
       </Button>

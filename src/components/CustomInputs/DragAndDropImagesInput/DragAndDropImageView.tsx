@@ -25,10 +25,10 @@ export default function DragAndDropImageView({
   useEffect(() => {
     const objectUrl = URL.createObjectURL(image);
     setImageURL(objectUrl);
-    return () => URL.revokeObjectURL(objectUrl); // Free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl); // Free memory whenever this component is unmounted
   }, [image]);
 
-  const deleteImage = (index: number) => {
+  const deleteImage = () => {
     setImages((previousImages: File[]) => {
       const newFiles = [...previousImages];
       newFiles.splice(index, 1);
@@ -48,12 +48,12 @@ export default function DragAndDropImageView({
         />
       </CardActionArea>
       <CardContent sx={{ p: "0 !important" }}>
-        <IconButton disabled={disabled} onClick={() => deleteImage(index)}>
+        <IconButton disabled={disabled} onClick={deleteImage}>
           <DeleteIcon color="primary" />
         </IconButton>
       </CardContent>
       <Dialog onClose={() => setDialogOpen(false)} open={dialogOpen}>
-        <img src={imageURL} />
+        <img src={imageURL} alt="Foto da receita" />
       </Dialog>
     </>
   );

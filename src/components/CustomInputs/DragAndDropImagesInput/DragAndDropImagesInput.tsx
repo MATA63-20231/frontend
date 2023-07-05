@@ -2,12 +2,12 @@ import { enqueueSnackbar } from "notistack";
 import { FileUploader } from "react-drag-drop-files";
 import { FormikErrors } from "formik";
 import Box from "@mui/material/Box";
-import DragAndDropImagesLargeScreens from "./DragAndDropImagesLargeScreens";
-import DragAndDropImagesSmallScreens from "./DragAndDropImagesSmallScreens";
-import DragAndDropImagesView from "./DragAndDropImagesView";
-import FormErrorMessages from "../../../enums/FormErrorMessages";
 import Typography from "@mui/material/Typography";
 import FormHelperText from "@mui/material/FormHelperText";
+import DragAndDropImagesLargeScreens from "./DragAndDropImagesLargeScreens.tsx";
+import DragAndDropImagesSmallScreens from "./DragAndDropImagesSmallScreens.tsx";
+import DragAndDropImagesView from "./DragAndDropImagesView.tsx";
+import FormErrorMessages from "../../../enums/FormErrorMessages.tsx";
 
 interface IProps<FormFieldsType> {
   title: string;
@@ -22,7 +22,8 @@ interface IProps<FormFieldsType> {
   maxFilesAmount: number;
   setFieldValue: (
     field: string,
-    value: any
+    // It's a Formik type so we can't change it
+    value: any // eslint-disable-line @typescript-eslint/no-explicit-any
   ) => Promise<void | FormikErrors<FormFieldsType>>;
 }
 
@@ -51,8 +52,8 @@ export default function DragAndDropImagesInput<FormFieldsType>({
     enqueueSnackbar({
       variant: "error",
       message:
-        FormErrorMessages.NOT_ALLOWED_FILE_TYPE +
-        ` Tipos permitidos: ${acceptedFileTypes}.`,
+        `${FormErrorMessages.NOT_ALLOWED_FILE_TYPE
+        } Tipos permitidos: ${acceptedFileTypes}.`,
     });
   };
 
@@ -60,8 +61,8 @@ export default function DragAndDropImagesInput<FormFieldsType>({
     enqueueSnackbar({
       variant: "error",
       message:
-        FormErrorMessages.MAX_FILE_SIZE +
-        ` Tamanho máximo: ${maxFileSizeMB}MB.`,
+        `${FormErrorMessages.MAX_FILE_SIZE
+        } Tamanho máximo: ${maxFileSizeMB}MB.`,
     });
   };
 
@@ -77,13 +78,17 @@ export default function DragAndDropImagesInput<FormFieldsType>({
           textAlign: "center",
           borderRadius: 3,
           p: 4,
-        }}>
+        }}
+      >
         {typeof errors === "string" && (
           <FormHelperText
             error
             filled
-            sx={{ textAlign: "center", fontWeight: 600, mb: 2 }}>
-            Erro: {errors}
+            sx={{ textAlign: "center", fontWeight: 600, mb: 2 }}
+          >
+            Erro:
+            {" "}
+            {errors}
           </FormHelperText>
         )}
         <FileUploader
@@ -95,7 +100,8 @@ export default function DragAndDropImagesInput<FormFieldsType>({
           maxSize={maxFileSizeMB}
           onTypeError={handleTypeError}
           onSizeError={handleSizeError}
-          handleChange={handleChange}>
+          handleChange={handleChange}
+        >
           <DragAndDropImagesLargeScreens
             label={label}
             disabled={loading}

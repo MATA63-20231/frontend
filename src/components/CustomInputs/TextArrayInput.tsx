@@ -8,8 +8,8 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import FormHelperText from "@mui/material/FormHelperText";
 import Typography from "@mui/material/Typography";
-import TextInput from "./TextInput.tsx";
 import { Tooltip } from "@mui/material";
+import TextInput from "./TextInput.tsx";
 
 interface IProps {
   title: string;
@@ -50,19 +50,22 @@ export default function TextArrayInput({
             <Grid
               container
               flexDirection="column"
-              sx={{ alignItems: "center" }}>
+              sx={{ alignItems: "center" }}
+            >
               <Grid container>
                 {values.map((_, index) => (
                   <Grid
                     container
                     alignItems="center"
                     key={`${name}[${index}]`} // eslint-disable-line react/no-array-index-key
-                    sx={{ py: 0.5 }}>
+                    sx={{ py: 0.5 }}
+                  >
                     <Grid item xs={0.5}>
                       <Typography
                         variant="h1"
                         component="p"
-                        sx={{ fontSize: 36, fontWeight: 600 }}>
+                        sx={{ fontSize: 36, fontWeight: 600 }}
+                      >
                         {index + 1}
                       </Typography>
                     </Grid>
@@ -83,7 +86,8 @@ export default function TextArrayInput({
                             <IconButton
                               sx={{ p: 0, mb: 0.3, height: "18px" }}
                               disabled={loading}
-                              onClick={() => swap(index, index - 1)}>
+                              onClick={() => swap(index, index - 1)}
+                            >
                               <ArrowDropUpIcon
                                 sx={{ fontSize: 30, color: "secondary.main" }}
                               />
@@ -95,7 +99,8 @@ export default function TextArrayInput({
                             <IconButton
                               sx={{ p: 0, mt: 0.3, height: "18px" }}
                               disabled={loading}
-                              onClick={() => swap(index, index + 1)}>
+                              onClick={() => swap(index, index + 1)}
+                            >
                               <ArrowDropDownIcon
                                 sx={{ fontSize: 30, color: "secondary.main" }}
                               />
@@ -109,7 +114,8 @@ export default function TextArrayInput({
                       <Tooltip title="Deletar item">
                         <IconButton
                           disabled={loading}
-                          onClick={() => remove(index)}>
+                          onClick={() => remove(index)}
+                        >
                           <DeleteIcon sx={{ color: "secondary.main" }} />
                         </IconButton>
                       </Tooltip>
@@ -122,7 +128,8 @@ export default function TextArrayInput({
                   <IconButton
                     sx={{ p: 0 }}
                     disabled={loading}
-                    onClick={() => push("")}>
+                    onClick={() => push("")}
+                  >
                     <AddCircleIcon sx={{ color: "secondary.main" }} />
                   </IconButton>
                 </Tooltip>

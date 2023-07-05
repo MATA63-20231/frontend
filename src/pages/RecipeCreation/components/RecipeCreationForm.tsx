@@ -1,5 +1,6 @@
 import { Formik, Form, FormikHelpers } from "formik";
 import { useNavigate } from "react-router-dom";
+import Grid from "@mui/material/Grid";
 import { IRecipeCreation } from "../../../interfaces/interfaces.tsx";
 import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
 import { createRecipe } from "../../../services/RecipesApi.tsx";
@@ -8,7 +9,6 @@ import generateRecipeCreationSchema, {
   initialValues,
 } from "../schemas/RecipeCreationSchema.tsx";
 import LoadingButton from "../../../components/LoadingButton.tsx";
-import Grid from "@mui/material/Grid";
 
 export default function RecipeCreationForm() {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ export default function RecipeCreationForm() {
 
   const handleSubmit = (
     values: IRecipeCreationFields,
-    { setSubmitting }: FormikHelpers<IRecipeCreationFields>
+    { setSubmitting }: FormikHelpers<IRecipeCreationFields>,
   ) => {
     const recipe = recipeToBack(values);
     createRecipe(recipe, navigate, setSubmitting);
@@ -55,7 +55,8 @@ export default function RecipeCreationForm() {
     <Formik
       initialValues={initialValues}
       validationSchema={RecipeCreationSchema}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+    >
       {({
         values,
         errors,

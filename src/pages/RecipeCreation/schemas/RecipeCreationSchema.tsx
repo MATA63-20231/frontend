@@ -26,8 +26,7 @@ export const initialValues: IRecipeCreationFields = {
 
 const cantBeBothZero = {
   is: 0,
-  then: (schema: Yup.NumberSchema) =>
-    schema.moreThan(0, "Tempo de preparo não pode ser 0h0min."),
+  then: (schema: Yup.NumberSchema) => schema.moreThan(0, "Tempo de preparo não pode ser 0h0min."),
 };
 
 export default function generateRecipeCreationSchema({
@@ -51,10 +50,10 @@ export default function generateRecipeCreationSchema({
         hours: YupHelpers.INTEGER_MIN_ZERO.when("minutes", cantBeBothZero),
         minutes: YupHelpers.INTEGER_MIN_ZERO.when("hours", cantBeBothZero).max(
           59,
-          FormErrorMessages.MAX_59
+          FormErrorMessages.MAX_59,
         ),
       },
-      [["hours", "minutes"]]
+      [["hours", "minutes"]],
     ),
 
     ingredients: Yup.array()
@@ -71,23 +70,22 @@ export default function generateRecipeCreationSchema({
           .required("A file is required")
           .test(
             "fileFormat",
-            FormErrorMessages.NOT_ALLOWED_FILE_TYPE +
-              ` Tipos permitidos: ${acceptedFileTypesStr}.`,
-            (value) =>
-              acceptedFileTypes
-                .map((x) => "image/" + x.toLowerCase())
-                .includes(value.type)
+            `${FormErrorMessages.NOT_ALLOWED_FILE_TYPE
+            } Tipos permitidos: ${acceptedFileTypesStr}.`,
+            (value) => acceptedFileTypes
+              .map((x) => `image/${x.toLowerCase()}`)
+              .includes(value.type),
           )
           .test(
             "fileSize",
-            FormErrorMessages.MAX_FILE_SIZE +
-              ` Tamanho máximo: ${maxFileSizeMB}MB.`,
-            (value) => value.size <= maxFileSize
-          )
+            `${FormErrorMessages.MAX_FILE_SIZE
+            } Tamanho máximo: ${maxFileSizeMB}MB.`,
+            (value) => value.size <= maxFileSize,
+          ),
       )
       .max(
         maxFilesAmount,
-        "Não é permitido adcionair mais de " + maxFilesAmount + " itens."
+        `Não é permitido adcionair mais de ${maxFilesAmount} itens.`,
       ),
   });
 }

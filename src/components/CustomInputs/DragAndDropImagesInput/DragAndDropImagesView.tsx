@@ -1,14 +1,18 @@
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
-import DragAndDropImageView from "./DragAndDropImageView";
+import DragAndDropImageView from "./DragAndDropImageView.tsx";
 
 interface IProps {
   images: File[];
   disabled: boolean;
-  setImages: (callbackFn: (previousImages: File[]) => File[]) => void
+  setImages: (callbackFn: (previousImages: File[]) => File[]) => void;
 }
 
-export default function DragAndDropImagesView({ images, disabled, setImages }: IProps) {
+export default function DragAndDropImagesView({
+  images,
+  disabled,
+  setImages,
+}: IProps) {
   return (
     images.length > 0 && (
       <Grid container spacing={2} sx={{ mt: 1 }}>
@@ -17,14 +21,21 @@ export default function DragAndDropImagesView({ images, disabled, setImages }: I
             item
             key={index} // eslint-disable-line react/no-array-index-key
             xs={12}
-            sm={4}>
+            sm={4}
+          >
             <Card
               sx={{
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
-              }}>
-              <DragAndDropImageView disabled={disabled} index={index} image={image} setImages={setImages}/>
+              }}
+            >
+              <DragAndDropImageView
+                disabled={disabled}
+                index={index}
+                image={image}
+                setImages={setImages}
+              />
             </Card>
           </Grid>
         ))}

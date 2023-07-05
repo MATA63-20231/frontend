@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import FileUploadIcon from "@mui/icons-material/FileUploadOutlined";
-import DragAndDropImagesLimitMessages from "./DragAndDropImagesLimitMessages";
+import DragAndDropImagesLimitMessages from "./DragAndDropImagesLimitMessages.tsx";
 
 interface IProps {
   label: string;
@@ -26,7 +26,8 @@ export default function DragAndDropImagesLargeScreens({
         border: "1px dashed #0000003b",
         borderRadius: 3,
         p: 3,
-      }}>
+      }}
+    >
       <FileUploadIcon color="primary" fontSize="large" />
       <Typography variant="h3" sx={{ fontSize: 20 }}>
         {label}

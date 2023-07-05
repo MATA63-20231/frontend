@@ -1,7 +1,7 @@
 import { FormikErrors } from "formik";
-import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
 import TextInput from "../../../components/CustomInputs/TextInput.tsx";
 import TextArrayInput from "../../../components/CustomInputs/TextArrayInput.tsx";
 import IntegerNumberInput from "../../../components/CustomInputs/IntegerNumberInput.tsx";
@@ -17,7 +17,8 @@ interface IProps {
   maxFilesAmount: number;
   setFieldValue: (
     field: string,
-    value: any
+    // It's a Formik type so we can't change it
+    value: any // eslint-disable-line @typescript-eslint/no-explicit-any
   ) => Promise<void | FormikErrors<IRecipeCreationFields>>;
   setFieldTouched: (field: string) => void;
 }
@@ -41,7 +42,8 @@ export default function RecipeCreationFields({
         flexDirection: "column",
         textAlign: "initial",
         color: "secondary.main",
-      }}>
+      }}
+    >
       <Grid item>
         <TextInput required name="title" label="Título" />
       </Grid>
