@@ -20,7 +20,7 @@ export default function Footer() {
           >
             GitHub
           </Link>
-          {" "}
+          &nbsp;
           🤍
         </Typography>
       </Container>

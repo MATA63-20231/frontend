@@ -19,8 +19,8 @@ export default function TextInput({
   return (
     <Field
       fullWidth
-      type={type}
       component={TextField}
+      type={type}
       size={size}
       required={required}
       name={name}

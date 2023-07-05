@@ -1,17 +1,19 @@
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
-import { Typography, Link } from "@mui/material";
 import Page from "../../components/Page.tsx";
-import LoginForm from "./components/RegisterForm.tsx";
+import RegisterForm from "./components/RegisterForm.tsx";
 
-export default function RecipeCreation() {
+export default function Register() {
   return (
     <Page title="Cadastre-se">
       <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>
-        <LoginForm />
+        <RegisterForm />
 
         <Typography variant="h2">
           Já tem conta?
-          <Link href="/login"> Faça login</Link>
+          &nbsp;
+          <Link href="/login">Faça login</Link>
         </Typography>
       </Grid>
     </Page>

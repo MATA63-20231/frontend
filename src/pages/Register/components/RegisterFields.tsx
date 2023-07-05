@@ -13,7 +13,7 @@ export default function RecipeCreationFields() {
       </Grid>
 
       <Grid item>
-        <TextInput required name="email" label="Email" type="email" />
+        <TextInput required name="email" label="E-mail" type="email" />
       </Grid>
 
       <Grid item>

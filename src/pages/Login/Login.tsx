@@ -11,7 +11,8 @@ export default function RecipeCreation() {
 
         <Typography variant="h2">
           Não tem conta?
-          <Link href="/cadastro"> Cadastre-se</Link>
+          &nbsp;
+          <Link href="/cadastro">Cadastre-se</Link>
         </Typography>
       </Grid>
     </Page>
