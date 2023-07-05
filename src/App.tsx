@@ -7,15 +7,17 @@ import { Outlet } from "react-router-dom";
 import defaultTheme from "./config/theme.tsx";
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
+import CustomSnackBarProvider from "./components/CustomSnackBars/CustomSnackBarProvider.tsx";
 
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
+      <CustomSnackBarProvider />
       <CssBaseline />
 
       <Header />
 
-      <Grid sx={{ minHeight: "80vh", bgcolor: "#eeeeee" }}>
+      <Grid sx={{ minHeight: "calc(100vh - 135px)", bgcolor: "#eeeeee" }}>
         <Outlet />
       </Grid>
 

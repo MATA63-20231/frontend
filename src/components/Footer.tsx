@@ -19,7 +19,8 @@ export default function Footer() {
             color="inherit"
           >
             GitHub
-          </Link>{" "}
+          </Link>
+          {" "}
           🤍
         </Typography>
       </Container>

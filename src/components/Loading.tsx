@@ -6,7 +6,7 @@ interface IProps {
   color?: "primary" | "secondary" | "default";
 }
 
-function Loading({ color }: IProps) {
+export default function Loading({ color }: IProps) {
   const fillColor = defaultTheme.palette[color || "primary"].main;
 
   return (
@@ -210,5 +210,3 @@ function Loading({ color }: IProps) {
 Loading.defaultProps = {
   color: "primary",
 };
-
-export default Loading;

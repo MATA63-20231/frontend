@@ -4,16 +4,16 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
-import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
-import RamenDiningOutlinedIcon from "@mui/icons-material/RamenDiningOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import TimerIcon from "@mui/icons-material/TimerOutlined";
+import RamenDiningIcon from "@mui/icons-material/RamenDiningOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonthOutlined";
 import { List, ListItem, ListItemText } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Page from "../components/Page.tsx";
 import { getRecipeDetails2 } from "../services/Api.tsx";
-import { IRecipe } from "../interfaces/interfaces.tsx";
+import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import NoImage from "../assets/noimage.svg";
 
 // TODO: Componentizar rs
@@ -78,7 +78,7 @@ export default function RecipeView() {
                 width: "100%",
               }}
             >
-              <TimerOutlinedIcon fontSize="small" color="primary" />
+              <TimerIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
@@ -106,7 +106,7 @@ export default function RecipeView() {
                 width: "100%",
               }}
             >
-              <RamenDiningOutlinedIcon fontSize="small" color="primary" />
+              <RamenDiningIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
@@ -133,7 +133,7 @@ export default function RecipeView() {
                 width: "100%",
               }}
             >
-              <PersonOutlineOutlinedIcon fontSize="small" color="primary" />
+              <PersonOutlinedIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
@@ -160,7 +160,7 @@ export default function RecipeView() {
                 width: "100%",
               }}
             >
-              <CalendarMonthOutlinedIcon fontSize="small" color="primary" />
+              <CalendarMonthIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",

@@ -6,8 +6,8 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
 import Page from "../components/Page.tsx";
-import { IRecipe } from "../interfaces/interfaces.tsx";
-import { getAllRecipes } from "../services/Api.tsx";
+import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
+import { getAllRecipes } from "../services/RecipesApi.tsx";
 import NoImage from "../assets/noimage.svg";
 
 export default function Home() {
@@ -34,10 +34,7 @@ export default function Home() {
                 <CardMedia
                   component="div"
                   sx={{
-                    py: "37%",
-                    width: "80%",
-                    mx: "auto",
-                    my: "1em",
+                    pt: "56.25%",
                   }}
                   title={recipe.titulo}
                   image={NoImage}
