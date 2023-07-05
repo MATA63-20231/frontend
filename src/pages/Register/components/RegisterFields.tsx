@@ -9,7 +9,24 @@ export default function RecipeCreationFields() {
       </Grid>
 
       <Grid item>
+        <TextInput required name="nome" label="Nome" />
+      </Grid>
+
+      <Grid item>
+        <TextInput required name="email" label="Email" type="email" />
+      </Grid>
+
+      <Grid item>
         <TextInput required name="senha" label="Senha" type="password" />
+      </Grid>
+
+      <Grid item>
+        <TextInput
+          required
+          name="confirmacaoSenha"
+          label="Confirme a senha"
+          type="password"
+        />
       </Grid>
     </Grid>
   );
