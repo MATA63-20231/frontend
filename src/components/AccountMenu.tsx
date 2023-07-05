@@ -9,7 +9,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
 import { Person } from "@mui/icons-material";
-import { Grid, ListItem, Typography, Button } from "@mui/material";
+import { Grid, ListItem, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export default function AccountMenu() {
@@ -28,6 +28,7 @@ export default function AccountMenu() {
   const logout = () => {
     localStorage.clear();
     navigate("/");
+    // eslint-disable-next-line no-restricted-globals
     location.reload();
   };
 
@@ -47,7 +48,7 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={isMenuOpen ? "true" : undefined}
           >
-            <AccountCircleIcon fontSize="large" color="primary"/>
+            <AccountCircleIcon fontSize="large" color="primary" />
           </IconButton>
         </Tooltip>
       </Box>
@@ -57,7 +58,6 @@ export default function AccountMenu() {
         id="account-menu"
         open={isMenuOpen}
         onClose={handleClose}
-       
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >

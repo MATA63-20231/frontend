@@ -39,6 +39,7 @@ export const postLogin = (
       });
       localStorage.setItem("IsLogged", "true");
       navigate("/");
+      // eslint-disable-next-line no-restricted-globals
       location.reload();
     },
     // TODO: mensagem de erro

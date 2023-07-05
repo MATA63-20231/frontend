@@ -9,7 +9,7 @@ import CardMedia from "@mui/material/CardMedia";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 // import SearchIcon from "@mui/icons-material/Search";
 import Logo from "../assets/logo.svg";
-import AccountMenu from "./AccountMenu";
+import AccountMenu from "./AccountMenu.tsx";
 
 export default function Header() {
   const LOCAL_STORAGE_KEY = "IsLogged";
