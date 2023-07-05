@@ -1,17 +1,17 @@
 /* eslint-disable no-shadow */
 
 enum FormErrorMessages {
-  // Erors gerais
+  // General Errors
   REQUIRED = "Campo obrigatório.",
   INVALID_EMAIL = "E-mail inválido.",
 
-  // Mínimo de caractéres
+  // Char min
   MIN_CHAR_2 = "Deve ter pelo menos 2 caractéres.",
 
-  // Máximo de caractéres
+  // Char max
   MAX_255 = "Deve ter no máximo 255 caractéres.",
 
-  // Números
+  // Numbers
   INTEGER_MORE_THAN_ZERO = "Deve ser um número inteiro maior que 0.",
   INTEGER_GREATER_EQUAL_ZERO = "Deve ser um número inteiro maior ou igual a 0.",
   MAX_59 = "Deve ser menor ou igual a 59.",
