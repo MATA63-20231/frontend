@@ -1,4 +1,5 @@
 import { Formik, Form, FormikHelpers } from "formik";
+import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 import { ILoginData } from "../../../interfaces/interfaces.tsx";
@@ -25,13 +26,13 @@ export default function LoginForm() {
     >
       {({ isSubmitting, submitForm }) => (
         <Form>
-
           <LoginFields />
 
-          <LoadingButton loading={isSubmitting} onClick={submitForm}>
-            Login
-          </LoadingButton>
-          
+          <Grid sx={{ py: 3 }}>
+            <LoadingButton loading={isSubmitting} onClick={submitForm}>
+              Login
+            </LoadingButton>
+          </Grid>
         </Form>
       )}
     </Formik>
