@@ -1,9 +1,9 @@
 import { NavigateFunction } from "react-router-dom";
 import { enqueueSnackbar } from "notistack";
-import { ILoginData, IRegister } from "../interfaces/interfaces.tsx";
-import { POST } from "./Api.tsx";
+import { ILoginData, IRegister } from "../interfaces/AuthInterfaces.js";
+import { POST } from "./Api.js";
 
-export const postSignUp = (
+export const signUp = (
   userData: IRegister,
   navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
@@ -19,11 +19,10 @@ export const postSignUp = (
       });
       navigate("/login");
     },
-    // TODO: mensagem de erro
   });
 };
 
-export const postLogin = (
+export const login = (
   loginData: ILoginData,
   navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
@@ -42,6 +41,5 @@ export const postLogin = (
       // eslint-disable-next-line no-restricted-globals
       location.reload();
     },
-    // TODO: mensagem de erro
   });
 };

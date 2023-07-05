@@ -2,8 +2,8 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-import { ILoginData } from "../../../interfaces/interfaces.tsx";
-import { postLogin } from "../../../services/UserApi.tsx";
+import { ILoginData } from "../../../interfaces/AuthInterfaces.tsx";
+import { login } from "../../../services/AuthApi.tsx";
 import LoginFields from "./LoginFields.tsx";
 import LoginSchema, { initialValues } from "../schemas/LoginSchema.tsx";
 
@@ -15,7 +15,7 @@ export default function LoginForm() {
     values: ILoginData,
     { setSubmitting }: FormikHelpers<ILoginData>,
   ) => {
-    postLogin(values, navigate, setSubmitting);
+    login(values, navigate, setSubmitting);
   };
 
   return (

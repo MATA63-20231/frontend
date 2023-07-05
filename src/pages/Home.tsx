@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
 import Page from "../components/Page.tsx";
-import { IRecipe } from "../interfaces/interfaces.tsx";
+import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import { getAllRecipes } from "../services/RecipesApi.tsx";
 
 export default function Home() {
