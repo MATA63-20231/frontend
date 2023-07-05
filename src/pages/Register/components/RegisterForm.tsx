@@ -2,8 +2,8 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-import { IRegister } from "../../../interfaces/interfaces.tsx";
-import { postSignUp } from "../../../services/UserApi.tsx";
+import { IRegister } from "../../../interfaces/AuthInterfaces.tsx";
+import { signUp } from "../../../services/AuthApi.tsx";
 import RegisterFields from "./RegisterFields.tsx";
 import RegisterSchema, { initialValues } from "../schemas/RegisterSchema.tsx";
 
@@ -15,7 +15,7 @@ export default function RegisterForm() {
     values: IRegister,
     { setSubmitting }: FormikHelpers<IRegister>,
   ) => {
-    postSignUp(values, navigate, setSubmitting);
+    signUp(values, navigate, setSubmitting);
   };
 
   return (

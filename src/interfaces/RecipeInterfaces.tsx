@@ -25,14 +25,3 @@ export interface IRecipe extends IRecipeCreation {
   id: string;
   dataCadastro: string;
 }
-
-export interface ILoginData {
-  usuario: string;
-  senha: string;
-}
-
-export interface IRegister extends ILoginData {
-  nome: string;
-  email: string;
-  confirmacaoSenha: string;
-}

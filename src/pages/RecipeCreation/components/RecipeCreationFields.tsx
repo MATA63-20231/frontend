@@ -18,7 +18,8 @@ interface IProps {
   setFieldValue: (
     field: string,
     // It's a Formik type so we can't change it
-    value: any // eslint-disable-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    value: any
   ) => Promise<void | FormikErrors<IRecipeCreationFields>>;
   setFieldTouched: (field: string) => void;
 }

@@ -1,7 +1,7 @@
 import { Formik, Form, FormikHelpers } from "formik";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import { IRecipeCreation } from "../../../interfaces/interfaces.tsx";
+import { IRecipeCreation } from "../../../interfaces/RecipeInterfaces.tsx";
 import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
 import { createRecipe } from "../../../services/RecipesApi.tsx";
 import RecipeCreationFields from "./RecipeCreationFields.tsx";

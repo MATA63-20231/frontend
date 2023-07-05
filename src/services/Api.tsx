@@ -1,27 +1,64 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { enqueueSnackbar } from "notistack";
-import { Dispatch, SetStateAction } from "react";
 
-interface IGet<DataType> {
-  path: string;
-  setLoading: Dispatch<SetStateAction<boolean>>;
-  onSuccess: (data: DataType) => void;
-  onError?: () => void;
-  onFinish?: () => void;
-}
-
-interface IPost<DataType, BodyType> {
-  path: string;
-  body: BodyType;
+interface IRequestBase<DataType> {
   setLoading: (loading: boolean) => void;
   onSuccess: (data: DataType) => void;
   onError?: () => void;
   onFinish?: () => void;
 }
 
+interface IDefaultRequestBehavior<DataType> extends IRequestBase<DataType> {
+  // It's a Axios type so we can't change it
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  axiosRequest: Promise<AxiosResponse<DataType, any>>;
+}
+
+interface IGet<DataType> extends IRequestBase<DataType> {
+  path: string;
+}
+
+interface IPost<DataType, BodyType> extends IRequestBase<DataType> {
+  path: string;
+  body: BodyType;
+}
+
 const api = axios.create({
   baseURL: "https://chef-virtual.onrender.com/",
 });
+
+const defaultOnError = (
+  message: string | undefined,
+  Error: string | undefined,
+): void => {
+  enqueueSnackbar({
+    variant: "error",
+    message,
+  });
+
+  if (Error) {
+    // Intentional console for debug purposes
+    // eslint-disable-next-line no-console
+    console.error(Error);
+  }
+};
+
+function wrapDefaultRequestBehavior<DataType>({
+  axiosRequest,
+  setLoading,
+  onSuccess,
+  onError,
+  onFinish,
+}: IDefaultRequestBehavior<DataType>) {
+  setLoading(true);
+  axiosRequest
+    .then(({ data }) => onSuccess(data))
+    .catch(({ message, Error }) => (onError ? onError() : defaultOnError(message, Error)))
+    .finally(() => {
+      onFinish?.();
+      setLoading(false);
+    });
+}
 
 function GET<DataType>({
   path,
@@ -30,19 +67,13 @@ function GET<DataType>({
   onError,
   onFinish,
 }: IGet<DataType>) {
-  setLoading(true);
-  api
-    .get<DataType>(path)
-    .then(({ data }) => onSuccess(data))
-    .catch(() => (onError
-      ? onError()
-      : enqueueSnackbar({
-        variant: "error",
-      })))
-    .finally(() => {
-      onFinish?.();
-      setLoading(false);
-    });
+  wrapDefaultRequestBehavior({
+    axiosRequest: api.get<DataType>(path),
+    setLoading,
+    onSuccess,
+    onError,
+    onFinish,
+  });
 }
 
 function POST<DataType, BodyType>({
@@ -53,19 +84,13 @@ function POST<DataType, BodyType>({
   onError,
   onFinish,
 }: IPost<DataType, BodyType>) {
-  setLoading(true);
-  api
-    .post<DataType>(path, body)
-    .then(({ data }) => onSuccess(data))
-    .catch(() => (onError
-      ? onError()
-      : enqueueSnackbar({
-        variant: "error",
-      })))
-    .finally(() => {
-      onFinish?.();
-      setLoading(false);
-    });
+  wrapDefaultRequestBehavior({
+    axiosRequest: api.post<DataType>(path, body),
+    setLoading,
+    onSuccess,
+    onError,
+    onFinish,
+  });
 }
 
 export { GET, POST };

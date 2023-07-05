@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { enqueueSnackbar } from "notistack";
 import { NavigateFunction } from "react-router-dom";
-import { IRecipe, IRecipeCreation } from "../interfaces/interfaces.tsx";
+import { IRecipe, IRecipeCreation } from "../interfaces/RecipeInterfaces.tsx";
 import { GET, POST } from "./Api.tsx";
 
 const getAllRecipes = (
