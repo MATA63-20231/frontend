@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import { Typography, Link, Button } from "@mui/material";
+import { Typography, Link } from "@mui/material";
 import Page from "../../components/Page.tsx";
 import LoginForm from "./components/LoginForm.tsx";
 

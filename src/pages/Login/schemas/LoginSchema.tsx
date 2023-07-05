@@ -1,6 +1,6 @@
 import * as Yup from "yup";
-import { ILoginData } from "../interfaces/LoginInterface.tsx";
 import YupHelpers from "../../../enums/YupHelpers.tsx";
+import { ILoginData } from "../../../interfaces/interfaces.tsx";
 
 export const initialValues: ILoginData = {
   usuario: "",
