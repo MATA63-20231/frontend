@@ -12,7 +12,7 @@ import { List, ListItem, ListItemText } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Page from "../components/Page.tsx";
-import { getRecipeDetails2 } from "../services/Api.tsx";
+import { getRecipeDetails } from "../services/RecipesApi.tsx";
 import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import NoImage from "../assets/noimage.svg";
 
@@ -25,19 +25,19 @@ export default function RecipeView() {
     id: "",
     titulo: "",
     descricao: "",
-    rendimento: "",
-    tempoPreparo: "",
-    imagem: "",
     dataCadastro: "",
+    rendimento: 0,
+    tempoPreparo: { horas: 0, minutos: 0 },
     ingredientes: [],
     listaPreparo: [],
+    imagens: [],
   });
 
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (recipeId) {
-      getRecipeDetails2(recipeId, setLoading, setRecipe);
+      getRecipeDetails(recipeId, setLoading, setRecipe);
     }
   }, [recipeId]);
 
@@ -86,7 +86,8 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                {recipe.tempoPreparo}min{" "}
+                Tempo tempo
+                {/* {recipe.tempoPreparo}min{" "} */}
                 {/* TODO: validar data vinda do back */}
               </Typography>
             </Stack>
@@ -187,10 +188,9 @@ export default function RecipeView() {
 
               <List>
                 {recipe.ingredientes.map((ingredient) => (
-                  <ListItem key={ingredient.id}>
-                    <ListItemText
-                      primary={`${ingredient.quantidade} ${ingredient.descricao}`}
-                    />
+                  // <ListItem key={ingredient.id}>
+                  <ListItem>
+                    <ListItemText primary={ingredient.descricao} />
                   </ListItem>
                 ))}
               </List>
@@ -200,7 +200,8 @@ export default function RecipeView() {
               <Typography variant="h6">Modo de preparo</Typography>
               <List>
                 {recipe.listaPreparo.map((etapa) => (
-                  <ListItem key={etapa.id}>
+                  // <ListItem key={etapa.id}>
+                  <ListItem>
                     <ListItemText
                       primary={etapa.descricao}
                       // secondary="desc item"
