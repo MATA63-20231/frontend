@@ -4,7 +4,7 @@ import {
   IDefaultRequestBehavior,
   IGet,
   IPost,
-} from "../interfaces/ApiInterfaces";
+} from "../interfaces/ApiInterfaces.tsx";
 
 const api = axios.create({
   baseURL: "https://chef-virtual.onrender.com/",
@@ -12,7 +12,7 @@ const api = axios.create({
 
 const defaultOnError = (
   message: string | undefined,
-  Error: string | undefined
+  Error: string | undefined,
 ): void => {
   enqueueSnackbar({
     variant: "error",
@@ -36,9 +36,7 @@ function wrapDefaultRequestBehavior<DataType>({
   setLoading(true);
   axiosRequest
     .then(({ data }) => onSuccess(data))
-    .catch(({ message, Error }) =>
-      onError ? onError() : defaultOnError(message, Error)
-    )
+    .catch(({ message, Error }) => (onError ? onError() : defaultOnError(message, Error)))
     .finally(() => {
       onFinish?.();
       setLoading(false);

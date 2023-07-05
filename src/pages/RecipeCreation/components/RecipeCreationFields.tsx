@@ -1,7 +1,7 @@
 import { FormikErrors } from "formik";
-import { IRecipeCreationFormFields } from "../../../interfaces/RecipeInterfaces.tsx";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import { IRecipeCreationFormFields } from "../../../interfaces/RecipeInterfaces.tsx";
 import TextInput from "../../../components/CustomInputs/TextInput.tsx";
 import TextArrayInput from "../../../components/CustomInputs/TextArrayInput.tsx";
 import IntegerNumberInput from "../../../components/CustomInputs/IntegerNumberInput.tsx";
