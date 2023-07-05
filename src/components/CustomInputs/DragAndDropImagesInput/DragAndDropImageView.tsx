@@ -1,18 +1,16 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import {
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Dialog,
-  IconButton,
-} from "@mui/material";
+import { useEffect, useState } from "react";
+import CardActionArea from "@mui/material/CardActionArea";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Dialog from "@mui/material/Dialog";
+import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 interface IProps {
   index: number;
   image: File;
   disabled: boolean;
-  setImages: Dispatch<SetStateAction<File[]>>;
+  setImages: (callbackFn: (previousImages: File[]) => File[]) => void;
 }
 
 export default function DragAndDropImageView({

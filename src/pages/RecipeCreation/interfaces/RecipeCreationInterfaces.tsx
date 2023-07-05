@@ -1,7 +1,6 @@
 export interface IRecipeCreationFields {
   title: string;
   description: string;
-  images: string[];
   servings: number | "";
   prepTime: {
     hours: number | "";
@@ -9,4 +8,5 @@ export interface IRecipeCreationFields {
   };
   ingredients: string[];
   directions: string[];
+  images: File[];
 }

@@ -4,17 +4,19 @@ import FileUploadIcon from "@mui/icons-material/FileUploadOutlined";
 import DragAndDropImagesLimitMessages from "./DragAndDropImagesLimitMessages";
 
 interface IProps {
+  label: string;
   disabled: boolean;
-  acceptedTypes: string;
-  maxSizeMB: number;
-  maxFiles: number;
+  acceptedFileTypesStr: string;
+  maxFileSizeMB: number;
+  maxFilesAmount: number;
 }
 
 export default function DragAndDropImagesLargeScreens({
+  label,
   disabled,
-  acceptedTypes,
-  maxSizeMB,
-  maxFiles,
+  acceptedFileTypesStr,
+  maxFileSizeMB,
+  maxFilesAmount,
 }: IProps) {
   return (
     <Box
@@ -27,16 +29,16 @@ export default function DragAndDropImagesLargeScreens({
       }}>
       <FileUploadIcon color="primary" fontSize="large" />
       <Typography variant="h3" sx={{ fontSize: 20 }}>
-        Arraste e solte as fotos da sua receita aqui
+        {label}
       </Typography>
       <Typography variant="h4" sx={{ fontSize: 14 }}>
         ou clique para selecionar do dispostiivo
       </Typography>
 
       <DragAndDropImagesLimitMessages
-        acceptedTypes={acceptedTypes}
-        maxSizeMB={maxSizeMB}
-        maxFiles={maxFiles}
+        acceptedFileTypesStr={acceptedFileTypesStr}
+        maxFileSizeMB={maxFileSizeMB}
+        maxFilesAmount={maxFilesAmount}
       />
     </Box>
   );

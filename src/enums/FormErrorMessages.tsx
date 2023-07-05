@@ -18,6 +18,10 @@ enum FormErrorMessages {
 
   // Arrays
   MIN_1_ITEM = "É necessário adicionar pelo menos um item.",
+
+  // Files
+  MAX_FILE_SIZE = "Tamanho máximo do arquivo excedido.",
+  NOT_ALLOWED_FILE_TYPE = "Tipo de arquivo não permitido.",
 }
 
 export default FormErrorMessages;

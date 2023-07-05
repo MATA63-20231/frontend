@@ -4,16 +4,16 @@ import DragAndDropImagesLimitMessages from "./DragAndDropImagesLimitMessages";
 
 interface IProps {
   disabled: boolean;
-  acceptedTypes: string;
-  maxSizeMB: number;
-  maxFiles: number;
+  acceptedFileTypesStr: string;
+  maxFileSizeMB: number;
+  maxFilesAmount: number;
 }
 
 export default function DragAndDropImagesSmallScreens({
   disabled,
-  acceptedTypes,
-  maxSizeMB,
-  maxFiles,
+  acceptedFileTypesStr,
+  maxFileSizeMB,
+  maxFilesAmount,
 }: IProps) {
   return (
     <Grid
@@ -23,11 +23,13 @@ export default function DragAndDropImagesSmallScreens({
         flexDirection: "column",
         alignItems: "center",
       }}>
-      <Button variant="outlined" disabled={disabled}>Anexar imagens</Button>
+      <Button variant="outlined" disabled={disabled}>
+        Anexar imagens
+      </Button>
       <DragAndDropImagesLimitMessages
-        acceptedTypes={acceptedTypes}
-        maxSizeMB={maxSizeMB}
-        maxFiles={maxFiles}
+        acceptedFileTypesStr={acceptedFileTypesStr}
+        maxFileSizeMB={maxFileSizeMB}
+        maxFilesAmount={maxFilesAmount}
       />
     </Grid>
   );
