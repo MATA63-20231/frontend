@@ -5,6 +5,7 @@ import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.ts
 import TextInput from "../../../components/CustomInputs/TextInput.tsx";
 import TextArrayInput from "../../../components/CustomInputs/TextArrayInput.tsx";
 import IntegerNumberInput from "../../../components/CustomInputs/IntegerNumberInput.tsx";
+import DragAndDropImagesInput from "../../../components/CustomInputs/DragAndDropImagesInput/DragAndDropImagesInput.tsx";
 
 interface IProps {
   values: IRecipeCreationFields;
@@ -24,17 +25,17 @@ export default function RecipeCreationFields({
   setFieldValue,
   setFieldTouched,
 }: IProps) {
+  const fileTypes = ["JPG", "JPEG", "PNG", "GIF", "SVG"];
+  const handleChange = (file: FileList) => {
+    console.log(file);
+  };
+
   return (
     <>
-      <br />
-      <br />
       <TextInput required name="title" label="Título" />
       <br />
       <br />
       <TextInput name="description" label="Descrição" />
-      <br />
-      <br />
-      <TextInput name="image" label="Imagem" />
       <br />
       <br />
       <IntegerNumberInput
@@ -80,6 +81,12 @@ export default function RecipeCreationFields({
         errors={errors.directions}
         loading={loading}
       />
+      <br />
+      <br />
+      {/* <TextInput name="image" label="Imagem" /> */}
+      <Typography sx={{ mb: 1 }}>Imagens</Typography>
+      <DragAndDropImagesInput />
+      <br />
     </>
   );
 }

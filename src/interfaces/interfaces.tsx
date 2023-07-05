@@ -14,11 +14,11 @@ interface IItemPreparo {
 export interface IRecipeCreation {
   titulo: string;
   descricao: string;
+  imagens: string[];
   rendimento: number;
   tempoPreparo: ITempoPreparo;
-  listaPreparo: IItemPreparo[];
   ingredientes: IIngrediente[];
-  imagem: string;
+  listaPreparo: IItemPreparo[];
 }
 
 export interface IRecipe extends IRecipeCreation {

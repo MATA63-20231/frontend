@@ -1,7 +1,7 @@
 export interface IRecipeCreationFields {
   title: string;
   description: string;
-  image: string;
+  images: string[];
   servings: number | "";
   prepTime: {
     hours: number | "";

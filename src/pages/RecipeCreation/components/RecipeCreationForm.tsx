@@ -15,7 +15,7 @@ export default function RecipeCreationForm() {
   const recipeToBack = (recipe: IRecipeCreationFields): IRecipeCreation => ({
     titulo: recipe.title,
     descricao: recipe.description,
-    imagem: recipe.image,
+    imagens: [],
     rendimento: Number(recipe.servings),
     tempoPreparo: {
       horas: Number(recipe.prepTime.hours),
@@ -53,7 +53,7 @@ export default function RecipeCreationForm() {
         setFieldTouched,
       }) => (
         <Form>
-          <br />
+          {/* <br />
           <br />
           {JSON.stringify(values)}
           <br />
@@ -63,7 +63,7 @@ export default function RecipeCreationForm() {
           <br />
           {JSON.stringify(touched)}
           <br />
-          <br />
+          <br /> */}
           <RecipeCreationFields
             values={values}
             errors={errors}

@@ -3,8 +3,8 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
-import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import FormHelperText from "@mui/material/FormHelperText";
 import Typography from "@mui/material/Typography";
 import TextInput from "./TextInput.tsx";
@@ -54,7 +54,7 @@ export default function TextArrayInput({
                       disabled={loading}
                       onClick={() => swap(index, index - 1)}
                     >
-                      <ArrowDropUp
+                      <ArrowDropUpIcon
                         sx={{ fontSize: 30, color: "secondary.main" }}
                       />
                     </IconButton>
@@ -64,7 +64,7 @@ export default function TextArrayInput({
                       disabled={loading}
                       onClick={() => swap(index, index + 1)}
                     >
-                      <ArrowDropDown
+                      <ArrowDropDownIcon
                         sx={{ fontSize: 30, color: "secondary.main" }}
                       />
                     </IconButton>
