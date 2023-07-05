@@ -4,8 +4,8 @@ import Home from "../pages/Home.tsx";
 import NotFound from "../pages/NotFound.tsx";
 import RecipeCreation from "../pages/RecipeCreation/RecipeCreation.tsx";
 import RecipeView from "../pages/RecipeView.tsx";
-import Login from "../pages/Login.tsx";
-import Cadastro from "../pages/Cadastro.tsx";
+import Login from "../pages/Login/Login.tsx";
+import Register from "../pages/Register/Register.tsx";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/cadastro",
-        element: <Cadastro />,
+        element: <Register />,
       },
       {
         path: "/nova-receita",
