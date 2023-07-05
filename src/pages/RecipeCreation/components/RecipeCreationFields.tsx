@@ -1,15 +1,15 @@
 import { FormikErrors } from "formik";
+import { IRecipeCreationFormFields } from "../../../interfaces/RecipeInterfaces.tsx";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
 import TextInput from "../../../components/CustomInputs/TextInput.tsx";
 import TextArrayInput from "../../../components/CustomInputs/TextArrayInput.tsx";
 import IntegerNumberInput from "../../../components/CustomInputs/IntegerNumberInput.tsx";
 import DragAndDropImagesInput from "../../../components/CustomInputs/DragAndDropImagesInput/DragAndDropImagesInput.tsx";
 
 interface IProps {
-  values: IRecipeCreationFields;
-  errors: FormikErrors<IRecipeCreationFields>;
+  values: IRecipeCreationFormFields;
+  errors: FormikErrors<IRecipeCreationFormFields>;
   loading: boolean;
   acceptedFileTypes: string[];
   acceptedFileTypesStr: string;
@@ -20,7 +20,7 @@ interface IProps {
     // It's a Formik type so we can't change it
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     value: any
-  ) => Promise<void | FormikErrors<IRecipeCreationFields>>;
+  ) => Promise<void | FormikErrors<IRecipeCreationFormFields>>;
   setFieldTouched: (field: string) => void;
 }
 

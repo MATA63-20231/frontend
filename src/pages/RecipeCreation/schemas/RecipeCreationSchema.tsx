@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
+import { IRecipeCreationFormFields } from "../../../interfaces/RecipeInterfaces.tsx";
 import FormErrorMessages from "../../../enums/FormErrorMessages.tsx";
 import YupHelpers from "../../../enums/YupHelpers.tsx";
 
@@ -11,7 +11,7 @@ interface IProps {
   maxFilesAmount: number;
 }
 
-export const initialValues: IRecipeCreationFields = {
+export const initialValues: IRecipeCreationFormFields = {
   title: "",
   description: "",
   servings: "",
@@ -36,7 +36,7 @@ export default function generateRecipeCreationSchema({
   maxFileSizeMB,
   maxFilesAmount,
 }: IProps) {
-  return Yup.object<IRecipeCreationFields>().shape({
+  return Yup.object<IRecipeCreationFormFields>().shape({
     title: YupHelpers.STRING_REQUIRED,
 
     description: YupHelpers.STRING_OPTIONAL,
