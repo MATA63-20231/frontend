@@ -1,8 +1,8 @@
 import { Formik, Form, FormikHelpers } from "formik";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IRecipeCreation } from "../../../interfaces/interfaces.tsx";
 import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
-// import { createRecipe } from "../../../services/RecipesApi.tsx";
+import { createRecipe } from "../../../services/RecipesApi.tsx";
 import RecipeCreationFields from "./RecipeCreationFields.tsx";
 import generateRecipeCreationSchema, {
   initialValues,
@@ -11,7 +11,7 @@ import LoadingButton from "../../../components/LoadingButton.tsx";
 import Grid from "@mui/material/Grid";
 
 export default function RecipeCreationForm() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const acceptedFileTypes = ["JPG", "JPEG", "PNG", "GIF", "SVG"];
   const acceptedFileTypesStr = acceptedFileTypes.join(", ");
@@ -48,9 +48,7 @@ export default function RecipeCreationForm() {
     { setSubmitting }: FormikHelpers<IRecipeCreationFields>
   ) => {
     const recipe = recipeToBack(values);
-    // createRecipe(recipe, navigate, setSubmitting);
-    console.log(recipe);
-    setSubmitting(false);
+    createRecipe(recipe, navigate, setSubmitting);
   };
 
   return (
