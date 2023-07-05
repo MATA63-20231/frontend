@@ -32,12 +32,15 @@ export default function Home() {
             >
               <CardActionArea href={`/receita/${recipe.id}`}>
                 <CardMedia
-                  component="div"
+                  component="img"
                   sx={{
-                    pt: "56.25%",
+                    width: "25%",
+                    mx: "auto",
+                    pt: "20%",
+                    pb: "7%",
                   }}
                   title={recipe.titulo}
-                  image={NoImage}
+                  image={recipe.imagens.length > 0 ? "https://picsum.photos/200" : NoImage}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="h2">
