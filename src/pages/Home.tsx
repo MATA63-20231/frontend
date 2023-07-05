@@ -30,18 +30,27 @@ export default function Home() {
                 flexDirection: "column",
               }}
             >
-              <CardActionArea href={`/receita/${recipe.id}`}>
-                <CardMedia
-                  component="img"
-                  sx={{
-                    width: "25%",
-                    mx: "auto",
-                    pt: "20%",
-                    pb: "7%",
-                  }}
-                  title={recipe.titulo}
-                  image={recipe.imagens.length > 0 ? "https://picsum.photos/200" : NoImage}
-                />
+              <CardActionArea href={`/receita/${recipe.id}`} sx={{height:"100%"}}>
+                {recipe.imagens.length > 0 ? (
+                  <CardMedia
+                    component="img"
+                    title={recipe.titulo}
+                    image="https://picsum.photos/200"
+                    sx={{ height: "250px" }}
+                  />
+                ) : (
+                  <CardMedia
+                    component="img"
+                    title={recipe.titulo}
+                    image={NoImage}
+                    sx={{
+                      width: "25%",
+                      mx: "auto",
+                      pt: "20%",
+                      pb: "7%",
+                    }}
+                  />
+                )}
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="h2">
                     {recipe.titulo}
