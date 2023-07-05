@@ -1,5 +1,3 @@
-// TODO: Rename this file to AuthInterfaces
-
 export interface ILoginData {
   usuario: string;
   senha: string;

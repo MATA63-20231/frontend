@@ -2,7 +2,7 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-import { IRegister } from "../../../interfaces/RecipeInterfaces.tsx";
+import { IRegister } from "../../../interfaces/AuthInterfaces.tsx";
 import { signUp } from "../../../services/AuthApi.tsx";
 import RegisterFields from "./RegisterFields.tsx";
 import RegisterSchema, { initialValues } from "../schemas/RegisterSchema.tsx";
