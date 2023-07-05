@@ -9,6 +9,8 @@ interface IRequestBase<DataType> {
 }
 
 interface IDefaultRequestBehavior<DataType> extends IRequestBase<DataType> {
+  // It's a Axios type so we can't change it
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   axiosRequest: Promise<AxiosResponse<DataType, any>>;
 }
 
@@ -27,13 +29,18 @@ const api = axios.create({
 
 const defaultOnError = (
   message: string | undefined,
-  Error: string | undefined
-) => {
+  Error: string | undefined,
+): void => {
   enqueueSnackbar({
     variant: "error",
-    message: message ? message : null,
+    message,
   });
-  Error && console.error(Error);
+
+  if (Error) {
+    // Intentional console for debug purposes
+    // eslint-disable-next-line no-console
+    console.error(Error);
+  }
 };
 
 function wrapDefaultRequestBehavior<DataType>({
@@ -46,9 +53,7 @@ function wrapDefaultRequestBehavior<DataType>({
   setLoading(true);
   axiosRequest
     .then(({ data }) => onSuccess(data))
-    .catch(({ message, Error }) =>
-      onError ? onError() : defaultOnError(message, Error)
-    )
+    .catch(({ message, Error }) => (onError ? onError() : defaultOnError(message, Error)))
     .finally(() => {
       onFinish?.();
       setLoading(false);

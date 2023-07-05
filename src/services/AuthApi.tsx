@@ -1,7 +1,7 @@
 import { NavigateFunction } from "react-router-dom";
 import { enqueueSnackbar } from "notistack";
-import { ILoginData, IRegister } from "../interfaces/AuthInterfaces.js";
-import { POST } from "./Api.js";
+import { ILoginData, IRegister } from "../interfaces/AuthInterfaces.tsx";
+import { POST } from "./Api.tsx";
 
 export const signUp = (
   userData: IRegister,
