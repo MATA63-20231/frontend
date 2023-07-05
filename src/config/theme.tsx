@@ -37,7 +37,6 @@ const defaultTheme = createTheme({
       margin: 0,
       padding: 0,
       color: "#7F7F90",
-      textTransform: "uppercase",
     },
   },
 
