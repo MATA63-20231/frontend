@@ -16,18 +16,14 @@ export interface IRecipeCreation {
   descricao: string;
   rendimento: number;
   tempoPreparo: ITempoPreparo;
-  listaPreparo: IItemPreparo[];
   ingredientes: IIngrediente[];
-  imagem: string;
+  listaPreparo: IItemPreparo[];
+  imagens: File[];
 }
 
 export interface IRecipe extends IRecipeCreation {
   id: string;
   dataCadastro: string;
-}
-
-export interface IRecipePostResponse {
-  receita: IRecipe;
 }
 
 export interface ILoginData {

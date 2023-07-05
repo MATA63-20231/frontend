@@ -47,10 +47,6 @@ export default function Header() {
       <Grid container direction="row" justifyContent="flex-end">
         {/* <Button
           href="/nova-receita"
-          sx={{
-            bgcolor: "primary.main",
-            "&:hover": { bgcolor: "primary.light" },
-          }}
           variant="contained"
         >
           Nova receita
