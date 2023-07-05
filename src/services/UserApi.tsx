@@ -37,7 +37,9 @@ export const postLogin = (
         variant: "success",
         message: "Login efetuado com sucesso!",
       });
+      localStorage.setItem("IsLogged", "true");
       navigate("/");
+      location.reload();
     },
     // TODO: mensagem de erro
   });
