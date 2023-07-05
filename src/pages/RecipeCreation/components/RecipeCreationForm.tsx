@@ -8,6 +8,7 @@ import generateRecipeCreationSchema, {
   initialValues,
 } from "../schemas/RecipeCreationSchema.tsx";
 import LoadingButton from "../../../components/LoadingButton.tsx";
+import Grid from "@mui/material/Grid";
 
 export default function RecipeCreationForm() {
   // const navigate = useNavigate();
@@ -77,9 +78,11 @@ export default function RecipeCreationForm() {
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
           />
-          <LoadingButton loading={isSubmitting} onClick={submitForm}>
-            Cadastrar
-          </LoadingButton>
+          <Grid sx={{ mt: 2 }}>
+            <LoadingButton loading={isSubmitting} onClick={submitForm}>
+              Cadastrar
+            </LoadingButton>
+          </Grid>
         </Form>
       )}
     </Formik>

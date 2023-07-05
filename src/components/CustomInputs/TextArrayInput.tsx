@@ -28,7 +28,7 @@ export default function TextArrayInput({
 }: IProps) {
   return (
     <>
-      <Typography>{title}</Typography>
+      <Typography sx={{my:1}}>{title}</Typography>
       <FieldArray name={name}>
         {({ push, remove, swap }) => (
           <>

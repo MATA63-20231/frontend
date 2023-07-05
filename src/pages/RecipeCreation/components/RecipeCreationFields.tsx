@@ -1,7 +1,7 @@
 import { FormikErrors } from "formik";
+import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import { IRecipeCreationFields } from "../interfaces/RecipeCreationInterfaces.tsx";
 import TextInput from "../../../components/CustomInputs/TextInput.tsx";
 import TextArrayInput from "../../../components/CustomInputs/TextArrayInput.tsx";
 import IntegerNumberInput from "../../../components/CustomInputs/IntegerNumberInput.tsx";
@@ -34,65 +34,86 @@ export default function RecipeCreationFields({
   setFieldTouched,
 }: IProps) {
   return (
-    <>
-      <TextInput required name="title" label="Título" />
+    <Grid
+      container
+      rowSpacing={3}
+      sx={{
+        flexDirection: "column",
+        textAlign: "initial",
+        color: "secondary.main",
+      }}>
+      <Grid item>
+        <TextInput required name="title" label="Título" />
+      </Grid>
 
-      <TextInput name="description" label="Descrição" />
+      <Grid item>
+        <TextInput name="description" label="Descrição" />
+      </Grid>
 
-      <IntegerNumberInput
-        name="servings"
-        label="Rendimento"
-        setFieldValue={setFieldValue}
-        setFieldTouched={setFieldTouched}
-      />
-
-      <Typography sx={{ mb: 1 }}>Tempo de Preparo *</Typography>
-      <Grid container wrap="nowrap">
+      <Grid item>
         <IntegerNumberInput
-          name="prepTime.hours"
-          label="Horas"
-          setFieldValue={setFieldValue}
-          setFieldTouched={setFieldTouched}
-        />
-        <IntegerNumberInput
-          name="prepTime.minutes"
-          label="Minutos"
+          name="servings"
+          label="Rendimento"
           setFieldValue={setFieldValue}
           setFieldTouched={setFieldTouched}
         />
       </Grid>
 
-      <TextArrayInput
-        title="Ingredientes *"
-        label="Ingrediente"
-        name="ingredients"
-        values={values.ingredients}
-        errors={errors.ingredients}
-        loading={loading}
-      />
+      <Grid item>
+        <Typography sx={{ my: 1 }}>Tempo de Preparo *</Typography>
+        <Grid container columnGap={2} wrap="nowrap">
+          <IntegerNumberInput
+            name="prepTime.hours"
+            label="Horas"
+            setFieldValue={setFieldValue}
+            setFieldTouched={setFieldTouched}
+          />
+          <IntegerNumberInput
+            name="prepTime.minutes"
+            label="Minutos"
+            setFieldValue={setFieldValue}
+            setFieldTouched={setFieldTouched}
+          />
+        </Grid>
+      </Grid>
 
-      <TextArrayInput
-        title="Modo de Preparo *"
-        label="Instrução"
-        name="directions"
-        values={values.directions}
-        errors={errors.directions}
-        loading={loading}
-      />
+      <Grid item>
+        <TextArrayInput
+          title="Ingredientes *"
+          label="Ingrediente"
+          name="ingredients"
+          values={values.ingredients}
+          errors={errors.ingredients}
+          loading={loading}
+        />
+      </Grid>
 
-      <DragAndDropImagesInput
-        title="Fotos da receita"
-        label="Arraste e solte as fotos da sua receita aqui"
-        name="images"
-        images={values.images}
-        errors={errors.images}
-        loading={loading}
-        acceptedFileTypes={acceptedFileTypes}
-        acceptedFileTypesStr={acceptedFileTypesStr}
-        maxFileSizeMB={maxFileSizeMB}
-        maxFilesAmount={maxFilesAmount}
-        setFieldValue={setFieldValue}
-      />
-    </>
+      <Grid item>
+        <TextArrayInput
+          title="Modo de Preparo *"
+          label="Instrução"
+          name="directions"
+          values={values.directions}
+          errors={errors.directions}
+          loading={loading}
+        />
+      </Grid>
+
+      <Grid item>
+        <DragAndDropImagesInput
+          title="Fotos da receita"
+          label="Arraste e solte as fotos da sua receita aqui"
+          name="images"
+          images={values.images}
+          errors={errors.images}
+          loading={loading}
+          acceptedFileTypes={acceptedFileTypes}
+          acceptedFileTypesStr={acceptedFileTypesStr}
+          maxFileSizeMB={maxFileSizeMB}
+          maxFilesAmount={maxFilesAmount}
+          setFieldValue={setFieldValue}
+        />
+      </Grid>
+    </Grid>
   );
 }

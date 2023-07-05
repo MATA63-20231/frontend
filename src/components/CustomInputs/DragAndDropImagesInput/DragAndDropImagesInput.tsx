@@ -67,16 +67,16 @@ export default function DragAndDropImagesInput<FormFieldsType>({
 
   return (
     <>
-      <Typography sx={{ mb: 1 }}>{title}</Typography>
+      <Typography sx={{ my: 1 }}>{title}</Typography>
       <Box
         sx={{
           backgroundColor: "#eeeeee",
           borderStyle: "dashed",
           borderWidth: typeof errors === "string" ? 2 : 1,
           borderColor: typeof errors === "string" ? "error.main" : "gray",
+          textAlign: "center",
           borderRadius: 3,
           p: 4,
-          mx: 2,
         }}>
         {typeof errors === "string" && (
           <FormHelperText
