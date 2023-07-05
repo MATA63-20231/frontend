@@ -9,8 +9,13 @@ import CardMedia from "@mui/material/CardMedia";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 // import SearchIcon from "@mui/icons-material/Search";
 import Logo from "../assets/logo.svg";
+import AccountMenu from "./AccountMenu.tsx";
 
 export default function Header() {
+  const LOCAL_STORAGE_KEY = "IsLogged";
+
+  const isLogged = localStorage.getItem(LOCAL_STORAGE_KEY) != null;
+
   return (
     <Toolbar
       component="nav"
@@ -51,22 +56,21 @@ export default function Header() {
           Nova receita
         </Button> */}
 
-        {/* Ocultar botão nova receita */}
+        {/* <SearchIcon/>  |        */}
 
-        {/* <SearchIcon/>
-
-        |
-       */}
-
-        <Button
-          variant="text"
-          disableRipple
-          href="login"
-          sx={{ textTransform: "Capitalize" }}
-        >
-          <AccountCircleIcon />
-          <Typography color="secondary.main">Login</Typography>
-        </Button>
+        {isLogged ? (
+          <AccountMenu />
+        ) : (
+          <Button
+            variant="text"
+            disableRipple
+            href="login"
+            sx={{ textTransform: "Capitalize" }}
+          >
+            <AccountCircleIcon />
+            <Typography color="secondary.main">Login</Typography>
+          </Button>
+        )}
       </Grid>
     </Toolbar>
   );
