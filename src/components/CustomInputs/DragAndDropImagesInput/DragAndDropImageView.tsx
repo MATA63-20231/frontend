@@ -1,16 +1,26 @@
-import { useEffect, useState } from "react";
-import { CardActionArea, CardContent, CardMedia, Dialog, IconButton } from "@mui/material";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import {
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Dialog,
+  IconButton,
+} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-
 
 interface IProps {
   index: number;
   image: File;
   disabled: boolean;
-  setImages: (images: File[]) => void;
+  setImages: Dispatch<SetStateAction<File[]>>;
 }
 
-export default function DragAndDropImageView({ index, image , disabled, setImages }: IProps) {
+export default function DragAndDropImageView({
+  index,
+  image,
+  disabled,
+  setImages,
+}: IProps) {
   const [imageURL, setImageURL] = useState<string>("");
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
 
@@ -19,6 +29,14 @@ export default function DragAndDropImageView({ index, image , disabled, setImage
     setImageURL(objectUrl);
     return () => URL.revokeObjectURL(objectUrl); // Free memory when ever this component is unmounted
   }, [image]);
+
+  const deleteImage = (index: number) => {
+    setImages((previousImages: File[]) => {
+      const newFiles = [...previousImages];
+      newFiles.splice(index, 1);
+      return newFiles;
+    });
+  };
 
   return (
     <>
@@ -31,8 +49,8 @@ export default function DragAndDropImageView({ index, image , disabled, setImage
           image={imageURL}
         />
       </CardActionArea>
-      <CardContent sx={{p:"0 !important"}}>
-        <IconButton disabled={disabled} onClick={() => console.log(index)}>
+      <CardContent sx={{ p: "0 !important" }}>
+        <IconButton disabled={disabled} onClick={() => deleteImage(index)}>
           <DeleteIcon color="primary" />
         </IconButton>
       </CardContent>

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FileUploader } from "react-drag-drop-files";
 import { enqueueSnackbar } from "notistack";
+import { FileUploader } from "react-drag-drop-files";
 import Box from "@mui/material/Box";
 import DragAndDropImagesLargeScreens from "./DragAndDropImagesLargeScreens";
 import DragAndDropImagesSmallScreens from "./DragAndDropImagesSmallScreens";

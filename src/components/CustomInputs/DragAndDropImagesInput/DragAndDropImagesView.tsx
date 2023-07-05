@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import DragAndDropImageView from "./DragAndDropImageView";
@@ -5,7 +6,7 @@ import DragAndDropImageView from "./DragAndDropImageView";
 interface IProps {
   images: File[];
   disabled: boolean;
-  setImages: ((images: File[]) => void)
+  setImages: Dispatch<SetStateAction<File[]>>;
 }
 
 export default function DragAndDropImagesView({ images, disabled, setImages }: IProps) {
