@@ -13,7 +13,7 @@ export default function RegisterForm() {
   const navigate = useNavigate();
   const handleSubmit = (
     values: IRegister,
-    { setSubmitting }: FormikHelpers<IRegister>
+    { setSubmitting }: FormikHelpers<IRegister>,
   ) => {
     postSignUp(values, navigate, setSubmitting);
   };

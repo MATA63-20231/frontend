@@ -14,7 +14,7 @@ export default function LoadingButton({
   onClick,
 }: PropsWithChildren<IProps>) {
   return (
-    <Button variant="contained" disabled={loading} onClick={onClick} sx={{m:"auto"}}>
+    <Button variant="contained" disabled={loading} onClick={onClick} sx={{ m: "auto" }}>
       {loading && (
         <Grid sx={{ mr: 1 }}>
           <Loading />

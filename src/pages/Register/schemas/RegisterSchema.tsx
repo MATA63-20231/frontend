@@ -15,7 +15,7 @@ const LoginSchema = Yup.object<IRegister>().shape({
   senha: YupHelpers.STRING_REQUIRED,
   nome: YupHelpers.STRING_REQUIRED,
   email: YupHelpers.STRING_REQUIRED,
-  confirmacaoSenha: YupHelpers.STRING_REQUIRED, 
+  confirmacaoSenha: YupHelpers.STRING_REQUIRED,
 });
 
 export default LoginSchema;

@@ -13,7 +13,7 @@ export default function LoginForm() {
   const navigate = useNavigate();
   const handleSubmit = (
     values: ILoginData,
-    { setSubmitting }: FormikHelpers<ILoginData>
+    { setSubmitting }: FormikHelpers<ILoginData>,
   ) => {
     postLogin(values, navigate, setSubmitting);
   };
