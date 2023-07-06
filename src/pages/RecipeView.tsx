@@ -47,7 +47,7 @@ export default function RecipeView() {
         container
         sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}
       >
-        <Card sx={{ width: "600px"}}>
+        <Card sx={{ width: "600px" }}>
           {recipe.imagens.length > 0 ? (
             <CardMedia
               component="img"
@@ -193,8 +193,12 @@ export default function RecipeView() {
               <Typography variant="h6">Ingredientes</Typography>
 
               <List>
-                {recipe.ingredientes.map((ingredient) => (
+                {recipe.ingredientes.map((ingredient, index) => (
                   <ListItem key={ingredient.id}>
+                    <Grid sx={{ mr: 1 }}>
+                      <Typography variant="indexList">{index + 1}</Typography>
+                    </Grid>
+
                     <ListItemText primary={ingredient.descricao} />
                   </ListItem>
                 ))}
@@ -204,8 +208,11 @@ export default function RecipeView() {
             <Grid item>
               <Typography variant="h6">Modo de preparo</Typography>
               <List>
-                {recipe.listaPreparo.map((etapa) => (
+                {recipe.listaPreparo.map((etapa, index) => (
                   <ListItem key={etapa.id}>
+                    <Grid sx={{ mr: 1 }}>
+                      <Typography variant="indexList">{index + 1}</Typography>
+                    </Grid>
                     <ListItemText
                       primary={etapa.descricao}
                       // secondary="desc item"

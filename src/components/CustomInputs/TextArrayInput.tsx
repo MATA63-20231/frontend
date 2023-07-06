@@ -61,13 +61,7 @@ export default function TextArrayInput({
                     sx={{ py: 0.5 }}
                   >
                     <Grid item xs={0.5}>
-                      <Typography
-                        variant="h1"
-                        component="p"
-                        sx={{ fontSize: 36, fontWeight: 600 }}
-                      >
-                        {index + 1}
-                      </Typography>
+                      <Typography variant="indexList">{index + 1}</Typography>
                     </Grid>
 
                     <Grid item xs>
