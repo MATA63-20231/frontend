@@ -47,27 +47,26 @@ export default function RecipeView() {
         container
         sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}
       >
-        <Card sx={{ width: "600px" }}>
-
-        {recipe.imagens.length > 0 ? (
-                  <CardMedia
-                    component="img"
-                    title={recipe.titulo}
-                    image="https://picsum.photos/200"
-                    sx={{height:"400px"}}
-                  />
-                ) : (
-                  <CardMedia
-                    component="img"
-                    title={recipe.titulo}
-                    image={NoImage}
-                    sx={{
-                      width: "20%",
-                      margin: "auto",
-                      py: 12,
-                    }}
-                  />
-                )}
+        <Card sx={{ width: "600px"}}>
+          {recipe.imagens.length > 0 ? (
+            <CardMedia
+              component="img"
+              title={recipe.titulo}
+              image="https://picsum.photos/200"
+              sx={{ height: "400px" }}
+            />
+          ) : (
+            <CardMedia
+              component="img"
+              title={recipe.titulo}
+              image={NoImage}
+              sx={{
+                width: "20%",
+                margin: "auto",
+                py: 12,
+              }}
+            />
+          )}
           <Stack
             direction={{ xs: "column", md: "row" }}
             spacing={{ xs: 0.5, md: 1 }}

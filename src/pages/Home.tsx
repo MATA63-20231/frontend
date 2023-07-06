@@ -25,19 +25,21 @@ export default function Home() {
           <Grid item key={recipe.id} xs={12} sm={6} md={4}>
             <Card
               sx={{
-                // height: "100%",
                 height: "300px",
                 display: "flex",
                 flexDirection: "column",
               }}
             >
-              <CardActionArea href={`/receita/${recipe.id}`} sx={{height:"100%"}}>
+              <CardActionArea
+                href={`/receita/${recipe.id}`}
+                sx={{ height: "300px" }}
+              >
                 {recipe.imagens.length > 0 ? (
                   <CardMedia
                     component="img"
                     title={recipe.titulo}
                     image="https://picsum.photos/200"
-                    sx={{ height: "250px" }}
+                    sx={{ height: "210px" }}
                   />
                 ) : (
                   <CardMedia
@@ -45,14 +47,13 @@ export default function Home() {
                     title={recipe.titulo}
                     image={NoImage}
                     sx={{
-                      width: "25%",
+                      width: "70px",
                       mx: "auto",
-                      pt: "20%",
-                      pb: "7%",
+                      py: "60px",
                     }}
                   />
                 )}
-                <CardContent sx={{ flexGrow: 1 }}>
+                <CardContent sx={{ flexGrow: 1, alignItens: "flex-end" }}>
                   <Typography gutterBottom variant="h5" component="h2">
                     {recipe.titulo}
                   </Typography>
