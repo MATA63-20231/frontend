@@ -47,18 +47,26 @@ export default function RecipeView() {
         container
         sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}
       >
-        <Card>
-          <CardMedia
-            component="img"
-            image={NoImage}
-            sx={{
-              height: "40%",
-              width: "600px",
-              px: 20,
-              py: 2,
-            }}
-            title={recipe.titulo}
-          />
+        <Card sx={{ width: "600px" }}>
+          {recipe.imagens.length > 0 ? (
+            <CardMedia
+              component="img"
+              title={recipe.titulo}
+              image="https://picsum.photos/200"
+              sx={{ height: "400px" }}
+            />
+          ) : (
+            <CardMedia
+              component="img"
+              title={recipe.titulo}
+              image={NoImage}
+              sx={{
+                width: "20%",
+                margin: "auto",
+                py: 12,
+              }}
+            />
+          )}
           <Stack
             direction={{ xs: "column", md: "row" }}
             spacing={{ xs: 0.5, md: 1 }}
@@ -86,9 +94,7 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                Tempo tempo
-                {/* {recipe.tempoPreparo}min{" "} */}
-                {/* TODO: validar data vinda do back */}
+                {recipe.tempoPreparo.horas}h{recipe.tempoPreparo.minutos}min{" "}
               </Typography>
             </Stack>
             <Divider
@@ -188,8 +194,7 @@ export default function RecipeView() {
 
               <List>
                 {recipe.ingredientes.map((ingredient) => (
-                  // <ListItem key={ingredient.id}>
-                  <ListItem>
+                  <ListItem key={ingredient.id}>
                     <ListItemText primary={ingredient.descricao} />
                   </ListItem>
                 ))}
@@ -200,8 +205,7 @@ export default function RecipeView() {
               <Typography variant="h6">Modo de preparo</Typography>
               <List>
                 {recipe.listaPreparo.map((etapa) => (
-                  // <ListItem key={etapa.id}>
-                  <ListItem>
+                  <ListItem key={etapa.id}>
                     <ListItemText
                       primary={etapa.descricao}
                       // secondary="desc item"
