@@ -31,13 +31,13 @@ export default function Home() {
                 flexDirection: "column",
               }}
             >
-              <CardActionArea href={`/receita/${recipe.id}`}>
+              <CardActionArea href={`/receita/${recipe.id}`} sx={{height:"100%"}}>
                 {recipe.imagens.length > 0 ? (
                   <CardMedia
                     component="img"
                     title={recipe.titulo}
                     image="https://picsum.photos/200"
-                    sx={{ height: "200px" }}
+                    sx={{ height: "250px" }}
                   />
                 ) : (
                   <CardMedia
@@ -45,9 +45,10 @@ export default function Home() {
                     title={recipe.titulo}
                     image={NoImage}
                     sx={{
-                      height: "200px",
-                      width: "70%",
+                      width: "25%",
                       mx: "auto",
+                      pt: "20%",
+                      pb: "7%",
                     }}
                   />
                 )}
