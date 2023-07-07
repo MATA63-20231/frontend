@@ -1,5 +1,6 @@
 import "notistack";
 import "@mui/material";
+import { CSSProperties } from "react";
 
 // Add the 'title' props to snackBars
 declare module "notistack" {
@@ -30,11 +31,11 @@ declare module "@mui/material/styles" {
   }
 
   interface TypographyVariants {
-    mainTitle: React.CSSProperties;
+    mainTitle: CSSProperties;
   }
 
   interface TypographyVariantsOptions {
-    mainTitle?: React.CSSProperties;
+    mainTitle?: CSSProperties;
   }
 }
 

@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import TextInput from "../../../components/CustomInputs/TextInput.tsx";
+import PasswordInput from "../../../components/CustomInputs/PasswordInput.tsx";
 
 export default function RecipeCreationFields() {
   return (
@@ -17,15 +18,14 @@ export default function RecipeCreationFields() {
       </Grid>
 
       <Grid item>
-        <TextInput required name="senha" label="Senha" type="password" />
+        <PasswordInput required name="senha" label="Senha" />
       </Grid>
 
       <Grid item>
-        <TextInput
+        <PasswordInput
           required
           name="confirmacaoSenha"
           label="Confirme a senha"
-          type="password"
         />
       </Grid>
     </Grid>

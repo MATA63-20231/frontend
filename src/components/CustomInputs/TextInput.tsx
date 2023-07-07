@@ -1,5 +1,6 @@
 import { Field } from "formik";
 import { TextField } from "formik-mui";
+import { ReactNode } from "react";
 
 interface IProps {
   name: string;
@@ -7,6 +8,7 @@ interface IProps {
   size?: string;
   required?: boolean;
   type?: "text" | "email" | "password";
+  endAdornment?: ReactNode;
 }
 
 export default function TextInput({
@@ -15,6 +17,7 @@ export default function TextInput({
   size,
   required,
   type,
+  endAdornment,
 }: IProps) {
   return (
     <Field
@@ -25,6 +28,7 @@ export default function TextInput({
       required={required}
       name={name}
       label={label}
+      InputProps={{ endAdornment: endAdornment }}
     />
   );
 }
