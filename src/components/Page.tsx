@@ -7,8 +7,8 @@ import BackToPreviousPage from "./BackToPreviousPage.tsx";
 import ScrollToTop from "./ScrollToTop.tsx";
 
 interface IProps {
-  title?: string;
-  pretitle?: string;
+  title: string;
+  pretitle: string;
   loading?: boolean;
 }
 
@@ -43,4 +43,4 @@ export default function Page({
   );
 }
 
-Page.defaultProps = { title: "", pretitle: "", loading: false };
+Page.defaultProps = { loading: false };
