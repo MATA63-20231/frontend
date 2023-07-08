@@ -5,7 +5,6 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import CardMedia from "@mui/material/CardMedia";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-// import SearchIcon from "@mui/icons-material/Search";
 import Logo from "../assets/logo.svg";
 import AccountMenu from "./AccountMenu.tsx";
 
@@ -16,6 +15,7 @@ export default function Header() {
 
   return (
     <Toolbar
+      id="back-to-top-anchor"
       component="nav"
       sx={{
         py: 3,
@@ -40,28 +40,29 @@ export default function Header() {
         </Grid>
       </Link>
 
-      <Grid container direction="row" alignItems="center" justifyContent="flex-end">
-        {/* <SearchIcon/>  |        */}
-
+      <Grid
+        container
+        direction="row"
+        alignItems="center"
+        justifyContent="flex-end">
         <Grid item>
           {!isLogged && (
             <Button
               variant="outlined"
               href="login"
               startIcon={<AccountCircleIcon color="primary" />}
-              sx={{ mr: 2, color:"secondary.main" }} >
+              sx={{ mr: 2, color: "secondary.main" }}>
               Login
             </Button>
           )}
         </Grid>
-        
+
         <Grid item>
-          <Button 
-              href="/nova-receita" variant="contained">
+          <Button href="/nova-receita" variant="contained">
             Nova receita
           </Button>
         </Grid>
-        
+
         <Grid item>{isLogged && <AccountMenu />}</Grid>
       </Grid>
     </Toolbar>

@@ -1,9 +1,7 @@
+import { Outlet } from "react-router-dom";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid/Grid";
-
-import { Outlet } from "react-router-dom";
-
 import defaultTheme from "./config/theme.tsx";
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
