@@ -13,7 +13,7 @@ export default function DragAndDropImagesView({
   disabled,
   setImages,
 }: IProps) {
-  return images.length > 0 ? null : (
+  return images.length === 0 ? null : (
     <Grid container spacing={2} sx={{ mt: 1 }}>
       {images.map((image, index) => (
         <Grid

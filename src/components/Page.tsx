@@ -21,9 +21,10 @@ export default function Page({
       sx={{
         margin: "0 auto",
         py: 4,
-      }}
-    >
-      <Typography variant="h2">{pretitle}</Typography>
+      }}>
+      <Typography variant="h2" sx={{ textTransform: "uppercase" }}>
+        {pretitle}
+      </Typography>
       <Typography variant="h1" sx={{ pb: 3 }}>
         {title}
       </Typography>

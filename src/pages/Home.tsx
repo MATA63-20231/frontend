@@ -18,7 +18,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Page pretitle="Receitas" title="Confira nossas receitas" loading={loading}>
+    <Page pretitle="Confira nossas receitas" title="Receitas" loading={loading}>
       <Grid container spacing={4}>
         {recipes.map((recipe) => (
           <Grid item key={recipe.id} xs={12} sm={6} md={4}>

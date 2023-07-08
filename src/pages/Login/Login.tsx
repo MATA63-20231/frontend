@@ -5,7 +5,7 @@ import LoginForm from "./components/LoginForm.tsx";
 
 export default function RecipeCreation() {
   return (
-    <Page title="Login">
+    <Page title="Login" pretitle="Entre para aproveitar todas as funcionalidades da nossa plataforma">
       <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>
         <LoginForm />
 

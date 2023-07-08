@@ -6,7 +6,7 @@ import RegisterForm from "./components/RegisterForm.tsx";
 
 export default function Register() {
   return (
-    <Page title="Cadastre-se">
+    <Page title="Cadastre-se" pretitle="Cadastre-se para ter acesso a todas as funcionalidades da nossa plataforma">
       <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>
         <RegisterForm />
 
