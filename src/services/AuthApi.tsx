@@ -37,6 +37,8 @@ export const login = (
         message: "Login efetuado com sucesso!",
       });
       localStorage.setItem("IsLogged", "true");
+      // TODO: Change to navigate(-1) when fix the reload need
+      // navigate(-1);
       navigate("/");
       // eslint-disable-next-line no-restricted-globals
       location.reload();
