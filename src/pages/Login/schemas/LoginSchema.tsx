@@ -1,6 +1,6 @@
 import * as Yup from "yup";
-import YupHelpers from "../../../enums/YupHelpers.tsx";
 import { ILoginData } from "../../../interfaces/AuthInterfaces.tsx";
+import FormErrorMessages from "../../../enums/FormErrorMessages.tsx";
 
 export const initialValues: ILoginData = {
   usuario: "",
@@ -8,8 +8,8 @@ export const initialValues: ILoginData = {
 };
 
 const LoginSchema = Yup.object<ILoginData>().shape({
-  usuario: YupHelpers.STRING_REQUIRED,
-  senha: YupHelpers.STRING_REQUIRED,
+  usuario: Yup.string().required(FormErrorMessages.REQUIRED),
+  senha: Yup.string().required(FormErrorMessages.REQUIRED),
 });
 
 export default LoginSchema;

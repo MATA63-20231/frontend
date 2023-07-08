@@ -1,3 +1,16 @@
+export interface IRecipeCreationFormFields {
+  title: string;
+  description: string;
+  servings: number | "";
+  prepTime: {
+    hours: number | "";
+    minutes: number | "";
+  };
+  ingredients: string[];
+  directions: string[];
+  images: File[];
+}
+
 interface ITempoPreparo {
   horas: number;
   minutos: number;

@@ -1,27 +1,10 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { enqueueSnackbar } from "notistack";
-
-interface IRequestBase<DataType> {
-  setLoading: (loading: boolean) => void;
-  onSuccess: (data: DataType) => void;
-  onError?: () => void;
-  onFinish?: () => void;
-}
-
-interface IDefaultRequestBehavior<DataType> extends IRequestBase<DataType> {
-  // It's a Axios type so we can't change it
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  axiosRequest: Promise<AxiosResponse<DataType, any>>;
-}
-
-interface IGet<DataType> extends IRequestBase<DataType> {
-  path: string;
-}
-
-interface IPost<DataType, BodyType> extends IRequestBase<DataType> {
-  path: string;
-  body: BodyType;
-}
+import {
+  IDefaultRequestBehavior,
+  IGet,
+  IPost,
+} from "../interfaces/ApiInterfaces.tsx";
 
 const api = axios.create({
   baseURL: "https://chef-virtual.onrender.com/",

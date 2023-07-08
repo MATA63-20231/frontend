@@ -7,11 +7,11 @@ import CloseIcon from "@mui/icons-material/Close";
 import Grid from "@mui/material/Grid";
 import CustomSnackBarDefaults from "./CustomSnackBarDefaults.tsx";
 
-interface CustomSnackBarProps extends CustomContentProps {
+interface ICustomSnackBarProps extends CustomContentProps {
   title?: string;
 }
 
-const CustomSnackBar = forwardRef<HTMLDivElement, CustomSnackBarProps>(
+const CustomSnackBar = forwardRef<HTMLDivElement, ICustomSnackBarProps>(
   (props, ref) => {
     const {
       id, variant, title, message,

@@ -11,6 +11,12 @@ const YupHelpers = {
     .max(255, FormErrorMessages.MAX_255)
     .required(FormErrorMessages.REQUIRED),
 
+  EMAIL_REQUIRED: Yup.string()
+    .email(FormErrorMessages.INVALID_EMAIL)
+    .min(2, FormErrorMessages.MIN_CHAR_2)
+    .max(255, FormErrorMessages.MAX_255)
+    .required(FormErrorMessages.REQUIRED),
+
   INTEGER_MORE_THAN_ZERO: Yup.number()
     .moreThan(0, FormErrorMessages.INTEGER_MORE_THAN_ZERO)
     .integer(FormErrorMessages.INTEGER_MORE_THAN_ZERO)

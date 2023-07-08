@@ -10,12 +10,12 @@ export const initialValues: IRegister = {
   confirmacaoSenha: "",
 };
 
-const LoginSchema = Yup.object<IRegister>().shape({
+const RegisterSchema = Yup.object<IRegister>().shape({
   usuario: YupHelpers.STRING_REQUIRED,
   senha: YupHelpers.STRING_REQUIRED,
   nome: YupHelpers.STRING_REQUIRED,
-  email: YupHelpers.STRING_REQUIRED,
+  email: YupHelpers.EMAIL_REQUIRED,
   confirmacaoSenha: YupHelpers.STRING_REQUIRED,
 });
 
-export default LoginSchema;
+export default RegisterSchema;
