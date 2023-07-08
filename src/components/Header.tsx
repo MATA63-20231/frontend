@@ -1,11 +1,9 @@
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import CardMedia from "@mui/material/CardMedia";
-
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 // import SearchIcon from "@mui/icons-material/Search";
 import Logo from "../assets/logo.svg";
@@ -23,14 +21,12 @@ export default function Header() {
         py: 3,
         justifyContent: "space-between",
         overflowX: "auto",
-      }}
-    >
+      }}>
       <Link href="/" sx={{ color: "inherit", textDecoration: "none" }}>
         <Grid
           container
           direction="row"
-          sx={{ flexWrap: "nowrap", alignItems: "center" }}
-        >
+          sx={{ flexWrap: "nowrap", alignItems: "center" }}>
           <CardMedia
             sx={{ height: "100%", width: "35px", mr: 1.5 }}
             component="img"
@@ -44,29 +40,29 @@ export default function Header() {
         </Grid>
       </Link>
 
-      <Grid container direction="row" justifyContent="flex-end">
-        {/* <Button
-          href="/nova-receita"
-          variant="contained"
-        >
-          Nova receita
-        </Button> */}
-
+      <Grid container direction="row" alignItems="center" justifyContent="flex-end">
         {/* <SearchIcon/>  |        */}
 
-        {isLogged ? (
-          <AccountMenu />
-        ) : (
-          <Button
-            variant="text"
-            disableRipple
-            href="login"
-            sx={{ textTransform: "Capitalize" }}
-          >
-            <AccountCircleIcon />
-            <Typography color="secondary.main">Login</Typography>
+        <Grid item>
+          {!isLogged && (
+            <Button
+              variant="outlined"
+              href="login"
+              startIcon={<AccountCircleIcon color="primary" />}
+              sx={{ mr: 2, color:"secondary.main" }} >
+              Login
+            </Button>
+          )}
+        </Grid>
+        
+        <Grid item>
+          <Button 
+              href="/nova-receita" variant="contained">
+            Nova receita
           </Button>
-        )}
+        </Grid>
+        
+        <Grid item>{isLogged && <AccountMenu />}</Grid>
       </Grid>
     </Toolbar>
   );

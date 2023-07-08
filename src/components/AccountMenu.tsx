@@ -32,8 +32,9 @@ export default function AccountMenu() {
     location.reload();
   };
 
-  const RecipeCreation = () => {
-    navigate("/nova-receita");
+  const navigateToMyRecipes = () => {
+    // TODO: link correto
+    navigate("/");
   };
 
   return (
@@ -41,14 +42,13 @@ export default function AccountMenu() {
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <Tooltip title="Minha conta">
           <IconButton
+            sx={{ p: 0, ml: 2, my:-1 }}
             onClick={handleClick}
-            size="small"
-            sx={{ ml: 2 }}
             aria-controls={isMenuOpen ? "account-menu" : undefined}
             aria-expanded={isMenuOpen ? "true" : undefined}
             aria-haspopup="true"
           >
-            <AccountCircleIcon fontSize="large" color="primary" />
+            <AccountCircleIcon sx={{fontSize:48}} color="primary" />
           </IconButton>
         </Tooltip>
       </Box>
@@ -77,11 +77,11 @@ export default function AccountMenu() {
           </Grid>
         </ListItem>
         <Divider />
-        <MenuItem onClick={RecipeCreation}>
+        <MenuItem onClick={navigateToMyRecipes}>
           <ListItemIcon>
             <Person fontSize="small" />
           </ListItemIcon>
-          Cadastrar receita
+          Minhas receitas
         </MenuItem>
         <MenuItem onClick={logout}>
           <ListItemIcon>
