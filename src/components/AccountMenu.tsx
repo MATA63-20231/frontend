@@ -45,8 +45,8 @@ export default function AccountMenu() {
             size="small"
             sx={{ ml: 2 }}
             aria-controls={isMenuOpen ? "account-menu" : undefined}
-            aria-haspopup="true"
             aria-expanded={isMenuOpen ? "true" : undefined}
+            aria-haspopup="true"
           >
             <AccountCircleIcon fontSize="large" color="primary" />
           </IconButton>

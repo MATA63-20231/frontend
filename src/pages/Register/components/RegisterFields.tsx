@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import TextInput from "../../../components/CustomInputs/TextInput.tsx";
 import PasswordInput from "../../../components/CustomInputs/PasswordInput.tsx";
+import EmailInput from "../../../components/CustomInputs/EmailInput.tsx";
 
 export default function RecipeCreationFields() {
   return (
@@ -14,7 +15,7 @@ export default function RecipeCreationFields() {
       </Grid>
 
       <Grid item>
-        <TextInput required name="email" label="E-mail" type="email" />
+        <EmailInput required name="email" label="E-mail" />
       </Grid>
 
       <Grid item>

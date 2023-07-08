@@ -1,4 +1,4 @@
-import TextInput from "./TextInput";
+import BaseCustomInput from "./BaseCustomInput.tsx";
 
 interface IProps {
   name: string;
@@ -6,14 +6,13 @@ interface IProps {
   required?: boolean;
 }
 
-export default function EmailInput({ name, label }: IProps) {
-
+export default function EmailInput({ name, label, required }: IProps) {
   return (
-    <TextInput
-      required
+    <BaseCustomInput
+      type="email"
       name={name}
       label={label}
-      type="email"
+      required={required}
     />
   );
 }

@@ -1,10 +1,11 @@
 import { ChangeEvent } from "react";
-import { Field, FormikErrors } from "formik";
-import { TextField } from "formik-mui";
+import { FormikErrors } from "formik";
+import BaseCustomInput from "./BaseCustomInput.tsx";
 
 interface IProps<FormFieldsType> {
   name: string;
   label: string;
+  required?: boolean;
   setFieldValue: (
     field: string,
     value: string
@@ -15,6 +16,7 @@ interface IProps<FormFieldsType> {
 export default function IntegerNumberInput<FormFieldsType>({
   name,
   label,
+  required,
   setFieldValue,
   setFieldTouched,
 }: IProps<FormFieldsType>) {
@@ -30,15 +32,14 @@ export default function IntegerNumberInput<FormFieldsType>({
   };
 
   return (
-    <Field
-      required
-      fullWidth
+    <BaseCustomInput
       type="text"
-      inputMode="numeric"
-      component={TextField}
       name={name}
       label={label}
+      required={required}
       onChange={handleChange}
     />
   );
 }
+
+IntegerNumberInput.defaultProps = { required: false };

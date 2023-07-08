@@ -9,7 +9,7 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint-fix": "eslint src --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "check-pr": "npm run lint && npm run build"
+    "pr-check": "npm run lint-fix && npm run build"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
