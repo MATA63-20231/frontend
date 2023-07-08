@@ -21,7 +21,7 @@ export default function BaseCustomInput({
   endAdornment,
   onChange,
 }: IProps) {
-  return (
+  return onChange ? (
     <Field
       fullWidth
       component={TextField}
@@ -32,6 +32,17 @@ export default function BaseCustomInput({
       required={required}
       InputProps={{ endAdornment }}
       onChange={onChange}
+    />
+  ) : (
+    <Field
+      fullWidth
+      component={TextField}
+      type={type}
+      name={name}
+      label={label}
+      size={size}
+      required={required}
+      InputProps={{ endAdornment }}
     />
   );
 }
