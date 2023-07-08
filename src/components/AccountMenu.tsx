@@ -42,13 +42,13 @@ export default function AccountMenu() {
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <Tooltip title="Minha conta">
           <IconButton
-            sx={{ p: 0, ml: 2, my:-1 }}
+            sx={{ p: 0, ml: 2, my: -1 }}
             onClick={handleClick}
             aria-controls={isMenuOpen ? "account-menu" : undefined}
             aria-expanded={isMenuOpen ? "true" : undefined}
             aria-haspopup="true"
           >
-            <AccountCircleIcon sx={{fontSize:48}} color="primary" />
+            <AccountCircleIcon sx={{ fontSize: 48 }} color="primary" />
           </IconButton>
         </Tooltip>
       </Box>

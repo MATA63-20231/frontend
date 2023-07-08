@@ -7,18 +7,19 @@ import Fab from "@mui/material/Fab";
 export default function BackToPreviousPage() {
   const navigate = useNavigate();
 
-  const handleClick = () => {navigate(-1)};
+  const handleClick = () => { navigate(-1); };
 
   return (
     <Tooltip title="Voltar para a página anterior">
-        <Box
-          onClick={handleClick}
-          role="presentation"
-          sx={{ mt: 1, ml: 2, alignSelf: "flex-start" }}>
-          <Fab size="small" aria-label="Voltar para  a página anterior">
-            <KeyboardArrowLeftIcon />
-          </Fab>
-        </Box>
-      </Tooltip>
+      <Box
+        onClick={handleClick}
+        role="presentation"
+        sx={{ mt: 1, ml: 2, alignSelf: "flex-start" }}
+      >
+        <Fab size="small" aria-label="Voltar para  a página anterior">
+          <KeyboardArrowLeftIcon />
+        </Fab>
+      </Box>
+    </Tooltip>
   );
 }

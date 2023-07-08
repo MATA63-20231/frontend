@@ -1,11 +1,10 @@
 import { PropsWithChildren } from "react";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Loading from "./Loading.tsx";
 import Grid from "@mui/material/Grid";
+import Loading from "./Loading.tsx";
 import BackToPreviousPage from "./BackToPreviousPage.tsx";
 import ScrollToTop from "./ScrollToTop.tsx";
-
 
 interface IProps {
   title?: string;
@@ -28,7 +27,8 @@ export default function Page({
           sx={{
             margin: "0 auto",
             pb: 4,
-          }}>
+          }}
+        >
           <Typography variant="h2" sx={{ textTransform: "uppercase" }}>
             {pretitle}
           </Typography>

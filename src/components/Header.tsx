@@ -21,12 +21,14 @@ export default function Header() {
         py: 3,
         justifyContent: "space-between",
         overflowX: "auto",
-      }}>
+      }}
+    >
       <Link href="/" sx={{ color: "inherit", textDecoration: "none" }}>
         <Grid
           container
           direction="row"
-          sx={{ flexWrap: "nowrap", alignItems: "center" }}>
+          sx={{ flexWrap: "nowrap", alignItems: "center" }}
+        >
           <CardMedia
             sx={{ height: "100%", width: "35px", mr: 1.5 }}
             component="img"
@@ -44,14 +46,16 @@ export default function Header() {
         container
         direction="row"
         alignItems="center"
-        justifyContent="flex-end">
+        justifyContent="flex-end"
+      >
         <Grid item>
           {!isLogged && (
             <Button
               variant="outlined"
               href="login"
               startIcon={<AccountCircleIcon color="primary" />}
-              sx={{ mr: 2, color: "secondary.main" }}>
+              sx={{ mr: 2, color: "secondary.main" }}
+            >
               Login
             </Button>
           )}
