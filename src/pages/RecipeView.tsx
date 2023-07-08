@@ -28,7 +28,7 @@ export default function RecipeView() {
   // }, []);
 
   return (
-    <Page title="Título da Receita">
+    <Page title="Título da Receita" pretitle="Confira esta receita">
       <Grid container sx={{ m: "0 auto", maxWidth: "700px" }}>
         <Card>
           <CardMedia
