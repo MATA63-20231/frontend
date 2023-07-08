@@ -1,6 +1,6 @@
+import { CSSProperties } from "react";
 import "notistack";
 import "@mui/material";
-import { CSSProperties } from "react";
 
 // Add the 'title' props to snackBars
 declare module "notistack" {
