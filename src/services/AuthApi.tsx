@@ -1,14 +1,18 @@
 import { NavigateFunction } from "react-router-dom";
 import { enqueueSnackbar } from "notistack";
-import { ILoginData, IRegister } from "../interfaces/AuthInterfaces.tsx";
-import { POST } from "./Api.tsx";
+import {
+  ILogin,
+  ILoginResponse,
+  IUserRegister,
+} from "../interfaces/AuthInterfaces.tsx";
+import { POST, api } from "./Api.tsx";
 
 export const signUp = (
-  userData: IRegister,
+  userData: IUserRegister,
   navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void,
+  setLoading: (loading: boolean) => void
 ) => {
-  POST<IRegister, IRegister>({
+  POST<IUserRegister, IUserRegister>({
     path: "/usuario",
     body: userData,
     setLoading,
@@ -23,25 +27,38 @@ export const signUp = (
 };
 
 export const login = (
-  loginData: ILoginData,
+  loginData: ILogin,
   navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void,
+  setSigned: (signed: boolean) => void,
+  setLoading: (loading: boolean) => void
 ) => {
-  POST<ILoginData, ILoginData>({
+  const onSuccess = ({ token }: ILoginResponse) => {
+    // TODO: Uncomment the below codes when token is returned by backend
+    // if (token) {
+    enqueueSnackbar({
+      variant: "success",
+      message: "Login efetuado com sucesso!",
+    });
+
+    setSigned(true);
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+
+    // TODO: Remove this ugly ternary when token is returned by backend
+    localStorage.setItem("token", token ? token : "null");
+    // localStorage.setItem("token", token);
+
+    navigate("/");
+    // } else {
+    //  enqueueSnackbar({
+    //    variant: "error",
+    //  });
+    // }
+  };
+
+  POST<ILoginResponse, ILogin>({
     path: "/usuario/authenticate",
     body: loginData,
     setLoading,
-    onSuccess: () => {
-      enqueueSnackbar({
-        variant: "success",
-        message: "Login efetuado com sucesso!",
-      });
-      localStorage.setItem("IsLogged", "true");
-      // TODO: Change to navigate(-1) when fix the reload need
-      // navigate(-1);
-      navigate("/");
-      // eslint-disable-next-line no-restricted-globals
-      location.reload();
-    },
+    onSuccess,
   });
 };

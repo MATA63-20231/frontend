@@ -6,20 +6,23 @@ import defaultTheme from "./config/theme.tsx";
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
 import CustomSnackBarProvider from "./components/CustomSnackBars/CustomSnackBarProvider.tsx";
+import { AuthProvider } from "./contexts/AuthContext.tsx";
 
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <CustomSnackBarProvider />
-      <CssBaseline />
+      <AuthProvider>
+        <CustomSnackBarProvider />
+        <CssBaseline />
 
-      <Header />
+        <Header />
 
-      <Grid sx={{ minHeight: "calc(100vh - 135px)", bgcolor: "#eeeeee" }}>
-        <Outlet />
-      </Grid>
+        <Grid sx={{ minHeight: "calc(100vh - 135px)", bgcolor: "#eeeeee" }}>
+          <Outlet />
+        </Grid>
 
-      <Footer />
+        <Footer />
+      </AuthProvider>
     </ThemeProvider>
   );
 }
