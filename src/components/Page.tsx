@@ -1,10 +1,10 @@
 import { PropsWithChildren, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { IRouteAuthRules } from "../interfaces/AuthInterfaces.tsx";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
-import { IRouteAuthRules } from "../interfaces/AuthInterfaces.tsx";
 import Loading from "./Loading.tsx";
 import BackToPreviousPage from "./BackToPreviousPage.tsx";
 import ScrollToTop from "./ScrollToTop.tsx";

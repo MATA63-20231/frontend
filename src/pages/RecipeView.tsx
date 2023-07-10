@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getRecipeDetails } from "../services/RecipesApi.tsx";
-import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import CardMedia from "@mui/material/CardMedia";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
@@ -13,6 +11,8 @@ import RamenDiningIcon from "@mui/icons-material/RamenDiningOutlined";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
+import { getRecipeDetails } from "../services/RecipesApi.tsx";
 import Page from "../components/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import NoImage from "../assets/noimage.svg";

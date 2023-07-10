@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { getAllRecipes } from "../services/RecipesApi.tsx";
-import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
+import { getAllRecipes } from "../services/RecipesApi.tsx";
 import Page from "../components/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import NoImage from "../assets/noimage.svg";
