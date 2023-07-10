@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Person } from "@mui/icons-material";
 import { Grid, ListItem, Typography } from "@mui/material";
@@ -11,11 +11,15 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AuthContext from "../contexts/AuthContext";
+import { api } from "../services/Api";
 
 export default function AccountMenu() {
+  const navigate = useNavigate();
+  const { setSigned } = useContext(AuthContext);
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
-  const navigate = useNavigate();
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -26,10 +30,10 @@ export default function AccountMenu() {
   };
 
   const logout = () => {
+    setSigned(false);
+    api.defaults.headers.Authorization = null;
     localStorage.clear();
     navigate("/");
-    // eslint-disable-next-line no-restricted-globals
-    location.reload();
   };
 
   const navigateToMyRecipes = () => {
@@ -46,8 +50,7 @@ export default function AccountMenu() {
             onClick={handleClick}
             aria-controls={isMenuOpen ? "account-menu" : undefined}
             aria-expanded={isMenuOpen ? "true" : undefined}
-            aria-haspopup="true"
-          >
+            aria-haspopup="true">
             <AccountCircleIcon sx={{ fontSize: 48 }} color="primary" />
           </IconButton>
         </Tooltip>
@@ -59,8 +62,7 @@ export default function AccountMenu() {
         open={isMenuOpen}
         onClose={handleClose}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
-        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-      >
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}>
         <ListItem sx={{ pt: 0 }}>
           <Grid sx={{ width: "100%" }}>
             <Typography
@@ -70,8 +72,7 @@ export default function AccountMenu() {
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
-              }}
-            >
+              }}>
               Minha conta
             </Typography>
           </Grid>
