@@ -1,14 +1,18 @@
 import { NavigateFunction } from "react-router-dom";
 import { enqueueSnackbar } from "notistack";
-import { ILoginData, IRegister } from "../interfaces/AuthInterfaces.tsx";
+import {
+  ILogin,
+  ILoginResponse,
+  IUserRegister,
+} from "../interfaces/AuthInterfaces.tsx";
 import { POST } from "./Api.tsx";
 
 export const signUp = (
-  userData: IRegister,
+  userData: IUserRegister,
   navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
 ) => {
-  POST<IRegister, IRegister>({
+  POST<IUserRegister, IUserRegister>({
     path: "/usuario",
     body: userData,
     setLoading,
@@ -23,23 +27,31 @@ export const signUp = (
 };
 
 export const login = (
-  loginData: ILoginData,
-  navigate: NavigateFunction,
+  loginData: ILogin,
+  handleLogin: (token: string) => void,
   setLoading: (loading: boolean) => void,
 ) => {
-  POST<ILoginData, ILoginData>({
+  const onSuccess = ({ token }: ILoginResponse) => {
+    // TODO: Uncomment the below codes when token is returned by backend
+    // if (token) {
+    enqueueSnackbar({
+      variant: "success",
+      message: "Login efetuado com sucesso!",
+    });
+
+    handleLogin(token);
+
+    // } else {
+    //  enqueueSnackbar({
+    //    variant: "error",
+    //  });
+    // }
+  };
+
+  POST<ILoginResponse, ILogin>({
     path: "/usuario/authenticate",
     body: loginData,
     setLoading,
-    onSuccess: () => {
-      enqueueSnackbar({
-        variant: "success",
-        message: "Login efetuado com sucesso!",
-      });
-      localStorage.setItem("IsLogged", "true");
-      navigate("/");
-      // eslint-disable-next-line no-restricted-globals
-      location.reload();
-    },
+    onSuccess,
   });
 };

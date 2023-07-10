@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import "notistack";
 import "@mui/material";
 

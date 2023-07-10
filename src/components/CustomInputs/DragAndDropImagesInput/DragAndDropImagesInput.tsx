@@ -88,7 +88,7 @@ export default function DragAndDropImagesInput<FormFieldsType>({
             sx={{ textAlign: "center", fontWeight: 600, mb: 2 }}
           >
             Erro:
-            {" "}
+            &nbsp;
             {errors}
           </FormHelperText>
         )}

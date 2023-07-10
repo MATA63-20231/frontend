@@ -40,44 +40,13 @@ export default function RecipeView() {
   }, [recipeId]);
 
   return (
-    <Page title={recipe.titulo} loading={loading}>
-      <Grid
-        container
-        sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}
-      >
-        <Stack>
-          <Typography color="secondary.main">
-            Postado por *** em
-            {` ${recipe.dataCadastro.substring(
-              8,
-              10
-            )}/${recipe.dataCadastro.substring(
-              5,
-              7
-            )}/${recipe.dataCadastro.substring(0, 4)}`}
-          </Typography>
-        </Stack>
-
-        <Card sx={{ width: "600px" }}>
-          {recipe.imagens.length > 0 ? (
-            <CardMedia
-              component="img"
-              title={recipe.titulo}
-              image="https://picsum.photos/200"
-              sx={{ height: "400px" }}
-            />
-          ) : (
-            <CardMedia
-              component="img"
-              title={recipe.titulo}
-              image={NoImage}
-              sx={{
-                width: "20%",
-                margin: "auto",
-                py: 12,
-              }}
-            />
-          )}
+    <Page title="Título da Receita" pretitle="Confira esta receita">
+      <Grid container sx={{ m: "0 auto", maxWidth: "700px" }}>
+        <Card>
+          <CardMedia
+            component="img"
+            image="https://source.unsplash.com/random?wallpapers"
+          />
           <Stack
             direction={{ xs: "column", md: "row" }}
             spacing={{ xs: 0.5, md: 1 }}

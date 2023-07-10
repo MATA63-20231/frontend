@@ -58,18 +58,14 @@ const defaultTheme = createTheme({
       },
     },
     MuiButton: {
-      variants: [
-        {
-          props: { variant: "contained" },
-          style: {
-            fontSize: "14px",
-            padding: "8px 20px",
-            marginLeft: "30px",
-            borderRadius: "50px",
-            transition: "0.3s",
-          },
+      styleOverrides: {
+        root: {
+          fontSize: "14px",
+          padding: "8px 20px",
+          borderRadius: "50px",
+          transition: "0.3s",
         },
-      ],
+      },
     },
     MuiAlert: {
       styleOverrides: { message: { width: "100%" } },
