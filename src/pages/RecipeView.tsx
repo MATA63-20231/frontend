@@ -32,7 +32,8 @@ export default function RecipeView() {
     <Page
       title="Título da Receita"
       pretitle="Confira esta receita"
-      authRule={{ rule: RouteAuthRules.NO_RULE }}>
+      authRule={{ rule: RouteAuthRules.NO_RULE }}
+    >
       <Grid container sx={{ m: "0 auto", maxWidth: "700px" }}>
         <Card>
           <CardMedia
@@ -45,7 +46,8 @@ export default function RecipeView() {
             sx={{
               px: 1,
               py: 2,
-            }}>
+            }}
+          >
             <Stack
               direction="row"
               spacing={0.5}
@@ -55,14 +57,16 @@ export default function RecipeView() {
                 justifyContent: "center",
                 minWidth: 0,
                 width: "100%",
-              }}>
+              }}
+            >
               <TimerIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                }}>
+                }}
+              >
                 1h30min
               </Typography>
             </Stack>
@@ -80,14 +84,16 @@ export default function RecipeView() {
                 justifyContent: "center",
                 minWidth: 0,
                 width: "100%",
-              }}>
+              }}
+            >
               <RamenDiningIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                }}>
+                }}
+              >
                 40 porções
               </Typography>
             </Stack>
@@ -105,14 +111,16 @@ export default function RecipeView() {
                 justifyContent: "center",
                 minWidth: 0,
                 width: "100%",
-              }}>
+              }}
+            >
               <PersonOutlinedIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                }}>
+                }}
+              >
                 Beatriz Cerqueira
               </Typography>
             </Stack>
@@ -130,14 +138,16 @@ export default function RecipeView() {
                 justifyContent: "center",
                 minWidth: 0,
                 width: "100%",
-              }}>
+              }}
+            >
               <CalendarMonthIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                }}>
+                }}
+              >
                 06/06/2023
               </Typography>
             </Stack>
@@ -147,7 +157,8 @@ export default function RecipeView() {
             container
             direction="column"
             alignItems="flex-start"
-            sx={{ p: 2 }}>
+            sx={{ p: 2 }}
+          >
             <Grid item>
               <Typography variant="h6">Ingredientes</Typography>
 

@@ -6,12 +6,12 @@ import LoginForm from "./components/LoginForm.tsx";
 import RouteAuthRules from "../../enums/RouteAuthRules.tsx";
 
 export default function Login() {
-
   return (
     <Page
       title="Login"
       pretitle="Entre para aproveitar todas as funcionalidades da nossa plataforma"
-      authRule={{ rule: RouteAuthRules.NO_SIGNED_ONLY }}>
+      authRule={{ rule: RouteAuthRules.NO_SIGNED_ONLY }}
+    >
       <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>
         <LoginForm />
 

@@ -1,10 +1,10 @@
 import { PropsWithChildren, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { IRouteAuthRules } from "../interfaces/AuthInterfaces.tsx";
-import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import RouteAuthRules from "../enums/RouteAuthRules.tsx";
+import { IRouteAuthRules } from "../interfaces/AuthInterfaces.tsx";
 import Loading from "./Loading.tsx";
 import BackToPreviousPage from "./BackToPreviousPage.tsx";
 import ScrollToTop from "./ScrollToTop.tsx";
@@ -29,32 +29,32 @@ export default function Page({
 
   useEffect(() => {
     switch (authRule.rule) {
-      case RouteAuthRules.SIGNED_ONLY: {
-        if (!signed) {
-          navigate("/login", {state: "redirect"});
-        }
-        break;
+    case RouteAuthRules.SIGNED_ONLY: {
+      if (!signed) {
+        navigate("/login");
       }
-
-      case RouteAuthRules.NO_SIGNED_ONLY: {
-        if (signed) {
-          navigate("/");
-        }
-        break;
-      }
-
-      case RouteAuthRules.SAME_USER_ONLY: {
-        if (!signed || !authRule.userId || authRule.userId !== "TODO") {
-          navigate(authRule.redirectTo);
-        }
-        break;
-      }
-
-      default: {
-        break;
-      }
+      break;
     }
-  }, [signed]);
+
+    case RouteAuthRules.NO_SIGNED_ONLY: {
+      if (signed) {
+        navigate("/");
+      }
+      break;
+    }
+
+    case RouteAuthRules.SAME_USER_ONLY: {
+      if (!signed || !authRule.userId || authRule.userId !== "TODO") {
+        navigate(authRule.redirectTo);
+      }
+      break;
+    }
+
+    default: {
+      break;
+    }
+    }
+  }, [signed, authRule, navigate]);
 
   return (
     <>
@@ -65,7 +65,8 @@ export default function Page({
           sx={{
             margin: "0 auto",
             pb: 4,
-          }}>
+          }}
+        >
           <Typography variant="h2" sx={{ textTransform: "uppercase" }}>
             {pretitle}
           </Typography>

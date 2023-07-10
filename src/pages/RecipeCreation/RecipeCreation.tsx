@@ -8,7 +8,8 @@ export default function RecipeCreation() {
     <Page
       title="Nova receita"
       pretitle="Compartilhe sua receita com o mundo"
-      authRule={{ rule: RouteAuthRules.SIGNED_ONLY }}>
+      authRule={{ rule: RouteAuthRules.SIGNED_ONLY }}
+    >
       <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>
         <RecipeCreationForm />
       </Grid>

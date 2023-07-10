@@ -10,7 +10,8 @@ export default function Register() {
     <Page
       title="Cadastre-se"
       pretitle="Cadastre-se para ter acesso a todas as funcionalidades da nossa plataforma"
-      authRule={{ rule: RouteAuthRules.NO_SIGNED_ONLY }}>
+      authRule={{ rule: RouteAuthRules.NO_SIGNED_ONLY }}
+    >
       <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>
         <RegisterForm />
 

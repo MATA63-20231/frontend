@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+
 export enum RouteUserRules {
   SAME_USER_ONLY,
 }

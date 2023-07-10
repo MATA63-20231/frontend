@@ -1,4 +1,4 @@
-import { RouteGeneralRules, RouteUserRules } from "../enums/RouteAuthRules";
+import { RouteGeneralRules, RouteUserRules } from "../enums/RouteAuthRules.tsx";
 
 export interface ILogin {
   usuario: string;
