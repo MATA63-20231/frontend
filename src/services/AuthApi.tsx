@@ -5,7 +5,7 @@ import {
   ILoginResponse,
   IUserRegister,
 } from "../interfaces/AuthInterfaces.tsx";
-import { POST, api } from "./Api.tsx";
+import { POST } from "./Api.tsx";
 
 export const signUp = (
   userData: IUserRegister,
@@ -28,8 +28,7 @@ export const signUp = (
 
 export const login = (
   loginData: ILogin,
-  navigate: NavigateFunction,
-  setSigned: (signed: boolean) => void,
+  handleLogin: (token: string) => void,
   setLoading: (loading: boolean) => void
 ) => {
   const onSuccess = ({ token }: ILoginResponse) => {
@@ -40,14 +39,8 @@ export const login = (
       message: "Login efetuado com sucesso!",
     });
 
-    setSigned(true);
-    api.defaults.headers.Authorization = `Bearer ${token}`;
+    handleLogin(token);
 
-    // TODO: Remove this ugly ternary when token is returned by backend
-    localStorage.setItem("token", token ? token : "null");
-    // localStorage.setItem("token", token);
-
-    navigate("/");
     // } else {
     //  enqueueSnackbar({
     //    variant: "error",

@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { Formik, Form, FormikHelpers } from "formik";
 import { Grid } from "@mui/material";
 import { ILogin } from "../../../interfaces/AuthInterfaces.tsx";
@@ -10,14 +9,13 @@ import LoadingButton from "../../../components/LoadingButton.tsx";
 import AuthContext from "../../../contexts/AuthContext.tsx";
 
 export default function LoginForm() {
-  const navigate = useNavigate();
-  const { setSigned } = useContext(AuthContext);
+  const { handleLogin } = useContext(AuthContext);
 
   const handleSubmit = (
     values: ILogin,
     { setSubmitting }: FormikHelpers<ILogin>
   ) => {
-    login(values, navigate, setSigned, setSubmitting);
+    login(values, handleLogin, setSubmitting);
   };
 
   return (
