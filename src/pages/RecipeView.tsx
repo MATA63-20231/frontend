@@ -6,8 +6,6 @@ import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import TimerIcon from "@mui/icons-material/TimerOutlined";
 import RamenDiningIcon from "@mui/icons-material/RamenDiningOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonthOutlined";
 import { List, ListItem, ListItemText } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -47,6 +45,19 @@ export default function RecipeView() {
         container
         sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}
       >
+        <Stack>
+          <Typography color="secondary.main">
+            Postado por *** em
+            {` ${recipe.dataCadastro.substring(
+              8,
+              10
+            )}/${recipe.dataCadastro.substring(
+              5,
+              7
+            )}/${recipe.dataCadastro.substring(0, 4)}`}
+          </Typography>
+        </Stack>
+
         <Card sx={{ width: "600px" }}>
           {recipe.imagens.length > 0 ? (
             <CardMedia
@@ -87,6 +98,7 @@ export default function RecipeView() {
               }}
             >
               <TimerIcon fontSize="small" color="primary" />
+
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
@@ -94,7 +106,8 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                {recipe.tempoPreparo.horas}h{recipe.tempoPreparo.minutos}min{" "}
+                Tempo de preparo: {recipe.tempoPreparo.horas}h
+                {recipe.tempoPreparo.minutos}min
               </Typography>
             </Stack>
             <Divider
@@ -121,64 +134,7 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                {recipe.rendimento} porções
-              </Typography>
-            </Stack>
-            <Divider
-              orientation="vertical"
-              sx={{ borderColor: "primary.light" }}
-              flexItem
-            />
-            <Stack
-              direction="row"
-              spacing={0.5}
-              sx={{
-                flexWrap: "nowrap",
-                alignItems: "center",
-                justifyContent: "center",
-                minWidth: 0,
-                width: "100%",
-              }}
-            >
-              <PersonOutlinedIcon fontSize="small" color="primary" />
-              <Typography
-                sx={{
-                  textOverflow: "ellipsis",
-                  overflow: "hidden",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                ***** {/* TODO: Preencher autor */}
-              </Typography>
-            </Stack>
-            <Divider
-              orientation="vertical"
-              sx={{ borderColor: "primary.light" }}
-              flexItem
-            />
-            <Stack
-              direction="row"
-              spacing={0.5}
-              sx={{
-                flexWrap: "nowrap",
-                alignItems: "center",
-                justifyContent: "center",
-                minWidth: 0,
-                width: "100%",
-              }}
-            >
-              <CalendarMonthIcon fontSize="small" color="primary" />
-              <Typography
-                sx={{
-                  textOverflow: "ellipsis",
-                  overflow: "hidden",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {`${recipe.dataCadastro.substring(
-                  5,
-                  7
-                )}/${recipe.dataCadastro.substring(0, 4)}`}
+                Rendimento: {recipe.rendimento} porções
               </Typography>
             </Stack>
           </Stack>
