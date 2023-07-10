@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PersonIcon from "@mui/icons-material/Person";
-import AuthContext from "../contexts/AuthContext.tsx";
+import AuthContext from "../../contexts/AuthContext.tsx";
 
 export default function AccountMenu() {
   const navigate = useNavigate();

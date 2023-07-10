@@ -1,4 +1,4 @@
-import Page from "../components/Page.tsx";
+import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 
 export default function NotFound() {

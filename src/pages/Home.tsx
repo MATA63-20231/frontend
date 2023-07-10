@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import { getAllRecipes } from "../services/RecipesApi.tsx";
-import Page from "../components/Page.tsx";
+import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import NoImage from "../assets/noimage.svg";
 
