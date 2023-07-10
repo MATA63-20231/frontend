@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import CardMedia from "@mui/material/CardMedia";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
@@ -6,12 +8,13 @@ import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import TimerIcon from "@mui/icons-material/TimerOutlined";
 import RamenDiningIcon from "@mui/icons-material/RamenDiningOutlined";
-import { List, ListItem, ListItemText } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Page from "../components/Page.tsx";
-import { getRecipeDetails } from "../services/RecipesApi.tsx";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
+import { getRecipeDetails } from "../services/RecipesApi.tsx";
+import Page from "../components/Page.tsx";
+import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import NoImage from "../assets/noimage.svg";
 
 // TODO: Avaliação e comentários
@@ -43,6 +46,7 @@ export default function RecipeView() {
     <Page
       title="Título da Receita"
       pretitle="Confira esta receita"
+      authRule={{ rule: RouteAuthRules.NO_RULE }}
       loading={loading}
     >
       <Grid
