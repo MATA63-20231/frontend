@@ -9,7 +9,7 @@ import { GET, POST } from "./Api.tsx";
 
 const getAllRecipes = (
   setLoading: (loading: boolean) => void,
-  setRecipes: (recipes: IRecipe[]) => void
+  setRecipes: (recipes: IRecipe[]) => void,
 ) => {
   GET<IRecipe[]>({
     path: "/receita/all",
@@ -21,7 +21,7 @@ const getAllRecipes = (
 const createRecipe = (
   recipe: IRecipeCreation,
   navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void,
 ) => {
   POST<IRecipe, IRecipeCreation>({
     path: "/receita",
@@ -40,7 +40,7 @@ const createRecipe = (
 const getRecipeDetails = (
   recipeId: string,
   setLoading: (loading: boolean) => void,
-  setRecipe: (recipes: IRecipeRead) => void
+  setRecipe: (recipes: IRecipeRead) => void,
 ) => {
   GET<IRecipeRead>({
     path: `/receita/${recipeId}`,

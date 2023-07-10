@@ -1,4 +1,3 @@
-import CardMedia from "@mui/material/CardMedia";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -13,7 +12,6 @@ import Page from "../components/Page.tsx";
 import { getRecipeDetails } from "../services/RecipesApi.tsx";
 import { IRecipeRead } from "../interfaces/RecipeInterfaces.tsx";
 import ImagesCarousel from "../components/Carousel.tsx";
-
 
 // TODO: Avaliação e comentários
 
@@ -63,10 +61,10 @@ export default function RecipeView() {
             Postado por ***** em
             {` ${recipe.dataCadastro.substring(
               8,
-              10
+              10,
             )}/${recipe.dataCadastro.substring(
               5,
-              7
+              7,
             )}/${recipe.dataCadastro.substring(0, 4)}`}
           </Typography>
         </Stack>
@@ -102,9 +100,10 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                Tempo de preparo:{" "}
-                {recipe.tempoPreparo.horas > 0 &&
-                  `${recipe.tempoPreparo.horas}h`}
+                Tempo de preparo:
+                {" "}
+                {recipe.tempoPreparo.horas > 0
+                  && `${recipe.tempoPreparo.horas}h`}
                 {recipe.tempoPreparo.minutos}
                 min
               </Typography>
@@ -133,7 +132,10 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                Rendimento: {recipe.rendimento}{" "}
+                Rendimento:
+                {" "}
+                {recipe.rendimento}
+                {" "}
                 {recipe.rendimento > 1 ? "porções" : "porção"}
               </Typography>
             </Stack>
