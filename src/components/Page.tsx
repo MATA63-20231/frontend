@@ -1,9 +1,9 @@
 import { PropsWithChildren, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { IRouteAuthRules } from "../interfaces/AuthInterfaces.tsx";
+import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import { IRouteAuthRules } from "../interfaces/AuthInterfaces.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import Loading from "./Loading.tsx";
 import BackToPreviousPage from "./BackToPreviousPage.tsx";
