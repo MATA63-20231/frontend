@@ -5,7 +5,7 @@ import { GET, POST } from "./Api.tsx";
 
 const getAllRecipes = (
   setLoading: (loading: boolean) => void,
-  setRecipes:(recipes: IRecipe[]) => void,
+  setRecipes: (recipes: IRecipe[]) => void,
 ) => {
   GET<IRecipe[]>({
     path: "/receita/all",
