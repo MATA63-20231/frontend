@@ -1,8 +1,8 @@
 import * as Yup from "yup";
 import YupHelpers from "../../../enums/YupHelpers.tsx";
-import { IRegister } from "../../../interfaces/AuthInterfaces.tsx";
+import { IUserRegister } from "../../../interfaces/AuthInterfaces.tsx";
 
-export const initialValues: IRegister = {
+export const initialValues: IUserRegister = {
   usuario: "",
   senha: "",
   nome: "",
@@ -10,7 +10,7 @@ export const initialValues: IRegister = {
   confirmacaoSenha: "",
 };
 
-const RegisterSchema = Yup.object<IRegister>().shape({
+const RegisterSchema = Yup.object<IUserRegister>().shape({
   usuario: YupHelpers.STRING_REQUIRED,
   senha: YupHelpers.STRING_REQUIRED,
   nome: YupHelpers.STRING_REQUIRED,

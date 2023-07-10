@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -7,11 +8,10 @@ import CardMedia from "@mui/material/CardMedia";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Logo from "../assets/logo.svg";
 import AccountMenu from "./AccountMenu.tsx";
+import AuthContext from "../contexts/AuthContext.tsx";
 
 export default function Header() {
-  const LOCAL_STORAGE_KEY = "IsLogged";
-
-  const isLogged = localStorage.getItem(LOCAL_STORAGE_KEY) != null;
+  const { signed } = useContext(AuthContext);
 
   return (
     <Toolbar
@@ -49,7 +49,7 @@ export default function Header() {
         justifyContent="flex-end"
       >
         <Grid item>
-          {!isLogged && (
+          {!signed && (
             <Button
               variant="outlined"
               href="login"
@@ -67,7 +67,7 @@ export default function Header() {
           </Button>
         </Grid>
 
-        <Grid item>{isLogged && <AccountMenu />}</Grid>
+        <Grid item>{signed && <AccountMenu />}</Grid>
       </Grid>
     </Toolbar>
   );

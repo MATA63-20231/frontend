@@ -1,7 +1,6 @@
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Person } from "@mui/icons-material";
-import { Grid, ListItem, Typography } from "@mui/material";
+import { enqueueSnackbar } from "notistack";
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,13 +8,20 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import Logout from "@mui/icons-material/Logout";
+import Grid from "@mui/material/Grid";
+import ListItem from "@mui/material/ListItem";
+import Typography from "@mui/material/Typography";
+import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import PersonIcon from "@mui/icons-material/Person";
+import AuthContext from "../contexts/AuthContext.tsx";
 
 export default function AccountMenu() {
+  const navigate = useNavigate();
+  const { handleLogout } = useContext(AuthContext);
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
-  const navigate = useNavigate();
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -26,10 +32,11 @@ export default function AccountMenu() {
   };
 
   const logout = () => {
-    localStorage.clear();
-    navigate("/");
-    // eslint-disable-next-line no-restricted-globals
-    location.reload();
+    handleLogout();
+    enqueueSnackbar({
+      variant: "success",
+      message: "Você foi deslogado com sucesso!",
+    });
   };
 
   const navigateToMyRecipes = () => {
@@ -79,13 +86,13 @@ export default function AccountMenu() {
         <Divider />
         <MenuItem onClick={navigateToMyRecipes}>
           <ListItemIcon>
-            <Person fontSize="small" />
+            <PersonIcon fontSize="small" />
           </ListItemIcon>
           Minhas receitas
         </MenuItem>
         <MenuItem onClick={logout}>
           <ListItemIcon>
-            <Logout fontSize="small" />
+            <LogoutIcon fontSize="small" />
           </ListItemIcon>
           Sair
         </MenuItem>

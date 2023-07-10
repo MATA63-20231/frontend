@@ -76,4 +76,4 @@ function POST<DataType, BodyType>({
   });
 }
 
-export { GET, POST };
+export { api, GET, POST };
