@@ -1,11 +1,15 @@
 import { enqueueSnackbar } from "notistack";
 import { NavigateFunction } from "react-router-dom";
-import { IRecipe, IRecipeCreation } from "../interfaces/RecipeInterfaces.tsx";
+import {
+  IRecipe,
+  IRecipeCreation,
+  IRecipeRead,
+} from "../interfaces/RecipeInterfaces.tsx";
 import { GET, POST } from "./Api.tsx";
 
 const getAllRecipes = (
   setLoading: (loading: boolean) => void,
-  setRecipes: (recipes: IRecipe[]) => void,
+  setRecipes: (recipes: IRecipe[]) => void
 ) => {
   GET<IRecipe[]>({
     path: "/receita/all",
@@ -17,7 +21,7 @@ const getAllRecipes = (
 const createRecipe = (
   recipe: IRecipeCreation,
   navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void,
+  setLoading: (loading: boolean) => void
 ) => {
   POST<IRecipe, IRecipeCreation>({
     path: "/receita",
@@ -36,9 +40,9 @@ const createRecipe = (
 const getRecipeDetails = (
   recipeId: string,
   setLoading: (loading: boolean) => void,
-  setRecipe: (recipes: IRecipe) => void,
+  setRecipe: (recipes: IRecipeRead) => void
 ) => {
-  GET<IRecipe>({
+  GET<IRecipeRead>({
     path: `/receita/${recipeId}`,
     setLoading,
     onSuccess: (data) => setRecipe(data),

@@ -26,6 +26,12 @@ interface IItemPreparo {
   id?: string;
 }
 
+export interface IImage {
+  id: string;
+  ordem: number;
+  nome: string;
+}
+
 export interface IRecipeCreation {
   titulo: string;
   descricao: string;
@@ -39,4 +45,16 @@ export interface IRecipeCreation {
 export interface IRecipe extends IRecipeCreation {
   id: string;
   dataCadastro: string;
+}
+
+export interface IRecipeRead {
+  id: string;
+  dataCadastro: string;
+  titulo: string;
+  descricao: string;
+  rendimento: number;
+  tempoPreparo: ITempoPreparo;
+  ingredientes: IIngrediente[];
+  listaPreparo: IItemPreparo[];
+  imagens: IImage[];
 }
