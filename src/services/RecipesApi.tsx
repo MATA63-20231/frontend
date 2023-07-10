@@ -33,4 +33,16 @@ const createRecipe = (
   });
 };
 
-export { getAllRecipes, createRecipe };
+const getRecipeDetails = (
+  recipeId: string,
+  setLoading: (loading: boolean) => void,
+  setRecipe: (recipes: IRecipe) => void,
+) => {
+  GET<IRecipe>({
+    path: `/receita/${recipeId}`,
+    setLoading,
+    onSuccess: (data) => setRecipe(data),
+  });
+};
+
+export { getAllRecipes, createRecipe, getRecipeDetails };

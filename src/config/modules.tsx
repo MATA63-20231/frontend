@@ -1,4 +1,3 @@
-import { CSSProperties } from "react";
 import "notistack";
 import "@mui/material";
 
@@ -31,11 +30,13 @@ declare module "@mui/material/styles" {
   }
 
   interface TypographyVariants {
-    mainTitle: CSSProperties;
+    mainTitle: React.CSSProperties;
+    indexList: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
-    mainTitle?: CSSProperties;
+    mainTitle?: React.CSSProperties;
+    indexList: React.CSSProperties;
   }
 }
 
@@ -43,5 +44,7 @@ declare module "@mui/material/styles" {
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     mainTitle: true;
+    indexList: true;
+
   }
 }
