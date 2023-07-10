@@ -14,8 +14,8 @@ import { getRecipeDetails } from "../services/RecipesApi.tsx";
 import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import NoImage from "../assets/noimage.svg";
 
-// TODO: Componentizar rs
 // TODO: Avaliação e comentários
+
 export default function RecipeView() {
   const { recipeId } = useParams();
 
@@ -49,9 +49,17 @@ export default function RecipeView() {
         container
         sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}
       >
-        <Stack>
-          <Typography color="secondary.main">
-            Postado por *** em
+        <Stack sx={{ py: 1 }}>
+          <Typography
+            color="secondary.main"
+            sx={{
+              fontSize: "13px",
+              letterSpacing: "1px",
+              fontWeight: 400,
+              textAlign: "start",
+            }}
+          >
+            Postado por ***** em
             {` ${recipe.dataCadastro.substring(
               8,
               10
@@ -61,7 +69,6 @@ export default function RecipeView() {
             )}/${recipe.dataCadastro.substring(0, 4)}`}
           </Typography>
         </Stack>
-
         <Card sx={{ width: "600px" }}>
           {recipe.imagens.length > 0 ? (
             <CardMedia
@@ -110,7 +117,9 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                Tempo de preparo: {recipe.tempoPreparo.horas}h
+                Tempo de preparo:{" "}
+                {recipe.tempoPreparo.horas > 0 &&
+                  recipe.tempoPreparo.horas + "h"}
                 {recipe.tempoPreparo.minutos}min
               </Typography>
             </Stack>
