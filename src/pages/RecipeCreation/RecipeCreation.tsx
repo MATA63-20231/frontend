@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import Page from "../../components/Page.tsx";
+import Page from "../../components/Page/Page.tsx";
 import RecipeCreationForm from "./components/RecipeCreationForm.tsx";
 import RouteAuthRules from "../../enums/RouteAuthRules.tsx";
 

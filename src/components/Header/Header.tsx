@@ -8,7 +8,7 @@ import CardMedia from "@mui/material/CardMedia";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Logo from "../assets/logo.svg";
 import AccountMenu from "./AccountMenu.tsx";
-import AuthContext from "../contexts/AuthContext.tsx";
+import AuthContext from "../../contexts/AuthContext.tsx";
 
 export default function Header() {
   const { signed } = useContext(AuthContext);

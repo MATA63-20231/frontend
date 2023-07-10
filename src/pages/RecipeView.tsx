@@ -13,7 +13,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import { getRecipeDetails } from "../services/RecipesApi.tsx";
-import Page from "../components/Page.tsx";
+import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import NoImage from "../assets/noimage.svg";
 

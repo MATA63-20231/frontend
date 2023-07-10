@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import Page from "../../components/Page.tsx";
+import Page from "../../components/Page/Page.tsx";
 import LoginForm from "./components/LoginForm.tsx";
 import RouteAuthRules from "../../enums/RouteAuthRules.tsx";
 
