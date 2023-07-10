@@ -1,13 +1,14 @@
+import { useState, useEffect } from "react";
+import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
+import { getAllRecipes } from "../services/RecipesApi.tsx";
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { useState, useEffect } from "react";
 import Page from "../components/Page.tsx";
-import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
-import { getAllRecipes } from "../services/RecipesApi.tsx";
+import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 
 export default function Home() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -18,7 +19,11 @@ export default function Home() {
   }, []);
 
   return (
-    <Page pretitle="Confira nossas receitas" title="Receitas" loading={loading}>
+    <Page
+      pretitle="Confira nossas receitas"
+      title="Receitas"
+      loading={loading}
+      authRule={{ rule: RouteAuthRules.NO_RULE }}>
       <Grid container spacing={4}>
         {recipes.map((recipe) => (
           <Grid item key={recipe.id} xs={12} sm={6} md={4}>
@@ -27,8 +32,7 @@ export default function Home() {
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
-              }}
-            >
+              }}>
               <CardActionArea href={`/receita/${recipe.titulo}`}>
                 <CardMedia
                   component="div"
