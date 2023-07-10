@@ -18,10 +18,12 @@ interface ITempoPreparo {
 
 interface IIngrediente {
   descricao: string;
+  id?: string;
 }
 
 interface IItemPreparo {
   descricao: string;
+  id?: string;
 }
 
 export interface IRecipeCreation {

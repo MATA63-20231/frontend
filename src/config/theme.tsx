@@ -38,6 +38,12 @@ const defaultTheme = createTheme({
       padding: 0,
       color: "#7F7F90",
     },
+    indexList: {
+      fontFamily: "Amatic SC",
+      fontSize: 36,
+      fontWeight: 600,
+      color: "#CE1212",
+    },
   },
 
   components: {
