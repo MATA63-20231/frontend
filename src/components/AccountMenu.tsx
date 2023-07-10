@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PersonIcon from "@mui/icons-material/Person";
-import AuthContext from "../contexts/AuthContext";
+import AuthContext from "../contexts/AuthContext.tsx";
 
 export default function AccountMenu() {
   const navigate = useNavigate();
@@ -53,7 +53,8 @@ export default function AccountMenu() {
             onClick={handleClick}
             aria-controls={isMenuOpen ? "account-menu" : undefined}
             aria-expanded={isMenuOpen ? "true" : undefined}
-            aria-haspopup="true">
+            aria-haspopup="true"
+          >
             <AccountCircleIcon sx={{ fontSize: 48 }} color="primary" />
           </IconButton>
         </Tooltip>
@@ -65,7 +66,8 @@ export default function AccountMenu() {
         open={isMenuOpen}
         onClose={handleClose}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
-        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}>
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+      >
         <ListItem sx={{ pt: 0 }}>
           <Grid sx={{ width: "100%" }}>
             <Typography
@@ -75,7 +77,8 @@ export default function AccountMenu() {
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
-              }}>
+              }}
+            >
               Minha conta
             </Typography>
           </Grid>

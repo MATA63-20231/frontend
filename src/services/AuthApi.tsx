@@ -10,7 +10,7 @@ import { POST } from "./Api.tsx";
 export const signUp = (
   userData: IUserRegister,
   navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void,
 ) => {
   POST<IUserRegister, IUserRegister>({
     path: "/usuario",
@@ -29,7 +29,7 @@ export const signUp = (
 export const login = (
   loginData: ILogin,
   handleLogin: (token: string) => void,
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void,
 ) => {
   const onSuccess = ({ token }: ILoginResponse) => {
     // TODO: Uncomment the below codes when token is returned by backend

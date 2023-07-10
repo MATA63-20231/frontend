@@ -1,6 +1,8 @@
-import { PropsWithChildren, createContext, useEffect, useState } from "react";
+import {
+  PropsWithChildren, createContext, useEffect, useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
-import { api } from "../services/Api";
+import { api } from "../services/Api.tsx";
 
 interface AuthContextData {
   signed: boolean;
@@ -10,8 +12,7 @@ interface AuthContextData {
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export const AuthProvider = ({ children }: PropsWithChildren) => {
-  
+export function AuthProvider({ children }: PropsWithChildren) {
   const navigate = useNavigate();
 
   const [signed, setSigned] = useState<boolean>(false);
@@ -34,24 +35,24 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     // TODO: Change this ugly ternary when token is returned by backend
-    localStorage.setItem("token", token ? token : "null");
+    localStorage.setItem("token", token || "null");
     // localStorage.setItem("token", token);
 
     navigate("/");
-  }
+  };
 
   const handleLogout = () => {
     setSigned(false);
     api.defaults.headers.Authorization = null;
     localStorage.clear();
     navigate("/");
-  }
+  };
 
   return (
-    <AuthContext.Provider value={{ signed,  handleLogin, handleLogout }}>
+    <AuthContext.Provider value={{ signed, handleLogin, handleLogout }}>
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
 export default AuthContext;

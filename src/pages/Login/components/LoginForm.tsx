@@ -13,7 +13,7 @@ export default function LoginForm() {
 
   const handleSubmit = (
     values: ILogin,
-    { setSubmitting }: FormikHelpers<ILogin>
+    { setSubmitting }: FormikHelpers<ILogin>,
   ) => {
     login(values, handleLogin, setSubmitting);
   };
@@ -22,7 +22,8 @@ export default function LoginForm() {
     <Formik
       initialValues={initialValues}
       validationSchema={LoginSchema}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+    >
       {({ isSubmitting, submitForm }) => (
         <Form>
           <LoginFields />
