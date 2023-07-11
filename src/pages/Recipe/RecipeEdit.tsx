@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import { getRecipeDetails } from "../../services/RecipesApi.tsx";
 import {
   IRecipeFormFields,
-  IRecipeRead,
+  IRecipe,
 } from "../../interfaces/RecipeInterfaces.tsx";
 import Page from "../../components/Page/Page.tsx";
 import RecipeForm from "./components/RecipeForm.tsx";
@@ -15,7 +15,7 @@ export default function RecipeEdit() {
   const { recipeId } = useParams();
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [rawRecipe, setRawRecipe] = useState<IRecipeRead>();
+  const [rawRecipe, setRawRecipe] = useState<IRecipe>();
   const [recipeForm, setRecipeForm] = useState<IRecipeFormFields>();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function RecipeEdit() {
 
   useEffect(() => {
     if (rawRecipe) {
-      const recipeToForm = (recipe: IRecipeRead): IRecipeFormFields => ({
+      const recipeToForm = (recipe: IRecipe): IRecipeFormFields => ({
         title: recipe.titulo,
         description: recipe.descricao,
         servings: Number(recipe.rendimento),
