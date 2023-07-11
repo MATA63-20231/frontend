@@ -146,9 +146,11 @@ export default function RecipeView() {
             // alignItems="flex-start"
             sx={{ p: 2, pt: 0 }}
           >
-            <Grid item sx={{ py: 2 }}>
-              <Typography>{recipe.descricao}</Typography>
-            </Grid>
+            {recipe.descricao && (
+              <Grid item sx={{ py: 2 }}>
+                <Typography>{recipe.descricao}</Typography>
+              </Grid>
+            )}
 
             <Grid item>
               <Typography variant="h6" textAlign="start">
