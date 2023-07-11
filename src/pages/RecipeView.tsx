@@ -10,12 +10,12 @@ import RamenDiningIcon from "@mui/icons-material/RamenDiningOutlined";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+import Button from "@mui/material/Button";
 import { getRecipeDetails } from "../services/RecipesApi.tsx";
 import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import { IRecipeRead } from "../interfaces/RecipeInterfaces.tsx";
 import ImagesCarousel from "../components/Carousel.tsx";
-import Button from "@mui/material/Button";
 import AuthContext from "../contexts/AuthContext.tsx";
 
 // TODO: Avaliação e comentários
@@ -41,7 +41,8 @@ export default function RecipeView() {
       title="Título da Receita"
       pretitle="Confira esta receita"
       authRule={{ rule: RouteAuthRules.NO_RULE }}
-      loading={loading}>
+      loading={loading}
+    >
       {/* TODO: Uncoment the above code when user is returned by back */}
       {/* {(signed && userId && userId === "TODO") && ( */}
       {signed && (
@@ -51,7 +52,8 @@ export default function RecipeView() {
       )}
       <Grid
         container
-        sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}>
+        sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}
+      >
         <Stack sx={{ mt: 2, py: 1 }}>
           <Typography
             color="secondary.main"
@@ -60,14 +62,15 @@ export default function RecipeView() {
               letterSpacing: "1px",
               fontWeight: 400,
               textAlign: "start",
-            }}>
+            }}
+          >
             Postado por ***** em
             {` ${recipe.dataCadastro.substring(
               8,
-              10
+              10,
             )}/${recipe.dataCadastro.substring(
               5,
-              7
+              7,
             )}/${recipe.dataCadastro.substring(0, 4)}`}
           </Typography>
         </Stack>
@@ -80,7 +83,8 @@ export default function RecipeView() {
             sx={{
               px: 1,
               py: 2,
-            }}>
+            }}
+          >
             <Stack
               direction="row"
               spacing={0.5}
@@ -90,7 +94,8 @@ export default function RecipeView() {
                 justifyContent: "center",
                 minWidth: 0,
                 width: "100%",
-              }}>
+              }}
+            >
               <TimerIcon fontSize="small" color="primary" />
 
               <Typography
@@ -98,10 +103,12 @@ export default function RecipeView() {
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                }}>
-                Tempo de preparo:{" "}
-                {recipe.tempoPreparo.horas > 0 &&
-                  `${recipe.tempoPreparo.horas}h`}
+                }}
+              >
+                Tempo de preparo:
+                {" "}
+                {recipe.tempoPreparo.horas > 0
+                  && `${recipe.tempoPreparo.horas}h`}
                 {recipe.tempoPreparo.minutos}
                 min
               </Typography>
@@ -120,15 +127,20 @@ export default function RecipeView() {
                 justifyContent: "center",
                 minWidth: 0,
                 width: "100%",
-              }}>
+              }}
+            >
               <RamenDiningIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                }}>
-                Rendimento: {recipe.rendimento}{" "}
+                }}
+              >
+                Rendimento:
+                {" "}
+                {recipe.rendimento}
+                {" "}
                 {recipe.rendimento > 1 ? "porções" : "porção"}
               </Typography>
             </Stack>
@@ -138,7 +150,8 @@ export default function RecipeView() {
             container
             direction="column"
             alignItems="flex-start"
-            sx={{ p: 2 }}>
+            sx={{ p: 2 }}
+          >
             <Grid item>
               <Typography variant="h6">Ingredientes</Typography>
 

@@ -71,5 +71,6 @@ const editRecipe = (
   });
 };
 
-
-export { getAllRecipes, getRecipeDetails, createRecipe, editRecipe };
+export {
+  getAllRecipes, getRecipeDetails, createRecipe, editRecipe,
+};

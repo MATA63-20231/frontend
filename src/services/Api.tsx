@@ -93,4 +93,6 @@ function PUT<DataType, BodyType>({
   });
 }
 
-export { api, GET, POST, PUT };
+export {
+  api, GET, POST, PUT,
+};

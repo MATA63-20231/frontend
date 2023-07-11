@@ -52,13 +52,12 @@ export default function RecipeForm({ initialRecipe }: IProps) {
 
   const handleSubmit = (
     values: IRecipeFormFields,
-    { setSubmitting }: FormikHelpers<IRecipeFormFields>
+    { setSubmitting }: FormikHelpers<IRecipeFormFields>,
   ) => {
     const recipe = recipeToBack(values);
     if (recipeId) {
       editRecipe(recipe, recipeId, navigate, setSubmitting);
     } else {
-      console.log("create");
       createRecipe(recipe, navigate, setSubmitting);
     }
   };
@@ -67,7 +66,8 @@ export default function RecipeForm({ initialRecipe }: IProps) {
     <Formik
       initialValues={initialRecipe || initialValues}
       validationSchema={RecipeSchema}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+    >
       {({
         values,
         errors,
