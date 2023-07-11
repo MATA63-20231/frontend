@@ -20,15 +20,8 @@ export default function DragAndDropImagesView({
           item
           key={index} // eslint-disable-line react/no-array-index-key
           xs={12}
-          sm={4}
-        >
-          <Card
-            sx={{
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
+          sm={4}>
+          <Card>
             <DragAndDropImageView
               disabled={disabled}
               index={index}

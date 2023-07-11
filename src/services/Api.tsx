@@ -7,7 +7,7 @@ import {
 } from "../interfaces/ApiInterfaces.tsx";
 
 const api = axios.create({
-  baseURL: "https://chef-virtual.onrender.com/",
+  baseURL: "http://localhost:3000/",
 });
 
 const defaultOnError = (

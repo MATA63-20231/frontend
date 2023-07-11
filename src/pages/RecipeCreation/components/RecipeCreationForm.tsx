@@ -28,7 +28,9 @@ export default function RecipeCreationForm() {
     maxFilesAmount,
   });
 
-  // const recipeToBack = (recipe: IRecipeCreationFormFields): IRecipeCreation => ({
+  // const recipeToBack = (
+  //   recipe: IRecipeCreationFormFields
+  // ): IRecipeCreation => ({
   //   titulo: recipe.title,
   //   descricao: recipe.description,
   //   rendimento: Number(recipe.servings),
@@ -45,15 +47,71 @@ export default function RecipeCreationForm() {
   //   imagens: recipe.images,
   // });
 
+  // const recipeToBack = (recipe: IRecipeCreationFormFields) => {
+  //   const tempoPreparo = JSON.stringify({
+  //     horas: Number(recipe.prepTime.hours),
+  //     minutos: Number(recipe.prepTime.minutes),
+  //   });
+
+  //   const ingredientes = JSON.stringify(
+  //     recipe.ingredients.map((ingredient) => ({
+  //       descricao: ingredient,
+  //     }))
+  //   );
+
+  //   const listaPreparo = JSON.stringify(
+  //     recipe.directions.map((direction) => ({
+  //       descricao: direction,
+  //     }))
+  //   );
+
+  //   const recipeFormData = new FormData();
+  //   recipeFormData.append("titulo", recipe.title);
+  //   recipeFormData.append("descricao", recipe.description);
+  //   recipeFormData.append("rendimento", String(recipe.servings));
+  //   recipeFormData.append("tempoPreparo", tempoPreparo);
+  //   recipeFormData.append("ingredientes", ingredientes);
+  //   recipeFormData.append("listaPreparo", listaPreparo);
+  //   recipe.images.forEach((image) => recipeFormData.append("imagens", image));
+
+  //   return recipeFormData;
+  // };
+
   const recipeToBack = (recipe: IRecipeCreationFormFields) => {
+    const recipeToBack2: IRecipeCreation = {
+      titulo: recipe.title,
+      descricao: recipe.description,
+      rendimento: Number(recipe.servings),
+      tempoPreparo: {
+        horas: Number(recipe.prepTime.hours),
+        minutos: Number(recipe.prepTime.minutes),
+      },
+      listaPreparo: recipe.directions.map((direction) => ({
+        descricao: direction,
+      })),
+      ingredientes: recipe.ingredients.map((ingredient) => ({
+        descricao: ingredient,
+      })),
+      imagens: recipe.images,
+    };
+
     const recipeFormData = new FormData();
-    recipeFormData.append("titulo", recipe.title);
-    recipeFormData.append("descricao", recipe.description);
-    recipeFormData.append("rendimento", String(recipe.servings));
-    recipeFormData.append("tempoPreparo", JSON.stringify(recipe.prepTime));
-    recipeFormData.append("ingredientes", JSON.stringify(recipe.ingredients));
-    recipeFormData.append("listaPreparo", JSON.stringify(recipe.directions));
-    recipe.images.forEach((image) => recipeFormData.append("imagens", image));
+
+    for (const key in recipeToBack2) {
+      console.log(key);
+      if (key !== "imagens") {
+        recipeFormData.append(
+          key,
+          JSON.stringify(recipeToBack2[key as keyof IRecipeCreation])
+        );
+      }
+    }
+
+    console.log("aaaa", recipeFormData);
+
+    recipeToBack2.imagens.forEach((image) =>
+      recipeFormData.append("imagens", image)
+    );
 
     return recipeFormData;
   };
@@ -63,6 +121,7 @@ export default function RecipeCreationForm() {
     { setSubmitting }: FormikHelpers<IRecipeCreationFormFields>
   ) => {
     const recipe = recipeToBack(values);
+    console.log( recipe );
     createRecipe(recipe, navigate, setSubmitting);
   };
 
@@ -79,7 +138,7 @@ export default function RecipeCreationForm() {
         setFieldValue,
         setFieldTouched,
       }) => (
-        <Form id="oi">
+        <Form>
           <RecipeCreationFields
             values={values}
             errors={errors}
