@@ -1,5 +1,5 @@
-import { IInteractions } from "./FeedInterfaces";
-import { IUser } from "./UserInterfaces";
+import { IInteractions } from "./InteractionsInterfaces.tsx";
+import { IUser } from "./UserInterfaces.tsx";
 
 export interface IRecipeCreationFormFields {
   title: string;
