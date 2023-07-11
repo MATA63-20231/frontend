@@ -5,7 +5,7 @@ import { GET, POST } from "./Api.tsx";
 
 const getAllRecipes = (
   setLoading: (loading: boolean) => void,
-  setRecipes: (recipes: IRecipe[]) => void
+  setRecipes: (recipes: IRecipe[]) => void,
 ) => {
   GET<IRecipe[]>({
     path: "/receita/all",
@@ -18,7 +18,7 @@ const createRecipe = (
   recipe: IRecipeCreation,
   // recipe: FormData,
   navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void,
 ) => {
   POST<IRecipe, IRecipeCreation>({
   // POST<IRecipe, FormData>({
@@ -33,13 +33,12 @@ const createRecipe = (
       navigate(`/receita/${id}`);
     },
   });
-
 };
 
 const getRecipeDetails = (
   recipeId: string,
   setLoading: (loading: boolean) => void,
-  setRecipe: (recipes: IRecipe) => void
+  setRecipe: (recipes: IRecipe) => void,
 ) => {
   GET<IRecipe>({
     path: `/receita/${recipeId}`,

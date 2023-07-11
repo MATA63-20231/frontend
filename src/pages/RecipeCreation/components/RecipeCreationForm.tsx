@@ -29,7 +29,7 @@ export default function RecipeCreationForm() {
   });
 
   const recipeToBack = (
-    recipe: IRecipeCreationFormFields
+    recipe: IRecipeCreationFormFields,
   ): IRecipeCreation => ({
     titulo: recipe.title,
     descricao: recipe.description,
@@ -46,7 +46,6 @@ export default function RecipeCreationForm() {
     })),
     imagens: recipe.images,
   });
-
 
   // const recipeToBack = (recipe: IRecipeCreationFormFields): FormData => {
   //   const recipeBack: IRecipeCreation = {
@@ -87,10 +86,9 @@ export default function RecipeCreationForm() {
 
   const handleSubmit = (
     values: IRecipeCreationFormFields,
-    { setSubmitting }: FormikHelpers<IRecipeCreationFormFields>
+    { setSubmitting }: FormikHelpers<IRecipeCreationFormFields>,
   ) => {
     const recipe = recipeToBack(values);
-    console.log( recipe );
     createRecipe(recipe, navigate, setSubmitting);
   };
 
@@ -98,7 +96,8 @@ export default function RecipeCreationForm() {
     <Formik
       initialValues={initialValues}
       validationSchema={RecipeCreationSchema}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+    >
       {({
         values,
         errors,
