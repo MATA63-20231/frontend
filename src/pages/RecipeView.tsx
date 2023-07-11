@@ -65,15 +65,14 @@ export default function RecipeView() {
             Postado por ***** em
             {` ${recipe.dataCadastro.substring(
               8,
-              10,
+              10
             )}/${recipe.dataCadastro.substring(
               5,
-              7,
+              7
             )}/${recipe.dataCadastro.substring(0, 4)}`}
           </Typography>
         </Stack>
         <Card sx={{ width: "600px" }}>
-
           <ImagesCarousel images={recipe.imagens} />
 
           <Stack
@@ -104,12 +103,11 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                Tempo de preparo:
-                {" "}
-                {recipe.tempoPreparo.horas > 0
-                  && `${recipe.tempoPreparo.horas}h`}
-                {recipe.tempoPreparo.minutos}
-                min
+                Tempo de preparo:{" "}
+                {recipe.tempoPreparo.horas > 0 &&
+                  `${recipe.tempoPreparo.horas}h`}
+                {recipe.tempoPreparo.minutos > 0 &&
+                  recipe.tempoPreparo.minutos + "min"}
               </Typography>
             </Stack>
             <Divider
@@ -136,10 +134,7 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                Rendimento:
-                {" "}
-                {recipe.rendimento}
-                {" "}
+                Rendimento: {recipe.rendimento}{" "}
                 {recipe.rendimento > 1 ? "porções" : "porção"}
               </Typography>
             </Stack>
@@ -148,11 +143,17 @@ export default function RecipeView() {
           <Grid
             container
             direction="column"
-            alignItems="flex-start"
-            sx={{ p: 2 }}
+            // alignItems="flex-start"
+            sx={{ p: 2, pt: 0 }}
           >
+            <Grid item sx={{ py: 2 }}>
+              <Typography>{recipe.descricao}</Typography>
+            </Grid>
+
             <Grid item>
-              <Typography variant="h6">Ingredientes</Typography>
+              <Typography variant="h6" textAlign="start">
+                Ingredientes
+              </Typography>
 
               <List>
                 {recipe.ingredientes.map((ingredient, index) => (
@@ -168,7 +169,9 @@ export default function RecipeView() {
             </Grid>
 
             <Grid item>
-              <Typography variant="h6">Modo de preparo</Typography>
+              <Typography variant="h6" textAlign="start">
+                Modo de preparo
+              </Typography>
               <List>
                 {recipe.listaPreparo.map((etapa, index) => (
                   <ListItem key={etapa.id}>
