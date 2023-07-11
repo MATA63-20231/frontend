@@ -28,7 +28,6 @@ export default function RecipeView() {
   const [loading, setLoading] = useState<boolean>(false);
   const [recipe, setRecipe] = useState<IRecipe>();
 
-
   useEffect(() => {
     if (!recipeId) {
       navigate("/");
