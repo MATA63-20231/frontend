@@ -1,7 +1,10 @@
 import { Formik, Form, FormikHelpers } from "formik";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import { IRecipeCreation, IRecipeCreationFormFields } from "../../../interfaces/RecipeInterfaces.tsx";
+import {
+  IRecipeCreation,
+  IRecipeCreationFormFields,
+} from "../../../interfaces/RecipeInterfaces.tsx";
 import { createRecipe } from "../../../services/RecipesApi.tsx";
 import RecipeCreationFields from "./RecipeCreationFields.tsx";
 import generateRecipeCreationSchema, {
@@ -25,26 +28,39 @@ export default function RecipeCreationForm() {
     maxFilesAmount,
   });
 
-  const recipeToBack = (recipe: IRecipeCreationFormFields): IRecipeCreation => ({
-    titulo: recipe.title,
-    descricao: recipe.description,
-    rendimento: Number(recipe.servings),
-    tempoPreparo: {
-      horas: Number(recipe.prepTime.hours),
-      minutos: Number(recipe.prepTime.minutes),
-    },
-    listaPreparo: recipe.directions.map((direction) => ({
-      descricao: direction,
-    })),
-    ingredientes: recipe.ingredients.map((ingredient) => ({
-      descricao: ingredient,
-    })),
-    imagens: recipe.images,
-  });
+  // const recipeToBack = (recipe: IRecipeCreationFormFields): IRecipeCreation => ({
+  //   titulo: recipe.title,
+  //   descricao: recipe.description,
+  //   rendimento: Number(recipe.servings),
+  //   tempoPreparo: {
+  //     horas: Number(recipe.prepTime.hours),
+  //     minutos: Number(recipe.prepTime.minutes),
+  //   },
+  //   listaPreparo: recipe.directions.map((direction) => ({
+  //     descricao: direction,
+  //   })),
+  //   ingredientes: recipe.ingredients.map((ingredient) => ({
+  //     descricao: ingredient,
+  //   })),
+  //   imagens: recipe.images,
+  // });
+
+  const recipeToBack = (recipe: IRecipeCreationFormFields) => {
+    const recipeFormData = new FormData();
+    recipeFormData.append("titulo", recipe.title);
+    recipeFormData.append("descricao", recipe.description);
+    recipeFormData.append("rendimento", String(recipe.servings));
+    recipeFormData.append("tempoPreparo", JSON.stringify(recipe.prepTime));
+    recipeFormData.append("ingredientes", JSON.stringify(recipe.ingredients));
+    recipeFormData.append("listaPreparo", JSON.stringify(recipe.directions));
+    recipe.images.forEach((image) => recipeFormData.append("imagens", image));
+
+    return recipeFormData;
+  };
 
   const handleSubmit = (
     values: IRecipeCreationFormFields,
-    { setSubmitting }: FormikHelpers<IRecipeCreationFormFields>,
+    { setSubmitting }: FormikHelpers<IRecipeCreationFormFields>
   ) => {
     const recipe = recipeToBack(values);
     createRecipe(recipe, navigate, setSubmitting);
@@ -54,8 +70,7 @@ export default function RecipeCreationForm() {
     <Formik
       initialValues={initialValues}
       validationSchema={RecipeCreationSchema}
-      onSubmit={handleSubmit}
-    >
+      onSubmit={handleSubmit}>
       {({
         values,
         errors,
@@ -64,7 +79,7 @@ export default function RecipeCreationForm() {
         setFieldValue,
         setFieldTouched,
       }) => (
-        <Form>
+        <Form id="oi">
           <RecipeCreationFields
             values={values}
             errors={errors}
