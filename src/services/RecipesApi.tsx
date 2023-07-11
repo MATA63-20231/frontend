@@ -1,7 +1,7 @@
 import { enqueueSnackbar } from "notistack";
 import { NavigateFunction } from "react-router-dom";
 import {
-  IRecipeCreation,
+  IRecipeToBack,
   IRecipe,
 } from "../interfaces/RecipeInterfaces.tsx";
 import { GET, POST, PUT } from "./Api.tsx";
@@ -32,11 +32,11 @@ const getRecipeDetails = (
 };
 
 const createRecipe = (
-  recipe: IRecipeCreation,
+  recipe: IRecipeToBack,
   navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
 ) => {
-  POST<IRecipe, IRecipeCreation>({
+  POST<IRecipe, IRecipeToBack>({
     path: "/receita",
     body: recipe,
     setLoading,
@@ -51,12 +51,12 @@ const createRecipe = (
 };
 
 const editRecipe = (
-  recipe: IRecipeCreation,
+  recipe: IRecipeToBack,
   recipeId: string,
   navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
 ) => {
-  PUT<IRecipe, IRecipeCreation>({
+  PUT<IRecipe, IRecipeToBack>({
     path: `/receita/${recipeId}`,
     body: recipe,
     setLoading,

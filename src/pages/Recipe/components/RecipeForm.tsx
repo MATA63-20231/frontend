@@ -2,7 +2,7 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import {
-  IRecipeCreation,
+  IRecipeToBack,
   IRecipeFormFields,
 } from "../../../interfaces/RecipeInterfaces.tsx";
 import { createRecipe, editRecipe } from "../../../services/RecipesApi.tsx";
@@ -33,7 +33,7 @@ export default function RecipeForm({ initialRecipe }: IProps) {
     maxFilesAmount,
   });
 
-  const recipeToBack = (recipe: IRecipeFormFields): IRecipeCreation => ({
+  const recipeToBack = (recipe: IRecipeFormFields): IRecipeToBack => ({
     titulo: recipe.title,
     descricao: recipe.description,
     rendimento: Number(recipe.servings),

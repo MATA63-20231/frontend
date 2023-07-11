@@ -44,7 +44,7 @@ interface IRecipeBase {
   listaPreparo: IItemPreparo[];
 }
 
-export interface IRecipeCreation extends IRecipeBase {
+export interface IRecipeToBack extends IRecipeBase {
   imagens: File[];
 }
 
