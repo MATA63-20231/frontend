@@ -1,3 +1,5 @@
+import { IUser } from "./UserInterfaces";
+
 export interface IRecipeCreationFormFields {
   title: string;
   description: string;
@@ -48,4 +50,5 @@ export interface IRecipe extends IRecipeBase {
   id: string;
   dataCadastro: string;
   imagens: IImage[];
+  usuario: IUser;
 }

@@ -31,6 +31,12 @@ export default function RecipeView() {
     ingredientes: [],
     listaPreparo: [],
     imagens: [],
+    usuario: {
+      id: "",
+      usuario: "",
+      nome: "",
+      email: "",
+    },
   });
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,7 +49,7 @@ export default function RecipeView() {
 
   return (
     <Page
-      title="Título da Receita"
+      title={recipe.titulo}
       pretitle="Confira esta receita"
       authRule={{ rule: RouteAuthRules.NO_RULE }}
       loading={loading}
@@ -62,7 +68,7 @@ export default function RecipeView() {
               textAlign: "start",
             }}
           >
-            Postado por ***** em
+            Postado por {recipe.usuario.nome} em
             {` ${recipe.dataCadastro.substring(
               8,
               10

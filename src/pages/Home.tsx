@@ -63,7 +63,9 @@ export default function Home() {
                   <Typography variant="h5" component="h2">
                     {recipe.titulo}
                   </Typography>
-                  <Typography fontSize="14px">Por *****</Typography>
+                  <Typography fontSize="14px">
+                    Postado por {recipe.usuario.nome}
+                  </Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
