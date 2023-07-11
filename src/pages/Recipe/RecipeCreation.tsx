@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
-import Page from "../../components/Page/Page.js";
-import RecipeForm from "./components/RecipeForm.js";
-import RouteAuthRules from "../../enums/RouteAuthRules.js";
+import Page from "../../components/Page/Page.tsx";
+import RecipeForm from "./components/RecipeForm.tsx";
+import RouteAuthRules from "../../enums/RouteAuthRules.tsx";
 
 export default function RecipeCreation() {
   return (

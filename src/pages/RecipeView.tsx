@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -15,44 +15,44 @@ import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import { IRecipeRead } from "../interfaces/RecipeInterfaces.tsx";
 import ImagesCarousel from "../components/Carousel.tsx";
+import Button from "@mui/material/Button";
+import AuthContext from "../contexts/AuthContext.tsx";
 
 // TODO: Avaliação e comentários
 
 export default function RecipeView() {
+  const navigate = useNavigate();
+  const { signed } = useContext(AuthContext);
   const { recipeId } = useParams();
 
-  const [recipe, setRecipe] = useState<IRecipeRead>({
-    id: "",
-    dataCadastro: "",
-    titulo: "",
-    descricao: "",
-    rendimento: 0,
-    tempoPreparo: { horas: 0, minutos: 0 },
-    ingredientes: [],
-    listaPreparo: [],
-    imagens: [],
-  });
-
   const [loading, setLoading] = useState<boolean>(false);
+  const [recipe, setRecipe] = useState<IRecipeRead>();
 
   useEffect(() => {
-    if (recipeId) {
-      getRecipeDetails(recipeId, setLoading, setRecipe);
+    if (!recipeId) {
+      navigate("/");
+    } else {
+      getRecipeDetails(recipeId, navigate, setLoading, setRecipe);
     }
-  }, [recipeId]);
+  }, [recipeId, navigate]);
 
-  return (
+  return !recipe ? null : (
     <Page
       title="Título da Receita"
       pretitle="Confira esta receita"
       authRule={{ rule: RouteAuthRules.NO_RULE }}
-      loading={loading}
-    >
+      loading={loading}>
+      {/* TODO: Uncoment the above code when user is returned by back */}
+      {/* {(signed && userId && userId === "TODO") && ( */}
+      {signed && (
+        <Button variant="outlined" href={`/editar-receita/${recipeId}`}>
+          Editar receita
+        </Button>
+      )}
       <Grid
         container
-        sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}
-      >
-        <Stack sx={{ py: 1 }}>
+        sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}>
+        <Stack sx={{ mt: 2, py: 1 }}>
           <Typography
             color="secondary.main"
             sx={{
@@ -60,20 +60,18 @@ export default function RecipeView() {
               letterSpacing: "1px",
               fontWeight: 400,
               textAlign: "start",
-            }}
-          >
+            }}>
             Postado por ***** em
             {` ${recipe.dataCadastro.substring(
               8,
-              10,
+              10
             )}/${recipe.dataCadastro.substring(
               5,
-              7,
+              7
             )}/${recipe.dataCadastro.substring(0, 4)}`}
           </Typography>
         </Stack>
         <Card sx={{ width: "600px" }}>
-
           <ImagesCarousel images={recipe.imagens} />
 
           <Stack
@@ -82,8 +80,7 @@ export default function RecipeView() {
             sx={{
               px: 1,
               py: 2,
-            }}
-          >
+            }}>
             <Stack
               direction="row"
               spacing={0.5}
@@ -93,8 +90,7 @@ export default function RecipeView() {
                 justifyContent: "center",
                 minWidth: 0,
                 width: "100%",
-              }}
-            >
+              }}>
               <TimerIcon fontSize="small" color="primary" />
 
               <Typography
@@ -102,12 +98,10 @@ export default function RecipeView() {
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                }}
-              >
-                Tempo de preparo:
-                {" "}
-                {recipe.tempoPreparo.horas > 0
-                  && `${recipe.tempoPreparo.horas}h`}
+                }}>
+                Tempo de preparo:{" "}
+                {recipe.tempoPreparo.horas > 0 &&
+                  `${recipe.tempoPreparo.horas}h`}
                 {recipe.tempoPreparo.minutos}
                 min
               </Typography>
@@ -126,20 +120,15 @@ export default function RecipeView() {
                 justifyContent: "center",
                 minWidth: 0,
                 width: "100%",
-              }}
-            >
+              }}>
               <RamenDiningIcon fontSize="small" color="primary" />
               <Typography
                 sx={{
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                }}
-              >
-                Rendimento:
-                {" "}
-                {recipe.rendimento}
-                {" "}
+                }}>
+                Rendimento: {recipe.rendimento}{" "}
                 {recipe.rendimento > 1 ? "porções" : "porção"}
               </Typography>
             </Stack>
@@ -149,8 +138,7 @@ export default function RecipeView() {
             container
             direction="column"
             alignItems="flex-start"
-            sx={{ p: 2 }}
-          >
+            sx={{ p: 2 }}>
             <Grid item>
               <Typography variant="h6">Ingredientes</Typography>
 

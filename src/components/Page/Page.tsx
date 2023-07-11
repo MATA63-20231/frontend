@@ -28,31 +28,33 @@ export default function Page({
   const { signed } = useContext(AuthContext);
 
   useEffect(() => {
-    switch (authRule.rule) {
-    case RouteAuthRules.SIGNED_ONLY: {
-      if (!signed) {
-        navigate("/login");
+    if (signed !== null) {
+      switch (authRule.rule) {
+      case RouteAuthRules.SIGNED_ONLY: {
+        if (!signed) {
+          navigate("/login");
+        }
+        break;
       }
-      break;
-    }
 
-    case RouteAuthRules.NO_SIGNED_ONLY: {
-      if (signed) {
-        navigate("/");
+      case RouteAuthRules.NO_SIGNED_ONLY: {
+        if (signed) {
+          navigate("/");
+        }
+        break;
       }
-      break;
-    }
 
-    case RouteAuthRules.SAME_USER_ONLY: {
-      if (!signed || !authRule.userId || authRule.userId !== "TODO") {
-        navigate(authRule.redirectTo);
+      case RouteAuthRules.SAME_USER_ONLY: {
+        if (!signed || !authRule.userId || authRule.userId !== "TODO") {
+          navigate(authRule.redirectTo);
+        }
+        break;
       }
-      break;
-    }
 
-    default: {
-      break;
-    }
+      default: {
+        break;
+      }
+      }
     }
   }, [signed, authRule, navigate]);
 

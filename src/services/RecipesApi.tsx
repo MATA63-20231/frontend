@@ -5,7 +5,7 @@ import {
   IRecipeCreation,
   IRecipeRead,
 } from "../interfaces/RecipeInterfaces.tsx";
-import { GET, POST } from "./Api.tsx";
+import { GET, POST, PUT } from "./Api.tsx";
 
 const getAllRecipes = (
   setLoading: (loading: boolean) => void,
@@ -15,6 +15,20 @@ const getAllRecipes = (
     path: "/receita/all",
     setLoading,
     onSuccess: (data) => setRecipes(data),
+  });
+};
+
+const getRecipeDetails = (
+  recipeId: string,
+  navigate: NavigateFunction,
+  setLoading: (loading: boolean) => void,
+  setRecipe: (recipes: IRecipeRead) => void,
+) => {
+  GET<IRecipeRead>({
+    path: `/receita/${recipeId}`,
+    setLoading,
+    onSuccess: (data) => setRecipe(data),
+    onError: () => { navigate("/"); },
   });
 };
 
@@ -37,16 +51,25 @@ const createRecipe = (
   });
 };
 
-const getRecipeDetails = (
+const editRecipe = (
+  recipe: IRecipeCreation,
   recipeId: string,
+  navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
-  setRecipe: (recipes: IRecipeRead) => void,
 ) => {
-  GET<IRecipeRead>({
+  PUT<IRecipe, IRecipeCreation>({
     path: `/receita/${recipeId}`,
+    body: recipe,
     setLoading,
-    onSuccess: (data) => setRecipe(data),
+    onSuccess: ({ id }) => {
+      enqueueSnackbar({
+        variant: "success",
+        message: "Receita editada com sucesso!",
+      });
+      navigate(`/receita/${id}`);
+    },
   });
 };
 
-export { getAllRecipes, createRecipe, getRecipeDetails };
+
+export { getAllRecipes, getRecipeDetails, createRecipe, editRecipe };

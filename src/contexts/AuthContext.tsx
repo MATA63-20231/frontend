@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../services/Api.tsx";
 
 interface AuthContextData {
-  signed: boolean;
+  signed: boolean | null;
   handleLogin: (token: string) => void;
   handleLogout: () => void;
 }
@@ -19,7 +19,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export function AuthProvider({ children }: PropsWithChildren) {
   const navigate = useNavigate();
 
-  const [signed, setSigned] = useState<boolean>(false);
+  const [signed, setSigned] = useState<boolean | null>(null);
 
   const authContextValue = useMemo(() => {
     const handleLogin = (token: string) => {

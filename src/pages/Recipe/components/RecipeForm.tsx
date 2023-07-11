@@ -1,23 +1,31 @@
 import { Formik, Form, FormikHelpers } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import { IRecipeCreation, IRecipeFormFields } from "../../../interfaces/RecipeInterfaces.js";
-import { createRecipe } from "../../../services/RecipesApi.js";
-import RecipeFields from "./RecipeFields.js";
+import {
+  IRecipeCreation,
+  IRecipeFormFields,
+} from "../../../interfaces/RecipeInterfaces.tsx";
+import { createRecipe, editRecipe } from "../../../services/RecipesApi.tsx";
+import RecipeFields from "./RecipeFields.tsx";
 import generateRecipeSchema, {
   initialValues,
-} from "../schemas/RecipeSchema.js";
-import LoadingButton from "../../../components/LoadingButton.js";
+} from "../schemas/RecipeSchema.tsx";
+import LoadingButton from "../../../components/LoadingButton.tsx";
 
-export default function RecipeForm() {
+interface IProps {
+  initialRecipe?: IRecipeFormFields;
+}
+
+export default function RecipeForm({ initialRecipe }: IProps) {
   const navigate = useNavigate();
+  const { recipeId } = useParams();
 
   const acceptedFileTypes = ["JPG", "JPEG", "PNG", "GIF", "SVG"];
   const acceptedFileTypesStr = acceptedFileTypes.join(", ");
   const maxFileSizeMB = 3;
   const maxFileSize = maxFileSizeMB * 1000 * 1024;
   const maxFilesAmount = 10;
-  const RecipeCreationSchema = generateRecipeSchema({
+  const RecipeSchema = generateRecipeSchema({
     acceptedFileTypes,
     acceptedFileTypesStr,
     maxFileSize,
@@ -44,18 +52,22 @@ export default function RecipeForm() {
 
   const handleSubmit = (
     values: IRecipeFormFields,
-    { setSubmitting }: FormikHelpers<IRecipeFormFields>,
+    { setSubmitting }: FormikHelpers<IRecipeFormFields>
   ) => {
     const recipe = recipeToBack(values);
-    createRecipe(recipe, navigate, setSubmitting);
+    if (recipeId) {
+      editRecipe(recipe, recipeId, navigate, setSubmitting);
+    } else {
+      console.log("create");
+      createRecipe(recipe, navigate, setSubmitting);
+    }
   };
 
   return (
     <Formik
-      initialValues={initialValues}
-      validationSchema={RecipeCreationSchema}
-      onSubmit={handleSubmit}
-    >
+      initialValues={initialRecipe || initialValues}
+      validationSchema={RecipeSchema}
+      onSubmit={handleSubmit}>
       {({
         values,
         errors,
@@ -86,3 +98,7 @@ export default function RecipeForm() {
     </Formik>
   );
 }
+
+RecipeForm.defaultProps = {
+  initialRecipe: initialValues,
+};
