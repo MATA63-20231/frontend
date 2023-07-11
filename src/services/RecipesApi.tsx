@@ -1,7 +1,10 @@
 import { enqueueSnackbar } from "notistack";
 import { NavigateFunction } from "react-router-dom";
-import { IRecipe, IRecipeCreation } from "../interfaces/RecipeInterfaces.tsx";
-import { GET, POST } from "./Api.tsx";
+import {
+  IRecipeToBack,
+  IRecipe,
+} from "../interfaces/RecipeInterfaces.tsx";
+import { GET, POST, PUT } from "./Api.tsx";
 
 const getAllRecipes = (
   setLoading: (loading: boolean) => void,
@@ -14,13 +17,27 @@ const getAllRecipes = (
   });
 };
 
+const getRecipeDetails = (
+  recipeId: string,
+  navigate: NavigateFunction,
+  setLoading: (loading: boolean) => void,
+  setRecipe: (recipes: IRecipe) => void,
+) => {
+  GET<IRecipe>({
+    path: `/receita/${recipeId}`,
+    setLoading,
+    onSuccess: (data) => setRecipe(data),
+    onError: () => { navigate("/"); },
+  });
+};
+
 const createRecipe = (
-  recipe: IRecipeCreation,
+  recipe: IRecipeToBack,
   // recipe: FormData,
   navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
 ) => {
-  POST<IRecipe, IRecipeCreation>({
+  POST<IRecipe, IRecipeToBack>({
   // POST<IRecipe, FormData>({
     path: "/receita",
     body: recipe,
@@ -35,16 +52,26 @@ const createRecipe = (
   });
 };
 
-const getRecipeDetails = (
+const editRecipe = (
+  recipe: IRecipeToBack,
   recipeId: string,
+  navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
-  setRecipe: (recipes: IRecipe) => void,
 ) => {
-  GET<IRecipe>({
+  PUT<IRecipe, IRecipeToBack>({
     path: `/receita/${recipeId}`,
+    body: recipe,
     setLoading,
-    onSuccess: (data) => setRecipe(data),
+    onSuccess: ({ id }) => {
+      enqueueSnackbar({
+        variant: "success",
+        message: "Receita editada com sucesso!",
+      });
+      navigate(`/receita/${id}`);
+    },
   });
 };
 
-export { getAllRecipes, createRecipe, getRecipeDetails };
+export {
+  getAllRecipes, getRecipeDetails, createRecipe, editRecipe,
+};

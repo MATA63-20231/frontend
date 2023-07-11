@@ -3,7 +3,7 @@ import TextInput from "../../../components/CustomInputs/TextInput.tsx";
 import PasswordInput from "../../../components/CustomInputs/PasswordInput.tsx";
 import EmailInput from "../../../components/CustomInputs/EmailInput.tsx";
 
-export default function RecipeCreationFields() {
+export default function RegisterFields() {
   return (
     <Grid container direction="column" justifyContent="center" spacing={2}>
       <Grid item>

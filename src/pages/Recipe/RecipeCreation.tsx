@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import Page from "../../components/Page/Page.tsx";
-import RecipeCreationForm from "./components/RecipeCreationForm.tsx";
+import RecipeForm from "./components/RecipeForm.tsx";
 import RouteAuthRules from "../../enums/RouteAuthRules.tsx";
 
 export default function RecipeCreation() {
@@ -11,7 +11,7 @@ export default function RecipeCreation() {
       authRule={{ rule: RouteAuthRules.SIGNED_ONLY }}
     >
       <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>
-        <RecipeCreationForm />
+        <RecipeForm />
       </Grid>
     </Page>
   );

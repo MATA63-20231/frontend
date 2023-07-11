@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { IRecipeCreationFormFields } from "../../../interfaces/RecipeInterfaces.tsx";
+import { IRecipeFormFields } from "../../../interfaces/RecipeInterfaces.tsx";
 import FormErrorMessages from "../../../enums/FormErrorMessages.tsx";
 import YupHelpers from "../../../enums/YupHelpers.tsx";
 
@@ -11,7 +11,7 @@ interface IProps {
   maxFilesAmount: number;
 }
 
-export const initialValues: IRecipeCreationFormFields = {
+export const initialValues: IRecipeFormFields = {
   title: "",
   description: "",
   servings: "",
@@ -29,14 +29,14 @@ const cantBeBothZero = {
   then: (schema: Yup.NumberSchema) => schema.moreThan(0, "Tempo de preparo não pode ser 0h0min."),
 };
 
-export default function generateRecipeCreationSchema({
+export default function generateRecipeSchema({
   acceptedFileTypes,
   acceptedFileTypesStr,
   maxFileSize,
   maxFileSizeMB,
   maxFilesAmount,
 }: IProps) {
-  return Yup.object<IRecipeCreationFormFields>().shape({
+  return Yup.object<IRecipeFormFields>().shape({
     title: YupHelpers.STRING_REQUIRED,
 
     description: YupHelpers.STRING_OPTIONAL,

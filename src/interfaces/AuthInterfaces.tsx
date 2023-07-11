@@ -1,4 +1,5 @@
 import { RouteGeneralRules, RouteUserRules } from "../enums/RouteAuthRules.tsx";
+import { IUserBase } from "./UserInterfaces.tsx";
 
 export interface ILogin {
   usuario: string;
@@ -10,9 +11,7 @@ export interface ILoginResponse {
   token: string;
 }
 
-export interface IUserRegister extends ILogin {
-  nome: string;
-  email: string;
+export interface IUserRegister extends ILogin, IUserBase {
   confirmacaoSenha: string;
 }
 

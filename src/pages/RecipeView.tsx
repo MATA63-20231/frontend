@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import CardMedia from "@mui/material/CardMedia";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -11,49 +10,51 @@ import RamenDiningIcon from "@mui/icons-material/RamenDiningOutlined";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
+import Button from "@mui/material/Button";
 import { getRecipeDetails } from "../services/RecipesApi.tsx";
 import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
-import NoImage from "../assets/noimage.svg";
+import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
+import ImagesCarousel from "../components/Carousel.tsx";
+import AuthContext from "../contexts/AuthContext.tsx";
 
 // TODO: Avaliação e comentários
 
 export default function RecipeView() {
+  const navigate = useNavigate();
+  const { signed } = useContext(AuthContext);
   const { recipeId } = useParams();
 
-  const [recipe, setRecipe] = useState<IRecipe>({
-    id: "",
-    titulo: "",
-    descricao: "",
-    dataCadastro: "",
-    rendimento: 0,
-    tempoPreparo: { horas: 0, minutos: 0 },
-    ingredientes: [],
-    listaPreparo: [],
-    imagens: [],
-  });
-
   const [loading, setLoading] = useState<boolean>(false);
+  const [recipe, setRecipe] = useState<IRecipe>();
 
   useEffect(() => {
-    if (recipeId) {
-      getRecipeDetails(recipeId, setLoading, setRecipe);
+    if (!recipeId) {
+      navigate("/");
+    } else {
+      getRecipeDetails(recipeId, navigate, setLoading, setRecipe);
     }
-  }, [recipeId]);
+  }, [recipeId, navigate]);
 
-  return (
+  return !recipe ? null : (
     <Page
-      title="Título da Receita"
+      title={recipe.titulo}
       pretitle="Confira esta receita"
       authRule={{ rule: RouteAuthRules.NO_RULE }}
       loading={loading}
     >
+      {/* TODO: Uncoment the above code when user is returned by back */}
+      {/* {(signed && userId && userId === "TODO") && ( */}
+      {signed && (
+        <Button variant="outlined" href={`/editar-receita/${recipeId}`}>
+          Editar receita
+        </Button>
+      )}
       <Grid
         container
         sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}
       >
-        <Stack sx={{ py: 1 }}>
+        <Stack sx={{ mt: 2, py: 1 }}>
           <Typography
             color="secondary.main"
             sx={{
@@ -63,7 +64,11 @@ export default function RecipeView() {
               textAlign: "start",
             }}
           >
-            Postado por ***** em
+            Postado por
+            {" "}
+            {recipe.usuario.nome}
+            {" "}
+            em
             {` ${recipe.dataCadastro.substring(
               8,
               10,
@@ -74,25 +79,8 @@ export default function RecipeView() {
           </Typography>
         </Stack>
         <Card sx={{ width: "600px" }}>
-          {recipe.imagens.length > 0 ? (
-            <CardMedia
-              component="img"
-              title={recipe.titulo}
-              image="https://picsum.photos/200"
-              sx={{ height: "400px" }}
-            />
-          ) : (
-            <CardMedia
-              component="img"
-              title={recipe.titulo}
-              image={NoImage}
-              sx={{
-                width: "20%",
-                margin: "auto",
-                py: 12,
-              }}
-            />
-          )}
+          <ImagesCarousel images={recipe.imagens} />
+
           <Stack
             direction={{ xs: "column", md: "row" }}
             spacing={{ xs: 0.5, md: 1 }}
@@ -125,8 +113,8 @@ export default function RecipeView() {
                 {" "}
                 {recipe.tempoPreparo.horas > 0
                   && `${recipe.tempoPreparo.horas}h`}
-                {recipe.tempoPreparo.minutos}
-                min
+                {recipe.tempoPreparo.minutos > 0
+                  && `${recipe.tempoPreparo.minutos}min`}
               </Typography>
             </Stack>
             <Divider
@@ -157,7 +145,7 @@ export default function RecipeView() {
                 {" "}
                 {recipe.rendimento}
                 {" "}
-                porções
+                {recipe.rendimento > 1 ? "porções" : "porção"}
               </Typography>
             </Stack>
           </Stack>
@@ -165,11 +153,18 @@ export default function RecipeView() {
           <Grid
             container
             direction="column"
-            alignItems="flex-start"
-            sx={{ p: 2 }}
+            sx={{ p: 2, pt: 0 }}
           >
+            {recipe.descricao && (
+              <Grid item sx={{ py: 2 }}>
+                <Typography>{recipe.descricao}</Typography>
+              </Grid>
+            )}
+
             <Grid item>
-              <Typography variant="h6">Ingredientes</Typography>
+              <Typography variant="h6" textAlign="start">
+                Ingredientes
+              </Typography>
 
               <List>
                 {recipe.ingredientes.map((ingredient, index) => (
@@ -185,7 +180,9 @@ export default function RecipeView() {
             </Grid>
 
             <Grid item>
-              <Typography variant="h6">Modo de preparo</Typography>
+              <Typography variant="h6" textAlign="start">
+                Modo de preparo
+              </Typography>
               <List>
                 {recipe.listaPreparo.map((etapa, index) => (
                   <ListItem key={etapa.id}>
@@ -194,7 +191,6 @@ export default function RecipeView() {
                     </Grid>
                     <ListItemText
                       primary={etapa.descricao}
-                      // secondary="desc item"
                     />
                   </ListItem>
                 ))}

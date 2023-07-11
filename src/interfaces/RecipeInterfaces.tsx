@@ -1,4 +1,7 @@
-export interface IRecipeCreationFormFields {
+import { IInteractions } from "./InteractionsInterfaces.tsx";
+import { IUser } from "./UserInterfaces.tsx";
+
+export interface IRecipeFormFields {
   title: string;
   description: string;
   servings: number | "";
@@ -26,17 +29,28 @@ interface IItemPreparo {
   id?: string;
 }
 
-export interface IRecipeCreation {
+export interface IImage {
+  id: string;
+  ordem: number;
+  nome: string;
+}
+
+interface IRecipeBase {
   titulo: string;
   descricao: string;
   rendimento: number;
   tempoPreparo: ITempoPreparo;
   ingredientes: IIngrediente[];
   listaPreparo: IItemPreparo[];
+}
+
+export interface IRecipeToBack extends IRecipeBase {
   imagens: File[];
 }
 
-export interface IRecipe extends IRecipeCreation {
+export interface IRecipe extends IRecipeBase, IInteractions {
   id: string;
   dataCadastro: string;
+  imagens: IImage[];
+  usuario: IUser;
 }
