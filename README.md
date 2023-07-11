@@ -36,4 +36,4 @@ $ npm run lint-fix
 Todos os _commits_ devem ser feitos a partir de uma _branch_ não protegida, e submetidos via _Pull Request (PR)_ para a `main`. Para serem _mergeados_, os _PRs_ devem estar de acordo com os seguintes critérios:
 
 * Passar pela verificação do lint;
-* Possuir pelo menos uma revisão com aprovação.
+* Passar pela verificação de deploy.
