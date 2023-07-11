@@ -70,13 +70,17 @@ export default function RecipeView() {
               textAlign: "start",
             }}
           >
-            Postado por {recipe.usuario.nome} em
+            Postado por
+            {" "}
+            {recipe.usuario.nome}
+            {" "}
+            em
             {` ${recipe.dataCadastro.substring(
               8,
-              10
+              10,
             )}/${recipe.dataCadastro.substring(
               5,
-              7
+              7,
             )}/${recipe.dataCadastro.substring(0, 4)}`}
           </Typography>
         </Stack>
@@ -111,11 +115,12 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                Tempo de preparo:{" "}
-                {recipe.tempoPreparo.horas > 0 &&
-                  `${recipe.tempoPreparo.horas}h`}
-                {recipe.tempoPreparo.minutos > 0 &&
-                  `${recipe.tempoPreparo.minutos}min`}
+                Tempo de preparo:
+                {" "}
+                {recipe.tempoPreparo.horas > 0
+                  && `${recipe.tempoPreparo.horas}h`}
+                {recipe.tempoPreparo.minutos > 0
+                  && `${recipe.tempoPreparo.minutos}min`}
               </Typography>
             </Stack>
             <Divider
@@ -142,7 +147,10 @@ export default function RecipeView() {
                   whiteSpace: "nowrap",
                 }}
               >
-                Rendimento: {recipe.rendimento}{" "}
+                Rendimento:
+                {" "}
+                {recipe.rendimento}
+                {" "}
                 {recipe.rendimento > 1 ? "porções" : "porção"}
               </Typography>
             </Stack>
