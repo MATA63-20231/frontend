@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CardMedia from "@mui/material/CardMedia";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -11,22 +10,22 @@ import RamenDiningIcon from "@mui/icons-material/RamenDiningOutlined";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import { getRecipeDetails } from "../services/RecipesApi.tsx";
 import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
-import NoImage from "../assets/noimage.svg";
+import { IRecipeRead } from "../interfaces/RecipeInterfaces.tsx";
+import ImagesCarousel from "../components/Carousel.tsx";
 
 // TODO: Avaliação e comentários
 
 export default function RecipeView() {
   const { recipeId } = useParams();
 
-  const [recipe, setRecipe] = useState<IRecipe>({
+  const [recipe, setRecipe] = useState<IRecipeRead>({
     id: "",
+    dataCadastro: "",
     titulo: "",
     descricao: "",
-    dataCadastro: "",
     rendimento: 0,
     tempoPreparo: { horas: 0, minutos: 0 },
     ingredientes: [],
@@ -74,25 +73,9 @@ export default function RecipeView() {
           </Typography>
         </Stack>
         <Card sx={{ width: "600px" }}>
-          {recipe.imagens.length > 0 ? (
-            <CardMedia
-              component="img"
-              title={recipe.titulo}
-              image="https://picsum.photos/200"
-              sx={{ height: "400px" }}
-            />
-          ) : (
-            <CardMedia
-              component="img"
-              title={recipe.titulo}
-              image={NoImage}
-              sx={{
-                width: "20%",
-                margin: "auto",
-                py: 12,
-              }}
-            />
-          )}
+
+          <ImagesCarousel images={recipe.imagens} />
+
           <Stack
             direction={{ xs: "column", md: "row" }}
             spacing={{ xs: 0.5, md: 1 }}
@@ -157,7 +140,7 @@ export default function RecipeView() {
                 {" "}
                 {recipe.rendimento}
                 {" "}
-                porções
+                {recipe.rendimento > 1 ? "porções" : "porção"}
               </Typography>
             </Stack>
           </Stack>
