@@ -54,7 +54,7 @@ export default function RecipeEdit() {
       authRule={{
         rule: RouteAuthRules.SAME_USER_ONLY,
         userId: "TODO",
-        redirectTo: "/",
+        redirectTo: `/receita/${recipeId}`,
       }}
     >
       <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>

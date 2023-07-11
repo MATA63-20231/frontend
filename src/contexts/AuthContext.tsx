@@ -53,6 +53,8 @@ export function AuthProvider({ children }: PropsWithChildren) {
       setSigned(true);
       api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
       // }
+    } else {
+      setSigned(false);
     }
   }, []);
 
