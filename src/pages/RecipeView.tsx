@@ -151,7 +151,6 @@ export default function RecipeView() {
           <Grid
             container
             direction="column"
-            // alignItems="flex-start"
             sx={{ p: 2, pt: 0 }}
           >
             {recipe.descricao && (
@@ -190,7 +189,6 @@ export default function RecipeView() {
                     </Grid>
                     <ListItemText
                       primary={etapa.descricao}
-                      // secondary="desc item"
                     />
                   </ListItem>
                 ))}
