@@ -1,15 +1,15 @@
 import { Formik, Form, FormikHelpers } from "formik";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import { IRecipeCreation, IRecipeCreationFormFields } from "../../../interfaces/RecipeInterfaces.tsx";
-import { createRecipe } from "../../../services/RecipesApi.tsx";
-import RecipeCreationFields from "./RecipeCreationFields.tsx";
-import generateRecipeCreationSchema, {
+import { IRecipeCreation, IRecipeFormFields } from "../../../interfaces/RecipeInterfaces.js";
+import { createRecipe } from "../../../services/RecipesApi.js";
+import RecipeFields from "./RecipeFields.js";
+import generateRecipeSchema, {
   initialValues,
-} from "../schemas/RecipeCreationSchema.tsx";
-import LoadingButton from "../../../components/LoadingButton.tsx";
+} from "../schemas/RecipeSchema.js";
+import LoadingButton from "../../../components/LoadingButton.js";
 
-export default function RecipeCreationForm() {
+export default function RecipeForm() {
   const navigate = useNavigate();
 
   const acceptedFileTypes = ["JPG", "JPEG", "PNG", "GIF", "SVG"];
@@ -17,7 +17,7 @@ export default function RecipeCreationForm() {
   const maxFileSizeMB = 3;
   const maxFileSize = maxFileSizeMB * 1000 * 1024;
   const maxFilesAmount = 10;
-  const RecipeCreationSchema = generateRecipeCreationSchema({
+  const RecipeCreationSchema = generateRecipeSchema({
     acceptedFileTypes,
     acceptedFileTypesStr,
     maxFileSize,
@@ -25,7 +25,7 @@ export default function RecipeCreationForm() {
     maxFilesAmount,
   });
 
-  const recipeToBack = (recipe: IRecipeCreationFormFields): IRecipeCreation => ({
+  const recipeToBack = (recipe: IRecipeFormFields): IRecipeCreation => ({
     titulo: recipe.title,
     descricao: recipe.description,
     rendimento: Number(recipe.servings),
@@ -43,8 +43,8 @@ export default function RecipeCreationForm() {
   });
 
   const handleSubmit = (
-    values: IRecipeCreationFormFields,
-    { setSubmitting }: FormikHelpers<IRecipeCreationFormFields>,
+    values: IRecipeFormFields,
+    { setSubmitting }: FormikHelpers<IRecipeFormFields>,
   ) => {
     const recipe = recipeToBack(values);
     createRecipe(recipe, navigate, setSubmitting);
@@ -65,7 +65,7 @@ export default function RecipeCreationForm() {
         setFieldTouched,
       }) => (
         <Form>
-          <RecipeCreationFields
+          <RecipeFields
             values={values}
             errors={errors}
             loading={isSubmitting}

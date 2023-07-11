@@ -1,4 +1,4 @@
-export interface IRecipeCreationFormFields {
+export interface IRecipeFormFields {
   title: string;
   description: string;
   servings: number | "";
