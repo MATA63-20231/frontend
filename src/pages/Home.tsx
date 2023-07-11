@@ -5,14 +5,14 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
+import { IRecipeRead } from "../interfaces/RecipeInterfaces.tsx";
 import { getAllRecipes } from "../services/RecipesApi.tsx";
 import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import NoImage from "../assets/noimage.svg";
 
 export default function Home() {
-  const [recipes, setRecipes] = useState<IRecipe[]>([]);
+  const [recipes, setRecipes] = useState<IRecipeRead[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -45,6 +45,7 @@ export default function Home() {
                     component="img"
                     title={recipe.titulo}
                     image="https://picsum.photos/200"
+                    // image={recipe.imagens[0].nome} //TO DO: implementar requisição de imagem
                     sx={{ height: "210px" }}
                   />
                 ) : (
@@ -59,11 +60,12 @@ export default function Home() {
                     }}
                   />
                 )}
-                <CardContent sx={{ flexGrow: 1, alignItens: "flex-end" }}>
+                <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
                     {recipe.titulo}
                   </Typography>
                   <Typography>{recipe.descricao}</Typography>
+                  <Typography>Por *****</Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
