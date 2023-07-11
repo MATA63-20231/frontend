@@ -4,6 +4,6 @@ export interface IUserBase {
 }
 
 export interface IUser extends IUserBase {
-  usuario:string;
-  id:string;
+  usuario: string;
+  id: string;
 }
