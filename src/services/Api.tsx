@@ -5,9 +5,10 @@ import {
   IGet,
   IPost,
 } from "../interfaces/ApiInterfaces.tsx";
+import env from "../config/env.tsx";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000/",
+  baseURL: env.baseUrl,
 });
 
 const defaultOnError = (

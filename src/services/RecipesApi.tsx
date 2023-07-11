@@ -15,13 +15,13 @@ const getAllRecipes = (
 };
 
 const createRecipe = (
-  recipe: FormData,
+  recipe: IRecipeCreation,
+  // recipe: FormData,
   navigate: NavigateFunction,
   setLoading: (loading: boolean) => void
 ) => {
-  console.log(recipe);
-
-  POST<IRecipe, FormData>({
+  POST<IRecipe, IRecipeCreation>({
+  // POST<IRecipe, FormData>({
     path: "/receita",
     body: recipe,
     setLoading,
