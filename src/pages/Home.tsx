@@ -5,14 +5,14 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { IRecipeRead } from "../interfaces/RecipeInterfaces.tsx";
+import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import { getAllRecipes } from "../services/RecipesApi.tsx";
 import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import NoImage from "../assets/noimage.svg";
 
 export default function Home() {
-  const [recipes, setRecipes] = useState<IRecipeRead[]>([]);
+  const [recipes, setRecipes] = useState<IRecipe[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {

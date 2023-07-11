@@ -32,29 +32,20 @@ export interface IImage {
   nome: string;
 }
 
-export interface IRecipeCreation {
+interface IRecipeBase {
   titulo: string;
   descricao: string;
   rendimento: number;
   tempoPreparo: ITempoPreparo;
   ingredientes: IIngrediente[];
   listaPreparo: IItemPreparo[];
+}
+export interface IRecipeCreation extends IRecipeBase{
   imagens: File[];
 }
 
-export interface IRecipe extends IRecipeCreation {
+export interface IRecipe extends IRecipeBase {
   id: string;
   dataCadastro: string;
-}
-
-export interface IRecipeRead {
-  id: string;
-  dataCadastro: string;
-  titulo: string;
-  descricao: string;
-  rendimento: number;
-  tempoPreparo: ITempoPreparo;
-  ingredientes: IIngrediente[];
-  listaPreparo: IItemPreparo[];
   imagens: IImage[];
 }

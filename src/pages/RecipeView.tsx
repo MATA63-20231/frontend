@@ -13,7 +13,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { getRecipeDetails } from "../services/RecipesApi.tsx";
 import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
-import { IRecipeRead } from "../interfaces/RecipeInterfaces.tsx";
+import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import ImagesCarousel from "../components/Carousel.tsx";
 
 // TODO: Avaliação e comentários
@@ -21,7 +21,7 @@ import ImagesCarousel from "../components/Carousel.tsx";
 export default function RecipeView() {
   const { recipeId } = useParams();
 
-  const [recipe, setRecipe] = useState<IRecipeRead>({
+  const [recipe, setRecipe] = useState<IRecipe>({
     id: "",
     dataCadastro: "",
     titulo: "",
