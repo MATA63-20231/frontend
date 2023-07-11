@@ -1,10 +1,7 @@
 import { Formik, Form, FormikHelpers } from "formik";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import {
-  IRecipeCreation,
-  IRecipeCreationFormFields,
-} from "../../../interfaces/RecipeInterfaces.tsx";
+import { IRecipeCreation, IRecipeCreationFormFields } from "../../../interfaces/RecipeInterfaces.tsx";
 import { createRecipe } from "../../../services/RecipesApi.tsx";
 import RecipeCreationFields from "./RecipeCreationFields.tsx";
 import generateRecipeCreationSchema, {
@@ -28,9 +25,7 @@ export default function RecipeCreationForm() {
     maxFilesAmount,
   });
 
-  const recipeToBack = (
-    recipe: IRecipeCreationFormFields,
-  ): IRecipeCreation => ({
+  const recipeToBack = (recipe: IRecipeCreationFormFields): IRecipeCreation => ({
     titulo: recipe.title,
     descricao: recipe.description,
     rendimento: Number(recipe.servings),
