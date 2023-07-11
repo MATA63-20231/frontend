@@ -13,7 +13,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { getRecipeDetails } from "../services/RecipesApi.tsx";
 import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
-import { IRecipeRead } from "../interfaces/RecipeInterfaces.tsx";
+import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import ImagesCarousel from "../components/Carousel.tsx";
 
 // TODO: Avaliação e comentários
@@ -21,7 +21,7 @@ import ImagesCarousel from "../components/Carousel.tsx";
 export default function RecipeView() {
   const { recipeId } = useParams();
 
-  const [recipe, setRecipe] = useState<IRecipeRead>({
+  const [recipe, setRecipe] = useState<IRecipe>({
     id: "",
     dataCadastro: "",
     titulo: "",
@@ -31,6 +31,14 @@ export default function RecipeView() {
     ingredientes: [],
     listaPreparo: [],
     imagens: [],
+    usuario: {
+      id: "",
+      usuario: "",
+      nome: "",
+      email: "",
+    },
+    curtidas: [],
+    comentarios: [],
   });
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,7 +51,7 @@ export default function RecipeView() {
 
   return (
     <Page
-      title="Título da Receita"
+      title={recipe.titulo}
       pretitle="Confira esta receita"
       authRule={{ rule: RouteAuthRules.NO_RULE }}
       loading={loading}
@@ -62,7 +70,11 @@ export default function RecipeView() {
               textAlign: "start",
             }}
           >
-            Postado por ***** em
+            Postado por
+            {" "}
+            {recipe.usuario.nome}
+            {" "}
+            em
             {` ${recipe.dataCadastro.substring(
               8,
               10,
@@ -73,7 +85,6 @@ export default function RecipeView() {
           </Typography>
         </Stack>
         <Card sx={{ width: "600px" }}>
-
           <ImagesCarousel images={recipe.imagens} />
 
           <Stack
@@ -108,8 +119,8 @@ export default function RecipeView() {
                 {" "}
                 {recipe.tempoPreparo.horas > 0
                   && `${recipe.tempoPreparo.horas}h`}
-                {recipe.tempoPreparo.minutos}
-                min
+                {recipe.tempoPreparo.minutos > 0
+                  && `${recipe.tempoPreparo.minutos}min`}
               </Typography>
             </Stack>
             <Divider
@@ -148,11 +159,18 @@ export default function RecipeView() {
           <Grid
             container
             direction="column"
-            alignItems="flex-start"
-            sx={{ p: 2 }}
+            sx={{ p: 2, pt: 0 }}
           >
+            {recipe.descricao && (
+              <Grid item sx={{ py: 2 }}>
+                <Typography>{recipe.descricao}</Typography>
+              </Grid>
+            )}
+
             <Grid item>
-              <Typography variant="h6">Ingredientes</Typography>
+              <Typography variant="h6" textAlign="start">
+                Ingredientes
+              </Typography>
 
               <List>
                 {recipe.ingredientes.map((ingredient, index) => (
@@ -168,7 +186,9 @@ export default function RecipeView() {
             </Grid>
 
             <Grid item>
-              <Typography variant="h6">Modo de preparo</Typography>
+              <Typography variant="h6" textAlign="start">
+                Modo de preparo
+              </Typography>
               <List>
                 {recipe.listaPreparo.map((etapa, index) => (
                   <ListItem key={etapa.id}>
@@ -177,7 +197,6 @@ export default function RecipeView() {
                     </Grid>
                     <ListItemText
                       primary={etapa.descricao}
-                      // secondary="desc item"
                     />
                   </ListItem>
                 ))}

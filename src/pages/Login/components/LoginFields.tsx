@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import TextInput from "../../../components/CustomInputs/TextInput.tsx";
 import PasswordInput from "../../../components/CustomInputs/PasswordInput.tsx";
 
-export default function RecipeCreationFields() {
+export default function LoginFields() {
   return (
     <Grid container direction="column" justifyContent="center" spacing={2}>
       <Grid item>

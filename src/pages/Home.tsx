@@ -32,20 +32,19 @@ export default function Home() {
             <Card
               sx={{
                 height: "300px",
-                display: "flex",
-                flexDirection: "column",
               }}
             >
               <CardActionArea
                 href={`/receita/${recipe.id}`}
-                sx={{ height: "300px" }}
+                sx={{ height: "100%" }}
               >
                 {recipe.imagens.length > 0 ? (
                   <CardMedia
                     component="img"
                     title={recipe.titulo}
                     image="https://picsum.photos/200"
-                    sx={{ height: "210px" }}
+                    // image={recipe.imagens[0].nome} //TO DO: implementar requisição de imagem
+                    sx={{ height: "72%" }}
                   />
                 ) : (
                   <CardMedia
@@ -53,17 +52,22 @@ export default function Home() {
                     title={recipe.titulo}
                     image={NoImage}
                     sx={{
+                      height: "72%",
                       width: "70px",
                       mx: "auto",
                       py: "60px",
                     }}
                   />
                 )}
-                <CardContent sx={{ flexGrow: 1, alignItens: "flex-end" }}>
-                  <Typography gutterBottom variant="h5" component="h2">
+                <CardContent>
+                  <Typography variant="h5" component="h2">
                     {recipe.titulo}
                   </Typography>
-                  <Typography>{recipe.descricao}</Typography>
+                  <Typography fontSize="14px">
+                    Postado por
+                    {" "}
+                    {recipe.usuario.nome}
+                  </Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
