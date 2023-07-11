@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -10,57 +10,51 @@ import RamenDiningIcon from "@mui/icons-material/RamenDiningOutlined";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+import Button from "@mui/material/Button";
 import { getRecipeDetails } from "../services/RecipesApi.tsx";
 import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import ImagesCarousel from "../components/Carousel.tsx";
+import AuthContext from "../contexts/AuthContext.tsx";
 
 // TODO: Avaliação e comentários
 
 export default function RecipeView() {
+  const navigate = useNavigate();
+  const { signed } = useContext(AuthContext);
   const { recipeId } = useParams();
 
-  const [recipe, setRecipe] = useState<IRecipe>({
-    id: "",
-    dataCadastro: "",
-    titulo: "",
-    descricao: "",
-    rendimento: 0,
-    tempoPreparo: { horas: 0, minutos: 0 },
-    ingredientes: [],
-    listaPreparo: [],
-    imagens: [],
-    usuario: {
-      id: "",
-      usuario: "",
-      nome: "",
-      email: "",
-    },
-    curtidas: [],
-    comentarios: [],
-  });
-
   const [loading, setLoading] = useState<boolean>(false);
+  const [recipe, setRecipe] = useState<IRecipe>();
 
   useEffect(() => {
-    if (recipeId) {
-      getRecipeDetails(recipeId, setLoading, setRecipe);
+    if (!recipeId) {
+      navigate("/");
+    } else {
+      getRecipeDetails(recipeId, navigate, setLoading, setRecipe);
     }
-  }, [recipeId]);
+  }, [recipeId, navigate]);
 
-  return (
+  return !recipe ? null : (
     <Page
       title={recipe.titulo}
       pretitle="Confira esta receita"
       authRule={{ rule: RouteAuthRules.NO_RULE }}
       loading={loading}
     >
+      {/* TODO: Uncoment the above code when user is returned by back */}
+      {/* {(signed && userId && userId === "TODO") && ( */}
+      {signed && (
+        <Button variant="outlined" href={`/editar-receita/${recipeId}`}>
+          Editar receita
+        </Button>
+      )}
       <Grid
         container
         sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}
       >
-        <Stack sx={{ py: 1 }}>
+        <Stack sx={{ mt: 2, py: 1 }}>
           <Typography
             color="secondary.main"
             sx={{

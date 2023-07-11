@@ -1,7 +1,7 @@
 import { IInteractions } from "./InteractionsInterfaces.tsx";
 import { IUser } from "./UserInterfaces.tsx";
 
-export interface IRecipeCreationFormFields {
+export interface IRecipeFormFields {
   title: string;
   description: string;
   servings: number | "";
@@ -43,7 +43,8 @@ interface IRecipeBase {
   ingredientes: IIngrediente[];
   listaPreparo: IItemPreparo[];
 }
-export interface IRecipeCreation extends IRecipeBase {
+
+export interface IRecipeToBack extends IRecipeBase {
   imagens: File[];
 }
 

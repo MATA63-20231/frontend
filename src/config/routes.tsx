@@ -2,10 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App.tsx";
 import Home from "../pages/Home.tsx";
 import NotFound from "../pages/NotFound.tsx";
-import RecipeCreation from "../pages/RecipeCreation/RecipeCreation.tsx";
+import RecipeCreation from "../pages/Recipe/RecipeCreation.tsx";
 import RecipeView from "../pages/RecipeView.tsx";
 import Login from "../pages/Login/Login.tsx";
 import Register from "../pages/Register/Register.tsx";
+import RecipeEdit from "../pages/Recipe/RecipeEdit.tsx";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/nova-receita",
         element: <RecipeCreation />,
+      },
+      {
+        path: "/editar-receita/:recipeId",
+        element: <RecipeEdit />,
       },
       {
         path: "/receita/:recipeId",

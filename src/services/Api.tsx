@@ -76,4 +76,23 @@ function POST<DataType, BodyType>({
   });
 }
 
-export { api, GET, POST };
+function PUT<DataType, BodyType>({
+  path,
+  body,
+  setLoading,
+  onSuccess,
+  onError,
+  onFinish,
+}: IPost<DataType, BodyType>) {
+  wrapDefaultRequestBehavior({
+    axiosRequest: api.put<DataType>(path, body),
+    setLoading,
+    onSuccess,
+    onError,
+    onFinish,
+  });
+}
+
+export {
+  api, GET, POST, PUT,
+};
