@@ -37,6 +37,8 @@ export default function RecipeView() {
       nome: "",
       email: "",
     },
+    curtidas: [],
+    comentarios: [],
   });
 
   const [loading, setLoading] = useState<boolean>(false);

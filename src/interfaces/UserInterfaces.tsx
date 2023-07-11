@@ -3,7 +3,6 @@ export interface IUserBase {
   email: string;
 }
 
-
 export interface IUser extends IUserBase {
   usuario:string;
   id:string;

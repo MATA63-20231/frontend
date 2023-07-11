@@ -1,3 +1,4 @@
+import { IInteractions } from "./FeedInterfaces";
 import { IUser } from "./UserInterfaces";
 
 export interface IRecipeCreationFormFields {
@@ -46,7 +47,7 @@ export interface IRecipeCreation extends IRecipeBase{
   imagens: File[];
 }
 
-export interface IRecipe extends IRecipeBase {
+export interface IRecipe extends IRecipeBase, IInteractions {
   id: string;
   dataCadastro: string;
   imagens: IImage[];
