@@ -33,10 +33,12 @@ const getRecipeDetails = (
 
 const createRecipe = (
   recipe: IRecipeToBack,
+  // recipe: FormData,
   navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
 ) => {
   POST<IRecipe, IRecipeToBack>({
+  // POST<IRecipe, FormData>({
     path: "/receita",
     body: recipe,
     setLoading,

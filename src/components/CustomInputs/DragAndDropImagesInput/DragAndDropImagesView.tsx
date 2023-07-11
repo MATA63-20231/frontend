@@ -22,13 +22,7 @@ export default function DragAndDropImagesView({
           xs={12}
           sm={4}
         >
-          <Card
-            sx={{
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
+          <Card>
             <DragAndDropImageView
               disabled={disabled}
               index={index}

@@ -50,6 +50,43 @@ export default function RecipeForm({ initialRecipe }: IProps) {
     imagens: recipe.images,
   });
 
+  // const recipeToBack = (recipe: IRecipeCreationFormFields): FormData => {
+  //   const recipeBack: IRecipeCreation = {
+  //     titulo: recipe.title,
+  //     descricao: recipe.description,
+  //     rendimento: Number(recipe.servings),
+  //     tempoPreparo: {
+  //       horas: Number(recipe.prepTime.hours),
+  //       minutos: Number(recipe.prepTime.minutes),
+  //     },
+  //     listaPreparo: recipe.directions.map((direction) => ({
+  //       descricao: direction,
+  //     })),
+  //     ingredientes: recipe.ingredients.map((ingredient) => ({
+  //       descricao: ingredient,
+  //     })),
+  //     imagens: recipe.images,
+  //   };
+
+  //   const recipeFormData = new FormData();
+
+  //   for (const key in recipeBack) {
+  //     console.log(key);
+  //     if (key !== "imagens") {
+  //       recipeFormData.append(
+  //         key,
+  //         JSON.stringify(recipeBack[key as keyof IRecipeCreation])
+  //       );
+  //     }
+  //   }
+
+  //   recipeBack.imagens.forEach((image) =>
+  //     recipeFormData.append("imagens", image)
+  //   );
+
+  //   return recipeFormData;
+  // };
+
   const handleSubmit = (
     values: IRecipeFormFields,
     { setSubmitting }: FormikHelpers<IRecipeFormFields>,
