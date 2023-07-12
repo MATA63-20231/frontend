@@ -3,8 +3,24 @@ import { NavigateFunction } from "react-router-dom";
 import {
   IRecipeToBack,
   IRecipe,
+  IImage,
 } from "../interfaces/RecipeInterfaces.tsx";
 import { GET, POST, PUT } from "./Api.tsx";
+
+
+export const getImage = (
+  imageId: string,
+  setLoading: (loading: boolean) => void,
+) => {
+  GET<IImage>({
+    path: `/imagem/${imageId}`,
+    setLoading,
+    onSuccess: (data) => data,
+    // setRecipe(data),
+    // onError: () => { navigate("/"); },
+  });
+};
+
 
 const getAllRecipes = (
   setLoading: (loading: boolean) => void,
