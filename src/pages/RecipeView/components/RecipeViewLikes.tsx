@@ -57,7 +57,7 @@ export default function RecipeViewLikes({ recipeId, initialLikes }: IProps) {
   };
 
   return (
-    <Grid container direction="row" justifyContent="center" gap={1}>
+    <Grid container direction="row" justifyContent="flex-end" gap={1}>
       <Tooltip title={liked ? "Remover curtida" : "Curtir"}>
         <Button
           onClick={handleLike}
