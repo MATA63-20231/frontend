@@ -7,10 +7,13 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/Api.tsx";
+import { ILoginResponse } from "../interfaces/AuthInterfaces.tsx";
+import { IUser } from "../interfaces/UserInterfaces.tsx";
 
 interface AuthContextData {
-  signed: boolean | null;
-  handleLogin: (token: string) => void;
+  signedIn: boolean | null;
+  isTheSameUser: (userId: string | undefined) => boolean;
+  handleLogin: (loginData: ILoginResponse) => void;
   handleLogout: () => void;
 }
 
@@ -19,42 +22,58 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export function AuthProvider({ children }: PropsWithChildren) {
   const navigate = useNavigate();
 
-  const [signed, setSigned] = useState<boolean | null>(null);
+  const [user, setUser] = useState<IUser | null>();
 
   const authContextValue = useMemo(() => {
-    const handleLogin = (token: string) => {
-      setSigned(true);
+    const handleLogin = ({ token, usuario }: ILoginResponse) => {
+      setUser(usuario);
       api.defaults.headers.Authorization = `Bearer ${token}`;
-
-      // TODO: Change this ugly ternary when token is returned by backend
-      localStorage.setItem("token", token || "null");
-      // localStorage.setItem("token", token);
-
+      localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem("user", JSON.stringify(usuario));
       navigate("/");
     };
 
     const handleLogout = () => {
-      setSigned(false);
+      setUser(null);
       api.defaults.headers.Authorization = null;
       localStorage.clear();
-      navigate("/");
+      navigate("/login");
     };
 
-    return { signed, handleLogin, handleLogout };
-  }, [signed, navigate]);
+    const isTheSameUser = (userId: string | undefined) => {
+      const result = Boolean(user && userId && user.id === userId);
+      return result;
+    };
+
+    const isSignedIn = () => {
+      if (user === undefined) return null;
+      return Boolean(user);
+    };
+
+    const signedIn = isSignedIn();
+
+    return {
+      signedIn,
+      isTheSameUser,
+      handleLogin,
+      handleLogout,
+    };
+  }, [user, navigate]);
 
   useEffect(() => {
     const storagedToken = localStorage.getItem("token");
+    const storagedUser = localStorage.getItem("user");
 
-    if (storagedToken) {
-      // TODO: Uncomment the below codes when token is returned by backend
-      // const parsedToken = JSON.parse(storagedToken);
-      // if (parsedToken) {
-      setSigned(true);
-      api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
-      // }
+    if (storagedToken && storagedUser) {
+      const parsedToken = JSON.parse(storagedToken);
+      const parsedUser = JSON.parse(storagedUser);
+
+      if (parsedToken && parsedUser) {
+        setUser(parsedUser);
+        api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
+      }
     } else {
-      setSigned(false);
+      setUser(null);
     }
   }, []);
 

@@ -53,7 +53,7 @@ export default function RecipeEdit() {
       loading={loading}
       authRule={{
         rule: RouteAuthRules.SAME_USER_ONLY,
-        userId: "TODO",
+        userId: rawRecipe?.usuario?.id,
         redirectTo: `/receita/${recipeId}`,
       }}
     >

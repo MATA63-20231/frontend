@@ -1,10 +1,9 @@
 import { enqueueSnackbar } from "notistack";
 import { NavigateFunction } from "react-router-dom";
+import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import {
-  IRecipeToBack,
-  IRecipe,
-} from "../interfaces/RecipeInterfaces.tsx";
-import { GET, POST, PUT } from "./Api.tsx";
+  DELETE, GET, POST, PUT,
+} from "./Api.tsx";
 
 const getAllRecipes = (
   setLoading: (loading: boolean) => void,
@@ -27,18 +26,18 @@ const getRecipeDetails = (
     path: `/receita/${recipeId}`,
     setLoading,
     onSuccess: (data) => setRecipe(data),
-    onError: () => { navigate("/"); },
+    onError: () => {
+      navigate("/");
+    },
   });
 };
 
 const createRecipe = (
-  recipe: IRecipeToBack,
-  // recipe: FormData,
+  recipe: FormData,
   navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
 ) => {
-  POST<IRecipe, IRecipeToBack>({
-  // POST<IRecipe, FormData>({
+  POST<IRecipe, FormData>({
     path: "/receita",
     body: recipe,
     setLoading,
@@ -53,12 +52,12 @@ const createRecipe = (
 };
 
 const editRecipe = (
-  recipe: IRecipeToBack,
+  recipe: FormData,
   recipeId: string,
   navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
 ) => {
-  PUT<IRecipe, IRecipeToBack>({
+  PUT<IRecipe, FormData>({
     path: `/receita/${recipeId}`,
     body: recipe,
     setLoading,
@@ -72,6 +71,31 @@ const editRecipe = (
   });
 };
 
+const deleteRecipe = (
+  recipeId: string,
+  navigate: NavigateFunction,
+  setLoading: (loading: boolean) => void,
+) => {
+  DELETE<IRecipe>({
+    path: `/receita/${recipeId}`,
+    setLoading,
+    onSuccess: () => {
+      enqueueSnackbar({
+        variant: "success",
+        message: "Receita deletada com sucesso!",
+      });
+      navigate("/");
+    },
+    onError: () => {
+      navigate("/");
+    },
+  });
+};
+
 export {
-  getAllRecipes, getRecipeDetails, createRecipe, editRecipe,
+  getAllRecipes,
+  getRecipeDetails,
+  createRecipe,
+  editRecipe,
+  deleteRecipe,
 };

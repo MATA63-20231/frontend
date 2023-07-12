@@ -1,5 +1,5 @@
 import { RouteGeneralRules, RouteUserRules } from "../enums/RouteAuthRules.tsx";
-import { IUserBase } from "./UserInterfaces.tsx";
+import { IUser } from "./UserInterfaces.tsx";
 
 export interface ILogin {
   usuario: string;
@@ -7,11 +7,13 @@ export interface ILogin {
 }
 
 export interface ILoginResponse {
-  signed: boolean;
   token: string;
+  usuario: IUser;
 }
 
-export interface IUserRegister extends ILogin, IUserBase {
+export interface IUserRegister extends ILogin {
+  nome: string;
+  email: string;
   confirmacaoSenha: string;
 }
 
@@ -22,7 +24,7 @@ export interface IRouteGeneralRules {
 
 export interface IRouteUserRules {
   rule: RouteUserRules;
-  userId: string;
+  userId: string | undefined;
   redirectTo: string;
 }
 

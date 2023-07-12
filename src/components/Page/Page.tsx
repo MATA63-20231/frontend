@@ -11,8 +11,8 @@ import ScrollToTop from "./ScrollToTop.tsx";
 import AuthContext from "../../contexts/AuthContext.tsx";
 
 interface IProps {
-  title: string;
-  pretitle: string;
+  title: string | undefined;
+  pretitle: string | undefined;
   authRule: IRouteAuthRules;
   loading?: boolean;
 }
@@ -25,27 +25,27 @@ export default function Page({
   children,
 }: PropsWithChildren<IProps>) {
   const navigate = useNavigate();
-  const { signed } = useContext(AuthContext);
+  const { signedIn, isTheSameUser } = useContext(AuthContext);
 
   useEffect(() => {
-    if (signed !== null) {
+    if (signedIn !== null) {
       switch (authRule.rule) {
       case RouteAuthRules.SIGNED_ONLY: {
-        if (!signed) {
+        if (!signedIn) {
           navigate("/login");
         }
         break;
       }
 
       case RouteAuthRules.NO_SIGNED_ONLY: {
-        if (signed) {
+        if (signedIn) {
           navigate("/");
         }
         break;
       }
 
       case RouteAuthRules.SAME_USER_ONLY: {
-        if (!signed || !authRule.userId || authRule.userId !== "TODO") {
+        if (!isTheSameUser(authRule.userId)) {
           navigate(authRule.redirectTo);
         }
         break;
@@ -56,7 +56,7 @@ export default function Page({
       }
       }
     }
-  }, [signed, authRule, navigate]);
+  }, [signedIn, authRule, isTheSameUser, navigate]);
 
   return (
     <>

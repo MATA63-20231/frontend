@@ -1,29 +1,36 @@
 import Carousel from "react-material-ui-carousel";
-import { CardMedia } from "@mui/material";
-import { IImage } from "../interfaces/RecipeInterfaces.tsx";
+import CardMedia from "@mui/material/CardMedia";
+import Grid from "@mui/material/Grid";
+import { IImageCarousel } from "../interfaces/RecipeInterfaces.tsx";
 import NoImage from "../assets/noimage.svg";
 
 interface IProps {
-  images: IImage[];
+  images: IImageCarousel[];
 }
 
 export default function ImagesCarousel({ images }: IProps) {
+  const hasImages = images.length;
   const hasMultipleImages = images.length > 1;
 
-  return images.length ? (
+  return hasImages ? (
     <Carousel
       navButtonsAlwaysVisible={hasMultipleImages}
       navButtonsAlwaysInvisible={!hasMultipleImages}
       indicators={hasMultipleImages}
     >
       {images.map((img) => (
-        <CardMedia
-          key={img.id}
-          component="img"
-          image={`https://picsum.photos/500/200?random=${img.ordem}`}
-          // image={img.nome}  // TODO: Implementar quando houver requisição de imagem
-          sx={{ height: "400px" }}
-        />
+        <Grid key={img.id}>
+          <CardMedia
+            component="img"
+            image={img.link}
+            sx={{
+              height: "400px",
+              width: "auto",
+              mx: "auto",
+            }}
+          />
+          {img.action}
+        </Grid>
       ))}
     </Carousel>
   ) : (

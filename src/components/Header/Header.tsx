@@ -13,7 +13,7 @@ import AuthContext from "../../contexts/AuthContext.tsx";
 import { SearchBarComponent } from "./SearchBar.tsx";
 
 export default function Header() {
-  const { signed } = useContext(AuthContext);
+  const { signedIn } = useContext(AuthContext);
 
   return (
     <Toolbar
@@ -53,11 +53,15 @@ export default function Header() {
         justifyContent="flex-end"
       >
         <Grid item>
+<<<<<<< HEAD
           <SearchBarComponent />
         </Grid>
 
         <Grid item>
           {!signed && (
+=======
+          {!signedIn && (
+>>>>>>> be6c12b7f9d4de619c213bdc4154f004967ed45a
             <Button
               variant="outlined"
               href="login"
@@ -75,7 +79,7 @@ export default function Header() {
           </Button>
         </Grid>
 
-        <Grid item>{signed && <AccountMenu />}</Grid>
+        <Grid item>{signedIn && <AccountMenu />}</Grid>
       </Grid>
     </Toolbar>
   );

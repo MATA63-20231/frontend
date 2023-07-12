@@ -33,59 +33,36 @@ export default function RecipeForm({ initialRecipe }: IProps) {
     maxFilesAmount,
   });
 
-  const recipeToBack = (recipe: IRecipeFormFields): IRecipeToBack => ({
-    titulo: recipe.title,
-    descricao: recipe.description,
-    rendimento: Number(recipe.servings),
-    tempoPreparo: {
-      horas: Number(recipe.prepTime.hours),
-      minutos: Number(recipe.prepTime.minutes),
-    },
-    listaPreparo: recipe.directions.map((direction) => ({
-      descricao: direction,
-    })),
-    ingredientes: recipe.ingredients.map((ingredient) => ({
-      descricao: ingredient,
-    })),
-    imagens: recipe.images,
-  });
+  const recipeToBack = (recipe: IRecipeFormFields): FormData => {
+    const recipeBack: IRecipeToBack = {
+      titulo: recipe.title,
+      descricao: recipe.description,
+      rendimento: Number(recipe.servings),
+      tempoPreparo: {
+        horas: Number(recipe.prepTime.hours),
+        minutos: Number(recipe.prepTime.minutes),
+      },
+      ingredientes: recipe.ingredients.map((ingredient) => ({
+        descricao: ingredient,
+      })),
+      listaPreparo: recipe.directions.map((direction) => ({
+        descricao: direction,
+      })),
+      imagens: recipe.images,
+    };
 
-  // const recipeToBack = (recipe: IRecipeCreationFormFields): FormData => {
-  //   const recipeBack: IRecipeCreation = {
-  //     titulo: recipe.title,
-  //     descricao: recipe.description,
-  //     rendimento: Number(recipe.servings),
-  //     tempoPreparo: {
-  //       horas: Number(recipe.prepTime.hours),
-  //       minutos: Number(recipe.prepTime.minutes),
-  //     },
-  //     listaPreparo: recipe.directions.map((direction) => ({
-  //       descricao: direction,
-  //     })),
-  //     ingredientes: recipe.ingredients.map((ingredient) => ({
-  //       descricao: ingredient,
-  //     })),
-  //     imagens: recipe.images,
-  //   };
+    const recipeFormData = new FormData();
 
-  //   const recipeFormData = new FormData();
+    recipeFormData.append("titulo", recipeBack.titulo);
+    recipeFormData.append("descricao", recipeBack.descricao);
+    recipeFormData.append("rendimento", String(recipeBack.rendimento));
+    recipeFormData.append("tempoPreparo", JSON.stringify(recipeBack.tempoPreparo));
+    recipeFormData.append("ingredientes", JSON.stringify(recipeBack.ingredientes));
+    recipeFormData.append("listaPreparo", JSON.stringify(recipeBack.listaPreparo));
+    recipeBack.imagens.forEach((image) => recipeFormData.append("imagens", image));
 
-  //   for (const key in recipeBack) {
-  //     console.log(key);
-  //     if (key !== "imagens") {
-  //       recipeFormData.append(
-  //         key,
-  //         JSON.stringify(recipeBack[key as keyof IRecipeCreation])
-  //       );
-  //     }
-  //   }
-
-  //   recipeBack.imagens.forEach((image) =>
-  //     recipeFormData.append("imagens", image)
-  //   );
-
-  //   return recipeFormData;
-  // };
+    return recipeFormData;
+  };
 
   const handleSubmit = (
     values: IRecipeFormFields,
@@ -127,7 +104,7 @@ export default function RecipeForm({ initialRecipe }: IProps) {
           />
           <Grid sx={{ mt: 2 }}>
             <LoadingButton loading={isSubmitting} onClick={submitForm}>
-              Cadastrar
+              {recipeId ? "Editar" : "Cadastrar"}
             </LoadingButton>
           </Grid>
         </Form>
