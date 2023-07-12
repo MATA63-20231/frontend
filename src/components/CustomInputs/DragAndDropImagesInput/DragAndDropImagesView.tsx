@@ -16,15 +16,6 @@ export default function DragAndDropImagesView({
   disabled,
   setImages,
 }: IProps) {
-  // const [imagesCarousel, setImagesCarousel] = useState<IImageCarousel[]>([]);
-
-  // useEffect(() => {
-  //   const newImages = images.map((img, id) => {
-  //     return { id: String(id), link: URL.createObjectURL(img) };
-  //   });
-  //   setImagesCarousel(newImages);
-  // }, [images]);
-
   const deleteImage = (index: number) => {
     setImages((previousImages: File[]) => {
       const newFiles = [...previousImages];
@@ -55,25 +46,5 @@ export default function DragAndDropImagesView({
         })}
       />
     </Grid>
-
-    // <Grid container spacing={2} sx={{ mt: 1 }}>
-    //   {images.map((image, index) => (
-    //     <Grid
-    //       item
-    //       key={index} // eslint-disable-line react/no-array-index-key
-    //       xs={12}
-    //       sm={4}
-    //     >
-    //       <Card>
-    //         <DragAndDropImageView
-    //           disabled={disabled}
-    //           index={index}
-    //           image={image}
-    //           setImages={setImages}
-    //         />
-    //       </Card>
-    //     </Grid>
-    //   ))}
-    // </Grid>
   );
 }
