@@ -41,7 +41,8 @@ export function AuthProvider({ children }: PropsWithChildren) {
     };
 
     const isTheSameUser = (userId: string | undefined) => {
-      return Boolean(user && userId && user.id === userId);
+      const result = Boolean(user && userId && user.id === userId);
+      return result;
     };
 
     const isSignedIn = () => {
@@ -51,7 +52,12 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
     const signedIn = isSignedIn();
 
-    return { signedIn, isTheSameUser, handleLogin, handleLogout };
+    return {
+      signedIn,
+      isTheSameUser,
+      handleLogin,
+      handleLogout,
+    };
   }, [user, navigate]);
 
   useEffect(() => {

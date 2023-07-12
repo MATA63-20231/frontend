@@ -10,7 +10,7 @@ import { POST } from "./Api.tsx";
 export const signUp = (
   userData: IUserRegister,
   navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void,
 ) => {
   POST<IUserRegister, IUserRegister>({
     path: "/usuario",
@@ -28,8 +28,8 @@ export const signUp = (
 
 export const login = (
   loginData: ILogin,
-  handleLogin: (loginData: ILoginResponse) => void,
-  setLoading: (loading: boolean) => void
+  handleLogin: (loginRes: ILoginResponse) => void,
+  setLoading: (loading: boolean) => void,
 ) => {
   const onSuccess = ({ token, usuario }: ILoginResponse) => {
     if (token && usuario) {

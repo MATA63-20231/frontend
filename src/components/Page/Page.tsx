@@ -29,9 +29,7 @@ export default function Page({
 
   useEffect(() => {
     if (signedIn !== null) {
-
       switch (authRule.rule) {
-
       case RouteAuthRules.SIGNED_ONLY: {
         if (!signedIn) {
           navigate("/login");
@@ -58,7 +56,7 @@ export default function Page({
       }
       }
     }
-  }, [signedIn, authRule, navigate]);
+  }, [signedIn, authRule, isTheSameUser, navigate]);
 
   return (
     <>
