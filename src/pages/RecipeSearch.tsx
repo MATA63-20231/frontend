@@ -37,58 +37,60 @@ export default function RecipeSearch() {
       loading={loading}
       authRule={{ rule: RouteAuthRules.NO_RULE }}
     >
-      <Grid container spacing={4}>
-        {recipes.map((recipe) => (
-          <Grid item key={recipe.id} xs={12} sm={6} md={4}>
-            <Card
-              sx={{
-                height: "300px",
-              }}
-            >
-              <CardActionArea
-                href={`/receita/${recipe.id}`}
-                sx={{ height: "100%" }}
+      {recipes.length ? (
+        <Grid container spacing={4}>
+          {recipes.map((recipe) => (
+            <Grid item key={recipe.id} xs={12} sm={6} md={4}>
+              <Card
+                sx={{
+                  height: "300px",
+                }}
               >
-                {recipe.imagens.length > 0 ? (
-                  <CardMedia
-                    component="img"
-                    title={recipe.titulo}
-                    image={`${env.baseUrl}imagem/${recipe.imagens[0].id}`}
-                    sx={{
-                      height: "72%",
-                      width: "auto",
-                      mx: "auto",
-                      p: 4,
-                    }}
-                  />
-                ) : (
-                  <CardMedia
-                    component="img"
-                    title={recipe.titulo}
-                    image={NoImage}
-                    sx={{
-                      height: "72%",
-                      width: "auto",
-                      mx: "auto",
-                      p: 5,
-                    }}
-                  />
-                )}
-                <CardContent>
-                  <Typography variant="h5" component="h2">
-                    {recipe.titulo}
-                  </Typography>
-                  <Typography fontSize="14px">
-                    Postado por
-                    {" "}
-                    {recipe.usuario.nome}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+                <CardActionArea
+                  href={`/receita/${recipe.id}`}
+                  sx={{ height: "100%" }}
+                >
+                  {recipe.imagens.length > 0 ? (
+                    <CardMedia
+                      component="img"
+                      title={recipe.titulo}
+                      image={`${env.baseUrl}imagem/${recipe.imagens[0].id}`}
+                      sx={{
+                        height: "72%",
+                        width: "auto",
+                        mx: "auto",
+                        p: 4,
+                      }}
+                    />
+                  ) : (
+                    <CardMedia
+                      component="img"
+                      title={recipe.titulo}
+                      image={NoImage}
+                      sx={{
+                        height: "72%",
+                        width: "auto",
+                        mx: "auto",
+                        p: 5,
+                      }}
+                    />
+                  )}
+                  <CardContent>
+                    <Typography variant="h5" component="h2">
+                      {recipe.titulo}
+                    </Typography>
+                    <Typography fontSize="14px">
+                      Postado por {recipe.usuario.nome}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        "Nenhum resultado encontrado"
+      )}
     </Page>
   );
 }
