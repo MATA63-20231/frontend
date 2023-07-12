@@ -16,11 +16,11 @@ export default function ImagesCarousel({ images }: IProps) {
     <Carousel
       navButtonsAlwaysVisible={hasMultipleImages}
       navButtonsAlwaysInvisible={!hasMultipleImages}
-      indicators={hasMultipleImages}>
+      indicators={hasMultipleImages}
+    >
       {images.map((img) => (
-        <Grid>
+        <Grid key={img.id}>
           <CardMedia
-            key={img.id}
             component="img"
             image={img.link}
             sx={{
