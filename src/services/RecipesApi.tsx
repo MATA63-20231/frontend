@@ -2,10 +2,8 @@ import { enqueueSnackbar } from "notistack";
 import { NavigateFunction } from "react-router-dom";
 import {
   IRecipe,
-  IImage,
 } from "../interfaces/RecipeInterfaces.tsx";
 import { GET, POST, PUT } from "./Api.tsx";
-
 
 const getAllRecipes = (
   setLoading: (loading: boolean) => void,

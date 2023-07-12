@@ -21,8 +21,10 @@ export default function ImagesCarousel({ images }: IProps) {
         <CardMedia
           key={img.id}
           component="img"
-          image={env.baseUrl + "imagem/" + img.id}
-          sx={{ height: "400px", width:"auto", mx:"auto", p:5 }} //TODO ajustar imagem
+          image={`${env.baseUrl}imagem/${img.id}`}
+          sx={{
+            height: "400px", width: "auto", mx: "auto", p: 5,
+          }} // TODO ajustar imagem
         />
       ))}
     </Carousel>
