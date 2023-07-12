@@ -14,9 +14,10 @@ import { getRecipeDetails } from "../../services/RecipesApi.tsx";
 import Page from "../../components/Page/Page.tsx";
 import RouteAuthRules from "../../enums/RouteAuthRules.tsx";
 import { IRecipe } from "../../interfaces/RecipeInterfaces.tsx";
-import ImagesCarousel from "../../components/Carousel.tsx";
+import ImagesCarousel from "../../components/ImagesCarousel.tsx";
 import AuthContext from "../../contexts/AuthContext.tsx";
 import RecipeViewActions from "./components/RecipeViewActions.tsx";
+import env from "../../config/env.tsx";
 
 // TODO: Avaliação e comentários
 
@@ -41,8 +42,7 @@ export default function RecipeView() {
       title={recipe?.titulo}
       pretitle="Confira esta receita"
       authRule={{ rule: RouteAuthRules.NO_RULE }}
-      loading={loading}
-    >
+      loading={loading}>
       {!recipe ? null : (
         <>
           {recipeId && isTheSameUser(recipe?.usuario?.id) && (
@@ -50,8 +50,7 @@ export default function RecipeView() {
           )}
           <Grid
             container
-            sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}
-          >
+            sx={{ m: "auto", maxWidth: "700px", justifyContent: "center" }}>
             <Stack sx={{ mt: 2, py: 1 }}>
               <Typography
                 color="secondary.main"
@@ -60,24 +59,23 @@ export default function RecipeView() {
                   letterSpacing: "1px",
                   fontWeight: 400,
                   textAlign: "start",
-                }}
-              >
-                Postado por
-                {" "}
-                {recipe.usuario.nome}
-                {" "}
-                em
+                }}>
+                Postado por {recipe.usuario.nome} em
                 {` ${recipe.dataCadastro.substring(
                   8,
-                  10,
+                  10
                 )}/${recipe.dataCadastro.substring(
                   5,
-                  7,
+                  7
                 )}/${recipe.dataCadastro.substring(0, 4)}`}
               </Typography>
             </Stack>
             <Card sx={{ width: "600px" }}>
-              <ImagesCarousel images={recipe.imagens} />
+              <ImagesCarousel
+                images={recipe.imagens.map(({ id }) => {
+                  return { id, link: `${env.baseUrl}imagem/${id}` };
+                })}
+              />
 
               <Stack
                 direction={{ xs: "column", md: "row" }}
@@ -85,8 +83,7 @@ export default function RecipeView() {
                 sx={{
                   px: 1,
                   py: 2,
-                }}
-              >
+                }}>
                 <Stack
                   direction="row"
                   spacing={0.5}
@@ -96,8 +93,7 @@ export default function RecipeView() {
                     justifyContent: "center",
                     minWidth: 0,
                     width: "100%",
-                  }}
-                >
+                  }}>
                   <TimerIcon fontSize="small" color="primary" />
 
                   <Typography
@@ -105,14 +101,12 @@ export default function RecipeView() {
                       textOverflow: "ellipsis",
                       overflow: "hidden",
                       whiteSpace: "nowrap",
-                    }}
-                  >
-                    Tempo de preparo:
-                    {" "}
-                    {recipe.tempoPreparo.horas > 0
-                      && `${recipe.tempoPreparo.horas}h`}
-                    {recipe.tempoPreparo.minutos > 0
-                      && `${recipe.tempoPreparo.minutos}min`}
+                    }}>
+                    Tempo de preparo:{" "}
+                    {recipe.tempoPreparo.horas > 0 &&
+                      `${recipe.tempoPreparo.horas}h`}
+                    {recipe.tempoPreparo.minutos > 0 &&
+                      `${recipe.tempoPreparo.minutos}min`}
                   </Typography>
                 </Stack>
                 <Divider
@@ -129,20 +123,15 @@ export default function RecipeView() {
                     justifyContent: "center",
                     minWidth: 0,
                     width: "100%",
-                  }}
-                >
+                  }}>
                   <RamenDiningIcon fontSize="small" color="primary" />
                   <Typography
                     sx={{
                       textOverflow: "ellipsis",
                       overflow: "hidden",
                       whiteSpace: "nowrap",
-                    }}
-                  >
-                    Rendimento:
-                    {" "}
-                    {recipe.rendimento}
-                    {" "}
+                    }}>
+                    Rendimento: {recipe.rendimento}{" "}
                     {recipe.rendimento > 1 ? "porções" : "porção"}
                   </Typography>
                 </Stack>
