@@ -7,6 +7,7 @@ import RecipeView from "../pages/RecipeView/RecipeView.tsx";
 import Login from "../pages/Login/Login.tsx";
 import Register from "../pages/Register/Register.tsx";
 import RecipeEdit from "../pages/RecipeCreationEdit/RecipeEdit.tsx";
+import RecipeSearch from "../pages/RecipeSearch.tsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/receita/:recipeId",
         element: <RecipeView />,
+      },
+      {
+        path: "/receita/busca/:searchText",
+        element: <RecipeSearch />,
       },
       {
         path: "*",

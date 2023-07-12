@@ -5,6 +5,18 @@ import {
   DELETE, GET, POST, PUT,
 } from "./Api.tsx";
 
+const getRecipesSearch = (
+  searchTitle: string,
+  setLoading: (loading: boolean) => void,
+  setRecipes: (recipes: IRecipe[]) => void,
+) => {
+  GET<IRecipe[]>({
+    path: `/receita/busca/${searchTitle}`,
+    setLoading,
+    onSuccess: (data) => setRecipes(data),
+  });
+};
+
 const getAllRecipes = (
   setLoading: (loading: boolean) => void,
   setRecipes: (recipes: IRecipe[]) => void,
@@ -93,6 +105,7 @@ const deleteRecipe = (
 };
 
 export {
+  getRecipesSearch,
   getAllRecipes,
   getRecipeDetails,
   createRecipe,
