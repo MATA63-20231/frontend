@@ -24,9 +24,7 @@ const getRecipeDetails = (
     path: `/receita/${recipeId}`,
     setLoading,
     onSuccess: (data) => setRecipe(data),
-    onError: () => {
-      navigate("/");
-    },
+    onError: () => { navigate("/"); },
   });
 };
 
