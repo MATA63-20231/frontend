@@ -1,81 +1,91 @@
-import { useState, useEffect } from "react";
+import { useState, useContext, Dispatch, SetStateAction } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Grid, Tooltip } from "@mui/material";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-import { sendDislike, sendLike } from "../../../services/LikesApi.tsx";
-import { ICurtida } from "../../../interfaces/RecipeInterfaces.tsx";
+import {
+  deleteLike,
+  sendDislike,
+  sendLike,
+} from "../../../services/LikesApi.tsx";
+import Loading from "../../../components/Loading.tsx";
+import AuthContext from "../../../contexts/AuthContext.tsx";
 
 interface IProps {
   recipeId: string;
-  initialLikes: ICurtida[];
+  totalLikes: number;
+  totalDislikes: number;
+  myLike: boolean | undefined;
+  setShouldReload: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function RecipeViewLikes({ recipeId, initialLikes }: IProps) {
-  const [likes, setLikes] = useState<number>(0);
-  const [dislikes, setDislikes] = useState<number>(0);
-
-  const [liked, setLiked] = useState(false);
-  const [disliked, setDisliked] = useState(false);
-
-  useEffect(() => {
-    const likesCount = initialLikes.filter(({ curtida }) => curtida).length;
-    const dislikesCount = initialLikes.filter(({ curtida }) => !curtida).length;
-
-    setLikes(likesCount);
-    setLikes(dislikesCount);
-    // console.log({ likes, dislikes });
-  }, [initialLikes]);
+export default function RecipeViewLikes({
+  recipeId,
+  totalLikes,
+  totalDislikes,
+  myLike,
+  setShouldReload,
+}: IProps) {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
+  const { signedIn } = useContext(AuthContext);
 
   const handleLike = () => {
-    sendLike(recipeId, setLiked);
-    if (!liked) {
-      setLikes(likes + 1);
-      setLiked(true);
-      if (disliked) {
-        setDislikes(dislikes - 1);
-        setDisliked(false);
-      }
+    if (!signedIn) {
+      navigate("/login");
     } else {
-      setLikes(likes - 1);
-      setLiked(false);
+      if (myLike === true) {
+        deleteLike(recipeId, setLoading, setShouldReload);
+      } else {
+        sendLike(recipeId, setLoading, setShouldReload);
+      }
     }
   };
 
   const handleDislike = () => {
-    sendDislike(recipeId, setDisliked);
-    if (!disliked) {
-      setDislikes(dislikes + 1);
-      setDisliked(true);
-      if (liked) {
-        setLikes(likes - 1);
-        setLiked(false);
-      }
+    if (!signedIn) {
+      navigate("/login");
     } else {
-      setDislikes(dislikes - 1);
-      setDisliked(false);
+      if (myLike === false) {
+        deleteLike(recipeId, setLoading, setShouldReload);
+      } else {
+        sendDislike(recipeId, setLoading, setShouldReload);
+      }
     }
   };
 
   return (
     <Grid container direction="row" justifyContent="flex-end" gap={1}>
-      <Tooltip title={liked ? "Remover curtida" : "Curtir"}>
+      <Tooltip title={myLike === true ? "Remover" : "Curtir"}>
         <Button
           onClick={handleLike}
+          disabled={loading}
           startIcon={<ThumbUpAltIcon />}
           size="small"
-          variant={liked ? "contained" : "outlined"}
-        >
-          {liked ? `Curtiu (${likes})` : `Curtir (${likes})`}
+          variant={myLike === true ? "contained" : "outlined"}>
+          {loading ? (
+            <Loading />
+          ) : myLike === true ? (
+            `Curtiu (${totalLikes})`
+          ) : (
+            `Curtir (${totalLikes})`
+          )}
         </Button>
       </Tooltip>
-      <Tooltip title={disliked ? "Remover descurtida" : "Descurtir"}>
+      <Tooltip title={myLike === false ? "Remover" : "Descurtir"}>
         <Button
           onClick={handleDislike}
+          disabled={loading}
           startIcon={<ThumbDownAltIcon />}
           size="small"
-          variant={disliked ? "contained" : "outlined"}
-        >
-          {disliked ? `Descurtiu (${dislikes})` : `Descurtir (${dislikes})`}
+          variant={myLike === false ? "contained" : "outlined"}>
+          {loading ? (
+            <Loading />
+          ) : myLike === false ? (
+            `Descurtiu (${totalDislikes})`
+          ) : (
+            `Descurtir (${totalDislikes})`
+          )}
         </Button>
       </Tooltip>
     </Grid>

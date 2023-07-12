@@ -65,6 +65,8 @@ export interface IRecipe extends IRecipeBase {
   dataCadastro: string;
   imagens: IImage[];
   usuario: IUser;
-  curtidas: ICurtida[];
   comentarios: IComentario[];
+  totalLikes: number;
+  totalDislikes: number;
+  minhaCurtida?: boolean;
 }

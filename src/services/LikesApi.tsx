@@ -1,13 +1,17 @@
+import { Dispatch, SetStateAction } from "react";
 import { ICurtida, IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import { DELETE, POST } from "./Api.tsx";
-
-const sendLike = (recipeId: string, setLoading: (loading: boolean) => void) => {
+const sendLike = (
+  recipeId: string,
+  setLoading: (loading: boolean) => void,
+  setShouldReload: Dispatch<SetStateAction<boolean>>
+) => {
   POST<ICurtida, ICurtida>({
     path: `/curtida/${recipeId}`,
     body: { curtida: true },
     setLoading,
     onSuccess: () => {
-      // TODO
+      setShouldReload((shouldReload) => !shouldReload);
     },
   });
 };
@@ -15,13 +19,14 @@ const sendLike = (recipeId: string, setLoading: (loading: boolean) => void) => {
 const sendDislike = (
   recipeId: string,
   setLoading: (loading: boolean) => void,
+  setShouldReload: Dispatch<SetStateAction<boolean>>
 ) => {
   POST<ICurtida, ICurtida>({
     path: `/curtida/${recipeId}`,
     body: { curtida: false },
     setLoading,
     onSuccess: () => {
-      // TODO
+      setShouldReload((shouldReload) => !shouldReload);
     },
   });
 };
@@ -29,12 +34,13 @@ const sendDislike = (
 const deleteLike = (
   recipeId: string,
   setLoading: (loading: boolean) => void,
+  setShouldReload: Dispatch<SetStateAction<boolean>>
 ) => {
   DELETE<IRecipe>({
     path: `/curtida/${recipeId}`,
     setLoading,
     onSuccess: () => {
-      // TODO
+      setShouldReload((shouldReload) => !shouldReload);
     },
   });
 };
