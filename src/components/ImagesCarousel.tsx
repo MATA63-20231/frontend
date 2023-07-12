@@ -19,17 +19,35 @@ export default function ImagesCarousel({ images }: IProps) {
       indicators={hasMultipleImages}
     >
       {images.map((img) => (
-        <Grid key={img.id}>
-          <CardMedia
-            component="img"
-            image={img.link}
+        <Grid
+          container
+          key={img.id}
+          sx={{
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Grid
+            container
             sx={{
               height: "400px",
-              width: "auto",
-              mx: "auto",
             }}
-          />
-          {img.action}
+          >
+            <CardMedia
+              component="img"
+              image={img.link}
+              sx={{
+                maxWidth: "100%",
+                maxHeight: "100%",
+                height: "auto",
+                width: "auto",
+                m: "auto",
+              }}
+            />
+          </Grid>
+          <Grid>
+            {img.action}
+          </Grid>
         </Grid>
       ))}
     </Carousel>
