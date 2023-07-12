@@ -94,6 +94,22 @@ function PUT<DataType, BodyType>({
   });
 }
 
+function DELETE<DataType>({
+  path,
+  setLoading,
+  onSuccess,
+  onError,
+  onFinish,
+}: IGet<DataType>) {
+  wrapDefaultRequestBehavior({
+    axiosRequest: api.delete<DataType>(path),
+    setLoading,
+    onSuccess,
+    onError,
+    onFinish,
+  });
+}
+
 export {
-  api, GET, POST, PUT,
+  api, GET, POST, PUT, DELETE,
 };
