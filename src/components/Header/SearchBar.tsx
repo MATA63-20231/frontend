@@ -3,6 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { getRecipesSearch } from "../../services/RecipesApi";
 import { useState } from "react";
 import { IRecipe } from "../../interfaces/RecipeInterfaces";
+import { useNavigate } from "react-router-dom";
 
 // import SearchBar from "material-ui-search-bar"; //material-ui-search-bar
 
@@ -11,14 +12,16 @@ export default function SearchBarComponent() {
   const [loading, setLoading] = useState<boolean>(false);
   const [value, setValue] = useState<String>("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = () => {
-    console.log("search", value, typeof value);
+    navigate(`/receita/busca/${value}`);
     getRecipesSearch(value, setLoading, setRecipes);
+    setValue("");
   };
 
   return (
     <>
-      {/* <form onSubmit={handleSubmit}> */}
       <TextField
         id="search-bar"
         variant="outlined"
@@ -27,11 +30,9 @@ export default function SearchBarComponent() {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      {/* <IconButton type="submit" aria-label="search"> */}
       <IconButton onClick={handleSubmit} aria-label="search">
         <SearchIcon sx={{ color: "primary.main" }} />
       </IconButton>
-      {/* </form> */}
     </>
   );
 }
