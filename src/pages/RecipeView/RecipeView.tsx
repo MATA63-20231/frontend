@@ -17,9 +17,10 @@ import { IRecipe } from "../../interfaces/RecipeInterfaces.tsx";
 import ImagesCarousel from "../../components/ImagesCarousel.tsx";
 import AuthContext from "../../contexts/AuthContext.tsx";
 import RecipeViewActions from "./components/RecipeViewActions.tsx";
+import RecipeViewLikes from "./components/RecipeViewLikes.tsx";
 import env from "../../config/env.tsx";
 
-// TODO: Avaliação e comentários
+// TODO: Comentários
 
 export default function RecipeView() {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ export default function RecipeView() {
   const { recipeId } = useParams();
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [shouldReload, setShouldReload] = useState<boolean>(false);
   const [recipe, setRecipe] = useState<IRecipe>();
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export default function RecipeView() {
     } else {
       getRecipeDetails(recipeId, navigate, setLoading, setRecipe);
     }
-  }, [recipeId, navigate]);
+  }, [recipeId, shouldReload, navigate]);
 
   return (
     <Page
@@ -46,7 +48,7 @@ export default function RecipeView() {
     >
       {!recipe ? null : (
         <>
-          {recipeId && isTheSameUser(recipe?.usuario?.id) && (
+          {recipeId && isTheSameUser(recipe.usuario.id) && (
             <RecipeViewActions recipeId={recipeId} setLoading={setLoading} />
           )}
           <Grid
@@ -79,7 +81,10 @@ export default function RecipeView() {
             </Stack>
             <Card sx={{ width: "600px" }}>
               <ImagesCarousel
-                images={recipe.imagens.map(({ id }) => ({ id, link: `${env.baseUrl}imagem/${id}` }))}
+                images={recipe.imagens.map(({ id }) => ({
+                  id,
+                  link: `${env.baseUrl}imagem/${id}`,
+                }))}
               />
 
               <Stack
@@ -110,8 +115,7 @@ export default function RecipeView() {
                       whiteSpace: "nowrap",
                     }}
                   >
-                    Tempo de preparo:
-                    {" "}
+                    Tempo de preparo:&nbsp;
                     {recipe.tempoPreparo.horas > 0
                       && `${recipe.tempoPreparo.horas}h`}
                     {recipe.tempoPreparo.minutos > 0
@@ -142,10 +146,9 @@ export default function RecipeView() {
                       whiteSpace: "nowrap",
                     }}
                   >
-                    Rendimento:
-                    {" "}
+                    Rendimento:&nbsp;
                     {recipe.rendimento}
-                    {" "}
+                    &nbsp;
                     {recipe.rendimento > 1 ? "porções" : "porção"}
                   </Typography>
                 </Stack>
@@ -196,6 +199,18 @@ export default function RecipeView() {
                   </List>
                 </Grid>
               </Grid>
+
+              {recipeId && (
+                <Grid sx={{ mb: 3 }}>
+                  <RecipeViewLikes
+                    recipeId={recipeId}
+                    totalLikes={recipe.totalLikes}
+                    totalDislikes={recipe.totalDislikes}
+                    myLike={recipe.minhaCurtida}
+                    setShouldReload={setShouldReload}
+                  />
+                </Grid>
+              )}
             </Card>
           </Grid>
         </>

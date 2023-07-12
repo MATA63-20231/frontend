@@ -5,12 +5,15 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
-import { getAllRecipes } from "../services/RecipesApi.tsx";
+import Tooltip from "@mui/material/Tooltip";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import NoImage from "../assets/noimage.svg";
 import env from "../config/env.tsx";
+import { getAllRecipes } from "../services/RecipesApi.tsx";
+import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 
 export default function Home() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -30,40 +33,26 @@ export default function Home() {
       <Grid container spacing={4}>
         {recipes.map((recipe) => (
           <Grid item key={recipe.id} xs={12} sm={6} md={4}>
-            <Card
-              sx={{
-                height: "300px",
-              }}
-            >
-              <CardActionArea
-                href={`/receita/${recipe.id}`}
-                sx={{ height: "100%" }}
-              >
-                {recipe.imagens.length > 0 ? (
+            <Card>
+              <CardActionArea href={`/receita/${recipe.id}`}>
+                <Grid sx={{ height: "250px" }}>
                   <CardMedia
                     component="img"
                     title={recipe.titulo}
-                    image={`${env.baseUrl}imagem/${recipe.imagens[0].id}`}
+                    image={
+                      !recipe.imagens || recipe.imagens.length === 0
+                        ? NoImage
+                        : `${env.baseUrl}imagem/${recipe.imagens[0].id}`
+                    }
                     sx={{
-                      height: "72%",
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      height: "auto",
                       width: "auto",
-                      mx: "auto",
-                      p: 4,
+                      m: "auto",
                     }}
                   />
-                ) : (
-                  <CardMedia
-                    component="img"
-                    title={recipe.titulo}
-                    image={NoImage}
-                    sx={{
-                      height: "72%",
-                      width: "auto",
-                      mx: "auto",
-                      p: 5,
-                    }}
-                  />
-                )}
+                </Grid>
                 <CardContent>
                   <Typography variant="h5" component="h2">
                     {recipe.titulo}
@@ -75,6 +64,40 @@ export default function Home() {
                   </Typography>
                 </CardContent>
               </CardActionArea>
+              <Grid
+                container
+                direction="row"
+                justifyContent="center"
+                gap={3}
+                sx={{ mb: 2 }}
+              >
+                <Grid>
+                  <Tooltip
+                    title={`${recipe.totalLikes} pessoas gostaram dessa receita`}
+                  >
+                    <Grid container>
+                      <ThumbUpAltIcon color="primary" />
+                      <Typography color="primary" fontWeight={500}>
+                        &nbsp;
+                        {recipe.totalLikes}
+                      </Typography>
+                    </Grid>
+                  </Tooltip>
+                </Grid>
+                <Grid>
+                  <Tooltip
+                    title={`${recipe.totalLikes} pessoas não gostaram dessa receita`}
+                  >
+                    <Grid container>
+                      <ThumbDownAltIcon color="primary" />
+                      <Typography color="primary" fontWeight={500}>
+                        &nbsp;
+                        {recipe.totalDislikes}
+                      </Typography>
+                    </Grid>
+                  </Tooltip>
+                </Grid>
+              </Grid>
             </Card>
           </Grid>
         ))}
