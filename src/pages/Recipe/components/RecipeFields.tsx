@@ -43,7 +43,8 @@ export default function RecipeFields({
         flexDirection: "column",
         textAlign: "initial",
         color: "secondary.main",
-      }}>
+      }}
+    >
       <Grid item>
         <TextInput required name="title" label="Título" />
       </Grid>
