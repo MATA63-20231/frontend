@@ -26,8 +26,7 @@ export const initialValues: IRecipeFormFields = {
 
 const cantBeBothZero = {
   is: 0,
-  then: (schema: Yup.NumberSchema) =>
-    schema.moreThan(0, "Tempo de preparo não pode ser 0h0min."),
+  then: (schema: Yup.NumberSchema) => schema.moreThan(0, "Tempo de preparo não pode ser 0h0min."),
 };
 
 export default function generateRecipeSchema({
@@ -51,10 +50,10 @@ export default function generateRecipeSchema({
         hours: YupHelpers.INTEGER_MIN_ZERO.when("minutes", cantBeBothZero),
         minutes: YupHelpers.INTEGER_MIN_ZERO.when("hours", cantBeBothZero).max(
           59,
-          FormErrorMessages.MAX_59
+          FormErrorMessages.MAX_59,
         ),
       },
-      [["hours", "minutes"]]
+      [["hours", "minutes"]],
     ),
 
     ingredients: Yup.array()
@@ -67,12 +66,13 @@ export default function generateRecipeSchema({
 
     images: Yup.array()
       .of(
-        Yup.mixed<File>()
+        Yup.mixed<File>(),
         // .test(
         //   "fileFormat",
-        //   `${FormErrorMessages.NOT_ALLOWED_FILE_TYPE} Tipos permitidos: ${acceptedFileTypesStr}.`,
+        //   `${FormErrorMessages.NOT_ALLOWED_FILE_TYPE}
+        //   Tipos permitidos: ${acceptedFileTypesStr}.`,
         //   (value) => {
-        //     console.log(value)
+        //     console.log(value);
         //     if (!value) return true;
         //     return acceptedFileTypes
         //       .map((x) => `image/${x.toLowerCase()}`)
@@ -81,7 +81,8 @@ export default function generateRecipeSchema({
         // )
         // .test(
         //   "fileSize",
-        //   `${FormErrorMessages.MAX_FILE_SIZE} Tamanho máximo: ${maxFileSizeMB}MB.`,
+        //   `${FormErrorMessages.MAX_FILE_SIZE}
+        //   Tamanho máximo: ${maxFileSizeMB}MB.`,
         //   (value) => {
         //     if (!value) return true;
         //     return value.size <= maxFileSize;
@@ -90,7 +91,7 @@ export default function generateRecipeSchema({
       )
       .max(
         maxFilesAmount,
-        `Não é permitido adcionair mais de ${maxFilesAmount} itens.`
+        `Não é permitido adcionair mais de ${maxFilesAmount} itens.`,
       ),
   });
 }

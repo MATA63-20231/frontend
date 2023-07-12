@@ -30,7 +30,8 @@ export default function LoadingButton({
         startIcon={startIcon}
         size={size}
         onClick={onClick}
-        sx={{ m: "auto" }}>
+        sx={{ m: "auto" }}
+      >
         {loading && (
           <Grid sx={{ mr: 1 }}>
             <Loading />
@@ -46,7 +47,8 @@ export default function LoadingButton({
       startIcon={startIcon}
       size={size}
       onClick={onClick}
-      sx={{ m: "auto" }}>
+      sx={{ m: "auto" }}
+    >
       {loading && (
         <Grid sx={{ mr: 1 }}>
           <Loading />

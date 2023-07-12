@@ -1,4 +1,6 @@
-import { useState, useContext, Dispatch, SetStateAction } from "react";
+import {
+  useState, useContext, Dispatch, SetStateAction,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
@@ -59,7 +61,8 @@ export default function RecipeViewLikes({
           startIcon={<ThumbUpAltIcon />}
           size="small"
           variant={myLike === true ? "contained" : "outlined"}
-          tooltipTitle={myLike === true ? "Remover" : "Curtir"}>
+          tooltipTitle={myLike === true ? "Remover" : "Curtir"}
+        >
           {myLike === true
             ? `Curtiu (${totalLikes})`
             : `Curtir (${totalLikes})`}
@@ -72,7 +75,8 @@ export default function RecipeViewLikes({
           startIcon={<ThumbDownAltIcon />}
           size="small"
           variant={myLike === false ? "contained" : "outlined"}
-          tooltipTitle={myLike === false ? "Remover" : "Curtir"}>
+          tooltipTitle={myLike === false ? "Remover" : "Curtir"}
+        >
           {myLike === false
             ? `Descurtiu (${totalDislikes})`
             : `Descurtir (${totalDislikes})`}
