@@ -70,7 +70,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
       if (parsedToken && parsedUser) {
         setUser(parsedUser);
-        api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
+        api.defaults.headers.Authorization = `Bearer ${parsedToken}`;
       }
     } else {
       setUser(null);
