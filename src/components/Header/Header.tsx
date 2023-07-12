@@ -10,7 +10,7 @@ import Logo from "../../assets/logo.svg";
 import AccountMenu from "./AccountMenu.tsx";
 import AuthContext from "../../contexts/AuthContext.tsx";
 // import SearchBar from "material-ui-search-bar"; //material-ui-search-bar
-import { SearchBarComponent } from "./SearchBar.tsx";
+import SearchBarComponent from "./SearchBar.tsx";
 
 export default function Header() {
   const { signedIn } = useContext(AuthContext);
@@ -53,15 +53,10 @@ export default function Header() {
         justifyContent="flex-end"
       >
         <Grid item>
-<<<<<<< HEAD
           <SearchBarComponent />
         </Grid>
-
         <Grid item>
-          {!signed && (
-=======
           {!signedIn && (
->>>>>>> be6c12b7f9d4de619c213bdc4154f004967ed45a
             <Button
               variant="outlined"
               href="login"
