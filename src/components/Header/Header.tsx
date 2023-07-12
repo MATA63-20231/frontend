@@ -9,6 +9,8 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Logo from "../../assets/logo.svg";
 import AccountMenu from "./AccountMenu.tsx";
 import AuthContext from "../../contexts/AuthContext.tsx";
+// import SearchBar from "material-ui-search-bar"; //material-ui-search-bar
+import { SearchBarComponent } from "./SearchBar.tsx";
 
 export default function Header() {
   const { signed } = useContext(AuthContext);
@@ -23,24 +25,26 @@ export default function Header() {
         overflowX: "auto",
       }}
     >
-      <Link href="/" sx={{ color: "inherit", textDecoration: "none" }}>
-        <Grid
-          container
-          direction="row"
-          sx={{ flexWrap: "nowrap", alignItems: "center" }}
-        >
-          <CardMedia
-            sx={{ height: "100%", width: "35px", mr: 1.5 }}
-            component="img"
-            image={Logo}
-            title="Chef Virtual"
-          />
-          <Typography variant="mainTitle">Chef Virtual</Typography>
-          <Typography variant="mainTitle" sx={{ color: "primary.main" }}>
-            .
-          </Typography>
-        </Grid>
-      </Link>
+      <Grid>
+        <Link href="/" sx={{ color: "inherit", textDecoration: "none" }}>
+          <Grid
+            container
+            direction="row"
+            sx={{ flexWrap: "nowrap", alignItems: "center" }}
+          >
+            <CardMedia
+              sx={{ height: "100%", width: "35px", mr: 1.5 }}
+              component="img"
+              image={Logo}
+              title="Chef Virtual"
+            />
+            <Typography variant="mainTitle">Chef Virtual</Typography>
+            <Typography variant="mainTitle" sx={{ color: "primary.main" }}>
+              .
+            </Typography>
+          </Grid>
+        </Link>
+      </Grid>
 
       <Grid
         container
@@ -48,6 +52,10 @@ export default function Header() {
         alignItems="center"
         justifyContent="flex-end"
       >
+        <Grid item>
+          <SearchBarComponent />
+        </Grid>
+
         <Grid item>
           {!signed && (
             <Button
