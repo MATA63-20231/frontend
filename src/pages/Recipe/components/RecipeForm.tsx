@@ -109,7 +109,7 @@ export default function RecipeForm({ initialRecipe }: IProps) {
           />
           <Grid sx={{ mt: 2 }}>
             <LoadingButton loading={isSubmitting} onClick={submitForm}>
-              Cadastrar
+              {recipeId ? "Editar" : "Cadastrar"}
             </LoadingButton>
           </Grid>
         </Form>

@@ -43,8 +43,7 @@ export default function RecipeFields({
         flexDirection: "column",
         textAlign: "initial",
         color: "secondary.main",
-      }}
-    >
+      }}>
       <Grid item>
         <TextInput required name="title" label="Título" />
       </Grid>
@@ -55,6 +54,7 @@ export default function RecipeFields({
 
       <Grid item>
         <IntegerNumberInput
+          required
           name="servings"
           label="Rendimento"
           setFieldValue={setFieldValue}
@@ -66,12 +66,14 @@ export default function RecipeFields({
         <Typography sx={{ my: 1 }}>Tempo de Preparo *</Typography>
         <Grid container columnGap={2} wrap="nowrap">
           <IntegerNumberInput
+            required
             name="prepTime.hours"
             label="Horas"
             setFieldValue={setFieldValue}
             setFieldTouched={setFieldTouched}
           />
           <IntegerNumberInput
+            required
             name="prepTime.minutes"
             label="Minutos"
             setFieldValue={setFieldValue}
