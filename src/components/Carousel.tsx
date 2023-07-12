@@ -1,9 +1,8 @@
 import Carousel from "react-material-ui-carousel";
-import { Button, CardMedia } from "@mui/material";
+import { CardMedia } from "@mui/material";
 import { IImage } from "../interfaces/RecipeInterfaces.tsx";
 import NoImage from "../assets/noimage.svg";
-import { getImage } from "../services/RecipesApi.tsx";
-import { useState } from "react";
+import env from "../config/env.tsx";
 
 interface IProps {
   images: IImage[];
@@ -11,11 +10,6 @@ interface IProps {
 
 export default function ImagesCarousel({ images }: IProps) {
   const hasMultipleImages = images.length > 1;
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const img = getImage;
-
-  // "6fae721e-ad72-46cb-bf30-a0621cf7b055"
 
   return images.length ? (
     <Carousel
@@ -24,20 +18,12 @@ export default function ImagesCarousel({ images }: IProps) {
       indicators={hasMultipleImages}
     >
       {images.map((img) => (
-        <>
-          <CardMedia
-            key={img.id}
-            component="img"
-            image={`https://picsum.photos/500/200?random=${img.ordem}`}
-            // image={img.nome}  // TODO: Implementar quando houver requisição de imagem
-            sx={{ height: "400px" }}
-          />
-
-          <Button onClick={() => console.log(getImage(img.id, setLoading))}>
-            {" "}
-            aaa{" "}
-          </Button>
-        </>
+        <CardMedia
+          key={img.id}
+          component="img"
+          image={env.baseUrl + "imagem/" + img.id}
+          sx={{ height: "400px" }} //TODO ajustar imagem
+        />
       ))}
     </Carousel>
   ) : (
