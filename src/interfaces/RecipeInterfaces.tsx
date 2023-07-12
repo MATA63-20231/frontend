@@ -31,8 +31,12 @@ interface IItemPreparo {
 
 export interface IImage {
   id: string;
-  ordem: number;
-  nome: string;
+}
+
+export interface IImageCarousel {
+  id: string;
+  link: string;
+  action?: JSX.Element;
 }
 
 interface IRecipeBase {
