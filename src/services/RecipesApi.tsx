@@ -1,12 +1,14 @@
 import { enqueueSnackbar } from "notistack";
 import { NavigateFunction } from "react-router-dom";
 import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
-import { DELETE, GET, POST, PUT } from "./Api.tsx";
+import {
+  DELETE, GET, POST, PUT,
+} from "./Api.tsx";
 
 const getRecipesSearch = (
-  search_title: String,
+  search_title: string,
   setLoading: (loading: boolean) => void,
-  setRecipes: (recipes: IRecipe[]) => void
+  setRecipes: (recipes: IRecipe[]) => void,
 ) => {
   GET<IRecipe[]>({
     path: `/receita/busca/${search_title}`,
@@ -17,7 +19,7 @@ const getRecipesSearch = (
 
 const getAllRecipes = (
   setLoading: (loading: boolean) => void,
-  setRecipes: (recipes: IRecipe[]) => void
+  setRecipes: (recipes: IRecipe[]) => void,
 ) => {
   GET<IRecipe[]>({
     path: "/receita/all",
@@ -30,7 +32,7 @@ const getRecipeDetails = (
   recipeId: string,
   navigate: NavigateFunction,
   setLoading: (loading: boolean) => void,
-  setRecipe: (recipes: IRecipe) => void
+  setRecipe: (recipes: IRecipe) => void,
 ) => {
   GET<IRecipe>({
     path: `/receita/${recipeId}`,
@@ -45,7 +47,7 @@ const getRecipeDetails = (
 const createRecipe = (
   recipe: FormData,
   navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void,
 ) => {
   POST<IRecipe, FormData>({
     path: "/receita",
@@ -65,7 +67,7 @@ const editRecipe = (
   recipe: FormData,
   recipeId: string,
   navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void,
 ) => {
   PUT<IRecipe, FormData>({
     path: `/receita/${recipeId}`,
@@ -84,7 +86,7 @@ const editRecipe = (
 const deleteRecipe = (
   recipeId: string,
   navigate: NavigateFunction,
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void,
 ) => {
   DELETE<IRecipe>({
     path: `/receita/${recipeId}`,

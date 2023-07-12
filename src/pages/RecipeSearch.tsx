@@ -5,29 +5,29 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { useNavigate, useParams } from "react-router-dom";
 import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import { getRecipesSearch } from "../services/RecipesApi.tsx";
 import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import NoImage from "../assets/noimage.svg";
 import env from "../config/env.tsx";
-import { useNavigate, useParams } from "react-router-dom";
 
 export default function RecipeSearch() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { search_text } = useParams();
+  const { searchText } = useParams();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!search_text) {
+    if (!searchText) {
       navigate("/");
     } else {
-      getRecipesSearch(search_text, setLoading, setRecipes);
+      getRecipesSearch(searchText, setLoading, setRecipes);
     }
-  }, [search_text, navigate]);
+  }, [searchText, navigate]);
 
   // TODO: refatoras (Código duplicado da home)
   return (
@@ -79,7 +79,9 @@ export default function RecipeSearch() {
                     {recipe.titulo}
                   </Typography>
                   <Typography fontSize="14px">
-                    Postado por {recipe.usuario.nome}
+                    Postado por
+                    {" "}
+                    {recipe.usuario.nome}
                   </Typography>
                 </CardContent>
               </CardActionArea>
