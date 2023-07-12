@@ -10,6 +10,7 @@ import { getAllRecipes } from "../services/RecipesApi.tsx";
 import Page from "../components/Page/Page.tsx";
 import RouteAuthRules from "../enums/RouteAuthRules.tsx";
 import NoImage from "../assets/noimage.svg";
+import env from "../config/env.tsx";
 
 export default function Home() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -42,9 +43,13 @@ export default function Home() {
                   <CardMedia
                     component="img"
                     title={recipe.titulo}
-                    image="https://picsum.photos/200"
-                    // image={recipe.imagens[0].nome} //TO DO: implementar requisição de imagem
-                    sx={{ height: "72%" }}
+                    image={`${env.baseUrl}imagem/${recipe.imagens[0].id}`}
+                    sx={{
+                      height: "72%",
+                      width: "auto",
+                      mx: "auto",
+                      p: 4,
+                    }}
                   />
                 ) : (
                   <CardMedia
@@ -64,9 +69,7 @@ export default function Home() {
                     {recipe.titulo}
                   </Typography>
                   <Typography fontSize="14px">
-                    Postado por
-                    {" "}
-                    {recipe.usuario.nome}
+                    Postado por {recipe.usuario.nome}
                   </Typography>
                 </CardContent>
               </CardActionArea>

@@ -23,8 +23,11 @@ export default function ImagesCarousel({ images }: IProps) {
           component="img"
           image={`${env.baseUrl}imagem/${img.id}`}
           sx={{
-            height: "400px", width: "auto", mx: "auto", p: 5,
-          }} // TODO ajustar imagem
+            height: "400px",
+            width: "auto",
+            mx: "auto",
+            p: 5,
+          }}
         />
       ))}
     </Carousel>
