@@ -24,7 +24,7 @@ export interface IRouteGeneralRules {
 
 export interface IRouteUserRules {
   rule: RouteUserRules;
-  userId: string;
+  userId: string | undefined;
   redirectTo: string;
 }
 
