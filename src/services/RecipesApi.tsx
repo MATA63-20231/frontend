@@ -6,12 +6,12 @@ import {
 } from "./Api.tsx";
 
 const getRecipesSearch = (
-  search_title: string,
+  searchTitle: string,
   setLoading: (loading: boolean) => void,
   setRecipes: (recipes: IRecipe[]) => void,
 ) => {
   GET<IRecipe[]>({
-    path: `/receita/busca/${search_title}`,
+    path: `/receita/busca/${searchTitle}`,
     setLoading,
     onSuccess: (data) => setRecipes(data),
   });

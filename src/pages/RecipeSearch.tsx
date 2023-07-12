@@ -80,7 +80,9 @@ export default function RecipeSearch() {
                       {recipe.titulo}
                     </Typography>
                     <Typography fontSize="14px">
-                      Postado por {recipe.usuario.nome}
+                      Postado por
+                      {" "}
+                      {recipe.usuario.nome}
                     </Typography>
                   </CardContent>
                 </CardActionArea>
