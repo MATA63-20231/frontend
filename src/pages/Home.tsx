@@ -58,9 +58,9 @@ export default function Home() {
                     image={NoImage}
                     sx={{
                       height: "72%",
-                      width: "70px",
+                      width: "auto",
                       mx: "auto",
-                      py: "60px",
+                      p: 5,
                     }}
                   />
                 )}
