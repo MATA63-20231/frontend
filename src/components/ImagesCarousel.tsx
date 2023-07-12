@@ -24,11 +24,11 @@ export default function ImagesCarousel({ images }: IProps) {
           container
           key={img.id}
           sx={{
-            border: "1px dashed #0000003b",
-            borderRadius: 3,
+            border: img.action && "1px dashed #0000003b",
+            borderRadius: img.action && 3,
             flexDirection: "column",
             alignItems: "center",
-            bgcolor: "#dddd",
+            bgcolor: img.action && "#dddd",
           }}
         >
           <Grid
@@ -36,7 +36,7 @@ export default function ImagesCarousel({ images }: IProps) {
             sx={{
               bgcolor: "#eeeeee",
               height: "400px",
-              borderRadius: "16px 16px 0px  0px",
+              borderRadius: "16px 16px 0px 0px",
             }}
           >
             <CardMedia

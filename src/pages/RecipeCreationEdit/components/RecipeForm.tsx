@@ -22,9 +22,9 @@ export default function RecipeForm({ initialRecipe }: IProps) {
 
   const acceptedFileTypes = ["JPG", "JPEG", "PNG", "GIF", "SVG"];
   const acceptedFileTypesStr = acceptedFileTypes.join(", ");
-  const maxFileSizeMB = 3;
+  const maxFileSizeMB = 1;
   const maxFileSize = maxFileSizeMB * 1000 * 1024;
-  const maxFilesAmount = 10;
+  const maxFilesAmount = 3;
   const RecipeSchema = generateRecipeSchema({
     acceptedFileTypes,
     acceptedFileTypesStr,

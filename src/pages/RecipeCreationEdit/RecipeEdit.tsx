@@ -70,7 +70,7 @@ export default function RecipeEdit() {
     }
   }, [rawRecipe]);
 
-  return !recipeForm ? null : (
+  return (
     <Page
       title="Editar receita"
       pretitle="Edite sua receita"
@@ -81,9 +81,11 @@ export default function RecipeEdit() {
         redirectTo: `/receita/${recipeId}`,
       }}
     >
-      <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>
-        <RecipeForm initialRecipe={recipeForm} />
-      </Grid>
+      {!recipeForm ? null : (
+        <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>
+          <RecipeForm initialRecipe={recipeForm} />
+        </Grid>
+      )}
     </Page>
   );
 }

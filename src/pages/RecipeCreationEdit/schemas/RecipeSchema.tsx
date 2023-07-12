@@ -30,10 +30,10 @@ const cantBeBothZero = {
 };
 
 export default function generateRecipeSchema({
-  acceptedFileTypes,
-  acceptedFileTypesStr,
-  maxFileSize,
-  maxFileSizeMB,
+  // acceptedFileTypes,
+  // acceptedFileTypesStr,
+  // maxFileSize,
+  // maxFileSizeMB,
   maxFilesAmount,
 }: IProps) {
   return Yup.object<IRecipeFormFields>().shape({
@@ -66,22 +66,28 @@ export default function generateRecipeSchema({
 
     images: Yup.array()
       .of(
-        Yup.mixed<File>()
-          .required("A file is required")
-          .test(
-            "fileFormat",
-            `${FormErrorMessages.NOT_ALLOWED_FILE_TYPE
-            } Tipos permitidos: ${acceptedFileTypesStr}.`,
-            (value) => acceptedFileTypes
-              .map((x) => `image/${x.toLowerCase()}`)
-              .includes(value.type),
-          )
-          .test(
-            "fileSize",
-            `${FormErrorMessages.MAX_FILE_SIZE
-            } Tamanho máximo: ${maxFileSizeMB}MB.`,
-            (value) => value.size <= maxFileSize,
-          ),
+        Yup.mixed<File>(),
+        // .test(
+        //   "fileFormat",
+        //   `${FormErrorMessages.NOT_ALLOWED_FILE_TYPE}
+        //   Tipos permitidos: ${acceptedFileTypesStr}.`,
+        //   (value) => {
+        //     console.log(value);
+        //     if (!value) return true;
+        //     return acceptedFileTypes
+        //       .map((x) => `image/${x.toLowerCase()}`)
+        //       .includes(value.type);
+        //   }
+        // )
+        // .test(
+        //   "fileSize",
+        //   `${FormErrorMessages.MAX_FILE_SIZE}
+        //   Tamanho máximo: ${maxFileSizeMB}MB.`,
+        //   (value) => {
+        //     if (!value) return true;
+        //     return value.size <= maxFileSize;
+        //   }
+        // )
       )
       .max(
         maxFilesAmount,

@@ -45,7 +45,7 @@ export default function Page({
       }
 
       case RouteAuthRules.SAME_USER_ONLY: {
-        if (!isTheSameUser(authRule.userId)) {
+        if (authRule.userId && !isTheSameUser(authRule.userId)) {
           navigate(authRule.redirectTo);
         }
         break;
