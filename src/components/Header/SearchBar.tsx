@@ -10,8 +10,12 @@ export default function SearchBarComponent() {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    navigate(`/receita/busca/${value}`);
-    setValue("");
+    if (value) {
+      navigate(`/receitas/busca/${value}`);
+      setValue("");
+    } else {
+      navigate("/");
+    }
   };
 
   return (

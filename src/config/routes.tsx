@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         element: <RecipeView />,
       },
       {
-        path: "/receita/busca/:searchText",
+        path: "/receitas/busca/:searchText",
         element: <RecipeSearch />,
       },
       {
