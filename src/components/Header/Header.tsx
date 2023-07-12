@@ -11,7 +11,7 @@ import AccountMenu from "./AccountMenu.tsx";
 import AuthContext from "../../contexts/AuthContext.tsx";
 
 export default function Header() {
-  const { signed } = useContext(AuthContext);
+  const { signedIn } = useContext(AuthContext);
 
   return (
     <Toolbar
@@ -49,7 +49,7 @@ export default function Header() {
         justifyContent="flex-end"
       >
         <Grid item>
-          {!signed && (
+          {!signedIn && (
             <Button
               variant="outlined"
               href="login"
@@ -67,7 +67,7 @@ export default function Header() {
           </Button>
         </Grid>
 
-        <Grid item>{signed && <AccountMenu />}</Grid>
+        <Grid item>{signedIn && <AccountMenu />}</Grid>
       </Grid>
     </Toolbar>
   );
