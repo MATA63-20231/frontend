@@ -1,14 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
-import { getRecipeDetails } from "../../services/RecipesApi.tsx";
+import { getRecipeDetails } from "../../services/RecipesApi.js";
 import {
   IRecipeFormFields,
   IRecipe,
-} from "../../interfaces/RecipeInterfaces.tsx";
-import Page from "../../components/Page/Page.tsx";
-import RecipeForm from "./components/RecipeForm.tsx";
-import RouteAuthRules from "../../enums/RouteAuthRules.tsx";
+} from "../../interfaces/RecipeInterfaces.js";
+import Page from "../../components/Page/Page.js";
+import RecipeForm from "./components/RecipeForm.js";
+import RouteAuthRules from "../../enums/RouteAuthRules.js";
 
 export default function RecipeEdit() {
   const navigate = useNavigate();

@@ -1,4 +1,3 @@
-import { IInteractions } from "./InteractionsInterfaces.tsx";
 import { IUser } from "./UserInterfaces.tsx";
 
 export interface IRecipeFormFields {
@@ -20,18 +19,25 @@ interface ITempoPreparo {
 }
 
 interface IIngrediente {
-  descricao: string;
   id?: string;
+  descricao: string;
 }
 
 interface IItemPreparo {
-  descricao: string;
   id?: string;
+  descricao: string;
+}
+
+export interface ICurtida {
+  curtida: boolean;
+}
+
+interface IComentario {
+  comentario: string;
 }
 
 export interface IImage {
   id: string;
-  ordem: number;
   nome: string;
 }
 
@@ -48,9 +54,11 @@ export interface IRecipeToBack extends IRecipeBase {
   imagens: File[];
 }
 
-export interface IRecipe extends IRecipeBase, IInteractions {
+export interface IRecipe extends IRecipeBase {
   id: string;
   dataCadastro: string;
   imagens: IImage[];
   usuario: IUser;
+  curtidas: ICurtida[];
+  comentarios: IComentario[];
 }

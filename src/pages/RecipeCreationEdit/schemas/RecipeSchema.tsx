@@ -1,7 +1,7 @@
 import * as Yup from "yup";
-import { IRecipeFormFields } from "../../../interfaces/RecipeInterfaces.tsx";
-import FormErrorMessages from "../../../enums/FormErrorMessages.tsx";
-import YupHelpers from "../../../enums/YupHelpers.tsx";
+import { IRecipeFormFields } from "../../../interfaces/RecipeInterfaces.js";
+import FormErrorMessages from "../../../enums/FormErrorMessages.js";
+import YupHelpers from "../../../enums/YupHelpers.js";
 
 interface IProps {
   acceptedFileTypes: string[];

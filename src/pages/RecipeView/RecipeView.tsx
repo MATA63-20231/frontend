@@ -17,6 +17,7 @@ import { IRecipe } from "../../interfaces/RecipeInterfaces.tsx";
 import ImagesCarousel from "../../components/Carousel.tsx";
 import AuthContext from "../../contexts/AuthContext.tsx";
 import RecipeViewActions from "./components/RecipeViewActions.tsx";
+import RecipeViewLikes from "./components/RecipeViewLikes.tsx";
 
 // TODO: Avaliação e comentários
 
@@ -45,7 +46,7 @@ export default function RecipeView() {
     >
       {!recipe ? null : (
         <>
-          {recipeId && isTheSameUser(recipe?.usuario?.id) && (
+          {recipeId && isTheSameUser(recipe.usuario.id) && (
             <RecipeViewActions recipeId={recipeId} setLoading={setLoading} />
           )}
           <Grid
@@ -195,6 +196,9 @@ export default function RecipeView() {
               </Grid>
             </Card>
           </Grid>
+          {recipeId && recipe.curtidas && (
+            <RecipeViewLikes recipeId={recipeId} initialLikes={recipe.curtidas}/>
+          )}
         </>
       )}
     </Page>

@@ -4,13 +4,13 @@ import Grid from "@mui/material/Grid";
 import {
   IRecipeToBack,
   IRecipeFormFields,
-} from "../../../interfaces/RecipeInterfaces.tsx";
-import { createRecipe, editRecipe } from "../../../services/RecipesApi.tsx";
-import RecipeFields from "./RecipeFields.tsx";
+} from "../../../interfaces/RecipeInterfaces.js";
+import { createRecipe, editRecipe } from "../../../services/RecipesApi.js";
+import RecipeFields from "./RecipeFields.js";
 import generateRecipeSchema, {
   initialValues,
-} from "../schemas/RecipeSchema.tsx";
-import LoadingButton from "../../../components/LoadingButton.tsx";
+} from "../schemas/RecipeSchema.js";
+import LoadingButton from "../../../components/LoadingButton.js";
 
 interface IProps {
   initialRecipe?: IRecipeFormFields;
