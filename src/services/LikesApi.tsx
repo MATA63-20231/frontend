@@ -1,10 +1,11 @@
 import { Dispatch, SetStateAction } from "react";
 import { ICurtida, IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import { DELETE, POST } from "./Api.tsx";
+
 const sendLike = (
   recipeId: string,
   setLoading: (loading: boolean) => void,
-  setShouldReload: Dispatch<SetStateAction<boolean>>
+  setShouldReload: Dispatch<SetStateAction<boolean>>,
 ) => {
   POST<ICurtida, ICurtida>({
     path: `/curtida/${recipeId}`,
@@ -19,7 +20,7 @@ const sendLike = (
 const sendDislike = (
   recipeId: string,
   setLoading: (loading: boolean) => void,
-  setShouldReload: Dispatch<SetStateAction<boolean>>
+  setShouldReload: Dispatch<SetStateAction<boolean>>,
 ) => {
   POST<ICurtida, ICurtida>({
     path: `/curtida/${recipeId}`,
@@ -34,7 +35,7 @@ const sendDislike = (
 const deleteLike = (
   recipeId: string,
   setLoading: (loading: boolean) => void,
-  setShouldReload: Dispatch<SetStateAction<boolean>>
+  setShouldReload: Dispatch<SetStateAction<boolean>>,
 ) => {
   DELETE<IRecipe>({
     path: `/curtida/${recipeId}`,

@@ -7,4 +7,4 @@ const env = {
   },
 };
 
-export default env.local; // Change the environment here
+export default env.prod; // Change the environment here

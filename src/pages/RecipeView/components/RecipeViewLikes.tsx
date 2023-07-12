@@ -1,6 +1,6 @@
 import { useState, useContext, Dispatch, SetStateAction } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Grid, Tooltip } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import {
@@ -8,8 +8,8 @@ import {
   sendDislike,
   sendLike,
 } from "../../../services/LikesApi.tsx";
-import Loading from "../../../components/Loading.tsx";
 import AuthContext from "../../../contexts/AuthContext.tsx";
+import LoadingButton from "../../../components/LoadingButton.tsx";
 
 interface IProps {
   recipeId: string;
@@ -33,61 +33,51 @@ export default function RecipeViewLikes({
   const handleLike = () => {
     if (!signedIn) {
       navigate("/login");
+    } else if (myLike === true) {
+      deleteLike(recipeId, setLoading, setShouldReload);
     } else {
-      if (myLike === true) {
-        deleteLike(recipeId, setLoading, setShouldReload);
-      } else {
-        sendLike(recipeId, setLoading, setShouldReload);
-      }
+      sendLike(recipeId, setLoading, setShouldReload);
     }
   };
 
   const handleDislike = () => {
     if (!signedIn) {
       navigate("/login");
+    } else if (myLike === false) {
+      deleteLike(recipeId, setLoading, setShouldReload);
     } else {
-      if (myLike === false) {
-        deleteLike(recipeId, setLoading, setShouldReload);
-      } else {
-        sendDislike(recipeId, setLoading, setShouldReload);
-      }
+      sendDislike(recipeId, setLoading, setShouldReload);
     }
   };
 
   return (
-    <Grid container direction="row" justifyContent="flex-end" gap={1}>
-      <Tooltip title={myLike === true ? "Remover" : "Curtir"}>
-        <Button
+    <Grid container direction="row" justifyContent="center" gap={1}>
+      <Grid item>
+        <LoadingButton
+          loading={loading}
           onClick={handleLike}
-          disabled={loading}
           startIcon={<ThumbUpAltIcon />}
           size="small"
-          variant={myLike === true ? "contained" : "outlined"}>
-          {loading ? (
-            <Loading />
-          ) : myLike === true ? (
-            `Curtiu (${totalLikes})`
-          ) : (
-            `Curtir (${totalLikes})`
-          )}
-        </Button>
-      </Tooltip>
-      <Tooltip title={myLike === false ? "Remover" : "Descurtir"}>
-        <Button
+          variant={myLike === true ? "contained" : "outlined"}
+          tooltipTitle={myLike === true ? "Remover" : "Curtir"}>
+          {myLike === true
+            ? `Curtiu (${totalLikes})`
+            : `Curtir (${totalLikes})`}
+        </LoadingButton>
+      </Grid>
+      <Grid item>
+        <LoadingButton
+          loading={loading}
           onClick={handleDislike}
-          disabled={loading}
           startIcon={<ThumbDownAltIcon />}
           size="small"
-          variant={myLike === false ? "contained" : "outlined"}>
-          {loading ? (
-            <Loading />
-          ) : myLike === false ? (
-            `Descurtiu (${totalDislikes})`
-          ) : (
-            `Descurtir (${totalDislikes})`
-          )}
-        </Button>
-      </Tooltip>
+          variant={myLike === false ? "contained" : "outlined"}
+          tooltipTitle={myLike === false ? "Remover" : "Curtir"}>
+          {myLike === false
+            ? `Descurtiu (${totalDislikes})`
+            : `Descurtir (${totalDislikes})`}
+        </LoadingButton>
+      </Grid>
     </Grid>
   );
 }
