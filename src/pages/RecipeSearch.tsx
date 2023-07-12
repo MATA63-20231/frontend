@@ -37,9 +37,13 @@ export default function RecipeSearch() {
       loading={loading}
       authRule={{ rule: RouteAuthRules.NO_RULE }}
     >
-      <Typography sx={{mb:2, fontSize: 20}} variant="h2">Resultados da busca para "{searchText}"</Typography>
+      <Typography sx={{ mb: 2, fontSize: 20 }} variant="h2">
+        Resultados da busca para &ldquo;
+        {searchText}
+        &rdquo;
+      </Typography>
       {recipes.length ? (
-        <Grid  sx={{mt:2}} container spacing={4}>
+        <Grid sx={{ mt: 2 }} container spacing={4}>
           {recipes.map((recipe) => (
             <Grid item key={recipe.id} xs={12} sm={6} md={4}>
               <Card
