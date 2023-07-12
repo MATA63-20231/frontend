@@ -1,6 +1,8 @@
 import { enqueueSnackbar } from "notistack";
 import { NavigateFunction } from "react-router-dom";
-import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
+import {
+  IRecipe,
+} from "../interfaces/RecipeInterfaces.tsx";
 import { GET, POST, PUT } from "./Api.tsx";
 
 const getAllRecipes = (

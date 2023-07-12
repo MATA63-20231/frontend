@@ -2,6 +2,7 @@ import Carousel from "react-material-ui-carousel";
 import { CardMedia } from "@mui/material";
 import { IImage } from "../interfaces/RecipeInterfaces.tsx";
 import NoImage from "../assets/noimage.svg";
+import env from "../config/env.tsx";
 
 interface IProps {
   images: IImage[];
@@ -20,9 +21,10 @@ export default function ImagesCarousel({ images }: IProps) {
         <CardMedia
           key={img.id}
           component="img"
-          image={`https://picsum.photos/500/200?random=${img.ordem}`}
-          // image={img.nome}  // TODO: Implementar quando houver requisição de imagem
-          sx={{ height: "400px" }}
+          image={`${env.baseUrl}imagem/${img.id}`}
+          sx={{
+            height: "400px", width: "auto", mx: "auto", p: 5,
+          }} // TODO ajustar imagem
         />
       ))}
     </Carousel>
