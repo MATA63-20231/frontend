@@ -1,9 +1,6 @@
-export interface IUserBase {
+export interface IUser {
+  id: string;
   nome: string;
   email: string;
-}
-
-export interface IUser extends IUserBase {
   usuario: string;
-  id: string;
 }
