@@ -59,21 +59,19 @@ export default function RecipeForm({ initialRecipe }: IProps) {
       if (key !== "imagens") {
         recipeFormData.append(
           key,
-          JSON.stringify(recipeBack[key as keyof IRecipeToBack])
+          JSON.stringify(recipeBack[key as keyof IRecipeToBack]),
         );
       }
     });
 
-    recipeBack.imagens.forEach((image) =>
-      recipeFormData.append("imagens", image)
-    );
+    recipeBack.imagens.forEach((image) => recipeFormData.append("imagens", image));
 
     return recipeFormData;
   };
 
   const handleSubmit = (
     values: IRecipeFormFields,
-    { setSubmitting }: FormikHelpers<IRecipeFormFields>
+    { setSubmitting }: FormikHelpers<IRecipeFormFields>,
   ) => {
     const recipe = recipeToBack(values);
     if (recipeId) {
@@ -87,7 +85,8 @@ export default function RecipeForm({ initialRecipe }: IProps) {
     <Formik
       initialValues={initialRecipe || initialValues}
       validationSchema={RecipeSchema}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+    >
       {({
         values,
         errors,
