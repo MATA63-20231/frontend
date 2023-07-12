@@ -14,10 +14,11 @@ import { getRecipeDetails } from "../../services/RecipesApi.tsx";
 import Page from "../../components/Page/Page.tsx";
 import RouteAuthRules from "../../enums/RouteAuthRules.tsx";
 import { IRecipe } from "../../interfaces/RecipeInterfaces.tsx";
-import ImagesCarousel from "../../components/Carousel.tsx";
+import ImagesCarousel from "../../components/ImagesCarousel.tsx";
 import AuthContext from "../../contexts/AuthContext.tsx";
 import RecipeViewActions from "./components/RecipeViewActions.tsx";
 import RecipeViewLikes from "./components/RecipeViewLikes.tsx";
+import env from "../../config/env.tsx";
 
 // TODO: Avaliação e comentários
 
@@ -78,7 +79,9 @@ export default function RecipeView() {
               </Typography>
             </Stack>
             <Card sx={{ width: "600px" }}>
-              <ImagesCarousel images={recipe.imagens} />
+              <ImagesCarousel
+                images={recipe.imagens.map(({ id }) => ({ id, link: `${env.baseUrl}imagem/${id}` }))}
+              />
 
               <Stack
                 direction={{ xs: "column", md: "row" }}

@@ -41,6 +41,12 @@ export interface IImage {
   nome: string;
 }
 
+export interface IImageCarousel {
+  id: string;
+  link: string;
+  action?: JSX.Element;
+}
+
 interface IRecipeBase {
   titulo: string;
   descricao: string;
