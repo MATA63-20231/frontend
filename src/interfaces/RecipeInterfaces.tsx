@@ -31,6 +31,7 @@ interface IItemPreparo {
 
 export interface IImage {
   id: string;
+  nome: string;
 }
 
 export interface IImageCarousel {
