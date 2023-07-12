@@ -42,28 +42,23 @@ export default function RecipeForm({ initialRecipe }: IProps) {
         horas: Number(recipe.prepTime.hours),
         minutos: Number(recipe.prepTime.minutes),
       },
-      listaPreparo: recipe.directions.map((direction) => ({
-        descricao: direction,
-      })),
       ingredientes: recipe.ingredients.map((ingredient) => ({
         descricao: ingredient,
+      })),
+      listaPreparo: recipe.directions.map((direction) => ({
+        descricao: direction,
       })),
       imagens: recipe.images,
     };
 
     const recipeFormData = new FormData();
 
-    const keys = Object.keys(recipeBack);
-
-    keys.forEach((key) => {
-      if (key !== "imagens") {
-        recipeFormData.append(
-          key,
-          JSON.stringify(recipeBack[key as keyof IRecipeToBack]),
-        );
-      }
-    });
-
+    recipeFormData.append("titulo", recipeBack.titulo);
+    recipeFormData.append("descricao", recipeBack.descricao);
+    recipeFormData.append("rendimento", String(recipeBack.rendimento));
+    recipeFormData.append("tempoPreparo", JSON.stringify(recipeBack.tempoPreparo));
+    recipeFormData.append("ingredientes", JSON.stringify(recipeBack.ingredientes));
+    recipeFormData.append("listaPreparo", JSON.stringify(recipeBack.listaPreparo));
     recipeBack.imagens.forEach((image) => recipeFormData.append("imagens", image));
 
     return recipeFormData;
