@@ -22,7 +22,7 @@ export default function ImagesCarousel({ images }: IProps) {
           key={img.id}
           component="img"
           image={env.baseUrl + "imagem/" + img.id}
-          sx={{ height: "400px" }} //TODO ajustar imagem
+          sx={{ height: "400px", width:"auto", mx:"auto", p:5 }} //TODO ajustar imagem
         />
       ))}
     </Carousel>
