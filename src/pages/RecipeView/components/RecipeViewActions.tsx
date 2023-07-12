@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { deleteRecipe } from "../../../services/RecipesApi";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -8,6 +7,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { deleteRecipe } from "../../../services/RecipesApi.tsx";
 
 interface IProps {
   recipeId: string;
@@ -19,7 +19,6 @@ export default function RecipeViewActions({ recipeId, setLoading }: IProps) {
   const [open, setOpen] = useState(false);
 
   const handleDelete = () => {
-    console.log("aaa");
     if (recipeId) {
       deleteRecipe(recipeId, navigate, setLoading);
     }
@@ -46,9 +45,10 @@ export default function RecipeViewActions({ recipeId, setLoading }: IProps) {
       <Dialog
         open={open}
         onClose={handleClose}
-        maxWidth={"xs"}
+        maxWidth="xs"
         aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description">
+        aria-describedby="alert-dialog-description"
+      >
         <DialogTitle fontSize={24} color="primary" id="alert-dialog-title">
           Tem certeza?
         </DialogTitle>

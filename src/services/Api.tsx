@@ -111,5 +111,5 @@ function DELETE<DataType>({
 }
 
 export {
-  api, GET, POST, PUT, DELETE
+  api, GET, POST, PUT, DELETE,
 };
