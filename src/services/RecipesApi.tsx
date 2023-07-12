@@ -1,9 +1,9 @@
 import { enqueueSnackbar } from "notistack";
 import { NavigateFunction } from "react-router-dom";
+import { IRecipe } from "../interfaces/RecipeInterfaces.tsx";
 import {
-  IRecipe,
-} from "../interfaces/RecipeInterfaces.tsx";
-import { GET, POST, PUT } from "./Api.tsx";
+  DELETE, GET, POST, PUT,
+} from "./Api.tsx";
 
 const getAllRecipes = (
   setLoading: (loading: boolean) => void,
@@ -26,7 +26,9 @@ const getRecipeDetails = (
     path: `/receita/${recipeId}`,
     setLoading,
     onSuccess: (data) => setRecipe(data),
-    onError: () => { navigate("/"); },
+    onError: () => {
+      navigate("/");
+    },
   });
 };
 
@@ -69,6 +71,31 @@ const editRecipe = (
   });
 };
 
+const deleteRecipe = (
+  recipeId: string,
+  navigate: NavigateFunction,
+  setLoading: (loading: boolean) => void,
+) => {
+  DELETE<IRecipe>({
+    path: `/receita/${recipeId}`,
+    setLoading,
+    onSuccess: () => {
+      enqueueSnackbar({
+        variant: "success",
+        message: "Receita deletada com sucesso!",
+      });
+      navigate("/");
+    },
+    onError: () => {
+      navigate("/");
+    },
+  });
+};
+
 export {
-  getAllRecipes, getRecipeDetails, createRecipe, editRecipe,
+  getAllRecipes,
+  getRecipeDetails,
+  createRecipe,
+  editRecipe,
+  deleteRecipe,
 };

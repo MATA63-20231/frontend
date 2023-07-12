@@ -3,7 +3,7 @@ import App from "../App.tsx";
 import Home from "../pages/Home.tsx";
 import NotFound from "../pages/NotFound.tsx";
 import RecipeCreation from "../pages/Recipe/RecipeCreation.tsx";
-import RecipeView from "../pages/RecipeView.tsx";
+import RecipeView from "../pages/RecipeView/RecipeView.tsx";
 import Login from "../pages/Login/Login.tsx";
 import Register from "../pages/Register/Register.tsx";
 import RecipeEdit from "../pages/Recipe/RecipeEdit.tsx";
