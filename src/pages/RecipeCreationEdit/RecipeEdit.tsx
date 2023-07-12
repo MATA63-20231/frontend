@@ -39,7 +39,9 @@ export default function RecipeEdit() {
 
   useEffect(() => {
     if (rawRecipe) {
-      const imagesPromises = rawRecipe.imagens.map(({ id, nome }) => getFileFromUrl(`${env.baseUrl}imagem/${id}`, nome));
+      const imagesPromises = rawRecipe.imagens.map(({ id, nome }) =>
+        getFileFromUrl(`${env.baseUrl}imagem/${id}`, nome)
+      );
       setLoading(true);
       Promise.all(imagesPromises)
         .then((images) => {
@@ -52,25 +54,27 @@ export default function RecipeEdit() {
               minutes: Number(rawRecipe.tempoPreparo.minutos),
             },
             directions: rawRecipe.listaPreparo.map(
-              ({ descricao }) => descricao,
+              ({ descricao }) => descricao
             ),
             ingredients: rawRecipe.ingredientes.map(
-              ({ descricao }) => descricao,
+              ({ descricao }) => descricao
             ),
             images,
           };
           setRecipeForm(recipeToForm);
         })
-        .catch(() => enqueueSnackbar({
-          variant: "error",
-          message:
+        .catch(() =>
+          enqueueSnackbar({
+            variant: "error",
+            message:
               "Não foi possível processar as imagens. Por favor, tente mais tarde.",
-        }))
+          })
+        )
         .finally(() => setLoading(false));
     }
   }, [rawRecipe]);
 
-  return !recipeForm ? null : (
+  return (
     <Page
       title="Editar receita"
       pretitle="Edite sua receita"
@@ -79,11 +83,12 @@ export default function RecipeEdit() {
         rule: RouteAuthRules.SAME_USER_ONLY,
         userId: rawRecipe?.usuario?.id,
         redirectTo: `/receita/${recipeId}`,
-      }}
-    >
-      <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>
-        <RecipeForm initialRecipe={recipeForm} />
-      </Grid>
+      }}>
+      {!recipeForm ? null : (
+        <Grid sx={{ maxWidth: "sm", margin: "0 auto" }}>
+          <RecipeForm initialRecipe={recipeForm} />
+        </Grid>
+      )}
     </Page>
   );
 }
