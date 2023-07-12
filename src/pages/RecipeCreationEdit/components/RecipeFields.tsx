@@ -1,11 +1,11 @@
 import { FormikErrors } from "formik";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import { IRecipeFormFields } from "../../../interfaces/RecipeInterfaces.js";
-import TextInput from "../../../components/CustomInputs/TextInput.js";
-import TextArrayInput from "../../../components/CustomInputs/TextArrayInput.js";
-import IntegerNumberInput from "../../../components/CustomInputs/IntegerNumberInput.js";
-import DragAndDropImagesInput from "../../../components/CustomInputs/DragAndDropImagesInput/DragAndDropImagesInput.js";
+import { IRecipeFormFields } from "../../../interfaces/RecipeInterfaces.tsx";
+import TextInput from "../../../components/CustomInputs/TextInput.tsx";
+import TextArrayInput from "../../../components/CustomInputs/TextArrayInput.tsx";
+import IntegerNumberInput from "../../../components/CustomInputs/IntegerNumberInput.tsx";
+import DragAndDropImagesInput from "../../../components/CustomInputs/DragAndDropImagesInput/DragAndDropImagesInput.tsx";
 
 interface IProps {
   values: IRecipeFormFields;

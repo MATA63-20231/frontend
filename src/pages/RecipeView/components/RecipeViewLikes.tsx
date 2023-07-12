@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Button, Grid, Tooltip } from "@mui/material";
-import { sendDislike, sendLike } from "../../../services/LikesApi";
-import { ICurtida } from "../../../interfaces/RecipeInterfaces";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
+import { sendDislike, sendLike } from "../../../services/LikesApi.tsx";
+import { ICurtida } from "../../../interfaces/RecipeInterfaces.tsx";
 
 interface IProps {
   recipeId: string;
@@ -11,20 +11,20 @@ interface IProps {
 }
 
 export default function RecipeViewLikes({ recipeId, initialLikes }: IProps) {
-  useEffect(() => {
-    const likes = initialLikes.filter(({ curtida }) => curtida).length;
-    const dislikes = initialLikes.filter(({ curtida }) => !curtida).length;
-
-    setLikes(likes);
-    setLikes(dislikes);
-    // console.log({ likes, dislikes });
-  }, []);
-
   const [likes, setLikes] = useState<number>(0);
   const [dislikes, setDislikes] = useState<number>(0);
 
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
+
+  useEffect(() => {
+    const likesCount = initialLikes.filter(({ curtida }) => curtida).length;
+    const dislikesCount = initialLikes.filter(({ curtida }) => !curtida).length;
+
+    setLikes(likesCount);
+    setLikes(dislikesCount);
+    // console.log({ likes, dislikes });
+  }, [initialLikes]);
 
   const handleLike = () => {
     sendLike(recipeId, setLiked);
@@ -63,7 +63,8 @@ export default function RecipeViewLikes({ recipeId, initialLikes }: IProps) {
           onClick={handleLike}
           startIcon={<ThumbUpAltIcon />}
           size="small"
-          variant={liked ? "contained" : "outlined"}>
+          variant={liked ? "contained" : "outlined"}
+        >
           {liked ? `Curtiu (${likes})` : `Curtir (${likes})`}
         </Button>
       </Tooltip>
@@ -72,7 +73,8 @@ export default function RecipeViewLikes({ recipeId, initialLikes }: IProps) {
           onClick={handleDislike}
           startIcon={<ThumbDownAltIcon />}
           size="small"
-          variant={disliked ? "contained" : "outlined"}>
+          variant={disliked ? "contained" : "outlined"}
+        >
           {disliked ? `Descurtiu (${dislikes})` : `Descurtir (${dislikes})`}
         </Button>
       </Tooltip>

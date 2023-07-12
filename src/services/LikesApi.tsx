@@ -1,5 +1,5 @@
-import { ICurtida, IRecipe } from "../interfaces/RecipeInterfaces.js";
-import { DELETE, POST } from "./Api.js";
+import { ICurtida, IRecipe } from "../interfaces/RecipeInterfaces.tsx";
+import { DELETE, POST } from "./Api.tsx";
 
 const sendLike = (recipeId: string, setLoading: (loading: boolean) => void) => {
   POST<ICurtida, ICurtida>({
@@ -14,7 +14,7 @@ const sendLike = (recipeId: string, setLoading: (loading: boolean) => void) => {
 
 const sendDislike = (
   recipeId: string,
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void,
 ) => {
   POST<ICurtida, ICurtida>({
     path: `/curtida/${recipeId}`,
@@ -28,7 +28,7 @@ const sendDislike = (
 
 const deleteLike = (
   recipeId: string,
-  setLoading: (loading: boolean) => void
+  setLoading: (loading: boolean) => void,
 ) => {
   DELETE<IRecipe>({
     path: `/curtida/${recipeId}`,
