@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
@@ -9,8 +10,8 @@ interface IProps {
 }
 
 export default function ImagesCarousel({ images }: IProps) {
-  const hasImages = images.length;
-  const hasMultipleImages = images.length > 1;
+  const [hasImages] = useState(images.length);
+  const [hasMultipleImages] = useState(images.length > 1);
 
   return hasImages ? (
     <Carousel
@@ -23,18 +24,19 @@ export default function ImagesCarousel({ images }: IProps) {
           container
           key={img.id}
           sx={{
-            bgcolor: "#cccc",
-            borderRadius: "16px",
+            border: "1px dashed #0000003b",
+            borderRadius: 3,
             flexDirection: "column",
             alignItems: "center",
+            bgcolor: "#dddd",
           }}
         >
           <Grid
             container
             sx={{
+              bgcolor: "#eeeeee",
               height: "400px",
               borderRadius: "16px 16px 0px  0px",
-              bgcolor: "#dddd",
             }}
           >
             <CardMedia
