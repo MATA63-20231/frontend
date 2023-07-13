@@ -12,6 +12,7 @@ import Grid from "@mui/material/Grid";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
+import LockIcon from "@mui/icons-material/Lock";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PersonIcon from "@mui/icons-material/Person";
 import AuthContext from "../../contexts/AuthContext.tsx";
@@ -40,6 +41,11 @@ export default function AccountMenu() {
   };
 
   const navigateToMyRecipes = () => {
+    // TODO: link correto
+    navigate("/");
+  };
+
+  const navigateToChangeMyPassword = () => {
     // TODO: link correto
     navigate("/");
   };
@@ -89,6 +95,12 @@ export default function AccountMenu() {
             <PersonIcon fontSize="small" />
           </ListItemIcon>
           Minhas receitas
+        </MenuItem>
+        <MenuItem onClick={navigateToChangeMyPassword}>
+          <ListItemIcon>
+            <LockIcon fontSize="small" />
+          </ListItemIcon>
+          Alterar senha
         </MenuItem>
         <MenuItem onClick={logout}>
           <ListItemIcon>

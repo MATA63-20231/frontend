@@ -12,10 +12,13 @@ export const initialValues: IUserRegister = {
 
 const RegisterSchema = Yup.object<IUserRegister>().shape({
   usuario: YupHelpers.STRING_REQUIRED,
-  senha: YupHelpers.STRING_REQUIRED,
   nome: YupHelpers.STRING_REQUIRED,
   email: YupHelpers.EMAIL_REQUIRED,
-  confirmacaoSenha: YupHelpers.STRING_REQUIRED,
+  senha: YupHelpers.STRING_REQUIRED,
+  confirmacaoSenha: YupHelpers.STRING_REQUIRED.oneOf(
+    [Yup.ref("senha")],
+    "As senhas não conferem.",
+  ),
 });
 
 export default RegisterSchema;
