@@ -17,7 +17,7 @@ const RegisterSchema = Yup.object<IUserRegister>().shape({
   senha: YupHelpers.STRING_REQUIRED,
   confirmacaoSenha: YupHelpers.STRING_REQUIRED.oneOf(
     [Yup.ref("senha")],
-    "As senhas não conferem."
+    "As senhas não conferem.",
   ),
 });
 
